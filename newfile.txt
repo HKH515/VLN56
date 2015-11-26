@@ -1,0 +1,1 @@
+cout << "Hallo her er eg\n";

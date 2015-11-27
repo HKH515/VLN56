@@ -49,6 +49,10 @@ public:
     string get_profession();
 
     friend bool operator < (const Person &lhs, const Person &rhs);
+    friend bool operator > (const Person &lhs, const Person &rhs);
+    void operator = (const Person& rhs);
+    // copy constructor
+    Person(const Person& copyme);
 
     int calc_age();
 };

@@ -19,6 +19,29 @@ bool operator < (const Person &lhs, const Person &rhs) {
     return lhs.name < rhs.name;
 }
 
+bool operator > (const Person &lhs, const Person &rhs) {
+    return lhs.name > rhs.name;
+}
+
+void Person::operator = (const Person& rhs) {
+    name = rhs.name;
+    birth_year = rhs.birth_year;
+    death_year = rhs.death_year;
+    sex = rhs.sex;
+    description = rhs.description;
+    profession = rhs.profession;
+}
+
+// copy constructor
+Person::Person(const Person& copyme) {
+    name = copyme.name;
+    birth_year = copyme.birth_year;
+    death_year = copyme.death_year;
+    sex = copyme.sex;
+    description = copyme.description;
+    profession = copyme.profession;
+}
+
 // function to calculate the persons age
 int Person::calc_age() {
         time_t t = time(NULL);

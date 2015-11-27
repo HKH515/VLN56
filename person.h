@@ -2,7 +2,7 @@
 #define PERSON_H
 
 #include <string>
-
+#include <ctime>
 using namespace std;
 
 class Person

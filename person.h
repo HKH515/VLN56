@@ -45,6 +45,7 @@ public:
     int get_deathyear();
     string get_description();
     string get_profession();
+    int calc_age();
 };
 
 #endif // PERSON_H

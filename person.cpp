@@ -17,8 +17,5 @@ Person::Person()
     string get_profession() {return profession};
 
 
-
-
-
 }
 

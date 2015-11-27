@@ -20,7 +20,7 @@ class Data
         void setFile(string data);
         void push(string entry);
         vector<string> query(int column, string dataQuery); //Fetches all lines matching query
-        vector<string> read(); //Reads the whole data file
+        void read(); //Reads the whole data file
 };
 
 #endif // DATA_H

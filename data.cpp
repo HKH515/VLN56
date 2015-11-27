@@ -16,7 +16,7 @@ string Data::getFile()
 }
 
 
-vector<string> Data::read()
+void Data::read()
 {
     ifstream inputStream;
     inputStream.open(getFile());

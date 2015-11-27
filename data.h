@@ -11,15 +11,15 @@ using namespace std;
 class Data
 {
     private:
-        string filename;
-        vector<string> data;
-    
+        string internalFilename;
+        vector<string> internalData;
+
     public:
         Data(string datafile);
         string getFile();
         void setFile(string data);
-        void push_back(string entry);
-        vector<string> query(); //Fetches all lines matching query
+        void push(string entry);
+        vector<string> query(int column, string dataQuery); //Fetches all lines matching query
         vector<string> read(); //Reads the whole data file
 };
 

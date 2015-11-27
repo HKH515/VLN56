@@ -2,46 +2,51 @@
 
 Data::Data(string datafile)
 {
-    setFile(datafile);  
+    setFile(datafile);
 }
 
-void Data::setFile(string data)
+void Data::setFile(string filename)
 {
-    filename = data;   
+    internalFilename = filename;
 }
 
 string Data::getFile()
 {
-    return filename;
+    return internalFilename;
 }
+
 
 vector<string> Data::read()
 {
     ifstream inputStream;
-    inputStream.open(getFile())
+    inputStream.open(getFile());
+    string line;
     if (inputStream.is_open())
     {
         while (getline(inputStream, line))
         {
-            push_back(line);
+            push(line);
         }
     }
-    
+
 }
 
-void Data::push_back(string entry)
+void Data::push(string entry)
 {
-    this->data.push_back(entry);
+    internalData.push_back(entry);
 }
 
-vector<string> Data::query(string dataQuery)
+vector<string> Data::query(int column, string dataQuery)
 {
+    regex queryString(dataQuery);
     vector<string> queryVect;
-    for (int i = 0; i <= this->data.length(); i++)
+    for (int i = 0; i <= internalData.size(); i++)
     {
-        if (regex_match(data[i], dataQuery)
+        string line = internalData[i];
+        string column_content = line.substr(column, line.find("|"));
+        if (regex_match(column_content.begin(), column_content.end(), queryString))
         {
-            queryVect.push_back(data[i]);     
+            queryVect.push_back(line);
 
         }
     }

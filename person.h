@@ -2,6 +2,7 @@
 #define PERSON_H
 
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -45,6 +46,8 @@ public:
     int get_deathyear();
     string get_description();
     string get_profession();
+
+    int calc_age();
 };
 
 #endif // PERSON_H

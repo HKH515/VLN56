@@ -39,6 +39,7 @@ public:
     void set_name(string n);
     void set_birthyear(int y);
     void set_deathyear(int y);
+    void set_sex(bool s);
 
     // Get functions
     string get_name();
@@ -46,6 +47,8 @@ public:
     int get_deathyear();
     string get_description();
     string get_profession();
+
+    friend bool operator < (const Person &lhs, const Person &rhs);
 
     int calc_age();
 };

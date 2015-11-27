@@ -7,5 +7,11 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    data.cpp \
+    person.cpp
+
+HEADERS += \
+    data.h \
+    person.h
 

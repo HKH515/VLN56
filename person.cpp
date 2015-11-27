@@ -2,16 +2,6 @@
 
 using namespace std;
 
-Person::Person()
-{
-    public:
-
-    // set functions
-    void set_name(string n) {name = n;};
-    void set_birthyear(int y) {birthyear = y;};
-    void set_deathyear(int y) {deathyear = y;};
-    void set_profession(string p) {string profession};
-
   // set functions
 void Person::set_name(string n) {name = n;};
 void Person::set_birthyear(int y) {birth_year = y;};

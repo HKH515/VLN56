@@ -40,14 +40,15 @@ vector<string> Data::query(int column, string dataQuery)
 {
     regex queryString(dataQuery);
     vector<string> queryVect;
-    for (int i = 0; i <= internalData.size(); i++)
+    string line;
+    for (unsigned int i = 0; i < internalData.size(); i++)
     {
-        string line = internalData[i];
+        line = internalData[i];
         string column_content = line.substr(column, line.find("|"));
         if (regex_match(column_content.begin(), column_content.end(), queryString))
         {
-            queryVect.push_back(line);
-
+            push(line);
+        
         }
     }
     return queryVect;

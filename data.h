@@ -1,10 +1,10 @@
 #ifndef DATA_H
 #define DATA_H
 
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
-#include <regex>
 
 using namespace std;
 
@@ -19,8 +19,11 @@ class Data
         string getFile();
         void setFile(string data);
         void push(string entry);
+        int nthIndex(string haystack, char needle, int n);
         vector<string> query(int column, string dataQuery); //Fetches all lines matching query
-        void read(); //Reads the whole data file
+        void read(); //Reads the whole data file (internal)
+        vector<string> readEntries(); //Returns a vector of all entries
+        void write(string line); //Creates an entry in the data file
 };
 
 #endif // DATA_H

@@ -44,3 +44,12 @@ void Domain::sort_ascending(vector<Person> &v)
     stable_sort(v.begin(), v.end(), greater);
 }*/
 
+vector<string> Domain::handle_commands(vector<string> vec) {
+    string command = vec[0].substr(0, vec[0].find(" "));
+
+    if (command == "list") {
+
+
+    }
+    return vec;
+}

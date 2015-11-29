@@ -26,6 +26,17 @@ void Domain::parse_query_vector(vector<string> v) {
         p.set_profession(st.substr(position_beg + 1, (position_end - position_beg - 1)));
         vec.push_back(p);
     }
+    // Default returns vector sorted by name in ascending order
+    sort_ascending(vec);
+}
+
+string Domain::parse_add_command(vector<string> vec) {
+    string st = " ";
+    for (unsigned int i = 1; i < vec.size(); i++) {
+        st += vec[i];
+        st += "|";
+    }
+    return st;
 }
 
 /*bool Domain::greater(Person lhs, Person rhs)
@@ -44,12 +55,20 @@ void Domain::sort_ascending(vector<Person> &v)
     stable_sort(v.begin(), v.end(), greater);
 }*/
 
-vector<string> Domain::handle_commands(vector<string> vec) {
-    string command = vec[0].substr(0, vec[0].find(" "));
+vector<Person> Domain::handle_commands(vector<string> v) {
+    string command = v[0];
+    data->read();
+    vector<Person> pers;
 
+    // returns all entries in database
     if (command == "list") {
-
-
+        parse_query_vector(data->readEntries());
+        return vec;
     }
-    return vec;
+    else if (command == "add") {
+        data->write(parse_add_command(v));
+        return pers;
+    }
+
+    return pers;
 }

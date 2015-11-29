@@ -12,14 +12,15 @@ class Domain
 {
 private:
     Data* data = new Data("data.dat");
+    vector<Person> vec;
 
 public:
-    vector<Person> vec;
     void sort_ascending(vector<Person> &v);
     void sort_descending(vector<Person> &v);
     void parse_query_vector(vector<string> v);
+    string parse_add_command(vector<string> vec);
     bool greater(Person lhs, Person rhs);
-    vector<string> handle_commands(vector<string> vec);
+    vector<Person> handle_commands(vector<string> v);
 
     Domain()
     {

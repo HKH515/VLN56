@@ -45,7 +45,6 @@ vector<string> Data::readEntries()
     return internalData;
 }
 
-
 void Data::push(string entry)
 {
     internalData.push_back(entry);
@@ -79,8 +78,8 @@ vector<string> Data::query(int column, string dataQuery)
     for (unsigned int i = 0; i < dataSize; i++)
     {
         line = internalData[i];
-        string column_content = line.substr(nthIndex(line, '|', column)+1, nthIndex(line, '|', column+1)-1);
 
+        string column_content = line.substr(nthIndex(line, '|', column)+1, nthIndex(line, '|', column+1)-nthIndex(line, '|', column)-1);
         if (column_content.find(dataQuery) != string::npos) //if query is found in current cell
         {
             queryVect.push_back(line);

@@ -35,7 +35,7 @@ void Data::read()
 void Data::write(string line)
 {
     ofstream outputStream;
-    outputStream.open(getFile().c_str());
+    outputStream.open(getFile().c_str(), ios::app);
     outputStream << line << endl;
     outputStream.close();
 }

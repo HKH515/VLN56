@@ -11,9 +11,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     data.cpp \
-    person.cpp
+    person.cpp \
+	domain.cpp
 
 HEADERS += \
     data.h \
-    person.h
+    person.h \
+	domain.h
 

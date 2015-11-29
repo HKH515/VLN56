@@ -1,8 +1,5 @@
 #include "domain.h"
 
-//void Domain::sort_ascending(vector<Person> v);
-
-
 // Parse function for queries returned from the data layer. Parses
 void Domain::parse_query_vector(vector<string> v) {
     
@@ -30,4 +27,20 @@ void Domain::parse_query_vector(vector<string> v) {
         vec.push_back(p);
     }
 }
+
+/*bool Domain::greater(Person lhs, Person rhs)
+{
+    return lhs.get_name() > rhs.get_name();
+}*/
+
+// Sort
+void Domain::sort_ascending(vector<Person> &v)
+{
+    stable_sort(v.begin(), v.end());
+}
+
+/*void Domain::sort_descending(vector<Person> &v)
+{
+    stable_sort(v.begin(), v.end(), greater);
+}*/
 

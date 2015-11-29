@@ -2,6 +2,7 @@
 #define PERSON_H
 
 #include <string>
+#include <iostream>
 #include <ctime>
 
 using namespace std;
@@ -40,16 +41,20 @@ public:
     void set_birthyear(int y);
     void set_deathyear(int y);
     void set_sex(bool s);
+    void set_description(string s);
+    void set_profession(string p);
 
     // Get functions
     string get_name();
     int get_birthyear();
     int get_deathyear();
+    int get_sex();
     string get_description();
     string get_profession();
 
     friend bool operator < (const Person &lhs, const Person &rhs);
     friend bool operator > (const Person &lhs, const Person &rhs);
+    friend ostream& operator <<(ostream& outs, const Person &p);
     void operator = (const Person& rhs);
     // copy constructor
     Person(const Person& copyme);

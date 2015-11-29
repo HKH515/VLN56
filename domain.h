@@ -5,19 +5,25 @@
 #include "Data.h"
 #include <string>
 #include <iostream>
+#include <vector>
+#include <cstdlib>
 
 class Domain
 {
 private:
-    Data data;
-    vector<Person> vec;
-
-    //void sort_ascending(vector<Person> v);
-    void parse_query_vector(vector<string> v);
+    //Data data;
 
 public:
+    vector<Person> vec;
+    void sort_ascending(vector<Person> &v);
+    //void sort_descending(vector<Person> &v);
+    void parse_query_vector(vector<string> v);
+    //bool greater(Person lhs, Person rhs);
 
-    Domain();
+    Domain()
+    {
+
+    }
 
 };
 #endif // DOMAIN_H

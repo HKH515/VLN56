@@ -65,10 +65,27 @@ vector<Person> Domain::handle_commands(vector<string> v) {
         parse_query_vector(data->readEntries());
         return vec;
     }
+    // if the user wants to add a new entry to the database
     else if (command == "add") {
         data->write(parse_add_command(v));
         return pers;
     }
+    // if the user wants to search in the list
+    else if (command == "search")
+    {
+        // Assume to get 2 parameters from presentation layer
+        /*column q = v[1];
+        switch(q)
+        {
+
+        }
+
+        string query_string = v[2];
+        parse_query_vector(data->query())
+        return vec;*/
+    }
+
+
 
     return pers;
 }

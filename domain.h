@@ -8,6 +8,8 @@
 #include <vector>
 #include <cstdlib>
 
+enum column { name, profession, description, birthyear, deathyear, sex };
+
 class Domain
 {
 private:

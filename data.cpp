@@ -18,8 +18,7 @@ string Data::getFile()
 
 void Data::read()
 {
-    ifstream inputStream;
-    inputStream.open(getFile());
+    ifstream inputStream(getFile().c_str());
     string line;
     if (inputStream.is_open())
     {
@@ -29,26 +28,62 @@ void Data::read()
         }
     }
 
+    
+    inputStream.close();
 }
+
+void Data::write(string line)
+{
+    ofstream outputStream;
+    outputStream.open(getFile().c_str(), ios::app);
+    outputStream << line << endl;
+    outputStream.close();
+}
+
+vector<string> Data::readEntries()
+{
+    return internalData;
+}
+
 
 void Data::push(string entry)
 {
     internalData.push_back(entry);
 }
 
+int Data::nthIndex(string haystack, char needle, int n)
+{
+    int occurances = 0;
+    for (int i = 0; i < haystack.size(); i++)
+    {
+        if (haystack[i] == needle)   
+        {
+            occurances++;
+        }        
+        if (occurances == n)
+        {
+            return i;
+        }
+    }
+    return haystack.size()-1; //fallback if char is not found, return end of string
+
+
+}
+
 vector<string> Data::query(int column, string dataQuery)
 {
-    regex queryString(dataQuery);
     vector<string> queryVect;
     string line;
-    for (unsigned int i = 0; i < internalData.size(); i++)
+    cout << internalData.size() << endl;
+    int dataSize = internalData.size();
+    for (unsigned int i = 0; i < dataSize; i++)
     {
         line = internalData[i];
-        string column_content = line.substr(column, line.find("|"));
-        if (regex_match(column_content.begin(), column_content.end(), queryString))
+        string column_content = line.substr(nthIndex(line, '|', column)+1, nthIndex(line, '|', column+1)-1);
+
+        if (column_content.find(dataQuery) != string::npos) //if query is found in current cell
         {
-            push(line);
-        
+            queryVect.push_back(line);
         }
     }
     return queryVect;

@@ -3,26 +3,27 @@
 
 #include "data.h"
 #include "person.h"
+#include "domain.h"
 
 using namespace std;
 
 string input();
-void choice(string inputs, vector<string> people);
+void choice(string inputs);
 
 
 int main(int argc, char *argv[])
 { 
     QCoreApplication a(argc, argv);
 
+   // Person name, birth_year, death_year, sex, description, profession;
 
-
-    vector<string> people;
+   // vector<string> people;
 
     cout << "Welcome to the Archive of all the great Computer science people!"<<endl;
 
     string inputs = input();
 
-    choice(inputs, people);
+    choice(inputs);
 
 
 
@@ -53,30 +54,52 @@ string input()
 
 
 
-void choice(string inputs, vector<string> people)
+void choice(string inputs)
 {
+    int entry;
+    string querySearch;
+    string name;
+
     do
     {
         if(inputs == "add")
         {
+           cout << "Input name: " << name <<  "|" << endl;
 
         }
         else if(inputs == "view")
         {
 
+
+
+            if(inputs == "sort")
+            {
+                cout << "Sorting the list after names..."<<endl;
+
+            }
+            else if(inputs == "delete")
+            {
+                cout << "What entry do you want to delete?"<<endl;
+                cin >> entry;
+
+            }
+            else if(inputs == "search")
+            {
+                cout << "Input search query: "<<endl;
+                cin >> querySearch;
+            }
         }
         else if(inputs == "delete")
         {
-
+            cout << "What entry do you want to delete?"<<endl;
+            cin >> entry;
         }
         else if(inputs == "search")
         {
-
+            cout << "Input search query: "<<endl;
+            cin >> querySearch;
         }
-        else if(inputs == "sort")
-        {
 
-        }
     }
     while(inputs == "exit");
 

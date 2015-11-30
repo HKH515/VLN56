@@ -2,7 +2,11 @@
 
 presentation::presentation()
 {
-
+    d = new Domain();
+}
+Domain* presentation::get_domain()
+{
+   return d;
 }
 
 string presentation::input()
@@ -34,7 +38,7 @@ void presentation::read()
 void presentation::choice(string inputs, Domain* d)
 {
     // Put all letter to lowercase - ATH gera þegar error checka skipun
-    for (int i = 0; i < inputs.length(); i++)
+    for (unsigned int i = 0; i < inputs.length(); i++)
     {
         inputs[i] = tolower(inputs[i]);
     }

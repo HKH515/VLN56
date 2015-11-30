@@ -73,7 +73,6 @@ void Domain::sort_descending(vector<Person> &v)
 
 vector<Person> Domain::handle_commands(vector<string> v) {
     string command = v[0];
-    cout <<"Hallóóó " <<  command << endl;
     data->read();
 
     // returns all entries in database

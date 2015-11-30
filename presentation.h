@@ -17,6 +17,7 @@ private:
 
 public:
     presentation();
+    Domain* get_domain();
 
     string input();
     void choice(string inputs, Domain* d);

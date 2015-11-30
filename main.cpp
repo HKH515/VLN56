@@ -6,6 +6,7 @@
 #include "data.h"
 #include "person.h"
 #include "domain.h"
+#include "presentation.h"
 
 using namespace std;
 
@@ -30,14 +31,19 @@ int main(int argc, char *argv[])
 { 
     QCoreApplication a(argc, argv);
 
-    //vector names[];
+    string inputs;
+
+    presentation commands;
 
     printSplash();
     cout << "Welcome to the Archive of all the great IT people!" << endl;
 
-
+    inputs = commands.input();
 
     Domain *d = new Domain();
+
+    commands.choice(inputs, d);
+
     //choice(inputs, d);
 
     return a.exec();

@@ -3,6 +3,8 @@
 
 #include <string>
 #include <vector>
+#include <ctype.h>
+#include <stdio.h>
 
 #include "domain.h"
 #include "person.h"
@@ -20,6 +22,7 @@ public:
     void choice(string inputs, Domain* d);
     void read();
     vector <string> parse_add();
+    bool check_if_year(string input);
 };
 
 #endif // PRESENTATION_H

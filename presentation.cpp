@@ -94,9 +94,9 @@ void presentation::choice(string inputs, Domain* d)
             d->handle_commands(command_vec);
             print_results(d);
         }
-        command_vec.clear();
-        else if(inputs != "exit")
+        else if (inputs != "exit")
         {
+            command_vec.clear();
             cin >> inputs;
         }
         else if(inputs == "exit")

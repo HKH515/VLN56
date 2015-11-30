@@ -23,6 +23,7 @@ public:
     void read();
     vector <string> parse_add();
     bool check_if_year(string input);
+    void print_results(Domain *d);
 };
 
 #endif // PRESENTATION_H

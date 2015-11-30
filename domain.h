@@ -2,7 +2,7 @@
 #define DOMAIN_H
 
 #include "person.h"
-#include "Data.h"
+#include "data.h"
 #include <string>
 #include <iostream>
 #include <vector>

@@ -73,6 +73,7 @@ void Domain::sort_descending(vector<Person> &v)
 
 vector<Person> Domain::handle_commands(vector<string> v) {
     string command = v[0];
+    cout <<"Hallóóó " <<  command << endl;
     data->read();
 
     // returns all entries in database
@@ -83,6 +84,8 @@ vector<Person> Domain::handle_commands(vector<string> v) {
     }
     // if the user wants to add a new entry to the database
     else if (command == "add") {
+        cout << "komin inn í command = add" << endl;
+        cout << parse_add_command(v) << endl;
         data->write(parse_add_command(v));
         vec.clear();
         return vec;

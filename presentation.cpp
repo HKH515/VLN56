@@ -93,8 +93,8 @@ void presentation::choice(string inputs, Domain* d)
             d->handle_commands(command_vec);
             print_results(d);
         }
+        command_vec.clear();
         cin >> inputs;
-        d->get_vec().clear();
     }
     while(inputs != "exit");
 

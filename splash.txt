@@ -7,8 +7,10 @@
      \     /__||  '---.'|  |\    | .-   |  |' \  |  | 
       \   /    |      | |  | \   | | `-'   /\  `'  /  
        `-'     `------' `--'  `--'  `----''  `----'   
-		Welcome!
+Welcome!
+
 “I don't know how many of you have ever met Dijkstra, but you probably know that arrogance in computer science is measured in nano-Dijkstras.” 
 ― Alan Kay
-		All kidding aside, let’s learn about some pioneers in the great big world of computer science.
+
+All kidding aside, let’s learn about some pioneers in the great big world of computer science.
 

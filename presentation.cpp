@@ -33,14 +33,13 @@ string presentation::input()
 
 void presentation::choice(string inputs, Domain* d)
 {
-    // Put all letter to lowercase - ATH gera þegar error checka skipun
+    // Put all letter to lowercase - ATH gera þegar error checka skipun?
     for (unsigned int i = 0; i < inputs.length(); i++)
     {
         inputs[i] = tolower(inputs[i]);
     }
     vector<string> command_vec;
-    vector<Person> result_vec;
-    string input2;
+    string order_of_sort;
     do
     {
         if(inputs == "add")
@@ -53,44 +52,44 @@ void presentation::choice(string inputs, Domain* d)
         {
             command_vec.push_back("list");
             cout << "Do you want the list sorted in ascending or descending order? Enter a for ascending, d for descending." << endl;
-            cin >> input2;
+            cin >> order_of_sort;
             // Error checking that the user put in either "a" or "d"
-            while (input2 != "a" && input2 != "d")
+            while (order_of_sort != "a" && order_of_sort != "d")
             {
                 cout << "Invalid input! Enter a or d"<< endl;
-                cin >> input2;
+                cin >> order_of_sort;
             }
-            command_vec.push_back(input2);
+            command_vec.push_back(order_of_sort);
             d->handle_commands(command_vec); // Ath hægt að setja þessa línu neðst?
             print_results(d);
         }
         else if(inputs == "search")
         {
+            string search_column;
             command_vec.push_back("search");
             cout << "In what information do you want to search? Please choose one of the following: name, profession, description, birthyear, deathyear, sex:" << endl;
-            cin >> input2;
+            cin >> search_column;
             // -----------------------Muna að gera tolower hér-------------------------
-            while (input2 != "name" && input2 != "profession" && input2 != "description" && input2 != "birthyear" && input2 != "deathyear" && input2 != "sex")
+            while (search_column != "name" && search_column != "profession" && search_column != "description" && search_column!= "birthyear" && search_column!= "deathyear" && search_column!= "sex")
             {
                 cout << "Invalid command - please choose one of the following: name, profession, description, birthyear, deathyear, sex" << endl;
-                cin >> input2;
+                cin >> search_column;
             }
-            command_vec.push_back(input2);
+            command_vec.push_back(search_column);
             cout << "What substring do you want to search for?" << endl;
             string search_query;
             cin.ignore();
             getline(cin, search_query);
             command_vec.push_back(search_query);
             cout << "Do you want the results sorted in ascending or descending order? Enter a for ascending, d for descending." << endl;
-            string searching_order;
-            cin >> searching_order;
+            cin >> order_of_sort;
             // Error checking that the user put in either "a" or "d"
-            while (searching_order != "a" && searching_order != "d")
+            while (order_of_sort != "a" && order_of_sort != "d")
             {
                 cout << "Invalid input! Enter a or d"<< endl;
-                cin >> searching_order;
+                cin >> order_of_sort;
             }
-            command_vec.push_back(searching_order);
+            command_vec.push_back(order_of_sort);
             d->handle_commands(command_vec);
             print_results(d);
         }

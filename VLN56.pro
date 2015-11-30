@@ -12,10 +12,16 @@ TEMPLATE = app
 SOURCES += main.cpp \
     data.cpp \
     person.cpp \
+    presentation.cpp \
 	domain.cpp
 
 HEADERS += \
     data.h \
+    presentation.h \
     person.h \
 	domain.h
+
+DISTFILES += \
+    splash.txt \
+    data.dat
 

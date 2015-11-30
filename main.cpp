@@ -1,5 +1,7 @@
 #include <QCoreApplication>
 #include <iostream>
+#include <fstream>
+#include <string>
 
 #include "data.h"
 #include "person.h"
@@ -8,6 +10,21 @@
 using namespace std;
 
 
+void printSplash()
+{
+    ifstream splashStream("splash.txt");
+    string line;
+
+    if (splashStream.is_open())
+    {
+        while (getline(splashStream, line))
+        {
+            cout << line << endl;
+        }
+
+    } 
+    splashStream.close();   
+}
 
 int main(int argc, char *argv[])
 { 
@@ -15,7 +32,9 @@ int main(int argc, char *argv[])
 
     //vector names[];
 
-    cout << "Welcome to the Archive of all the great IT people!"<<endl;
+    printSplash();
+    cout << "Welcome to the Archive of all the great IT people!" << endl;
+
 
 
     Domain *d = new Domain();

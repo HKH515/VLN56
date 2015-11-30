@@ -18,6 +18,29 @@ string Data::getFile()
 
 void Data::read()
 {
+
+    QFile readFile("splash.txt");
+
+
+
+    if (readFile.open(QIODevice::ReadOnly ))
+    {
+        QTextStream inputStream(&readFile);
+        QTextStream out(stdout);
+        QString line = inputStream.readLine();
+
+        do
+        {
+            line = inputStream.readLine();
+            push(line.toStdString());
+        } while (!line.isNull());
+
+    }
+    readFile.close();
+
+
+
+
     ifstream inputStream(getFile().c_str());
     string line;
     if (inputStream.is_open())
@@ -38,7 +61,7 @@ void Data::write(string line)
     QString getFileString(getFile().c_str());
     QFile dataFile(getFileString);
 
-    if (dataFile.open(QIODevice::ReadWrite))
+    if (dataFile.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text))
     {
         QTextStream out(&dataFile);
         out << lineString << endl;

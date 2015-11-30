@@ -7,6 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+#include <algorithm>
 
 enum column { name, profession, description, birthyear, deathyear, sex };
 

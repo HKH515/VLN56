@@ -40,7 +40,7 @@ void printSplash()
 
 
 int main(int argc, char *argv[])
-{ 
+{
     QCoreApplication a(argc, argv);
 
     string inputs;
@@ -60,4 +60,3 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
-

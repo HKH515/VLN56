@@ -30,6 +30,8 @@ void Domain::parse_query_vector(vector<string> v) {
     sort_ascending(vec);
 }
 
+// If the user wants to add an entry to the database, parse the incoming
+// vector, put delimeter (|) between
 string Domain::parse_add_command(vector<string> vec) {
     string st = " ";
     for (unsigned int i = 1; i < vec.size(); i++) {
@@ -39,7 +41,7 @@ string Domain::parse_add_command(vector<string> vec) {
     return st;
 }
 
-/*bool Domain::greater(Person lhs, Person rhs)
+/*bool Domain::greater(Person &lhs, Person &rhs) const
 {
     return lhs.get_name() > rhs.get_name();
 }*/
@@ -50,10 +52,10 @@ void Domain::sort_ascending(vector<Person> &v)
     stable_sort(v.begin(), v.end());
 }
 
-/*void Domain::sort_descending(vector<Person> &v)
+void Domain::sort_descending(vector<Person> &v)
 {
-    stable_sort(v.begin(), v.end(), greater);
-}*/
+    stable_sort(v.end(), v.begin());
+}
 
 vector<Person> Domain::handle_commands(vector<string> v) {
     string command = v[0];
@@ -74,18 +76,31 @@ vector<Person> Domain::handle_commands(vector<string> v) {
     else if (command == "search")
     {
         // Assume to get 2 parameters from presentation layer
-        /*column q = v[1];
-        switch(q)
-        {
-
+        string query = v[1];
+        int query_column = 0;
+        if (query == "name") {
+            query_column = 0;
+        }
+        else if (query == "description") {
+            query_column = 1;
+        }
+        else if (query == "profession") {
+            query_column = 2;
+        }
+        else if (query == "birthyear") {
+            query_column = 3;
+        }
+        else if (query == "deathyear") {
+            query_column = 4;
+        }
+        else { // sex
+            query_column = 5;
         }
 
         string query_string = v[2];
-        parse_query_vector(data->query())
-        return vec;*/
+        parse_query_vector(data->query(query_column, query_string));
+        return vec;
     }
-
-
 
     return pers;
 }

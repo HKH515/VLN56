@@ -21,7 +21,7 @@ public:
     void sort_descending(vector<Person> &v);
     void parse_query_vector(vector<string> v);
     string parse_add_command(vector<string> vec);
-    bool greater(Person lhs, Person rhs);
+    bool greater(Person &lhs, Person &rhs) const;
     vector<Person> handle_commands(vector<string> v);
 
     Domain()

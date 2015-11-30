@@ -38,7 +38,7 @@ void presentation::choice(string inputs, Domain* d)
         if(inputs == "add")
         {
             cout << "add name?" <<endl;
-           //data.AddName();
+            //d->handle_commands();
         }
         else if(inputs == "view")
         {
@@ -57,5 +57,19 @@ void presentation::choice(string inputs, Domain* d)
         }
     }
     while(inputs == "exit");
+
+}
+
+vector <string> presentation::parse_add()
+{
+    string input;
+    vector<string> add_vec;
+    cout << "Please write the name of the person" << endl;
+    cin >> input;
+    add_vec.push_back(input);
+    cout << "Please write some description" << endl;
+    cin >> input;
+    add_vec.push_back(input);
+
 
 }

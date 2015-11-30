@@ -19,6 +19,7 @@ public:
     string input();
     void choice(string inputs, Domain* d);
     void read();
+    vector <string> parse_add();
 };
 
 #endif // PRESENTATION_H

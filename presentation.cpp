@@ -21,7 +21,7 @@ string presentation::input()
         cout << "add. Add names and other info" << endl;
         cout << "view. View the list" << endl;
         cout << "search. search the list for info" << endl;
-        cout << "sort. Sorts the list after name" << endl;
+        cout << "list. Sorts the list after name" << endl;
         cout << "exit. Close the program" << endl;
         cout << "--------------------" << endl;
         cin >> inputs;

@@ -13,11 +13,10 @@ vector<Person> Domain::get_vec() {
 void Domain::parse_query_vector(vector<string> v, string sort_method) {
     cout << "komin inn í parse_query_vector";
     cout << "Lengd a listanum sem eg fæ frá data layer: " << v.size() << endl;
-    for (unsigned int t = 0; t < v.size(); t++) {
-        cout << v[t] << endl;
-    }
-    for (unsigned int i = 0; i < v.size() - 1; i++) {
+
+    for (unsigned int i = 0; i < v.size(); i++) {
         string st = v[i];
+        cout << i << endl;
         Person p = Person();
         st = st.substr(1, st.length());
         // find the name

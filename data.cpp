@@ -30,11 +30,10 @@ void Data::read()
         QString line;
         internalData.clear();
 
-        do
+        while (!(line = inputStream.readLine()).isNull())
         {
-            line = inputStream.readLine();
             push(line.toStdString());
-        } while (!line.isNull());
+        }
 
     }
     readFile.close();
@@ -110,10 +109,11 @@ vector<string> Data::query(int column, string dataQuery)
     for (unsigned int i = 0; i < dataSize; i++)
     {
         line = internalData[i];
-
+        cout << line << endl;
         string column_content = line.substr(nthIndex(line, '|', column)+1, nthIndex(line, '|', column+1)-nthIndex(line, '|', column)-1);
         if (column_content.find(dataQuery) != string::npos) //if query is found in current cell
         {
+            cout << i << endl;
             queryVect.push_back(line);
         }
     }

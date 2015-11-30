@@ -125,7 +125,6 @@ vector <string> presentation::parse_add()
     }
     add_vec.push_back(input);
     cout << "Please write the profession of the person: " << endl;
-    cin.ignore();
     getline(cin, input);
     while (input.length() == 0)
     {

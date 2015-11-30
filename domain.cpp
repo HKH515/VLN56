@@ -14,17 +14,19 @@ void Domain::parse_query_vector(vector<string> v, string sort_method) {
     cout << "komin inn í parse_query_vector";
     cout << "Lengd a listanum sem eg fæ frá data layer: " << v.size() << endl;
 
-    for (unsigned int i = 0; i < v.size(); i++) {
+    for (unsigned int i = 0; i < v.size() - 1; i++) {
         string st = v[i];
-        cout << i << endl;
+        //cout << i << endl;
         Person p = Person();
+        //cout << v[i] << endl;
         st = st.substr(1, st.length());
+        //cout <<"I am here nr" << i << endl;
         // find the name
-        unsigned long position_beg = st.find("|");
+        size_t position_beg = st.find("|");
         p.set_name(st.substr(0, position_beg));
 
         // find the profession
-        unsigned long position_end = st.find("|", position_beg + 1);
+        size_t position_end = st.find("|", position_beg + 1);
         p.set_profession(st.substr(position_beg + 1, (position_end - position_beg - 1)));
 
         // find the description
@@ -78,7 +80,8 @@ void Domain::sort_ascending(vector<Person> &v)
 
 void Domain::sort_descending(vector<Person> &v)
 {
-    stable_sort(v.end(), v.begin());
+    stable_sort(v.begin(), v.end());
+    reverse(v.begin(), v.end());
 }
 
 void Domain::handle_commands(vector<string> v) {

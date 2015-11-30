@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 
     commands.choice(inputs, d);
 
-    //choice(inputs, d);
+    commands.read();
 
     return a.exec();
 }

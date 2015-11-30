@@ -41,7 +41,7 @@ void Data::read()
 
 
 
-    ifstream inputStream(getFile().c_str());
+    /*ifstream inputStream(getFile().c_str());
     string line;
     if (inputStream.is_open())
     {
@@ -51,8 +51,9 @@ void Data::read()
         }
     }
 
-    
+
     inputStream.close();
+    */
 }
 
 void Data::write(string line)
@@ -61,7 +62,7 @@ void Data::write(string line)
     QString getFileString(getFile().c_str());
     QFile dataFile(getFileString);
 
-    if (dataFile.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text))
+    if (dataFile.open(QIODevice::ReadWrite | QIODevice::Append))
     {
         QTextStream out(&dataFile);
         out << lineString << endl;

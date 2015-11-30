@@ -33,7 +33,7 @@ void Domain::parse_query_vector(vector<string> v, string sort_method) {
         p.set_deathyear(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
         // find the sex
         position_end = st.find("|", position_beg + 1);
-        p.set_sex(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
+        p.set_sex(st.substr(position_beg + 1, (position_end - position_beg - 1)));
         vec.push_back(p);
     }
     if (sort_method == "d") {

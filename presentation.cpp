@@ -21,7 +21,7 @@ string presentation::input()
         cout << "--------------------" << endl;
         cout << "add. Add names and other info" << endl;
         cout << "search. search the list for info" << endl;
-        cout << "sort. View the list and sort it" << endl;
+        cout << "list. View the list and sort it" << endl;
         cout << "exit. Close the program" << endl;
         cout << "help. Print this screen" << endl;
         cout << "--------------------" << endl;
@@ -95,7 +95,7 @@ void presentation::choice(string inputs, Domain* d)
             print_results(d);
         }
         command_vec.clear();
-        else if(inputs != "exit")
+        if(inputs != "exit")
         {
             cin >> inputs;
         }

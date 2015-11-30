@@ -13,7 +13,7 @@ private:
     string name;
     int birth_year;
     int death_year;
-    bool sex;
+    string sex;
     string description;
     string profession; // Mathematician, Physicist, bioligist, computer scientist
 
@@ -23,11 +23,11 @@ public:
         name = "";
         birth_year = 0;
         death_year = 0;
-        sex = 1;
+        sex = "f";
         description = "";
         profession = "";
     }
-    Person (string n, int by, int dy, bool s, string desc, string prof)
+    Person (string n, int by, int dy, string s, string desc, string prof)
     {
         name = n;
         birth_year = by;
@@ -40,7 +40,7 @@ public:
     void set_name(string n);
     void set_birthyear(int y);
     void set_deathyear(int y);
-    void set_sex(bool s);
+    void set_sex(string s);
     void set_description(string s);
     void set_profession(string p);
 
@@ -48,7 +48,7 @@ public:
     string get_name();
     int get_birthyear();
     int get_deathyear();
-    int get_sex();
+    string get_sex();
     string get_description();
     string get_profession();
 

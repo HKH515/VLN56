@@ -64,6 +64,7 @@ vector <string> presentation::parse_add()
 {
     string input;
     vector<string> add_vec;
+    cout << "You will be asked to enter information about the person, if you want to leave out information enter "-" when asked."
     cout << "Please write the name of the person" << endl;
     cin >> input;
     add_vec.push_back(input);

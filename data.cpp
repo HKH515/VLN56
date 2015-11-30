@@ -34,10 +34,17 @@ void Data::read()
 
 void Data::write(string line)
 {
-    ofstream outputStream;
-    outputStream.open(getFile().c_str(), ios::app);
-    outputStream << line << endl;
-    outputStream.close();
+    QString lineString(line.c_str());
+    QString getFileString(getFile().c_str());
+    QFile dataFile(getFileString);
+
+    if (dataFile.open(QIODevice::ReadWrite))
+    {
+        QTextStream out(&dataFile);
+        out << lineString << endl;
+
+    }
+    dataFile.close();
 }
 
 vector<string> Data::readEntries()

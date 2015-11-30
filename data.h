@@ -1,6 +1,9 @@
 #ifndef DATA_H
 #define DATA_H
 
+#include <QTextStream>
+#include <QFile>
+#include <QString>
 #include <iostream>
 #include <fstream>
 #include <string>

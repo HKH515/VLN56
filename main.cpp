@@ -1,4 +1,8 @@
 #include <QCoreApplication>
+#include <QFile>
+#include <QTextStream>
+#include <QString>
+#include <QDir>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -10,22 +14,30 @@
 
 using namespace std;
 
-
 void printSplash()
 {
-    ifstream splashStream("splash.txt");
-    string line;
 
-    if (splashStream.is_open())
+    QFile splashFile("splash.txt");
+
+
+
+    if (splashFile.open(QIODevice::ReadOnly ))
     {
-        while (getline(splashStream, line))
-        {
-            cout << line << endl;
-        }
+        QTextStream splash(&splashFile);
+        QTextStream out(stdout);
+        QString line = splash.readLine();
 
-    } 
-    splashStream.close();   
+        do
+        {
+            line = splash.readLine();
+
+            out << line << endl;
+        } while (!line.isNull());
+
+    }
+    splashFile.close();
 }
+
 
 int main(int argc, char *argv[])
 { 

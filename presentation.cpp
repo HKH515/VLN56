@@ -1,5 +1,4 @@
 #include "presentation.h"
-#include <cstdlib>
 
 presentation::presentation()
 {
@@ -20,8 +19,9 @@ string presentation::input()
         cout << endl;
         cout << "--------------------" << endl;
         cout << "add. Add names and other info" << endl;
+        cout << "view. View the list" << endl;
         cout << "search. search the list for info" << endl;
-        cout << "list. View the list and sort it" << endl;
+        cout << "sort. Sorts the list after name" << endl;
         cout << "exit. Close the program" << endl;
         cout << "--------------------" << endl;
         cin >> inputs;
@@ -60,7 +60,7 @@ void presentation::choice(string inputs, Domain* d)
                 cin >> input2;
             }
             command_vec.push_back(input2);
-            result_vec = d->handle_commands(command_vec); // Ath hægt að setja þessa línu neðst?
+            d->handle_commands(command_vec); // Ath hægt að setja þessa línu neðst?
             print_results(d);
         }
         else if(inputs == "search")
@@ -93,9 +93,10 @@ void presentation::choice(string inputs, Domain* d)
             d->handle_commands(command_vec);
             print_results(d);
         }
+        cin >> inputs;
+        d->get_vec().clear();
     }
     while(inputs != "exit");
-    exit(0);
 
 }
 

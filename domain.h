@@ -22,7 +22,7 @@ public:
     void parse_query_vector(vector<string> v, string sort_method);
     string parse_add_command(vector<string> vec);
     bool greater(Person &lhs, Person &rhs) const;
-    vector<Person> handle_commands(vector<string> v);
+    void handle_commands(vector<string> v);
     vector<Person> get_vec();
 
     Domain();

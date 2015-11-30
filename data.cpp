@@ -27,7 +27,7 @@ void Data::read()
     {
         QTextStream inputStream(&readFile);
         QTextStream out(stdout);
-        QString line = inputStream.readLine();
+        QString line;
 
         do
         {

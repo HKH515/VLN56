@@ -17,6 +17,7 @@ private:
 
 public:
     presentation();
+    ~presentation();
     Domain* get_domain();
 
     string input();

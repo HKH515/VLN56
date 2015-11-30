@@ -5,6 +5,12 @@ presentation::presentation()
 {
     d = new Domain();
 }
+
+presentation::~presentation()
+{
+   delete d;
+}
+
 Domain* presentation::get_domain()
 {
    return d;

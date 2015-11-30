@@ -11,8 +11,8 @@ class Person
 {
 private:
     string name;
-    int birth_year;
-    int death_year;
+    string birth_year;
+    string death_year;
     string sex;
     string description;
     string profession; // Mathematician, Physicist, bioligist, computer scientist
@@ -21,13 +21,13 @@ public:
     Person()
     {
         name = "";
-        birth_year = 0;
-        death_year = 0;
+        birth_year = "";
+        death_year = "";
         sex = "f";
         description = "";
         profession = "";
     }
-    Person (string n, int by, int dy, string s, string desc, string prof)
+    Person (string n, string by, string dy, string s, string desc, string prof)
     {
         name = n;
         birth_year = by;
@@ -38,16 +38,16 @@ public:
     }
     // Set functions
     void set_name(string n);
-    void set_birthyear(int y);
-    void set_deathyear(int y);
+    void set_birthyear(string y);
+    void set_deathyear(string y);
     void set_sex(string s);
     void set_description(string s);
     void set_profession(string p);
 
     // Get functions
     string get_name();
-    int get_birthyear();
-    int get_deathyear();
+    string get_birthyear();
+    string get_deathyear();
     string get_sex();
     string get_description();
     string get_profession();

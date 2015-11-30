@@ -11,12 +11,11 @@ vector<Person> Domain::get_vec() {
 
 // Parse function for queries returned from the data layer. Parses
 void Domain::parse_query_vector(vector<string> v, string sort_method) {
-    
-    for (unsigned int i = 0; i < v.size(); i++) {
+    cout << "komin inn í parse_query_vector";
+    for (unsigned int i = 0; i < v.size() - 1; i++) {
         string st = v[i];
         Person p = Person();
-        st = st.substr(st.find(" "), st.length());
-
+        st = st.substr(1, st.length());
         // find the name
         unsigned long position_beg = st.find("|");
         p.set_name(st.substr(0, position_beg));
@@ -31,11 +30,12 @@ void Domain::parse_query_vector(vector<string> v, string sort_method) {
 
         // find the birthyear
         position_end = st.find("|", position_beg + 1);
-        p.set_birthyear((stoi(st.substr(position_beg + 1, (position_end - position_beg - 1)))));
+        string by = st.substr(position_beg + 1, (position_end - position_beg - 1));
+        p.set_birthyear((st.substr(position_beg + 1, (position_end - position_beg - 1))));
 
         // find the deathyear
         position_beg = st.find("|", position_end + 1);
-        p.set_deathyear(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
+        p.set_deathyear(st.substr(position_end + 1, (position_beg - position_end - 1)));
 
         // find the sex
         position_end = st.find("|", position_beg + 1);
@@ -48,6 +48,7 @@ void Domain::parse_query_vector(vector<string> v, string sort_method) {
     else {
         sort_ascending(vec);
     }
+    cout << "komin út úr parse_query_vector" << endl;
 }
 
 // If the user wants to add an entry to the database, parse the incoming
@@ -84,8 +85,10 @@ void Domain::handle_commands(vector<string> v) {
 
     // returns all entries in database
     if (command == "list") {
+        cout << "handle commands: list" << endl;
         string sort_method = v[1];
         parse_query_vector(data->readEntries(), sort_method);
+        cout << "Buin med list" << endl;
     }
     // if the user wants to add a new entry to the database
     else if (command == "add") {

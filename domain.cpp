@@ -1,41 +1,55 @@
 #include "domain.h"
 
+
+Domain::Domain() {
+    data = new Data("data.dat");
+}
+
+vector<Person> Domain::get_vec() {
+    return vec;
+}
+
 // Parse function for queries returned from the data layer. Parses
-void Domain::parse_query_vector(vector<string> v) {
+void Domain::parse_query_vector(vector<string> v, string sort_method) {
     
     for (unsigned int i = 0; i < v.size(); i++) {
         string st = v[i];
         Person p = Person();
+        st = st.substr(st.find(" "), st.length());
         // find the name
         unsigned long position_beg = st.find("|");
         p.set_name(st.substr(0, position_beg));
-        // find the birthyear
+        // find the profession
         unsigned long position_end = st.find("|", position_beg + 1);
-        p.set_birthyear(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
+        p.set_profession(st.substr(position_beg + 1, (position_end - position_beg - 1)));
+        // find the description
+        position_beg = st.find("|", position_end + 1);
+        p.set_description(st.substr(position_end + 1, (position_beg - position_end - 1)));
+        // find the birthyear
+        position_end = st.find("|", position_beg + 1);
+        p.set_birthyear((stoi(st.substr(position_beg + 1, (position_end - position_beg - 1)))));
         // find the deathyear
         position_beg = st.find("|", position_end + 1);
         p.set_deathyear(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
         // find the sex
         position_end = st.find("|", position_beg + 1);
         p.set_sex(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
-        // find the description
-        position_beg = st.find("|", position_end + 1);
-        p.set_description(st.substr(position_end + 1, (position_beg - position_end - 1)));
-        // find the profession
-        position_end = st.find("|", position_beg + 1);
-        p.set_profession(st.substr(position_beg + 1, (position_end - position_beg - 1)));
         vec.push_back(p);
     }
-    // Default returns vector sorted by name in ascending order
-    sort_ascending(vec);
+    if (sort_method == "d") {
+        sort_descending(vec);
+    }
+    else {
+        sort_ascending(vec);
+    }
 }
 
 // If the user wants to add an entry to the database, parse the incoming
 // vector, put delimeter (|) between
-string Domain::parse_add_command(vector<string> vec) {
+string Domain::parse_add_command(vector<string> v) {
     string st = " ";
-    for (unsigned int i = 1; i < vec.size(); i++) {
-        st += vec[i];
+    for (unsigned int i = 1; i < v.size(); i++) {
+        st += v[i];
         st += "|";
     }
     return st;
@@ -60,17 +74,18 @@ void Domain::sort_descending(vector<Person> &v)
 vector<Person> Domain::handle_commands(vector<string> v) {
     string command = v[0];
     data->read();
-    vector<Person> pers;
 
     // returns all entries in database
     if (command == "list") {
-        parse_query_vector(data->readEntries());
+        string sort_method = v[1];
+        parse_query_vector(data->readEntries(), sort_method);
         return vec;
     }
     // if the user wants to add a new entry to the database
     else if (command == "add") {
         data->write(parse_add_command(v));
-        return pers;
+        vec.clear();
+        return vec;
     }
     // if the user wants to search in the list
     else if (command == "search")
@@ -96,11 +111,11 @@ vector<Person> Domain::handle_commands(vector<string> v) {
         else { // sex
             query_column = 5;
         }
-
         string query_string = v[2];
-        parse_query_vector(data->query(query_column, query_string));
+        string sort_method = v[3];
+        parse_query_vector(data->query(query_column, query_string), sort_method);
         return vec;
     }
-
-    return pers;
+    vec.clear();
+    return vec;
 }

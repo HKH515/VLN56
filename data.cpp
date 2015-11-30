@@ -19,7 +19,7 @@ string Data::getFile()
 void Data::read()
 {
 
-    QFile readFile("splash.txt");
+    QFile readFile(getFile().c_str());
 
 
 

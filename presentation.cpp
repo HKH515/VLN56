@@ -1,4 +1,5 @@
 #include "presentation.h"
+#include <cstdlib>
 
 presentation::presentation()
 {
@@ -92,9 +93,9 @@ void presentation::choice(string inputs, Domain* d)
             d->handle_commands(command_vec);
             print_results(d);
         }
-        cin >> inputs;
     }
     while(inputs != "exit");
+    exit(0);
 
 }
 

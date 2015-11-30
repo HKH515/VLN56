@@ -23,6 +23,7 @@ string presentation::input()
         cout << "search. search the list for info" << endl;
         cout << "sort. View the list and sort it" << endl;
         cout << "exit. Close the program" << endl;
+        cout << "help. Print this screen" << endl;
         cout << "--------------------" << endl;
         cin >> inputs;
     }

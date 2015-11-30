@@ -20,8 +20,9 @@ string presentation::input()
         cout << endl;
         cout << "--------------------" << endl;
         cout << "add. Add names and other info" << endl;
+        cout << "view. View the list" << endl;
         cout << "search. search the list for info" << endl;
-        cout << "list. View the list and sorts it" << endl;
+        cout << "sort. Sorts the list after name" << endl;
         cout << "exit. Close the program" << endl;
         cout << "--------------------" << endl;
         cin >> inputs;

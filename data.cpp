@@ -28,6 +28,7 @@ void Data::read()
         QTextStream inputStream(&readFile);
         QTextStream out(stdout);
         QString line;
+        internalData.clear();
 
         do
         {

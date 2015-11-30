@@ -12,6 +12,10 @@ vector<Person> Domain::get_vec() {
 // Parse function for queries returned from the data layer. Parses
 void Domain::parse_query_vector(vector<string> v, string sort_method) {
     cout << "komin inn í parse_query_vector";
+    cout << "Lengd a listanum sem eg fæ frá data layer: " << v.size() << endl;
+    for (unsigned int t = 0; t < v.size(); t++) {
+        cout << v[t] << endl;
+    }
     for (unsigned int i = 0; i < v.size() - 1; i++) {
         string st = v[i];
         Person p = Person();

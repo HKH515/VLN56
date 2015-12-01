@@ -45,16 +45,11 @@ int main(int argc, char *argv[])
 
     string inputs;
 
-    presentation commands;
-
     printSplash();
     cout << "Welcome to the Archive of all the great IT people!" << endl;
 
-    inputs = commands.input();
-
-    Domain *d = new Domain();
-
-    commands.choice(inputs, d);
+    presentation* p = new presentation();
+    p->choice(p->get_domain());
 
     return a.exec();
 }

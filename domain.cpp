@@ -106,22 +106,22 @@ void Domain::handle_commands(vector<string> v) {
         // Assume to get 2 parameters from presentation layer
         string query = v[1];
         int query_column = 0;
-        if (query == "name") {
+        if (query == "1") {
             query_column = 0;
         }
-        else if (query == "description") {
+        else if (query == "2") {
             query_column = 1;
         }
-        else if (query == "profession") {
+        else if (query == "3") {
             query_column = 2;
         }
-        else if (query == "birthyear") {
+        else if (query == "4") {
             query_column = 3;
         }
-        else if (query == "deathyear") {
+        else if (query == "5") {
             query_column = 4;
         }
-        else { // sex
+        else if (query == "6") {
             query_column = 5;
         }
         string query_string = v[2];

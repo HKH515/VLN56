@@ -2,18 +2,28 @@
 
 using namespace std;
 
+Person::Person()
+{
+    name = "";
+    birth_year = 0;
+    death_year = 0;
+    sex = "f";
+    description = "";
+    profession = "";
+}
+
  // set functions
 void Person::set_name(string n) {name = n;};
-void Person::set_birthyear(string y) {birth_year = y;};
-void Person::set_deathyear(string y) {death_year = y;};
+void Person::set_birthyear(int y) {birth_year = y;};
+void Person::set_deathyear(int y) {death_year = y;};
 void Person::set_sex(string s) {sex = s;};
 void Person::set_description(string s) {description = s;};
 void Person::set_profession(string p) {profession = p;};
 
 // get functions
 string Person::get_name() {return name;};
-string Person::get_birthyear() {return birth_year;};
-string Person::get_deathyear() {return death_year;};
+int Person::get_birthyear() {return birth_year;};
+int Person::get_deathyear() {return death_year;};
 string Person::get_sex() {return sex;};
 string Person::get_description() {return description;};
 string Person::get_profession() {return profession;};
@@ -53,13 +63,3 @@ Person::Person(const Person& copyme) {
     profession = copyme.profession;
 }
 
-// function to calculate the persons age
-/*int Person::calc_age() {
-        time_t t = time(NULL);
-        tm* timePtr = localtime(&t);
-        if (death_year == 0 ) {
-            return (timePtr->tm_year - birth_year);
-        }
-        // if the person has passed away the age is set to -1
-        return -1;
-    }*/

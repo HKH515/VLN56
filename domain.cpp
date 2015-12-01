@@ -35,11 +35,11 @@ void Domain::parse_query_vector(vector<string> v, int search_column, string sort
         // find the birthyear
         position_end = st.find("|", position_beg + 1);
         string by = st.substr(position_beg + 1, (position_end - position_beg - 1));
-        p.set_birthyear((st.substr(position_beg + 1, (position_end - position_beg - 1))));
+        p.set_birthyear(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
 
         // find the deathyear
         position_beg = st.find("|", position_end + 1);
-        p.set_deathyear(st.substr(position_end + 1, (position_beg - position_end - 1)));
+        p.set_deathyear(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
 
         // find the sex
         position_end = st.find("|", position_beg + 1);

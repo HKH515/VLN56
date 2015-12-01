@@ -212,9 +212,14 @@ void presentation::print_results(Domain *d)
     for (unsigned int i = 0; i < d->get_vec().size(); i++)
     {
         cout << "Name: " << d->get_vec()[i].get_name() << endl
-             << "Born: " << d->get_vec()[i].get_birthyear() << endl
-             << "Died: " << d->get_vec()[i].get_deathyear() << endl
-             << "Sex: " << d->get_vec()[i].get_sex() << endl
+             << "Born: " << d->get_vec()[i].get_birthyear() << endl;
+        if (d->get_vec()[i].get_deathyear() == 0) {
+            cout << "Died: NA" << endl;
+        }
+        else {
+             cout << "Died: " << d->get_vec()[i].get_deathyear() << endl;
+        }
+        cout << "Sex: " << d->get_vec()[i].get_sex() << endl
              << "Profession: " << d->get_vec()[i].get_profession() << endl
              << "Description: " << d->get_vec()[i].get_description() << endl << endl;
     }

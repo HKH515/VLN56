@@ -136,6 +136,7 @@ void presentation::choice(Domain* d)
 
     }
     while(inputs != "exit");
+    exit(0);
 }
 
 vector <string> presentation::parse_add()

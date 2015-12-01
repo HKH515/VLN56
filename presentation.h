@@ -21,7 +21,7 @@ public:
     Domain* get_domain();
 
     string input();
-    void choice(string inputs, Domain* d);
+    void choice(Domain* d);
     vector <string> parse_add();
     bool check_if_year(string input);
     void print_results(Domain *d);

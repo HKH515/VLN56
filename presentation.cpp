@@ -16,7 +16,7 @@ Domain* presentation::get_domain()
    return d;
 }
 
-string presentation::input()
+/*string presentation::input()
 {
     string inputs;
     cin >> inputs;
@@ -24,21 +24,23 @@ string presentation::input()
     if(inputs == "help")
     {
         cout << endl;
-        cout << "--------------------" << endl;
-        cout << "add. Add names and other info" << endl;
-        cout << "search. search the list for info" << endl;
-        cout << "list. View the list and sort it" << endl;
-        cout << "exit. Close the program" << endl;
-        cout << "help. Print this screen" << endl;
-        cout << "--------------------" << endl;
+        cout << "-------------------------------------------------" << endl;
+        cout << "add: Add to the database" << endl;
+        cout << "search: Search the list for prefered information" << endl;
+        cout << "list: Display the whole list in prefered order" << endl;
+        cout << "exit: Close the program" << endl;
+        cout << "help: Open up the help menu" << endl;
+        cout << "-------------------------------------------------" << endl;
         cin >> inputs;
     }
 
     return inputs;
-}
+}*/
 
-void presentation::choice(string inputs, Domain* d)
+void presentation::choice(Domain* d)
 {
+    string inputs;
+    cin >> inputs;
     // Put all letter to lowercase - ATH gera þegar error checka skipun?
     for (unsigned int i = 0; i < inputs.length(); i++)
     {
@@ -98,6 +100,18 @@ void presentation::choice(string inputs, Domain* d)
             command_vec.push_back(order_of_sort);
             d->handle_commands(command_vec);
             print_results(d);
+        }
+        else if (inputs == "help") {
+
+            cout << endl;
+            cout << "-------------------------------------------------" << endl;
+            cout << "add: Add to the database" << endl;
+            cout << "search: Search the list for prefered information" << endl;
+            cout << "list: Display the whole list in prefered order" << endl;
+            cout << "exit: Close the program" << endl;
+            cout << "help: Open up the help menu" << endl;
+            cout << "-------------------------------------------------" << endl;
+            cin >> inputs;
         }
 
         if (inputs != "exit")

@@ -9,7 +9,7 @@ vector<Person> Domain::get_vec() {
 }
 
 // Parse function for queries returned from the data layer.
-void Domain::parse_query_vector(vector<string> v, int search_column, string sort_method) {
+void Domain::parse_query_vector(vector<string> v, int sort_column, string sort_method) {
     for (unsigned int i = 0; i < v.size(); i++) {
         string st = v[i];
         //cout << i << endl;
@@ -43,10 +43,12 @@ void Domain::parse_query_vector(vector<string> v, int search_column, string sort
         vec.push_back(p);
     }
     if (sort_method == "d") {
-        sort_descending(vec, search_column);
+        sort_descending(vec, 1);
+        sort_descending(vec, sort_column);
     }
     else {
-        sort_ascending(vec, search_column);
+        sort_ascending(vec, 1);
+        sort_ascending(vec, sort_column);
     }
 }
 

@@ -72,7 +72,6 @@ void Domain::sort_descending(vector<Person> &v, int search_column)
 {
     ComparePerson comp = ComparePerson(search_column,"d");
     stable_sort(v.begin(), v.end(), comp);
-    reverse(v.begin(), v.end());
 }
 
 void Domain::handle_commands(vector<string> v) {

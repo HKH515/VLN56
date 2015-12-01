@@ -9,12 +9,12 @@ vector<Person> Domain::get_vec() {
     return vec;
 }
 
-// Parse function for queries returned from the data layer. Parses
+// Parse function for queries returned from the data layer.
 void Domain::parse_query_vector(vector<string> v, string sort_method) {
-    cout << "komin inn í parse_query_vector";
-    cout << "Lengd a listanum sem eg fæ frá data layer: " << v.size() << endl;
+    cout << "komin inn i parse_query_vector";
+    cout << "Lengd a listanum sem eg fae fra data layer: " << v.size() << endl;
 
-    for (unsigned int i = 0; i < v.size() - 1; i++) {
+    for (unsigned int i = 0; i < v.size(); i++) {
         string st = v[i];
         //cout << i << endl;
         Person p = Person();
@@ -53,7 +53,7 @@ void Domain::parse_query_vector(vector<string> v, string sort_method) {
     else {
         sort_ascending(vec);
     }
-    cout << "komin út úr parse_query_vector" << endl;
+    cout << "komin ut ur parse_query_vector" << endl;
 }
 
 // If the user wants to add an entry to the database, parse the incoming
@@ -66,11 +66,6 @@ string Domain::parse_add_command(vector<string> v) {
     }
     return st;
 }
-
-/*bool Domain::greater(Person &lhs, Person &rhs) const
-{
-    return lhs.get_name() > rhs.get_name();
-}*/
 
 // Sort
 void Domain::sort_ascending(vector<Person> &v)

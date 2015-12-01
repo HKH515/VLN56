@@ -51,7 +51,7 @@ void presentation::choice(Domain* d)
             cin >> sort_by;
             // check if the user's choice is valid
             while ( (sort_by != "1") && (sort_by != "2") && (sort_by != "3") && (sort_by != "4") && (sort_by != "5")) {
-                cout << "This is not a valid choice, please choose again" << endl;
+                cout << "This is not a valid choice, please choose again: " << endl;
                 cin >> sort_by;
             }
             command_vec.push_back(sort_by);
@@ -62,7 +62,7 @@ void presentation::choice(Domain* d)
             // Error checking that the user put in either "a" or "d"
             while (order_of_sort != "a" && order_of_sort != "d")
             {
-                cout << "Invalid input! Enter a or d"<< endl;
+                cout << "Invalid input! Enter a or d: "<< endl;
                 cin >> order_of_sort;
             }
             command_vec.push_back(order_of_sort);
@@ -78,7 +78,7 @@ void presentation::choice(Domain* d)
             cin >> search_column;
             while (search_column != "1" && search_column != "2" && search_column != "3" && search_column!= "4" && search_column!= "5" && search_column!= "6")
             {
-                cout << "This is not a valid choice, please choose again" << endl;
+                cout << "This is not a valid choice, please choose again: " << endl;
                 cin >> search_column;
             }
             command_vec.push_back(search_column);
@@ -94,7 +94,7 @@ void presentation::choice(Domain* d)
             sort_msg(1);
             cin >> sort_by;
             while ( (sort_by != "1") && (sort_by != "2") && (sort_by != "3") && (sort_by != "4") && (sort_by != "5")) {
-                cout << "This is not a valid choice, please choose again" << endl;
+                cout << "This is not a valid choice, please choose again: " << endl;
                 cin >> sort_by;
             }
             command_vec.push_back(sort_by);
@@ -105,7 +105,7 @@ void presentation::choice(Domain* d)
             // Error checking that the user put in either "a" or "d"
             while (order_of_sort != "a" && order_of_sort != "d")
             {
-                cout << "Invalid input! Enter a or d"<< endl;
+                cout << "Invalid input! Enter a or d: "<< endl;
                 cin >> order_of_sort;
             }
             command_vec.push_back(order_of_sort);
@@ -121,23 +121,26 @@ void presentation::choice(Domain* d)
             cout << "search: Search the list for prefered information" << endl;
             cout << "list: Display the whole list in prefered order" << endl;
             cout << "exit: Close the program" << endl;
-            cout << "help: Open up the help menu" << endl;
+            cout << "help: Displays this screen" << endl;
             cout << "-------------------------------------------------" << endl;
         }
+        else if (inputs == "exit") {
+            exit(0);
+        }
+        else {
+            cout << "You entered an invalid command, type help for list of supported commands." << endl;
+        }
 
+        /* If we continue running the program we clear the command vector and construct a new one for
+           next command */
         if (inputs != "exit")
         {
             command_vec.clear();
             cin >> inputs;
         }
-        else if(inputs == "exit")
-        {
-            exit(0);
-        }
+
     }
     while(inputs != "exit");
-    exit(0);
-
 }
 
 vector <string> presentation::parse_add()
@@ -150,9 +153,9 @@ vector <string> presentation::parse_add()
     cout << "Please write the name of the person: " << endl;
     cin.ignore();
     getline(cin, input);
-    while (input.length() == 0)
+    while (input.length() == 0 || !check_if_word(input))
     {
-        cout << "Invalid input, please write the name of the person or '-'"<< endl;
+        cout << "Invalid input, please write the name of the person: "<< endl;
         cin.ignore();
         getline(cin, input);
     }
@@ -160,9 +163,9 @@ vector <string> presentation::parse_add()
 
     cout << "Please write the profession of the person: " << endl;
     getline(cin, input);
-    while (input.length() == 0)
+    while (input.length() == 0 || !check_if_word(input))
     {
-        cout << "Invalid input, please write the profession of the person or '-'"<< endl;
+        cout << "Invalid input, please write the profession of the person: "<< endl;
         cin.ignore();
         getline(cin, input);
     }
@@ -170,36 +173,30 @@ vector <string> presentation::parse_add()
 
     cout << "Please write some description of the person: " << endl;
     getline(cin, input);
-    while (input.length() == 0)
-    {
-        cout << "Invalid input, please write the description of the person or '-'"<< endl;
-        cin.ignore();
-        getline(cin, input);
-    }
     add_vec.push_back(input);
 
     cout << "Please write the year the person was born: " << endl;
     cin >> input;
     while (!check_if_year(input))
     {
-        cout << "Invalid input, please write a number > 0 "<< endl;
+        cout << "Invalid input, please enter a year: "<< endl;
         cin >> input;
     }
     add_vec.push_back(input);
 
-    cout << "Please write the year the person died: " << endl;
+    cout << "Please write the year the person died, if the person is still alive enter 0: " << endl;
     cin >> input;
     while (!check_if_year(input))
     {
-        cout << "Invalid input, please write a number > 0 " << endl;
+        cout << "Invalid input, please enter a year: " << endl;
         cin >> input;
     }
     add_vec.push_back(input);
 
-    cout << "Please enter the sex of the person, m for male, f for female" << endl;
+    cout << "Enter the sex of the person " << endl << "(m) Male\n" << "(f) Female\n" << "(o) Other" << endl;
     cin >> input;
     // Check if valid input
-    while (input != "m" && input != "f")
+    while (input != "m" && input != "f" && input != "o")
     {
         cout << "Invalid input, please write m, f " << endl;
         cin >> input;
@@ -213,10 +210,18 @@ bool presentation::check_if_year(string input)
 {
     for (unsigned int i = 0; i < input.length(); i++)
     {
-        // If the number is negative
+        // check if each character of the string is a digit, if not return false
         if (!isdigit(input.c_str()[i]))
         {
-            cout << "False" << endl;
+            return false;
+        }
+    }
+    return true;
+}
+
+bool presentation::check_if_word(string input) {
+    for (unsigned int i = 0; i < input.length(); i++) {
+        if (!isalpha(input.c_str()[i]) && !isspace(input.c_str()[i])) {
             return false;
         }
     }
@@ -229,12 +234,15 @@ void presentation::print_results(Domain *d)
     {
         cout << "Name: " << d->get_vec()[i].get_name() << endl
              << "Born: " << d->get_vec()[i].get_birthyear() << endl;
+
+        // If the person is still alive the function displays NA
         if (d->get_vec()[i].get_deathyear() == 0) {
             cout << "Died: NA" << endl;
         }
         else {
              cout << "Died: " << d->get_vec()[i].get_deathyear() << endl;
         }
+
         cout << "Sex: " << d->get_vec()[i].get_sex() << endl
              << "Profession: " << d->get_vec()[i].get_profession() << endl
              << "Description: " << d->get_vec()[i].get_description() << endl << endl;

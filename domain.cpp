@@ -10,16 +10,12 @@ vector<Person> Domain::get_vec() {
 
 // Parse function for queries returned from the data layer.
 void Domain::parse_query_vector(vector<string> v, int search_column, string sort_method) {
-    cout << "komin inn i parse_query_vector";
-    cout << "Lengd a listanum sem eg fae fra data layer: " << v.size() << endl;
-
     for (unsigned int i = 0; i < v.size(); i++) {
         string st = v[i];
         //cout << i << endl;
         Person p = Person();
         //cout << v[i] << endl;
         st = st.substr(1, st.length());
-        //cout <<"I am here nr" << i << endl;
         // find the name
         size_t position_beg = st.find("|");
         p.set_name(st.substr(0, position_beg));
@@ -52,7 +48,6 @@ void Domain::parse_query_vector(vector<string> v, int search_column, string sort
     else {
         sort_ascending(vec, search_column);
     }
-    cout << "komin ut ur parse_query_vector" << endl;
 }
 
 // If the user wants to add an entry to the database, parse the incoming
@@ -77,6 +72,7 @@ void Domain::sort_descending(vector<Person> &v, int search_column)
 {
     ComparePerson comp = ComparePerson(search_column,"d");
     stable_sort(v.begin(), v.end(), comp);
+    reverse(v.begin(), v.end());
 }
 
 void Domain::handle_commands(vector<string> v) {

@@ -41,13 +41,14 @@ void presentation::choice(Domain* d)
 {
     string inputs;
     cin >> inputs;
+    vector<string> command_vec;
+    string order_of_sort;
     // Put all letter to lowercase - ATH gera þegar error checka skipun?
     for (unsigned int i = 0; i < inputs.length(); i++)
     {
         inputs[i] = tolower(inputs[i]);
     }
-    vector<string> command_vec;
-    string order_of_sort;
+
     do
     {
         if(inputs == "add")
@@ -61,6 +62,7 @@ void presentation::choice(Domain* d)
             command_vec.push_back("list");
             cout << "Do you want the list sorted in ascending or descending order? Enter a for ascending, d for descending." << endl;
             cin >> order_of_sort;
+
             // Error checking that the user put in either "a" or "d"
             while (order_of_sort != "a" && order_of_sort != "d")
             {
@@ -111,7 +113,6 @@ void presentation::choice(Domain* d)
             cout << "exit: Close the program" << endl;
             cout << "help: Open up the help menu" << endl;
             cout << "-------------------------------------------------" << endl;
-            cin >> inputs;
         }
 
         if (inputs != "exit")

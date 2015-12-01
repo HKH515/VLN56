@@ -26,6 +26,7 @@ public:
     bool check_if_year(string input);
     void print_results(Domain *d);
     void sort_msg(int c);
+    bool check_if_word(string input);
 };
 
 #endif // PRESENTATION_H

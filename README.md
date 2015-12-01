@@ -6,7 +6,7 @@ The program is simply put a client for interacting with a database, the theme of
 
 ##Commands
 
-the following commands are currently implement into the program
+the following commands are currently implemented into the program
 
 | Command       | Description                                | Sortability                                                                        |
 | ------------- |:------------------------------------------:|------------------------------------------------------------------------------------|
@@ -18,7 +18,9 @@ the following commands are currently implement into the program
 please keep in mind that the program sorts it's data case sensitively. i.e. given the data set Bob, jack, Susan, susan; it will be sorted Bob, Susan, jack, susan or susan, jack, Susan, Bob.
 
 When the list is sorted after something other than Name, it is though internally ordered after Name.
+
 Commands are case sensitive, ADD, Add and aDD do not work, only add.
+
 It is not allowed to write digits or special characters (like the icelandic letters þ, í, æ) in the name of the person.
 
 ##Syntax
@@ -47,22 +49,22 @@ add
 Example
 
 ```
->add John Appleseed
+> add John Appleseed
 You will be asked to enter information about the person
 Please write the name of the person:
 Please write the profession of the person:
->Software Tester
+> Software Tester
 Please write some description of the person:
->This is a very detailed description.
+> This is a very detailed description.
 Please write the year the person was born:
->1984
+> 1984
 Please write the year the person died, if the person is still alive enter 0:
->2011
+> 2011
 Enter the sex of the person
 (m) Male
 (f) Female
 (o) Other
->m
+> m
 ```
 or
 
@@ -70,20 +72,20 @@ or
 add
 You will be asked to enter information about the person
 Please write the name of the person:
->John Appleseed
+> John Appleseed
 Please write the profession of the person:
->Software Tester
+> Software Tester
 Please write some description of the person:
->This is a very detailed description.
+> This is a very detailed description.
 Please write the year the person was born:
->1984
+> 1984
 Please write the year the person died, if the person is still alive enter 0:
->2011
+> 2011
 Enter the sex of the person
 (m) Male
 (f) Female
 (o) Other
->m
+> m
 ```
 
 ###list
@@ -99,12 +101,12 @@ list COLUMN_ID ORDER
 Example
 
 ```
->list 1 a
+> list 1 a
 ```
 would display all entries sorted alphabetically by name in ascending order.
 
 ```
->list
+> list
 What do you want to sort by? choose one of the following:
 (1) Name
 (2) Birthyear
@@ -128,7 +130,7 @@ search COLUMN_ID SUBSTRING
 Example
 
 ```
->search 3 American
+> search 3 American
 Choose what information you want to search for:
 (1) Name
 (2) Profession
@@ -143,9 +145,9 @@ What do you want to sort by? choose one of the following:
 (3) Deathyear
 (4) Sex
 (5) Profession
->1
+> 1
 Do you want the information sorted in ascending or descending order? choose a/d
->a
+> a
 ```
 
 ```
@@ -157,7 +159,7 @@ Choose what information you want to search for:
 (4) Birthyear
 (5) Deathyear
 (6) Sex
->3
+> 3
 What substring do you want to search for?
 American
 What do you want to sort by? choose one of the following:
@@ -166,9 +168,9 @@ What do you want to sort by? choose one of the following:
 (3) Deathyear
 (4) Sex
 (5) Profession
->1
+> 1
 Do you want the information sorted in ascending or descending order? choose a/d
->a
+> a
 search
 Choose what information you want to search for:
 (1) Name
@@ -177,9 +179,9 @@ Choose what information you want to search for:
 (4) Birthyear
 (5) Deathyear
 (6) Sex
->3
+> 3
 What substring do you want to search for?
->American
+> American
 What do you want to sort by? choose one of the following:
 (1) Name
 (2) Birthyear
@@ -188,7 +190,7 @@ What do you want to sort by? choose one of the following:
 (5) Profession
 1
 Do you want the information sorted in ascending or descending order? choose a/d
->a
+> a
 
 ```
 both of these examples should display all entries that include an "American" in the description field sorted alphabetically by name in ascending order.
@@ -198,7 +200,7 @@ This command prints out a list of commands
 
 Syntax:
 ```
->help
+> help
 
 -------------------------------------------------
 add: Add to the database
@@ -218,5 +220,5 @@ This command exits the program
 
 Syntax:
 ```
->exit
+> exit
 ```

@@ -18,9 +18,10 @@ private:
     string profession; // Mathematician, Physicist, bioligist, computer scientist
 
 public:
+    /* Constructor */
     Person();
 
-    // Set functions
+    /* Set functions */
     void set_name(string n);
     void set_birthyear(int y);
     void set_deathyear(int y);
@@ -28,7 +29,7 @@ public:
     void set_description(string s);
     void set_profession(string p);
 
-    // Get functions
+    /* Get functions */
     string get_name();
     int get_birthyear();
     int get_deathyear();
@@ -36,14 +37,14 @@ public:
     string get_description();
     string get_profession();
 
+    /* Overloading operators */
     friend bool operator < (const Person &lhs, const Person &rhs);
     friend bool operator > (const Person &lhs, const Person &rhs);
     friend ostream& operator <<(ostream& outs, const Person &p);
     void operator = (const Person& rhs);
-    // copy constructor
-    Person(const Person& copyme);
 
-    int calc_age();
+    /* copy constructor */
+    Person(const Person& copyme);
 };
 
 #endif // PERSON_H

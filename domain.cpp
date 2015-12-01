@@ -74,19 +74,10 @@ string Domain::parse_add_command(vector<string> v) {
     return st;
 }
 
-// Sort
-void Domain::sort_ascending(vector<Person*> &v, int search_column) {
-    ComparePerson comp = ComparePerson(search_column,"a");
-    stable_sort(v.begin(), v.end(), comp);
-}
-
-void Domain::sort_descending(vector<Person*> &v, int search_column) {
-    ComparePerson comp = ComparePerson(search_column,"d");
-    stable_sort(v.begin(), v.end(), comp);
-}
-
 void Domain::handle_commands(vector<string> v) {
-    vec.clear();
+    /* Clear the vector for new query */
+    free_vector_memory();
+
     string command = v[0];
     data->read();
 
@@ -99,7 +90,6 @@ void Domain::handle_commands(vector<string> v) {
     // if the user wants to add a new entry to the database
     else if (command == "add") {
         data->write(parse_add_command(v));
-        vec.clear();
     }
     // if the user wants to search in the list
     else if (command == "search") {
@@ -114,4 +104,22 @@ void Domain::handle_commands(vector<string> v) {
         string sort_method = v[4];
         parse_query_vector(data->query(query_column, query_string), sort_column, sort_method);
     }
+}
+
+void Domain::free_vector_memory() {
+    for (unsigned int i = 0; i < vec.size(); i++) {
+        delete vec[i];
+    }
+    vec.clear();
+}
+
+// Sort
+void Domain::sort_ascending(vector<Person*> &v, int search_column) {
+    ComparePerson comp = ComparePerson(search_column,"a");
+    stable_sort(v.begin(), v.end(), comp);
+}
+
+void Domain::sort_descending(vector<Person*> &v, int search_column) {
+    ComparePerson comp = ComparePerson(search_column,"d");
+    stable_sort(v.begin(), v.end(), comp);
 }

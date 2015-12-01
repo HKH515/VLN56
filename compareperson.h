@@ -10,8 +10,10 @@ private:
     string mode; // ascending or descending
 
 public:
+    /* Constructors */
     ComparePerson();
     ComparePerson(int col, string m);
+
     bool operator() (Person* first, Person* second);
 };
 

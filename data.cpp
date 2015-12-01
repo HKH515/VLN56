@@ -21,7 +21,6 @@ void Data::read() {
         QString line;
         internalData.clear();
 
-        int counter = 0;
         while (!(line = inputStream.readLine()).isNull()) {
             push(line.toStdString());
         }
@@ -67,7 +66,6 @@ int Data::nthIndex(string haystack, char needle, int n) {
 vector<string> Data::query(int column, string dataQuery) {
     vector<string> queryVect;
     string line;
-    cout << internalData.size() << endl;
     unsigned int dataSize = internalData.size();
     for (unsigned int i = 0; i < dataSize; i++) {
         line = internalData[i];

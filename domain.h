@@ -18,20 +18,22 @@ private:
     /* Sort functions */
     void sort_ascending(vector<Person*> &v, int sort_column);
     void sort_descending(vector<Person*> &v, int sort_column);
-    /* If the user wants to add an entry to the database, parse the incoming
-     vector, put delimeter (|) between */
+    /* parses the information, to be added from the database, from the user the and puts
+     * delimeter (|) between */
     string parse_add_command(vector<string> vec);
-    /* */
     bool greater(Person &lhs, Person &rhs) const;
-    /* Receives a vector of strings from data layer and parses the string and fills into
+    /* Receives a vector of strings from data layer and parses the string, fills into
        the persons class and returns a vector of persons* to the presentation layer */
     void parse_query_vector(vector<string> v, int sort_column, string sort_method);
+    /* deletes all persons object from the vector and clears the vector befor each command to be handled */
+    void free_vector_memory();
 
 public:
 
     /* Constructor */
     Domain();
     ~Domain();
+
     /* Receives command vector and parses it and sends informations to the data layer */
     void handle_commands(vector<string> v);
 

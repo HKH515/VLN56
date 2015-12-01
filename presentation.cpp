@@ -22,12 +22,10 @@ void presentation::choice(Domain* d)
     vector<string> command_vec;
     cin >> inputs;
 
-    /*------------TAKA ÞETTA ÚT?---------- */
     // Put all letter to lowercase
     for (unsigned int i = 0; i < inputs.length(); i++) {
         inputs[i] = tolower(inputs[i]);
     }
-    /*------------------------------------*/
 
     // Infinite while loop that receives and handles commands. If the user enters exit the while
     // loop terminates.
@@ -177,21 +175,23 @@ vector <string> presentation::parse_add()
         cin >> input;
     }
     add_vec.push_back(birthyear_check);
+
     cout << "Please write the year that the person died, if the person is still alive enter 0: " << endl << prompt;
     cin >> input;
     while (!check_if_year(input)) {
         cout << "Invalid input, please enter a year: " << endl << prompt;
         cin >> input;
     }
-
     /* It is not allowed to add year of death that is before year of birth */
-    while (stoi(input) < stoi(birthyear_check)) {
-        cout << "Year of death cannot be prior to year of birth, please enter a year (0 if still alive): " << endl << prompt;
-        cin >> input;
-
-        while (!check_if_year(input)) {
-            cout << "Invalid input, please enter a year: " << endl << prompt;
+    if (!(stoi(input) == 0)) {
+        while (stoi(input) < stoi(birthyear_check)) {
+            cout << "Year of death cannot be prior to year of birth, please enter a year (0 if still alive): " << endl << prompt;
             cin >> input;
+
+            while (!check_if_year(input)) {
+                cout << "Invalid input, please enter a year: " << endl << prompt;
+                cin >> input;
+            }
         }
     }
     add_vec.push_back(input);
@@ -242,8 +242,16 @@ void presentation::print_results(Domain *d)
              cout << "Died: " << d->get_vec()[i]->get_deathyear() << endl;
         }
 
-        cout << "Sex: " << d->get_vec()[i]->get_sex() << endl
-             << "Profession: " << d->get_vec()[i]->get_profession() << endl
+        if (d->get_vec()[i]->get_sex() == "m") {
+            cout << "Sex: Male" << endl;
+        }
+        else if (d->get_vec()[i]->get_sex() == "f") {
+            cout << "Sex: Female" << endl;
+        }
+        else if (d->get_vec()[i]->get_sex() == "o") {
+            cout << "Sex: Other" << endl;
+        }
+        cout << "Profession: " << d->get_vec()[i]->get_profession() << endl
              << "Description: " << d->get_vec()[i]->get_description() << endl << endl;
     }
 

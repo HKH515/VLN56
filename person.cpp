@@ -12,7 +12,7 @@ Person::Person()
     profession = "";
 }
 
- // set functions
+ /* set functions */
 void Person::set_name(string n) {name = n;};
 void Person::set_birthyear(int y) {birth_year = y;};
 void Person::set_deathyear(int y) {death_year = y;};
@@ -20,7 +20,7 @@ void Person::set_sex(string s) {sex = s;};
 void Person::set_description(string s) {description = s;};
 void Person::set_profession(string p) {profession = p;};
 
-// get functions
+/* get functions */
 string Person::get_name() {return name;};
 int Person::get_birthyear() {return birth_year;};
 int Person::get_deathyear() {return death_year;};
@@ -36,14 +36,13 @@ bool operator > (const Person &lhs, const Person &rhs) {
     return lhs.name > rhs.name;
 }
 
-//overloading <<
+/* overloading << */
 ostream& operator << (ostream& outs, const Person &p)
 {
-    //outs << p.name << " ";
     return outs << p.name;
 }
 
-//assignment operator
+/* assignment operator */
 void Person::operator = (const Person& rhs) {
     name = rhs.name;
     birth_year = rhs.birth_year;
@@ -53,7 +52,7 @@ void Person::operator = (const Person& rhs) {
     profession = rhs.profession;
 }
 
-// copy constructor
+/* copy constructor */
 Person::Person(const Person& copyme) {
     name = copyme.name;
     birth_year = copyme.birth_year;

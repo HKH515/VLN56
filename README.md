@@ -113,9 +113,9 @@ What do you want to sort by? choose one of the following:
 (3) Deathyear
 (4) Sex
 (5) Profession
-1
+> 1
 Do you want the information sorted in ascending or descending order? choose a/d
-a
+> a
 ```
 ###search
 The list command can be used to list all entries in the database, it can also display data sorted by name, birth year, death year or sex.

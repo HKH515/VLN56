@@ -94,16 +94,12 @@ void Domain::handle_commands(vector<string> v) {
 
     // returns all entries in database
     if (command == "list") {
-        cout << "handle commands: list" << endl;
         int sort_column = stoi(v[1]);
         string sort_method = v[2];
         parse_query_vector(data->readEntries(), sort_column, sort_method);
-        cout << "Buin med list" << endl;
     }
     // if the user wants to add a new entry to the database
     else if (command == "add") {
-        cout << "komin inn í command = add" << endl;
-        cout << parse_add_command(v) << endl;
         data->write(parse_add_command(v));
         vec.clear();
     }

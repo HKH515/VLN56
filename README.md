@@ -15,3 +15,4 @@ the following commands are currently implement into the program
 | search        | searches the database                      | Ascending/Descending by any field (except Description field, does not apply there) |
 | help          | displays all commands                      | Does not apply                                                                     |
 
+please keep in mind that the program sorts it's data case sensitively. i.e. given the data set Bob, jack, Susan, susan; it will be sorted Bob, Susan, jack, susan or susan, jack, Susan, Bob.

@@ -17,7 +17,7 @@ the following commands are currently implemented into the program
 
 please keep in mind that the program sorts it's data case sensitively. i.e. given the data set Bob, jack, Susan, susan; it will be sorted Bob, Susan, jack, susan or susan, jack, Susan, Bob.
 
-When the list is sorted after something other than Name, it is though internally ordered after Name.
+Even though the list is sorted by something other than Name it will still be ordered alphabetically internally.
 
 Commands are case sensitive, ADD, Add and aDD do not work, only add.
 

@@ -171,27 +171,6 @@ What do you want to sort by? choose one of the following:
 > 1
 Do you want the information sorted in ascending or descending order? choose a/d
 > a
-search
-Choose what information you want to search for:
-(1) Name
-(2) Profession
-(3) Description
-(4) Birthyear
-(5) Deathyear
-(6) Sex
-> 3
-What substring do you want to search for?
-> American
-What do you want to sort by? choose one of the following:
-(1) Name
-(2) Birthyear
-(3) Deathyear
-(4) Sex
-(5) Profession
-1
-Do you want the information sorted in ascending or descending order? choose a/d
-> a
-
 ```
 both of these examples should display all entries that include an "American" in the description field sorted alphabetically by name in ascending order.
 

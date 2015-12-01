@@ -1,34 +1,28 @@
 #include "data.h"
 
-Data::Data(string datafile)
-{
+Data::Data(string datafile) {
     setFile(datafile);
 }
 
-void Data::setFile(string filename)
-{
+void Data::setFile(string filename) {
     internalFilename = filename;
 }
 
-string Data::getFile()
-{
+string Data::getFile() {
     return internalFilename;
 }
 
-void Data::read()
-{
+void Data::read() {
     QFile readFile(getFile().c_str());
 
-    if (readFile.open(QIODevice::ReadOnly ))
-    {
+    if (readFile.open(QIODevice::ReadOnly )) {
         QTextStream inputStream(&readFile);
         QTextStream out(stdout);
         QString line;
         internalData.clear();
 
         int counter = 0;
-        while (!(line = inputStream.readLine()).isNull())
-        {
+        while (!(line = inputStream.readLine()).isNull()) {
             push(line.toStdString());
         }
 
@@ -37,55 +31,45 @@ void Data::read()
 
 }
 
-void Data::write(string line)
-{
+void Data::write(string line) {
     QString lineString(line.c_str());
     QString getFileString(getFile().c_str());
     QFile dataFile(getFileString);
 
-    if (dataFile.open(QIODevice::ReadWrite | QIODevice::Append))
-    {
+    if (dataFile.open(QIODevice::ReadWrite | QIODevice::Append)) {
         QTextStream out(&dataFile);
         out << lineString << endl;
     }
     dataFile.close();
 }
 
-vector<string> Data::readEntries()
-{
+vector<string> Data::readEntries() {
     return internalData;
 }
 
-void Data::push(string entry)
-{
+void Data::push(string entry) {
     internalData.push_back(entry);
 }
 
-int Data::nthIndex(string haystack, char needle, int n)
-{
+int Data::nthIndex(string haystack, char needle, int n) {
     int occurances = 0;
-    for (int i = 0; i < haystack.size(); i++)
-    {
-        if (haystack[i] == needle)   
-        {
+    for (unsigned int i = 0; i < haystack.size(); i++) {
+        if (haystack[i] == needle) {
             occurances++;
         }        
-        if (occurances == n)
-        {
+        if (occurances == n) {
             return i;
         }
     }
     return haystack.size()-1; //fallback if char is not found, return end of string
 }
 
-vector<string> Data::query(int column, string dataQuery)
-{
+vector<string> Data::query(int column, string dataQuery) {
     vector<string> queryVect;
     string line;
     cout << internalData.size() << endl;
-    int dataSize = internalData.size();
-    for (unsigned int i = 0; i < dataSize; i++)
-    {
+    unsigned int dataSize = internalData.size();
+    for (unsigned int i = 0; i < dataSize; i++) {
         line = internalData[i];
         string column_content = line.substr(nthIndex(line, '|', column)+1, nthIndex(line, '|', column+1)-nthIndex(line, '|', column)-1);
         if (column_content.find(dataQuery) != string::npos) //if query is found in current cell

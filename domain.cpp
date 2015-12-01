@@ -75,14 +75,12 @@ string Domain::parse_add_command(vector<string> v) {
 }
 
 // Sort
-void Domain::sort_ascending(vector<Person*> &v, int search_column)
-{
+void Domain::sort_ascending(vector<Person*> &v, int search_column) {
     ComparePerson comp = ComparePerson(search_column,"a");
     stable_sort(v.begin(), v.end(), comp);
 }
 
-void Domain::sort_descending(vector<Person*> &v, int search_column)
-{
+void Domain::sort_descending(vector<Person*> &v, int search_column) {
     ComparePerson comp = ComparePerson(search_column,"d");
     stable_sort(v.begin(), v.end(), comp);
 }
@@ -104,8 +102,7 @@ void Domain::handle_commands(vector<string> v) {
         vec.clear();
     }
     // if the user wants to search in the list
-    else if (command == "search")
-    {
+    else if (command == "search") {
         // Assume to get 2 parameters from presentation layer. Get the column to search in
         string query = v[1];
         int query_column = stoi(query) - 1;

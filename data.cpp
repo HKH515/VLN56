@@ -30,6 +30,7 @@ void Data::read()
         QString line;
         internalData.clear();
 
+        int counter = 0;
         while (!(line = inputStream.readLine()).isNull())
         {
             push(line.toStdString());

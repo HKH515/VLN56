@@ -121,8 +121,8 @@ void presentation::choice(Domain* d)
             cout << endl;
             cout << "-------------------------------------------------" << endl;
             cout << "add: Add to the database" << endl;
-            cout << "search: Search the list for prefered information" << endl;
-            cout << "list: Display the whole list in prefered order" << endl;
+            cout << "search: Search the list for preferred information" << endl;
+            cout << "list: Display the whole list in preferred order" << endl;
             cout << "exit: Close the program" << endl;
             cout << "help: Displays this screen" << endl;
             cout << "-------------------------------------------------" << endl;
@@ -131,7 +131,7 @@ void presentation::choice(Domain* d)
             exit(0);
         }
         else {
-            cout << "You entered an invalid command, type help for list of supported commands." << endl << "> ";
+            cout << "You entered an invalid command, type help for list of supported commands." << endl;
         }
 
         /* If we continue running the program we clear the command vector and construct a new one for
@@ -149,7 +149,7 @@ void presentation::choice(Domain* d)
 
 vector <string> presentation::parse_add()
 {
-    string input;
+    string input, birthyear_check;
     vector<string> add_vec;
     add_vec.push_back("add");
 
@@ -180,20 +180,32 @@ vector <string> presentation::parse_add()
     add_vec.push_back(input);
 
     cout << "Please write the year that the person was born: " << endl << "> ";
-    cin >> input;
+    cin >> birthyear_check;
     while (!check_if_year(input))
     {
         cout << "Invalid input, please enter a year: "<< endl << "> ";
         cin >> input;
     }
-    add_vec.push_back(input);
-
+    add_vec.push_back(birthyear_check);
     cout << "Please write the year that the person died, if the person is still alive enter 0: " << endl << "> ";
     cin >> input;
     while (!check_if_year(input))
     {
         cout << "Invalid input, please enter a year: " << endl << "> ";
         cin >> input;
+    }
+
+    /* It is not allowed to add year of death that is before year of birth */
+    while (stoi(input) < stoi(birthyear_check))
+    {
+        cout << "Year of death cannot be prior to year of birth, please enter a year (0 if still alive): " << endl << "> ";
+        cin >> input;
+
+        while (!check_if_year(input))
+        {
+            cout << "Invalid input, please enter a year: " << endl << "> ";
+            cin >> input;
+        }
     }
     add_vec.push_back(input);
 

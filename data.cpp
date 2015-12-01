@@ -15,13 +15,9 @@ string Data::getFile()
     return internalFilename;
 }
 
-
 void Data::read()
 {
-
     QFile readFile(getFile().c_str());
-
-
 
     if (readFile.open(QIODevice::ReadOnly ))
     {
@@ -39,22 +35,6 @@ void Data::read()
     }
     readFile.close();
 
-
-
-
-    /*ifstream inputStream(getFile().c_str());
-    string line;
-    if (inputStream.is_open())
-    {
-        while (getline(inputStream, line))
-        {
-            push(line);
-        }
-    }
-
-
-    inputStream.close();
-    */
 }
 
 void Data::write(string line)
@@ -67,7 +47,6 @@ void Data::write(string line)
     {
         QTextStream out(&dataFile);
         out << lineString << endl;
-
     }
     dataFile.close();
 }
@@ -97,8 +76,6 @@ int Data::nthIndex(string haystack, char needle, int n)
         }
     }
     return haystack.size()-1; //fallback if char is not found, return end of string
-
-
 }
 
 vector<string> Data::query(int column, string dataQuery)

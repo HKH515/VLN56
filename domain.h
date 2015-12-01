@@ -13,17 +13,28 @@ class Domain
 {
 private:
     Data* data;
-    vector<Person> vec;
+    vector<Person*> vec;
+
+    /* Sort functions */
+    void sort_ascending(vector<Person*> &v, int sort_column);
+    void sort_descending(vector<Person*> &v, int sort_column);
+    /* If the user wants to add an entry to the database, parse the incoming
+     vector, put delimeter (|) between */
+    string parse_add_command(vector<string> vec);
+    /* */
+    bool greater(Person &lhs, Person &rhs) const;
+    /* Receives a vector of strings from data layer and parses the string and fills into
+       the persons class and returns a vector of persons* to the presentation layer */
+    void parse_query_vector(vector<string> v, int sort_column, string sort_method);
 
 public:
-    void sort_ascending(vector<Person> &v, int sort_column);
-    void sort_descending(vector<Person> &v, int sort_column);
-    void parse_query_vector(vector<string> v, int sort_column, string sort_method);
-    string parse_add_command(vector<string> vec);
-    bool greater(Person &lhs, Person &rhs) const;
-    void handle_commands(vector<string> v);
-    vector<Person> get_vec();
 
+    /* Constructor */
     Domain();
+    ~Domain();
+    /* Receives command vector and parses it and sends informations to the data layer */
+    void handle_commands(vector<string> v);
+
+    vector<Person*> get_vec();
 };
 #endif // DOMAIN_H

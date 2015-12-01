@@ -12,7 +12,7 @@ private:
 public:
     ComparePerson();
     ComparePerson(int col, string m);
-    bool operator() (Person first, Person second);
+    bool operator() (Person* first, Person* second);
 };
 
 #endif // COMPAREPERSON_H

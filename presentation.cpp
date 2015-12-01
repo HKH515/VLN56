@@ -111,6 +111,9 @@ void presentation::choice(Domain* d)
             command_vec.push_back(order_of_sort);
 
             d->handle_commands(command_vec);
+            if (d->get_vec().size() == 0) {
+                cout << "No results found" << endl;
+            }
             print_results(d);
         }
         else if (inputs == "help") {
@@ -232,20 +235,20 @@ void presentation::print_results(Domain *d)
 {
     for (unsigned int i = 0; i < d->get_vec().size(); i++)
     {
-        cout << "Name: " << d->get_vec()[i].get_name() << endl
-             << "Born: " << d->get_vec()[i].get_birthyear() << endl;
+        cout << "Name: " << d->get_vec()[i]->get_name() << endl
+             << "Born: " << d->get_vec()[i]->get_birthyear() << endl;
 
         // If the person is still alive the function displays NA
-        if (d->get_vec()[i].get_deathyear() == 0) {
+        if (d->get_vec()[i]->get_deathyear() == 0) {
             cout << "Died: NA" << endl;
         }
         else {
-             cout << "Died: " << d->get_vec()[i].get_deathyear() << endl;
+             cout << "Died: " << d->get_vec()[i]->get_deathyear() << endl;
         }
 
-        cout << "Sex: " << d->get_vec()[i].get_sex() << endl
-             << "Profession: " << d->get_vec()[i].get_profession() << endl
-             << "Description: " << d->get_vec()[i].get_description() << endl << endl;
+        cout << "Sex: " << d->get_vec()[i]->get_sex() << endl
+             << "Profession: " << d->get_vec()[i]->get_profession() << endl
+             << "Description: " << d->get_vec()[i]->get_description() << endl << endl;
     }
 
 }

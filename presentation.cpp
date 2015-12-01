@@ -4,6 +4,7 @@
 presentation::presentation()
 {
     d = new Domain();
+    prompt = "> ";
 }
 
 presentation::~presentation()

@@ -28,22 +28,22 @@ The add command can be used with a parameter to denote the name of the entry, or
 Example
 
 ```
-add John Appleseed
+>add John Appleseed
 You will be asked to enter information about the person
 Please write the name of the person: 
 Please write the profession of the person: 
-Software Tester
+>Software Tester
 Please write some description of the person: 
-This is a very detailed description.
+>This is a very detailed description.
 Please write the year the person was born: 
-1984
+>1984
 Please write the year the person died, if the person is still alive enter 0: 
-2011
+>2011
 Enter the sex of the person 
 (m) Male
 (f) Female
 (o) Other
-m
+>m
 ```
 or 
 
@@ -51,19 +51,19 @@ or
 add
 You will be asked to enter information about the person
 Please write the name of the person:
-John Appleseed
+>John Appleseed
 Please write the profession of the person: 
-Software Tester
+>Software Tester
 Please write some description of the person: 
-This is a very detailed description.
+>This is a very detailed description.
 Please write the year the person was born: 
-1984
+>1984
 Please write the year the person died, if the person is still alive enter 0: 
-2011
+>2011
 Enter the sex of the person 
 (m) Male
 (f) Female
 (o) Other
-m
+>m
 ```
 

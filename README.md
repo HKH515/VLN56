@@ -1,10 +1,10 @@
-##VLN56
+#VLN56
 
 This is our project for the course VLN1, we are group 56
 
 The program is simply put a client for interacting with a database, the theme of this database are computer scientists.
 
-###Commands
+##Commands
 
 the following commands are currently implement into the program
 
@@ -21,8 +21,22 @@ When the list is sorted after something other than Name, it is though internally
 Commands are case sensitive, ADD, Add and aDD do not work, only add.
 It is not allowed to write digits or special characters (like the icelandic letters þ, í, æ) in the name of the person.
 
-###Syntax
-#add
+##Syntax
+Throughout this section a COLUMN_ID will be referenced, to make sense of this please take a look at the table below
+
+How the columns are set up
+
+|   ID     |   Data      |
+| -------- | ----------- |
+| 1        | Name        |
+| 2        | Birthyear   |
+| 3        | Deathyear   |
+| 4        | Sex         |
+| 5        | Profession  |
+
+
+
+###add
 The add command can be used with a parameter to denote the name of the entry, or you can run the command interactively.
 
 Syntax:
@@ -71,26 +85,15 @@ Enter the sex of the person
 (o) Other
 >m
 ```
-#list
+
+###list
 The list command can be used to list all entries in the database, it can also display data sorted by name, birth year, death year or sex.
 
 Syntax:
 ```
-list COLUMN_ID ORDER
 list
+list COLUMN_ID ORDER
 ```
-
-where COLUMN_ID should be a number from 1-5 and ORDER should either be 'a' or 'd' (Ascending or Descending)
-
-How the columns are set up
-
-|   ID     |   Data      |
-| -------- | ----------- |
-| 1        | Name        |
-| 2        | Birthyear   |
-| 3        | Deathyear   |
-| 4        | Sex         |
-| 5        | Profession  |
 
 
 Example
@@ -98,24 +101,97 @@ Example
 ```
 >list 1 a
 ```
-or
+would display all entries sorted alphabetically by name in ascending order.
 
 ```
-add
-You will be asked to enter information about the person
-Please write the name of the person:
->John Appleseed
-Please write the profession of the person:
->Software Tester
-Please write some description of the person:
->This is a very detailed description.
-Please write the year the person was born:
->1984
-Please write the year the person died, if the person is still alive enter 0:
->2011
-Enter the sex of the person
-(m) Male
-(f) Female
-(o) Other
->m
+>list
+What do you want to sort by? choose one of the following:
+(1) Name
+(2) Birthyear
+(3) Deathyear
+(4) Sex
+(5) Profession
+1
+Do you want the information sorted in ascending or descending order? choose a/d
+a
 ```
+###search
+The list command can be used to list all entries in the database, it can also display data sorted by name, birth year, death year or sex.
+
+Syntax:
+```
+search
+search COLUMN_ID
+search COLUMN_ID SUBSTRING
+```
+
+Example
+
+```
+>search 3 American
+search 3 American
+Choose what information you want to search for:
+(1) Name
+(2) Profession
+(3) Description
+(4) Birthyear
+(5) Deathyear
+(6) Sex
+What substring do you want to search for?
+What do you want to sort by? choose one of the following:
+(1) Name
+(2) Birthyear
+(3) Deathyear
+(4) Sex
+(5) Profession
+1
+Do you want the information sorted in ascending or descending order? choose a/d
+a
+```
+
+```
+search
+Choose what information you want to search for:
+(1) Name
+(2) Profession
+(3) Description
+(4) Birthyear
+(5) Deathyear
+(6) Sex
+3
+What substring do you want to search for?
+American
+What do you want to sort by? choose one of the following:
+(1) Name
+(2) Birthyear
+(3) Deathyear
+(4) Sex
+(5) Profession
+1
+Do you want the information sorted in ascending or descending order? choose a/d
+a
+search
+Choose what information you want to search for:
+(1) Name
+(2) Profession
+(3) Description
+(4) Birthyear
+(5) Deathyear
+(6) Sex
+3
+What substring do you want to search for?
+American
+What do you want to sort by? choose one of the following:
+(1) Name
+(2) Birthyear
+(3) Deathyear
+(4) Sex
+(5) Profession
+1
+Do you want the information sorted in ascending or descending order? choose a/d
+a
+
+```
+both of these examples should display all entries that include an "American" in the description field sorted alphabetically by name in ascending order.
+
+###exit

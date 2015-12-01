@@ -129,7 +129,6 @@ Example
 
 ```
 >search 3 American
-search 3 American
 Choose what information you want to search for:
 (1) Name
 (2) Profession
@@ -144,9 +143,9 @@ What do you want to sort by? choose one of the following:
 (3) Deathyear
 (4) Sex
 (5) Profession
-1
+>1
 Do you want the information sorted in ascending or descending order? choose a/d
-a
+>a
 ```
 
 ```
@@ -158,7 +157,7 @@ Choose what information you want to search for:
 (4) Birthyear
 (5) Deathyear
 (6) Sex
-3
+>3
 What substring do you want to search for?
 American
 What do you want to sort by? choose one of the following:
@@ -167,9 +166,9 @@ What do you want to sort by? choose one of the following:
 (3) Deathyear
 (4) Sex
 (5) Profession
-1
+>1
 Do you want the information sorted in ascending or descending order? choose a/d
-a
+>a
 search
 Choose what information you want to search for:
 (1) Name
@@ -178,9 +177,9 @@ Choose what information you want to search for:
 (4) Birthyear
 (5) Deathyear
 (6) Sex
-3
+>3
 What substring do you want to search for?
-American
+>American
 What do you want to sort by? choose one of the following:
 (1) Name
 (2) Birthyear
@@ -189,9 +188,35 @@ What do you want to sort by? choose one of the following:
 (5) Profession
 1
 Do you want the information sorted in ascending or descending order? choose a/d
-a
+>a
 
 ```
 both of these examples should display all entries that include an "American" in the description field sorted alphabetically by name in ascending order.
 
+###help
+This command prints out a list of commands
+
+Syntax:
+```
+>help
+
+-------------------------------------------------
+add: Add to the database
+search: Search the list for prefered information
+list: Display the whole list in prefered order
+exit: Close the program
+help: Displays this screen
+-------------------------------------------------
+
+
+```
+
+
+
 ###exit
+This command exits the program
+
+Syntax:
+```
+>exit
+```

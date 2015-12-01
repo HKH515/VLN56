@@ -246,10 +246,10 @@ void presentation::sort_msg(int c) {
     if (c == 1) {
         cout << "What do you want to sort by? choose one of the following:" << endl
              <<"(1) Name" << endl
-            << "(2) Profession" << endl
-            << "(3) Birthyear" << endl
-            << "(4) Deathyear" << endl
-            << "(5) Sex" << endl;
+            << "(2) Birthyear" << endl
+            << "(3) Deathyear" << endl
+            << "(4) Sex" << endl
+            << "(5) Profession" << endl;
     }
     else if (c == 2) {
         cout << "Do you want the information sorted in ascending or descending order? choose a/d" << endl;

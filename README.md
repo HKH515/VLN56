@@ -17,14 +17,14 @@ the following commands are currently implemented into the program
 
 please keep in mind that the program sorts it's data case sensitively. i.e. given the data set Bob, jack, Susan, susan; it will be sorted Bob, Susan, jack, susan or susan, jack, Susan, Bob.
 
-Even though the list is sorted by something other than Name it will still be ordered alphabetically internally.
+Even though the list is sorted by something other than Name, it will still be ordered alphabetically internally.
 
-Commands are case sensitive, ADD, Add and aDD do not work, only add.
+Commands are case sensitive, for example: ADD, Add and aDD do not work, only add. In other words only lower case commands work.
 
-It is not allowed to write digits or special characters (like the icelandic letters þ, í, æ) in the name of the person.
+The user is not able to write digits or special characters (like the icelandic letters þ, í, æ) in the name of the person.
 
 ##Syntax
-Throughout this section a COLUMN_ID will be referenced, to make sense of this please take a look at the table below
+Throughout this section a COLUMN_ID will be referenced.  Here is an example:
 
 How the columns are set up
 
@@ -54,13 +54,13 @@ You will be asked to enter information about the person
 Please write the name of the person:
 Please write the profession of the person:
 > Software Tester
-Please write some description of the person:
-> This is a very detailed description.
-Please write the year the person was born:
+Please write a description of the person:
+> This may be a very detailed description.
+Please write the year that the person was born:
 > 1984
-Please write the year the person died, if the person is still alive enter 0:
+Please write the year that the person died, if the person is still alive enter 0:
 > 2011
-Enter the sex of the person
+Enter the sex of the person:
 (m) Male
 (f) Female
 (o) Other
@@ -75,13 +75,13 @@ Please write the name of the person:
 > John Appleseed
 Please write the profession of the person:
 > Software Tester
-Please write some description of the person:
+Please write a description of the person:
 > This is a very detailed description.
-Please write the year the person was born:
+Please write the year that the person was born:
 > 1984
-Please write the year the person died, if the person is still alive enter 0:
+Please write the year that the person died, if the person is still alive enter 0:
 > 2011
-Enter the sex of the person
+Enter the sex of the person:
 (m) Male
 (f) Female
 (o) Other
@@ -204,8 +204,8 @@ Syntax:
 
 -------------------------------------------------
 add: Add to the database
-search: Search the list for prefered information
-list: Display the whole list in prefered order
+search: Search the list for preferred information
+list: Display the whole list in preferred order
 exit: Close the program
 help: Displays this screen
 -------------------------------------------------

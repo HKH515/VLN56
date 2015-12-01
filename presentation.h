@@ -15,7 +15,7 @@ class presentation
 private:
     Domain *d;
     /* Prompt to separate input from output on the screen */
-    string prompt = "> ";
+    string prompt;
 
     /* Constructs the string that is added into the database */
     vector <string> parse_add();

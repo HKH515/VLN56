@@ -1,6 +1,5 @@
 #include "domain.h"
 
-
 Domain::Domain() {
     data = new Data("data.dat");
 }
@@ -10,7 +9,7 @@ vector<Person> Domain::get_vec() {
 }
 
 // Parse function for queries returned from the data layer.
-void Domain::parse_query_vector(vector<string> v, string sort_method) {
+void Domain::parse_query_vector(vector<string> v, int search_column, string sort_method) {
     cout << "komin inn i parse_query_vector";
     cout << "Lengd a listanum sem eg fae fra data layer: " << v.size() << endl;
 
@@ -48,10 +47,10 @@ void Domain::parse_query_vector(vector<string> v, string sort_method) {
         vec.push_back(p);
     }
     if (sort_method == "d") {
-        sort_descending(vec);
+        sort_descending(vec, search_column);
     }
     else {
-        sort_ascending(vec);
+        sort_ascending(vec, search_column);
     }
     cout << "komin ut ur parse_query_vector" << endl;
 }
@@ -68,14 +67,16 @@ string Domain::parse_add_command(vector<string> v) {
 }
 
 // Sort
-void Domain::sort_ascending(vector<Person> &v)
+void Domain::sort_ascending(vector<Person> &v, int search_column)
 {
-    stable_sort(v.begin(), v.end());
+    ComparePerson comp = ComparePerson(search_column,"a");
+    stable_sort(v.begin(), v.end(), comp);
 }
 
-void Domain::sort_descending(vector<Person> &v)
+void Domain::sort_descending(vector<Person> &v, int search_column)
 {
-    stable_sort(v.begin(), v.end());
+    ComparePerson comp = ComparePerson(search_column,"d");
+    stable_sort(v.begin(), v.end(), comp);
     reverse(v.begin(), v.end());
 }
 
@@ -87,8 +88,9 @@ void Domain::handle_commands(vector<string> v) {
     // returns all entries in database
     if (command == "list") {
         cout << "handle commands: list" << endl;
-        string sort_method = v[1];
-        parse_query_vector(data->readEntries(), sort_method);
+        int sort_column = stoi(v[1]);
+        string sort_method = v[2];
+        parse_query_vector(data->readEntries(), sort_column, sort_method);
         cout << "Buin med list" << endl;
     }
     // if the user wants to add a new entry to the database
@@ -123,7 +125,8 @@ void Domain::handle_commands(vector<string> v) {
             query_column = 5;
         }
         string query_string = v[2];
-        string sort_method = v[3];
-        parse_query_vector(data->query(query_column, query_string), sort_method);
+        int sort_column = stoi(v[3]);
+        string sort_method = v[4];
+        parse_query_vector(data->query(query_column, query_string), sort_column, sort_method);
     }
 }

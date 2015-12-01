@@ -66,6 +66,7 @@ void Data::write(string line)
     if (dataFile.open(QIODevice::ReadWrite | QIODevice::Append))
     {
         QTextStream out(&dataFile);
+        out << lineString << endl;
 
     }
     dataFile.close();

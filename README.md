@@ -4,7 +4,7 @@ This is our project for the course VLN1, we are group 56
 
 The program is simply put a client for interacting with a database, the theme of this database are computer scientists.
 
-#Commands
+###Commands
 
 the following commands are currently implement into the program
 
@@ -21,49 +21,101 @@ When the list is sorted after something other than Name, it is though internally
 Commands are case sensitive, ADD, Add and aDD do not work, only add.
 It is not allowed to write digits or special characters (like the icelandic letters þ, í, æ) in the name of the person.
 
-#Syntax
-
+###Syntax
+#add
 The add command can be used with a parameter to denote the name of the entry, or you can run the command interactively.
 
+Syntax:
+```
+add NAME
+add
+```
 Example
 
 ```
 >add John Appleseed
 You will be asked to enter information about the person
-Please write the name of the person: 
-Please write the profession of the person: 
+Please write the name of the person:
+Please write the profession of the person:
 >Software Tester
-Please write some description of the person: 
+Please write some description of the person:
 >This is a very detailed description.
-Please write the year the person was born: 
+Please write the year the person was born:
 >1984
-Please write the year the person died, if the person is still alive enter 0: 
+Please write the year the person died, if the person is still alive enter 0:
 >2011
-Enter the sex of the person 
+Enter the sex of the person
 (m) Male
 (f) Female
 (o) Other
 >m
 ```
-or 
+or
 
 ```
 add
 You will be asked to enter information about the person
 Please write the name of the person:
 >John Appleseed
-Please write the profession of the person: 
+Please write the profession of the person:
 >Software Tester
-Please write some description of the person: 
+Please write some description of the person:
 >This is a very detailed description.
-Please write the year the person was born: 
+Please write the year the person was born:
 >1984
-Please write the year the person died, if the person is still alive enter 0: 
+Please write the year the person died, if the person is still alive enter 0:
 >2011
-Enter the sex of the person 
+Enter the sex of the person
 (m) Male
 (f) Female
 (o) Other
 >m
 ```
+#list
+The list command can be used to list all entries in the database, it can also display data sorted by name, birth year, death year or sex.
 
+Syntax:
+```
+list COLUMN_ID ORDER
+list
+```
+
+where COLUMN_ID should be a number from 1-5 and ORDER should either be 'a' or 'd' (Ascending or Descending)
+
+How the columns are set up
+
+|   ID     |   Data      |
+| -------- | ----------- |
+| 1        | Name        |
+| 2        | Birthyear   |
+| 3        | Deathyear   |
+| 4        | Sex         |
+| 5        | Profession  |
+
+
+Example
+
+```
+>list 1 a
+```
+or
+
+```
+add
+You will be asked to enter information about the person
+Please write the name of the person:
+>John Appleseed
+Please write the profession of the person:
+>Software Tester
+Please write some description of the person:
+>This is a very detailed description.
+Please write the year the person was born:
+>1984
+Please write the year the person died, if the person is still alive enter 0:
+>2011
+Enter the sex of the person
+(m) Male
+(f) Female
+(o) Other
+>m
+```

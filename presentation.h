@@ -15,18 +15,27 @@ class presentation
 private:
     Domain *d;
 
-public:
-    presentation();
-    ~presentation();
-    Domain* get_domain();
-
-    string input();
-    void choice(Domain* d);
+    /* Constructs the string that is added into the database */
     vector <string> parse_add();
-    bool check_if_year(string input);
+    /* Displays the search result or the list of all entries in the database */
     void print_results(Domain *d);
+    /* Displays a choice menu for sorting methods */
     void sort_msg(int c);
+    /* check if the user entered an valid name and profession */
     bool check_if_word(string input);
+    /* Check if the user enters valid year */
+    bool check_if_year(string input);
+
+public:
+    /* Constructor */
+    presentation();
+    /* Destructor */
+    ~presentation();
+
+    Domain* get_domain();
+    /* Handles the commands and communicates with the domain-layer */
+    void choice(Domain* d);
+
 };
 
 #endif // PRESENTATION_H

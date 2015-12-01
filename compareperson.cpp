@@ -18,16 +18,19 @@ bool ComparePerson::operator() (Person first, Person second)
     {
         switch(column)
         {
-        case 0:
+        case 1:
             return first.get_name() < second.get_name();
             break;
-        case 1:
-            return first.get_birthyear() < second.get_birthyear();
-            break;
         case 2:
-            return first.get_deathyear() < second.get_deathyear();
+            return first.get_profession() < second.get_profession();
             break;
         case 3:
+            return first.get_birthyear() < second.get_birthyear();
+            break;
+        case 4:
+            return first.get_deathyear() < second.get_deathyear();
+            break;
+        case 5:
             return first.get_sex() < second.get_sex();
             break;
         }
@@ -36,16 +39,19 @@ bool ComparePerson::operator() (Person first, Person second)
     {
         switch(column)
         {
-        case 0:
+        case 1:
             return first.get_name() > second.get_name();
             break;
-        case 1:
-            return first.get_birthyear() > second.get_birthyear();
-            break;
         case 2:
-            return first.get_deathyear() > second.get_deathyear();
+            return first.get_profession() > second.get_profession();
             break;
         case 3:
+            return first.get_birthyear() > second.get_birthyear();
+            break;
+        case 4:
+            return first.get_deathyear() > second.get_deathyear();
+            break;
+        case 5:
             return first.get_sex() > second.get_sex();
             break;
         }

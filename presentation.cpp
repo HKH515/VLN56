@@ -43,6 +43,7 @@ void presentation::choice(Domain* d)
     cin >> inputs;
     vector<string> command_vec;
     string order_of_sort;
+    int sort_by;
     // Put all letter to lowercase - ATH gera þegar error checka skipun?
     for (unsigned int i = 0; i < inputs.length(); i++)
     {
@@ -59,8 +60,13 @@ void presentation::choice(Domain* d)
         }
         else if(inputs == "list")
         {
-            command_vec.push_back("list");
-            cout << "Do you want the list sorted in ascending or descending order? Enter a for ascending, d for descending." << endl;
+            sort_msg(1);
+            cin >> sort_by;
+            while ( (sort_by != 1) && (sort_by != 2) && (sort_by != 3) && (sort_by != 4) && (sort_by != 5)) {
+                cout << "This is not a valid choice, please choose again" << endl;
+                cin >> sort_by;
+            }
+            sort_msg(2);
             cin >> order_of_sort;
 
             // Error checking that the user put in either "a" or "d"
@@ -77,7 +83,7 @@ void presentation::choice(Domain* d)
         {
             string search_column;
             command_vec.push_back("search");
-            cout << "In what information do you want to search? Please choose one of the following: name, profession, description, birthyear, deathyear, sex:" << endl;
+            sort_msg(3);
             cin >> search_column;
             // -----------------------Muna að gera tolower hér-------------------------
             while (search_column != "name" && search_column != "profession" && search_column != "description" && search_column!= "birthyear" && search_column!= "deathyear" && search_column!= "sex")
@@ -91,7 +97,13 @@ void presentation::choice(Domain* d)
             cin.ignore();
             getline(cin, search_query);
             command_vec.push_back(search_query);
-            cout << "Do you want the results sorted in ascending or descending order? Enter a for ascending, d for descending." << endl;
+            sort_msg(1);
+            cin >> sort_by;
+            while ( (sort_by != 1) && (sort_by != 2) && (sort_by != 3) && (sort_by != 4) && (sort_by != 5)) {
+                cout << "This is not a valid choice, please choose again" << endl;
+                cin >> sort_by;
+            }
+            sort_msg(2);
             cin >> order_of_sort;
             // Error checking that the user put in either "a" or "d"
             while (order_of_sort != "a" && order_of_sort != "d")
@@ -223,4 +235,27 @@ void presentation::print_results(Domain *d)
              << "Description: " << d->get_vec()[i].get_description() << endl << endl;
     }
 
+}
+
+void presentation::sort_msg(int c) {
+    if (c == 1) {
+        cout << "What do you want to sort by? choose one of the following:" << endl
+             <<"(1) Name" << endl
+            << "(2) Profession" << endl
+            << "(3) Birthyear" << endl
+            << "(4) Deathyear" << endl
+            << "(5) Sex" << endl;
+    }
+    else if (c == 2) {
+        cout << "Do you want the information sorted in ascending or descending order? choose a/d" << endl;
+    }
+    else if (c == 3) {
+        cout << "Choose what information you want to search for:" << endl
+             <<"(1) Name" << endl
+             <<"(2) Profession" << endl
+             <<"(3) Description" << endl
+             <<"(4) Birthyear" << endl
+             <<"(5) Deathyear" << endl
+             <<"(6) Sex" << endl;
+    }
 }

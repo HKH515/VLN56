@@ -8,10 +8,10 @@ The program is simply put a client for interacting with a database, the theme of
 
 the following commands are currently implement into the program
 
-| Command       | Description                                | Sortability                       |
-| ------------- |:------------------------------------------:|-----------------------------------|
-| list          | displays all entries found in the database | Ascending/Descending by any field |
-| add           | adds a new entry to the database           | Does not apply                    |
-| search        | searches the database                      | Ascending/Descending by any field |
-| help          | displays all commands                      | Does not apply                    |
+| Command       | Description                                | Sortability                                                                        |
+| ------------- |:------------------------------------------:|------------------------------------------------------------------------------------|
+| list          | displays all entries found in the database | Ascending/Descending by any field (except Description field, does not apply there) |
+| add           | adds a new entry to the database           | Does not apply                                                                     |
+| search        | searches the database                      | Ascending/Descending by any field (except Description field, does not apply there) |
+| help          | displays all commands                      | Does not apply                                                                     |
 

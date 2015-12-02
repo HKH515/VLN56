@@ -6,7 +6,7 @@ The program is simply put a client for interacting with a database, the theme of
 
 ##Commands
 
-the following commands are currently implemented into the program
+The following commands are currently implemented into the program
 
 | Command       | Description                                | Sortability                                                                        |
 | ------------- |:------------------------------------------:|------------------------------------------------------------------------------------|
@@ -15,18 +15,14 @@ the following commands are currently implemented into the program
 | search        | searches the database                      | Ascending/Descending by any field (except Description field, does not apply there) |
 | help          | displays all commands                      | Does not apply                                                                     |
 
-please keep in mind that the program sorts it's data case sensitively. i.e. given the data set Bob, jack, Susan, susan; it will be sorted Bob, Susan, jack, susan or susan, jack, Susan, Bob.
+Please keep in mind that the program sorts it's data case sensitively. i.e. given the data set Bob, jack, Susan, susan; it will be sorted Bob, Susan, jack, susan or susan, jack, Susan, Bob.
 
 Even though the list is sorted by something other than Name, it will still be ordered alphabetically internally.
 
-Commands are case sensitive, for example: ADD, Add and aDD do not work, only add. In other words only lower case commands work.
-
-The user is not able to write digits or special characters (like the icelandic letters þ, í, æ) in the name of the person.
+Commands are not case sensitive unless they are used with parameters. For example ADD Jack Sparrow does not work, but ADD works.
 
 ##Syntax
-Throughout this section a COLUMN_ID will be referenced.  Here is an example:
-
-How the columns are set up
+Throughout this section a COLUMN_ID will be referenced.  To better understand what COLUMN_ID is, please refer to the table below: 
 
 |   ID     |   Data      |
 | -------- | ----------- |
@@ -39,7 +35,11 @@ How the columns are set up
 
 
 ###add
-The add command can be used with a parameter to denote the name of the entry, or you can run the command interactively.
+The add command can be used with a parameter to denote the name of the entry, or you can run the command interactively. 
+The user is not able to write digits or special characters (like the icelandic letters þ, í, æ) in the name of the person. 
+The only field allowed to be empty is the description field.
+The death year cannot be prior to the birth year. But there are no other constrains for the years except they cannot be < 0, i.e. it is allowed to fill in birth year and death year that have not passed. If the person is still alive, the programs asks the user to put in 0 as death year and prints out NA when printing out results.
+
 
 Syntax:
 ```
@@ -118,7 +118,7 @@ Do you want the information sorted in ascending or descending order? choose a/d
 > a
 ```
 ###search
-The list command can be used to list all entries in the database, it can also display data sorted by name, birth year, death year or sex.
+The search command can be used to search for entries in the database. When searching the user needs to specify in what column he wants to search. Results can be sorted by name, birth year, death year or sex.
 
 Syntax:
 ```
@@ -172,7 +172,7 @@ What do you want to sort by? choose one of the following:
 Do you want the information sorted in ascending or descending order? choose a/d
 > a
 ```
-both of these examples should display all entries that include an "American" in the description field sorted alphabetically by name in ascending order.
+Both of these examples should display all entries that include an "American" in the description field sorted alphabetically by name in ascending order.
 
 ###help
 This command prints out a list of commands

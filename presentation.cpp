@@ -19,14 +19,13 @@ void presentation::choice(Domain* d) {
     vector<string> command_vec;
     cin >> inputs;
 
-    // Put all letter to lowercase
-    for (unsigned int i = 0; i < inputs.length(); i++) {
-        inputs[i] = tolower(inputs[i]);
-    }
-
     // Infinite while loop that receives and handles commands. If the user enters exit the while
     // loop terminates.
     do {
+        // Put all letter to lowercase
+        for (unsigned int i = 0; i < inputs.length(); i++) {
+            inputs[i] = tolower(inputs[i]);
+        }
         // Put the command into the first element of the vector
         command_vec.push_back(inputs);
 

@@ -53,13 +53,13 @@ void Domain::parse_query_vector(vector<string> v, int sort_column, string sort_m
     // sort the results after prefered column and order. Entries always ordered internally by name.
     if (sort_method == "d") {
         if (sort_column != 1) {
-            sort_descending(vec, 1);
+            sort_ascending(vec, 1);
         }
         sort_descending(vec, sort_column);
     }
     else {
         if (sort_column != 1) {
-            sort_descending(vec, 1);
+            sort_ascending(vec, 1);
         }
         sort_ascending(vec, sort_column);
     }

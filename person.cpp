@@ -2,8 +2,7 @@
 
 using namespace std;
 
-Person::Person()
-{
+Person::Person() {
     name = "";
     birth_year = 0;
     death_year = 0;
@@ -37,8 +36,7 @@ bool operator > (const Person &lhs, const Person &rhs) {
 }
 
 /* overloading << */
-ostream& operator << (ostream& outs, const Person &p)
-{
+ostream& operator << (ostream& outs, const Person &p) {
     return outs << p.name;
 }
 

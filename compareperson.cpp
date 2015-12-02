@@ -1,13 +1,11 @@
 #include "compareperson.h"
 
-ComparePerson::ComparePerson()
-{
+ComparePerson::ComparePerson() {
     column = 0;
     mode = "";
 }
 
-ComparePerson::ComparePerson(int col, string m)
-{
+ComparePerson::ComparePerson(int col, string m) {
     column = col;
     mode = m;
 }

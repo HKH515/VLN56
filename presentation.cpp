@@ -1,24 +1,20 @@
 #include "presentation.h"
 #include <cstdlib>
 
-presentation::presentation()
-{
+presentation::presentation() {
     d = new Domain();
     prompt = "> ";
 }
 
-presentation::~presentation()
-{
+presentation::~presentation() {
    delete d;
 }
 
-Domain* presentation::get_domain()
-{
+Domain* presentation::get_domain() {
    return d;
 }
 
-void presentation::choice(Domain* d)
-{
+void presentation::choice(Domain* d) {
     string inputs, order_of_sort, sort_by;
     vector<string> command_vec;
     cin >> inputs;
@@ -30,8 +26,7 @@ void presentation::choice(Domain* d)
 
     // Infinite while loop that receives and handles commands. If the user enters exit the while
     // loop terminates.
-    do
-    {
+    do {
         // Put the command into the first element of the vector
         command_vec.push_back(inputs);
 
@@ -140,8 +135,7 @@ void presentation::choice(Domain* d)
     exit(0);
 }
 
-vector <string> presentation::parse_add()
-{
+vector <string> presentation::parse_add() {
     string input, birthyear_check;
     vector<string> add_vec;
     add_vec.push_back("add");
@@ -172,9 +166,9 @@ vector <string> presentation::parse_add()
 
     cout << "Please write the year that the person was born: " << endl << prompt;
     cin >> birthyear_check;
-    while (!check_if_year(input)) {
+    while (!check_if_year(birthyear_check)) {
         cout << "Invalid input, please enter a year: "<< endl << prompt;
-        cin >> input;
+        cin >> birthyear_check;
     }
     add_vec.push_back(birthyear_check);
 
@@ -185,17 +179,21 @@ vector <string> presentation::parse_add()
         cin >> input;
     }
     /* It is not allowed to add year of death that is before year of birth */
-    if (!(stoi(input) == 0)) {
-        while (stoi(input) < stoi(birthyear_check)) {
-            cout << "Year of death cannot be prior to year of birth, please enter a year (0 if still alive): " << endl << prompt;
-            cin >> input;
 
+        while (stoi(input) < stoi(birthyear_check)) {
             while (!check_if_year(input)) {
                 cout << "Invalid input, please enter a year: " << endl << prompt;
                 cin >> input;
             }
+
+            if (!(stoi(input) == 0)) {
+                cout << "Year of death cannot be prior to year of birth, please enter a year (0 if still alive): " << endl << prompt;
+                cin >> input;
+            }
+            else {
+                break;
+            }
         }
-    }
     add_vec.push_back(input);
 
     cout << "Enter the sex of the person: " << endl << "(m) Male\n" << "(f) Female\n" << "(o) Other" << endl << prompt;
@@ -210,8 +208,7 @@ vector <string> presentation::parse_add()
     return add_vec;
 }
 
-bool presentation::check_if_year(string input)
-{
+bool presentation::check_if_year(string input) {
     for (unsigned int i = 0; i < input.length(); i++) {
         // check if each character of the string is a digit, if not return false
         if (!isdigit(input.c_str()[i])) {
@@ -230,8 +227,7 @@ bool presentation::check_if_word(string input) {
     return true;
 }
 
-void presentation::print_results(Domain *d)
-{
+void presentation::print_results(Domain *d) {
     for (unsigned int i = 0; i < d->get_vec().size(); i++) {
         cout << "Name: " << d->get_vec()[i]->get_name() << endl
              << "Born: " << d->get_vec()[i]->get_birthyear() << endl;

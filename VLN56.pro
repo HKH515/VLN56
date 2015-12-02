@@ -13,13 +13,15 @@ SOURCES += main.cpp \
     data.cpp \
     person.cpp \
     presentation.cpp \
-	domain.cpp
+	domain.cpp \
+	compareperson.cpp
 
 HEADERS += \
     data.h \
     presentation.h \
     person.h \
-	domain.h
+	domain.h \
+	compareperson.h
 
 DISTFILES += \
     splash.txt \

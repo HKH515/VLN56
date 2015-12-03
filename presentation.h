@@ -23,10 +23,25 @@ private:
     void print_results(Domain *d);
     /* Displays a choice menu for sorting methods */
     void sort_msg(int c);
+    /* Displays messages to the user during add command*/
+    void add_msg(int c);
     /* check if the user entered an valid name and profession */
     bool check_if_word(string input);
     /* Check if the user enters valid year */
     bool check_if_year(string input);
+
+    string verify_name();
+    string verify_profession();
+    string verify_birthyear();
+    string verify_deathyear(string birhty);
+    string verify_sex();
+    string verify_table();
+    string verify_sort_column_person(string sort_by);
+    string verify_sort_column_comp(string sort_by);
+    string verify_order_of_sort(string order);
+
+    void help_msg();
+    void table_msg();
 
 public:
     /* Constructor */

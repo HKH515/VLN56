@@ -51,23 +51,23 @@ void Domain::parse_query_vector(vector<string> v, int sort_column, string sort_m
         vec.push_back(p);
     }
     // sort the results after prefered column and order. Entries always ordered internally by name.
-    if (sort_method == "d") {
-        if (sort_column != 1) {
-            sort_ascending(vec, 1);
-        }
-        sort_descending(vec, sort_column);
-    }
-    else {
-        if (sort_column != 1) {
-            sort_ascending(vec, 1);
-        }
-        sort_ascending(vec, sort_column);
-    }
+    //if (sort_method == "d") {
+      //  if (sort_column != 1) {
+        //    sort_ascending(vec, 1);
+        //}
+        //sort_descending(vec, sort_column);
+    //}
+    //else {
+        //if (sort_column != 1) {
+            //sort_ascending(vec, 1);
+        //}
+        //sort_ascending(vec, sort_column);
+    //}
 }
 
 string Domain::parse_add_command(vector<string> v) {
     string st = " ";
-    for (unsigned int i = 1; i < v.size(); i++) {
+    for (unsigned int i = 2; i < v.size(); i++) {
         st += v[i];
         st += "|";
     }
@@ -75,51 +75,147 @@ string Domain::parse_add_command(vector<string> v) {
 }
 
 void Domain::handle_commands(vector<string> v) {
-    /* Clear the vector for new query */
-    free_vector_memory();
-
+    free_vector_memory(); /* Clear vector for new query */
     string command = v[0];
     data->read();
 
-    // returns all entries in database
-    if (command == "list") {
-        int sort_column = stoi(v[1]);
-        string sort_method = v[2];
-        parse_query_vector(data->readEntries(), sort_column, sort_method);
+    if (command == "list") /* returns all entries in specified table */
+    {
+        get_list(v);
     }
-    // if the user wants to add a new entry to the database
-    else if (command == "add") {
-        data->write(parse_add_command(v));
+    else if (command == "add") /* adds new entry in specified table */
+    {
+        add_entry(v);
     }
     // if the user wants to search in the list
-    else if (command == "search") {
-        // Assume to get 2 parameters from presentation layer. Get the column to search in
-        string query = v[1];
-        int query_column = stoi(query) - 1;
-        // get which substring to look for
-        string query_string = v[2];
-        // what column to sort by
-        int sort_column = stoi(v[3]);
-        // sort in ascending or descending order
-        string sort_method = v[4];
-        parse_query_vector(data->query(query_column, query_string), sort_column, sort_method);
+    else if (command == "search")
+    {
+        search(v);
     }
 }
 
-void Domain::free_vector_memory() {
-    for (unsigned int i = 0; i < vec.size(); i++) {
+void Domain::get_list(vector<string> v)
+{
+    string table = get_table(v[1]);
+    string sort_column = get_column(v[2], table);
+    string sort_method = get_sort_method(v[3]);
+    parse_query_vector(data->readEntries(table, sort_column, sort_method));
+}
+
+void Domain::add_entry(vector<string> v)
+{
+    string table = get_table(v[1]);
+    data->write(table, parse_add_command(v));
+}
+
+void Domain::search(vector<string> v)
+{
+    string table = get_table(v[1]); /* database table number */
+    string query_column = get_column(v[2], table); /* search column */
+    string query_string = v[3]; /* search substring */
+    string sort_column = get_column(v[4], get_table); /* sort by column */
+    string sort_method = get_sort_method(v[5]); /* sort ascending or descending */
+
+    parse_query_vector(data->query(query_column, query_string), sort_column, sort_method);
+}
+
+string Domain::get_table(string s)
+{
+    if (s == "1")
+    {
+        return = "persons"
+    }
+    else
+    {
+        return = "computers"
+    }
+
+}
+
+string Domain::get_sort_method(string s)
+{
+    if (s == "a")
+    {
+        return "ASC";
+    }
+    else
+    {
+        return "DESC";
+    }
+}
+
+string Domain::get_column(string s, string table)
+{
+    if (table = "persons")
+    {
+        if (s == "1")
+        {
+            return "name";
+        }
+        else if (s == "2")
+        {
+            return "birthyear";
+        }
+        else if (s == "3")
+        {
+            return "deathyear";
+        }
+        else if (s == "4")
+        {
+            return "sex";
+        }
+        else if (s == "5")
+        {
+            return "profession";
+        }
+        else
+        {
+            return "description";
+        }
+    }
+    else
+    {
+        if (s == "1")
+        {
+            return "name";
+        }
+        else if (s == "2")
+        {
+            return "construction_year";
+        }
+        else if (s == "3")
+        {
+            return "type";
+        }
+        else if (s == "4")
+        {
+            return "built";
+        }
+        else
+        {
+            return "description"
+        }
+    }
+}
+
+void Domain::free_vector_memory()
+{
+    for (unsigned int i = 0; i < vec.size(); i++)
+    {
         delete vec[i];
     }
     vec.clear();
 }
 
 // Sort
-void Domain::sort_ascending(vector<Person*> &v, int search_column) {
+void Domain::sort_ascending(vector<Person*> &v, int search_column)
+{
     ComparePerson comp = ComparePerson(search_column,"a");
     stable_sort(v.begin(), v.end(), comp);
 }
 
-void Domain::sort_descending(vector<Person*> &v, int search_column) {
+void Domain::sort_descending(vector<Person*> &v, int search_column)
+{
     ComparePerson comp = ComparePerson(search_column,"d");
     stable_sort(v.begin(), v.end(), comp);
 }

@@ -4,6 +4,7 @@
 #include <QTextStream>
 #include <QFile>
 #include <QString>
+#include <QtSql>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -14,19 +15,22 @@ using namespace std;
 class Data
 {
     private:
-        string internalFilename;
         vector<string> internalData;
+        QSqlDatabase db;
+        QString dbName;
 
     public:
         Data(string datafile);
-        string getFile();
+        QString getFile();
+        void initDb();
         void setFile(string data);
         void push(string entry);
         int nthIndex(string haystack, char needle, int n);
-        vector<string> query(int column, string dataQuery); //Fetches all lines matching query
-        void read(); //Reads the whole data file (internal)
-        vector<string> readEntries(); //Returns a vector of all entries
-        void write(string line); //Creates an entry in the data file
+        vector<string> parseDelimString(string delimString, char delim);
+        vector<string> fromDbToVector(string table, QSqlQuery queryObj);
+        vector<string> query(string table, string column, string dataQuery, string sortColumn, char order); //Fetches all lines matching query
+        vector<string> readEntries(string table, string column, char order); //Returns a vector of all entries
+        void write(string table, string line); //Creates an entry in the data file
 };
 
 #endif // DATA_H

@@ -52,7 +52,7 @@ vector<string> Data::parseDelimString(string delimString, char delim)
     return results;
 }
 
-vector<string> Data::readEntries(string table, string column, char order) {
+vector<string> Data::readEntries(string table, string column, string order) {
 
     vector<string> queryVect;
     db.open();
@@ -116,7 +116,7 @@ vector<string> Data::fromDbToVector(string table, QSqlQuery queryObj)
     return result;
 }
 
-vector<string> Data::query(string table, string column, string dataQuery, string sortColumn, char order) {
+vector<string> Data::query(string table, string column, string dataQuery, string sortColumn, string order) {
     vector<string> queryVect;
     db.open();
     QSqlQuery queryObj(db);

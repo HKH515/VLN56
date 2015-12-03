@@ -28,8 +28,8 @@ class Data
         int nthIndex(string haystack, char needle, int n);
         vector<string> parseDelimString(string delimString, char delim);
         vector<string> fromDbToVector(string table, QSqlQuery queryObj);
-        vector<string> query(string table, string column, string dataQuery, string sortColumn, char order); //Fetches all lines matching query
-        vector<string> readEntries(string table, string column, char order); //Returns a vector of all entries
+        vector<string> query(string table, string column, string dataQuery, string sortColumn, string order); //Fetches all lines matching query
+        vector<string> readEntries(string table, string column, string order); //Returns a vector of all entries
         void write(string table, string line); //Creates an entry in the data file
 };
 

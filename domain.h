@@ -28,6 +28,13 @@ private:
     /* deletes all persons object from the vector and clears the vector befor each command to be handled */
     void free_vector_memory();
 
+    void get_list(vector<string> v);
+    void add_entry(vector<string> v);
+    void search(vector<string> v);
+    string get_table(string s);
+    string get_column(string s, string table);
+    string get_sort_method(string s);
+
 public:
 
     /* Constructor */

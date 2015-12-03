@@ -2,48 +2,69 @@
 
 Data::Data(string datafile) {
     setFile(datafile);
+    initDb();
+}
+
+void Data::initDb()
+{
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(getFile());
+
 }
 
 void Data::setFile(string filename) {
-    internalFilename = filename;
+
+    QString qName(filename.c_str());
+    dbName = QString(qName);
 }
 
-string Data::getFile() {
-    return internalFilename;
+QString Data::getFile() {
+    return dbName;
 }
 
-void Data::read() {
-    QFile readFile(getFile().c_str());
 
-    if (readFile.open(QIODevice::ReadOnly )) {
-        QTextStream inputStream(&readFile);
-        QTextStream out(stdout);
-        QString line;
-        internalData.clear();
-
-        while (!(line = inputStream.readLine()).isNull()) {
-            push(line.toStdString());
-        }
+void Data::write(string table, string line) {
+    vector<string> fields = parseDelimString(line, '|');
+    db.open();
+    QSqlQuery queryObj(db);
+    string queryString;
+    if (table == "persons")
+    {
+        queryString = "INSERT INTO " + table + " (name, profession, description, birthyear, deathyear, sex, id) values('"
+                + fields[0] + "','" + fields[1] + "','" + "','" + fields[2] + "','" + fields[3] + "','" + fields[4] + ','
+                + fields[5] + "','" + fields[6] + "')";
 
     }
-    readFile.close();
 
+
+    QString qQueryString(queryString.c_str());
+    queryObj.exec(qQueryString);
+    db.close();
 }
 
-void Data::write(string line) {
-    QString lineString(line.c_str());
-    QString getFileString(getFile().c_str());
-    QFile dataFile(getFileString);
-
-    if (dataFile.open(QIODevice::ReadWrite | QIODevice::Append)) {
-        QTextStream out(&dataFile);
-        out << lineString << endl;
+vector<string> Data::parseDelimString(string delimString, char delim)
+{
+    vector<string> results;
+    for (int i = 0; i < count(delimString.begin(), delimString.end(), delim); i++)
+    {
+        results.push_back(delimString.substr(nthIndex(delimString, delim, i)+1, nthIndex(delimString, delim, i+1) - nthIndex(delimString, delim, i)-1));
     }
-    dataFile.close();
+    return results;
 }
 
-vector<string> Data::readEntries() {
-    return internalData;
+vector<string> Data::readEntries(string table, string column, char order) {
+
+    vector<string> queryVect;
+    db.open();
+    QSqlQuery queryObj(db);
+    string queryString = "SELECT * FROM " + table + " ORDER BY " + column;
+    cout << queryString;
+    QString qQueryString(queryString.c_str());
+    queryObj.exec(qQueryString);
+
+    queryVect = fromDbToVector(table, queryObj);
+    return queryVect;
+
 }
 
 void Data::push(string entry) {
@@ -63,17 +84,49 @@ int Data::nthIndex(string haystack, char needle, int n) {
     return haystack.size()-1; //fallback if char is not found, return end of string
 }
 
-vector<string> Data::query(int column, string dataQuery) {
-    vector<string> queryVect;
-    string line;
-    unsigned int dataSize = internalData.size();
-    for (unsigned int i = 0; i < dataSize; i++) {
-        line = internalData[i];
-        string column_content = line.substr(nthIndex(line, '|', column)+1, nthIndex(line, '|', column+1)-nthIndex(line, '|', column)-1);
-        if (column_content.find(dataQuery) != string::npos) //if query is found in current cell
+vector<string> Data::fromDbToVector(string table, QSqlQuery queryObj)
+{
+    vector<string> result;
+    while(queryObj.next())
+    {
+        string currentEntry = " ";
+        if (table == "persons")
         {
-            queryVect.push_back(line);
+            currentEntry += queryObj.value("name").toString().toStdString() + "|";
+            currentEntry += queryObj.value("profession").toString().toStdString() + "|";
+            currentEntry += queryObj.value("description").toString().toStdString() + "|";
+            currentEntry += queryObj.value("birthyear").toString().toStdString() + "|";
+            currentEntry += queryObj.value("deathyear").toString().toStdString() + "|";
+            currentEntry += queryObj.value("sex").toString().toStdString() + "|";
+            currentEntry += queryObj.value("id").toString().toStdString() + "|";
+         }
+        else if (table == "computers")
+        {
+            currentEntry += queryObj.value("name").toString().toStdString() + "|";
+            currentEntry += queryObj.value("profession").toString().toStdString() + "|";
+            currentEntry += queryObj.value("description").toString().toStdString() + "|";
+            currentEntry += queryObj.value("birthyear").toString().toStdString() + "|";
+            currentEntry += queryObj.value("deathyear").toString().toStdString() + "|";
+            currentEntry += queryObj.value("sex").toString().toStdString() + "|";
+            currentEntry += queryObj.value("id").toString().toStdString() + "|";
         }
+        cout << currentEntry << endl;
+        result.push_back(currentEntry);
     }
+    return result;
+}
+
+vector<string> Data::query(string table, string column, string dataQuery, string sortColumn, char order) {
+    vector<string> queryVect;
+    db.open();
+    QSqlQuery queryObj(db);
+    string queryString = "SELECT * FROM " + table + " WHERE " + column + " LIKE %" + dataQuery + "% ORDER BY " + sortColumn;
+    QString qQueryString(queryString.c_str());
+    queryObj.exec(qQueryString);
+
+    queryVect = fromDbToVector(table, queryObj);
+
+    db.close();
+
     return queryVect;
 }

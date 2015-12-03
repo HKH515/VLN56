@@ -43,6 +43,8 @@ int main(int argc, char *argv[]) {
     printSplash();
     cout << "Welcome to the Archive of all the great IT people!" << endl << "> ";
 
+    /* test comment*/
+
     presentation* p = new presentation();
     p->choice(p->get_domain());
 

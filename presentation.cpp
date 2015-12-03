@@ -123,12 +123,18 @@ void presentation::choice(Domain* d)
             command_vec.push_back(order_of_sort);
 
             d->handle_commands(command_vec);
-            if (d->get_vec().size() == 0) {
-                cout << "No results found." << endl;
-            }
+
             if (table == "1")
             {
-                print_results_person(d);
+                if (d->get_p_vec().size() == 0)
+                {
+                    cout << "No results found." << endl;
+                }
+                else
+                {
+                   print_results_person(d);
+                }
+
             }
             else
             {
@@ -216,35 +222,35 @@ bool presentation::check_if_word(string input) {
 
 void presentation::print_results_person(Domain *d)
 {
-    for (unsigned int i = 0; i < d->get_vec().size(); i++)
+    for (unsigned int i = 0; i < d->get_p_vec().size(); i++)
     {
-        cout << "Name: " << d->get_vec()[i]->get_name() << endl
-             << "Born: " << d->get_vec()[i]->get_birthyear() << endl;
+        cout << "Name: " << d->get_p_vec()[i]->get_name() << endl
+             << "Born: " << d->get_p_vec()[i]->get_birthyear() << endl;
 
         // If the person is still alive the function displays NA
-        if (d->get_vec()[i]->get_deathyear() == 0)
+        if (d->get_p_vec()[i]->get_deathyear() == 0)
         {
             cout << "Died: NA" << endl;
         }
         else
         {
-             cout << "Died: " << d->get_vec()[i]->get_deathyear() << endl;
+             cout << "Died: " << d->get_p_vec()[i]->get_deathyear() << endl;
         }
 
-        if (d->get_vec()[i]->get_sex() == "m")
+        if (d->get_p_vec()[i]->get_sex() == "m")
         {
             cout << "Sex: Male" << endl;
         }
-        else if (d->get_vec()[i]->get_sex() == "f")
+        else if (d->get_p_vec()[i]->get_sex() == "f")
         {
             cout << "Sex: Female" << endl;
         }
-        else if (d->get_vec()[i]->get_sex() == "o")
+        else if (d->get_p_vec()[i]->get_sex() == "o")
         {
             cout << "Sex: Other" << endl;
         }
-        cout << "Profession: " << d->get_vec()[i]->get_profession() << endl
-             << "Description: " << d->get_vec()[i]->get_description() << endl << endl;
+        cout << "Profession: " << d->get_p_vec()[i]->get_profession() << endl
+             << "Description: " << d->get_p_vec()[i]->get_description() << endl << endl;
     }
 
 }

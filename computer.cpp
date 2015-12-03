@@ -10,42 +10,42 @@ Computer::Computer()
 }
 
 
-string get_name()
+string Computer::get_name()
 {
     return name;
 }
 
-int get_contruction_year()
+int Computer::get_contruction_year()
 {
     return construction_year;
 }
 
-string get_type()
+string Computer::get_type()
 {
     return type;
 }
 
-bool get_built()
+bool Computer::get_built()
 {
     return built;
 }
 
-void set_name(string s)
+void Computer::set_name(string s)
 {
     name = s;
 }
 
-void set_construction_year(int y)
+void Computer::set_construction_year(int y)
 {
     construction_year = y;
 }
 
-void set_type(string s)
+void Computer::set_type(string s)
 {
     type = s;
 }
 
-void set_built(bool b)
+void Computer::set_built(bool b)
 {
     built = b;
 }

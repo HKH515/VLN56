@@ -46,5 +46,6 @@ int main(int argc, char *argv[]) {
     presentation* p = new presentation();
     p->choice(p->get_domain());
 
+
     return a.exec();
 }

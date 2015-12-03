@@ -19,17 +19,17 @@ private:
 
     /* Constructs the string that is added into the database */
     vector <string> parse_add();
-    /* Displays the search result or the list of all entries in the database */
-    void print_results(Domain *d);
-    /* Displays a choice menu for sorting methods */
-    void sort_msg(int c);
-    /* Displays messages to the user during add command*/
-    void add_msg(int c);
     /* check if the user entered an valid name and profession */
     bool check_if_word(string input);
     /* Check if the user enters valid year */
     bool check_if_year(string input);
+    /* Displays the search result or the list of all entries in the Persons table*/
+    void print_results_person(Domain *d);
+    /* Displays the search result or the list of all entries in the Computer table */
+    void print_results_comp(Domain *d);
 
+
+    /* Functions that error check input from user */
     string verify_name();
     string verify_profession();
     string verify_birthyear();
@@ -39,9 +39,19 @@ private:
     string verify_sort_column_person(string sort_by);
     string verify_sort_column_comp(string sort_by);
     string verify_order_of_sort(string order);
+    string verify_search_column_person(string column);
+    string verify_search_column_comp(string column);
 
+    /* Displays messages to the user during add command*/
+    void add_msg(int c);
+    /* Displays a choice menu for sorting methods */
+    void sort_msg(int c);
+    /* Displays help message */
     void help_msg();
+    /* Displays a choice menu for tables*/
     void table_msg();
+    /* Displays a choice menu for searching */
+    void search_msg(int c);
 
 public:
     /* Constructor */

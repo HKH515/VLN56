@@ -7,8 +7,9 @@ Data::Data(string datafile) {
 
 void Data::initDb()
 {
-    db = QSqlDatabase::addDatabase("QSQLITE");
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "VLN56_connection");
     db.setDatabaseName(getFile());
+
 
 }
 
@@ -26,16 +27,22 @@ QString Data::getFile() {
 void Data::write(string table, string line) {
     vector<string> fields = parseDelimString(line, '|');
     db.open();
+    if( !db.open() )
+    {
+        cout << "failed" << endl;
+    }
+
+    cout << "db opened";
     QSqlQuery queryObj(db);
     string queryString;
     if (table == "persons")
     {
         queryString = "INSERT INTO " + table + " (name, profession, description, birthyear, deathyear, sex, id) values('"
                 + fields[0] + "','" + fields[1] + "','" + "','" + fields[2] + "','" + fields[3] + "','" + fields[4] + ','
-                + fields[5] + "','" + fields[6] + "')";
+                + fields[5] + "','" + fields[6] + "');";
 
     }
-
+    cout << queryString << endl;
 
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
@@ -57,8 +64,8 @@ vector<string> Data::readEntries(string table, string column, string order) {
     vector<string> queryVect;
     db.open();
     QSqlQuery queryObj(db);
-    string queryString = "SELECT * FROM " + table + " ORDER BY " + column;
-    cout << queryString;
+    string queryString = "SELECT * FROM " + table + " ORDER BY " + column + ";";
+    cout << queryString << endl;
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
 
@@ -76,7 +83,7 @@ int Data::nthIndex(string haystack, char needle, int n) {
     for (unsigned int i = 0; i < haystack.size(); i++) {
         if (haystack[i] == needle) {
             occurances++;
-        }        
+        }
         if (occurances == n) {
             return i;
         }
@@ -120,7 +127,7 @@ vector<string> Data::query(string table, string column, string dataQuery, string
     vector<string> queryVect;
     db.open();
     QSqlQuery queryObj(db);
-    string queryString = "SELECT * FROM " + table + " WHERE " + column + " LIKE %" + dataQuery + "% ORDER BY " + sortColumn;
+    string queryString = "SELECT * FROM " + table + " WHERE " + column + " LIKE %" + dataQuery + "% ORDER BY " + sortColumn + ";";
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
 

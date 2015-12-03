@@ -1,4 +1,4 @@
-#ifndef DATA_H
+ifndef DATA_H
 #define DATA_H
 
 #include <QTextStream>
@@ -31,6 +31,7 @@ class Data
         vector<string> query(string table, string column, string dataQuery, string sortColumn, string order); //Fetches all lines matching query
         vector<string> readEntries(string table, string column, string order); //Returns a vector of all entries
         void write(string table, string line); //Creates an entry in the data file
+
 };
 
 #endif // DATA_H

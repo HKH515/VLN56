@@ -21,10 +21,11 @@ Domain::~Domain() {
     {
         delete p_vec[i];
     }
-    for (unsigned int i = 0; i < c_vec.size(); i++)
+    /* Computer ekki * ?
+     * for (unsigned int i = 0; i < c_vec.size(); i++)
     {
         delete c_vec[i];
-    }
+    }*/
 }
 
 // Parse function for queries returned from the data layer.
@@ -79,9 +80,9 @@ string Domain::parse_add_command(vector<string> v) {
 }
 
 void Domain::handle_commands(vector<string> v) {
-    free_vector_memory(); /* Clear vector for new query */
+    //free_vector_memory(); /* Clear vector for new query */
     string command = v[0];
-    data->read();
+    //data->read();
 
     if (command == "list") /* returns all entries in specified table */
     {

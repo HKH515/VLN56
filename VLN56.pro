@@ -1,5 +1,6 @@
 QT += core sql
 QT -= gui
+QT += core sql
 
 TARGET = VLN56
 CONFIG += console

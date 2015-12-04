@@ -584,19 +584,18 @@ void presentation::table_msg(int c)
         cout << "Do you want to add a Computer Scientists or a Computer?" << endl
              << "(1) Computer Scientist" << endl
              << "(2) Computer" << endl;
+        return;
     }
     if (c == 2)
     {
-        cout << "Do you want a list of Computer Scientists or Computers?" << endl
-             << "(1) Computer Scientists" << endl
-             << "(2) Computers" << endl;
+        cout << "Do you want a list of Computer Scientists or Computers?" << endl;
     }
     if (c == 3)
     {
-        cout << "Do you want to search in the database of Computer Scientists or Computers?" << endl
-         << "(1) Computer Scientists" << endl
-         << "(2) Computers" << endl;
+        cout << "Do you want to search in the database of Computer Scientists or Computers?" << endl;
     }
+    cout << "(1) Computer Scientists" << endl
+         << "(2) Computers" << endl;
 }
 
 void presentation::help_msg()

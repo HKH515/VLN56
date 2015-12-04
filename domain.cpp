@@ -111,7 +111,7 @@ void Domain::parse_query_vector(vector<string> v, string table)
 
 string Domain::parse_add_command(vector<string> v) {
     string st = " ";
-    for (unsigned int i = 1; i < v.size(); i++) {
+    for (unsigned int i = 2; i < v.size(); i++) {
         st += v[i];
         st += "|";
     }

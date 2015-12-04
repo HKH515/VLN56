@@ -15,7 +15,7 @@ class Domain
 private:
     Data* data;
     vector<Person*> p_vec;
-    vector<Computer*>* c_vec;
+    vector<Computer*> c_vec;
 
     /* Sort functions */
     void sort_ascending(vector<Person*> &v, int sort_column);

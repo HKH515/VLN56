@@ -68,11 +68,15 @@ void Domain::parse_query_vector(vector<string> v, string table)
             p_vec.push_back(p);
         }
     }
+    else
+    {
+
+    }
 }
 
 string Domain::parse_add_command(vector<string> v) {
     string st = " ";
-    for (unsigned int i = 2; i < v.size(); i++) {
+    for (unsigned int i = 1; i < v.size(); i++) {
         st += v[i];
         st += "|";
     }
@@ -82,7 +86,6 @@ string Domain::parse_add_command(vector<string> v) {
 void Domain::handle_commands(vector<string> v) {
     //free_vector_memory(); /* Clear vector for new query */
     string command = v[0];
-    //data->read();
 
     if (command == "list") /* returns all entries in specified table */
     {

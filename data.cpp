@@ -7,7 +7,8 @@ Data::Data(string datafile) {
 
 void Data::initDb()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE", "VLN56_connection");
+    db = QSqlDatabase::addDatabase("QSQLITE", "VLN56_connection");
+
     db.setDatabaseName(getFile());
 
 
@@ -62,14 +63,19 @@ vector<string> Data::parseDelimString(string delimString, char delim)
 vector<string> Data::readEntries(string table, string column, string order) {
 
     vector<string> queryVect;
-    db.open();
+    if (db.open())
+    {
+        cout << "WORKS" << endl;
+
+    }
     QSqlQuery queryObj(db);
-    string queryString = "SELECT * FROM " + table + " ORDER BY " + column + ";";
+    string queryString = "SELECT * FROM '" + table + "' ORDER BY '" + column + "';";
     cout << queryString << endl;
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
-
+    qDebug() << queryObj.lastError() << endl;
     queryVect = fromDbToVector(table, queryObj);
+    cout << queryVect.size() << endl;
     return queryVect;
 
 }
@@ -125,7 +131,7 @@ vector<string> Data::fromDbToVector(string table, QSqlQuery queryObj)
 
 vector<string> Data::query(string table, string column, string dataQuery, string sortColumn, string order) {
     vector<string> queryVect;
-    db.open();
+    qDebug() << db.open();
     QSqlQuery queryObj(db);
     string queryString = "SELECT * FROM " + table + " WHERE " + column + " LIKE %" + dataQuery + "% ORDER BY " + sortColumn + ";";
     QString qQueryString(queryString.c_str());

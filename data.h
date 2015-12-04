@@ -5,6 +5,7 @@
 #include <QFile>
 #include <QString>
 #include <QtSql>
+#include <QDebug>
 #include <iostream>
 #include <fstream>
 #include <string>

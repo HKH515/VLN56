@@ -24,9 +24,9 @@ private:
     /* Check if the user enters valid year */
     bool check_if_year(string input);
     /* Displays the search result or the list of all entries in the Persons table*/
-    void print_results_person(Domain *d);
+    void print_results_person();
     /* Displays the search result or the list of all entries in the Computer table */
-    void print_results_comp(Domain *d);
+    void print_results_comp();
 
 
     /* Functions that error check input from user */
@@ -43,10 +43,15 @@ private:
     string verify_search_column_person(string column);
     string verify_search_column_comp(string column);
 
+    string verify_person_id();
+    string verify_computer_id();
+
     /* Displays messages to the user during add command*/
     void add_msg_person(int c);
 
     void add_msg_computer(int c);
+
+    vector<string> add_connection();
     /* Displays a choice menu for sorting methods */
     void sort_msg(int c);
     /* Displays help message */
@@ -56,6 +61,7 @@ private:
     /* Displays a choice menu for searching */
     void search_msg(int c);
 
+    void display_valid_id(int c);
 public:
     /* Constructor */
     presentation();

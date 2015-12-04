@@ -6,9 +6,9 @@ Computer::Computer()
     construction_year = 0;
     type = "";
     built = 0;
-    string description = "";
+    description = "";
+    id = 0;
 }
-
 
 string Computer::get_name()
 {
@@ -30,6 +30,16 @@ bool Computer::get_built()
     return built;
 }
 
+int Computer::get_id()
+{
+    return id;
+}
+
+vector<string> Computer::get_vec()
+{
+    return per_associated;
+}
+
 void Computer::set_name(string s)
 {
     name = s;
@@ -48,4 +58,14 @@ void Computer::set_type(string s)
 void Computer::set_built(bool b)
 {
     built = b;
+}
+
+void Computer::set_description(string s)
+{
+    description = s;
+}
+
+void Computer::set_id(int i)
+{
+    id = i;
 }

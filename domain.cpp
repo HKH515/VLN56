@@ -2,7 +2,7 @@
 
 Domain::Domain()
 {
-    data = new Data("data.dat");
+    data = new Data("data.sqlite");
 }
 
 vector<Person*> Domain::get_p_vec()
@@ -10,7 +10,7 @@ vector<Person*> Domain::get_p_vec()
     return p_vec;
 }
 
-vector<Computer> Domain::get_c_vec()
+vector<Computer*> Domain::get_c_vec()
 {
     return c_vec;
 }
@@ -21,11 +21,10 @@ Domain::~Domain() {
     {
         delete p_vec[i];
     }
-    /* Computer ekki * ?
-     * for (unsigned int i = 0; i < c_vec.size(); i++)
+    for (unsigned int i = 0; i < c_vec.size(); i++)
     {
         delete c_vec[i];
-    }*/
+    }
 }
 
 // Parse function for queries returned from the data layer.
@@ -65,18 +64,54 @@ void Domain::parse_query_vector(vector<string> v, string table)
             position_end = st.find("|", position_beg + 1);
             p->set_sex(st.substr(position_beg + 1, (position_end - position_beg - 1)));
 
+            position_beg = st.find("|", position_end + 1);
+            p->set_id(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
+
             p_vec.push_back(p);
         }
     }
     else
     {
+        for (unsigned int i = 0; i < v.size(); i++)
+        {
+            string st = v[i];
+            Computer* c = new Computer();
+            // cut out the empty space in the beginning of the string
+            st = st.substr(1, st.length());
 
+            // find the name
+            size_t position_beg = st.find("|");
+            c->set_name(st.substr(0, position_beg));
+
+            // find the construction year
+            size_t position_end = st.find("|", position_beg + 1);
+            c->set_construction_year(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
+
+            // find the type
+            position_beg = st.find("|", position_end + 1);
+            c->set_type(st.substr(position_end + 1, (position_beg - position_end - 1)));
+
+            // find if built
+            position_end = st.find("|", position_beg + 1);
+            string by = st.substr(position_beg + 1, (position_end - position_beg - 1));
+            c->set_built(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
+
+            // find the description
+            position_beg = st.find("|", position_end + 1);
+            c->set_description(st.substr(position_end + 1, (position_beg - position_end - 1)));
+
+            // find the id
+            position_end = st.find("|", position_beg + 1);
+            c->set_id(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
+
+            c_vec.push_back(c);
+        }
     }
 }
 
 string Domain::parse_add_command(vector<string> v) {
     string st = " ";
-    for (unsigned int i = 1; i < v.size(); i++) {
+    for (unsigned int i = 2; i < v.size(); i++) {
         st += v[i];
         st += "|";
     }
@@ -84,7 +119,7 @@ string Domain::parse_add_command(vector<string> v) {
 }
 
 void Domain::handle_commands(vector<string> v) {
-    //free_vector_memory(); /* Clear vector for new query */
+    free_vector_memory(); /* Clear vector for new query */
     string command = v[0];
 
     if (command == "list") /* returns all entries in specified table */
@@ -132,9 +167,13 @@ string Domain::get_table(string s)
     {
         return "persons";
     }
-    else
+    else if (s == "2")
     {
         return "computers";
+    }
+    else
+    {
+        return "connections";
     }
 
 }
@@ -175,12 +214,16 @@ string Domain::get_column(string s, string table)
         {
             return "profession";
         }
-        else
+        else if (s == "6")
         {
             return "description";
         }
+        else
+        {
+            return "id";
+        }
     }
-    else
+    else if (table == "computers")
     {
         if (s == "1")
         {
@@ -198,19 +241,29 @@ string Domain::get_column(string s, string table)
         {
             return "built";
         }
-        else
+        else if (s == "5")
         {
             return "description";
+        }
+        else
+        {
+            return "id";
         }
     }
 }
 
-void Domain::free_vector_memory(vector<Person*> p_vec)
+void Domain::free_vector_memory()
 {
     for (unsigned int i = 0; i < p_vec.size(); i++)
     {
         delete p_vec[i];
     }
     p_vec.clear();
+
+    for (unsigned int i = 0; i < c_vec.size(); i++)
+    {
+        delete c_vec[i];
+    }
+    c_vec.clear();
 }
 

@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 #include <ctime>
+#include "computer.h"
+#include <vector>
 
 using namespace std;
 
@@ -16,6 +18,8 @@ private:
     string sex;
     string description;
     string profession; // Mathematician, Physicist, bioligist, computer scientist
+    int id;
+    vector<string> comp_associated;
 
 public:
     /* Constructor */
@@ -28,6 +32,7 @@ public:
     void set_sex(string s);
     void set_description(string s);
     void set_profession(string p);
+    void set_id(int i);
 
     /* Get functions */
     string get_name();
@@ -36,6 +41,8 @@ public:
     string get_sex();
     string get_description();
     string get_profession();
+    int get_id();
+    vector<string> get_vec();
 
     /* Overloading operators */
     friend bool operator < (const Person &lhs, const Person &rhs);

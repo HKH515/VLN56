@@ -15,7 +15,7 @@ class Domain
 private:
     Data* data;
     vector<Person*> p_vec;
-    vector<Computer> c_vec;
+    vector<Computer*> c_vec;
 
     /* Sort functions */
     void sort_ascending(vector<Person*> &v, int sort_column);
@@ -28,7 +28,7 @@ private:
        the persons class and returns a vector of persons* to the presentation layer */
     void parse_query_vector(vector<string> v, string table);
     /* deletes all persons object from the vector and clears the vector befor each command to be handled */
-    void free_vector_memory(vector<Person*> p_vec);
+    void free_vector_memory();
 
     void get_list(vector<string> v);
     void add_entry(vector<string> v);
@@ -47,6 +47,6 @@ public:
     void handle_commands(vector<string> v);
 
     vector<Person*> get_p_vec();
-    vector<Computer> get_c_vec();
+    vector<Computer*> get_c_vec();
 };
 #endif // DOMAIN_H

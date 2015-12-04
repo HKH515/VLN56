@@ -1,18 +1,31 @@
 #include "domain.h"
 
-Domain::Domain() {
+Domain::Domain()
+{
     data = new Data("data.dat");
 }
 
-vector<Person*> Domain::get_vec() {
-    return vec;
+vector<Person*> Domain::get_p_vec()
+{
+    return p_vec;
+}
+
+vector<Computer> Domain::get_c_vec()
+{
+    return c_vec;
 }
 
 Domain::~Domain() {
     delete data;
-    for (unsigned int i = 0; i < vec.size(); i++) {
-        delete vec[i];
+    for (unsigned int i = 0; i < p_vec.size(); i++)
+    {
+        delete p_vec[i];
     }
+    /* Computer ekki * ?
+     * for (unsigned int i = 0; i < c_vec.size(); i++)
+    {
+        delete c_vec[i];
+    }*/
 }
 
 // Parse function for queries returned from the data layer.
@@ -20,7 +33,8 @@ void Domain::parse_query_vector(vector<string> v, string table)
 {
     if (table == "persons")
     {
-        for (unsigned int i = 0; i < v.size(); i++) {
+        for (unsigned int i = 0; i < v.size(); i++)
+        {
             string st = v[i];
             Person* p = new Person();
             // cut out the empty space in the beginning of the string
@@ -51,13 +65,18 @@ void Domain::parse_query_vector(vector<string> v, string table)
             position_end = st.find("|", position_beg + 1);
             p->set_sex(st.substr(position_beg + 1, (position_end - position_beg - 1)));
 
-            vec.push_back(p);
+            p_vec.push_back(p);
+        }
+    }
+    else
+    {
+
     }
 }
 
 string Domain::parse_add_command(vector<string> v) {
     string st = " ";
-    for (unsigned int i = 2; i < v.size(); i++) {
+    for (unsigned int i = 1; i < v.size(); i++) {
         st += v[i];
         st += "|";
     }
@@ -65,9 +84,8 @@ string Domain::parse_add_command(vector<string> v) {
 }
 
 void Domain::handle_commands(vector<string> v) {
-    free_vector_memory(); /* Clear vector for new query */
+    //free_vector_memory(); /* Clear vector for new query */
     string command = v[0];
-    data->read();
 
     if (command == "list") /* returns all entries in specified table */
     {
@@ -102,21 +120,21 @@ void Domain::search(vector<string> v)
     string table = get_table(v[1]);
     string query_column = get_column(v[2], table);
     string query_string = v[3];
-    string sort_column = get_column(v[4], get_table);
+    string sort_column = get_column(v[4], table);
     string sort_method = get_sort_method(v[5]);
 
-    parse_query_vector(data->query(query_column, query_string), table);
+    parse_query_vector(data->query(table, query_column, query_string, sort_column, sort_method), table);
 }
 
 string Domain::get_table(string s)
 {
     if (s == "1")
     {
-        return = "persons"
+        return "persons";
     }
     else
     {
-        return = "computers"
+        return "computers";
     }
 
 }
@@ -135,7 +153,7 @@ string Domain::get_sort_method(string s)
 
 string Domain::get_column(string s, string table)
 {
-    if (table = "persons")
+    if (table == "persons")
     {
         if (s == "1")
         {
@@ -182,17 +200,17 @@ string Domain::get_column(string s, string table)
         }
         else
         {
-            return "description"
+            return "description";
         }
     }
 }
 
-void Domain::free_vector_memory()
+void Domain::free_vector_memory(vector<Person*> p_vec)
 {
-    for (unsigned int i = 0; i < vec.size(); i++)
+    for (unsigned int i = 0; i < p_vec.size(); i++)
     {
-        delete vec[i];
+        delete p_vec[i];
     }
-    vec.clear();
+    p_vec.clear();
 }
 

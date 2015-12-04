@@ -19,7 +19,7 @@ private:
     string description;
     string profession; // Mathematician, Physicist, bioligist, computer scientist
     int id;
-    vector<Computer*>* comp_vec;
+    vector<string> comp_associated;
 
 public:
     /* Constructor */
@@ -42,7 +42,7 @@ public:
     string get_description();
     string get_profession();
     int get_id();
-    vector<Computer*> get_comp_vec();
+    vector<string> get_vec();
 
     /* Overloading operators */
     friend bool operator < (const Person &lhs, const Person &rhs);

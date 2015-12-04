@@ -7,9 +7,8 @@ Computer::Computer()
     type = "";
     built = 0;
     description = "";
-    // id = 0; Hættulegt?
+    id = 0;
 }
-
 
 string Computer::get_name()
 {
@@ -36,9 +35,9 @@ int Computer::get_id()
     return id;
 }
 
-vector<Person*> Computer::get_pers_vec()
+vector<string> Computer::get_vec()
 {
-    return pers_vec;
+    return per_associated;
 }
 
 void Computer::set_name(string s)

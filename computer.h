@@ -17,7 +17,7 @@ private:
     bool built;
     string description;
     int id;
-    vector<Person*> pers_vec;
+    vector<string> per_associated;
 
 public:
     Computer();
@@ -27,7 +27,7 @@ public:
     string get_type();
     bool get_built();
     int get_id();
-    vector<Person*> get_pers_vec();
+    vector<string> get_vec();
 
     void set_name(string s);
     void set_construction_year(int y);

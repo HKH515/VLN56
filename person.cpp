@@ -84,10 +84,10 @@ int Person::get_id()
     return id;
 }
 
-//vector<Computer*>* get_comp_vec()
-//{
-  //  return comp_vec;
-//}
+vector<string> Person::get_vec()
+{
+    return comp_associated;
+}
 
 bool operator < (const Person &lhs, const Person &rhs) {
     return lhs.name < rhs.name;

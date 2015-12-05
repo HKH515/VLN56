@@ -10,6 +10,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -27,6 +28,7 @@ class Data
         void setFile(string data);
         void push(string entry);
         int nthIndex(string haystack, char needle, int n);
+        vector<string> createCombinedStringVector(vector<string> sourceVec, string delim); //Returns a modified pipe vector that has all appropriate computers in the last index of the vector
         vector<string> parseDelimString(string delimString, char delim);
         vector<string> fromDbToVector(string table, QSqlQuery queryObj);
         vector<string> query(string table, string column, string dataQuery, string sortColumn, string order); //Fetches all lines matching query

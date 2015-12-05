@@ -468,14 +468,14 @@ void presentation::search_msg(int c)
              << "(5) Description" << endl
              << prompt;
     }
-
 }
 
 void presentation::table_msg(int c)
 {
     if (c == 1)
     {
-        cout << "Do you want to add a Computer Scientists, Computer or connection between Computer Scientist and a Computer?" << endl
+        cout << "Do you want to add a Computer Scientists, Computer or "
+             << "connection between Computer Scientist and a Computer?" << endl
              << "(1) Computer Scientist" << endl
              << "(2) Computer" << endl
              << "(3) Connection between Computer Scientist and a Computer" << endl;
@@ -495,7 +495,6 @@ void presentation::table_msg(int c)
         cout << "(1) Computer Scientists" << endl
              << "(2) Computers" << endl;
     }
-
 }
 
 void presentation::help_msg()

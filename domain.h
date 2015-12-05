@@ -4,7 +4,6 @@
 #include "person.h"
 #include "computer.h"
 #include "data.h"
-#include "compareperson.h"
 #include <string>
 #include <iostream>
 #include <vector>

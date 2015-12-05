@@ -11,7 +11,7 @@
 #include "person.h"
 #include "domain.h"
 #include "presentation.h"
-#include "compareperson.h"
+
 
 using namespace std;
 

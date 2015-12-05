@@ -33,6 +33,8 @@ class Data
         vector<string> readEntries(string table, string column, string order); //Returns a vector of all entries
         void write(string table, string line); //Creates an entry in the data file
 
+        string createDelimString(vector<string> sourceVec, string delim);
+
 };
 
 #endif // DATA_H

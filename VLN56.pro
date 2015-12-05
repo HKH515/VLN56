@@ -16,7 +16,8 @@ SOURCES += main.cpp \
     presentation.cpp \
 	domain.cpp \
 	compareperson.cpp \
-    computer.cpp
+    computer.cpp \
+    verifyinput.cpp
 
 HEADERS += \
     data.h \
@@ -24,7 +25,8 @@ HEADERS += \
     person.h \
 	domain.h \
 	compareperson.h \
-    computer.h
+    computer.h \
+    verifyinput.h
 
 DISTFILES += \
     splash.txt \

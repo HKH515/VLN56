@@ -124,6 +124,7 @@ int Data::nthIndex(string haystack, char needle, int n) {
 vector<string> Data::fromDbToVector(string table, QSqlQuery queryObj)
 {
     vector<string> result;
+    result.push_back(table);
     while(queryObj.next())
     {
         vector<string> tableData;
@@ -141,12 +142,10 @@ vector<string> Data::fromDbToVector(string table, QSqlQuery queryObj)
         else if (table == "computers")
         {
             tableData.push_back(queryObj.value("name").toString().toStdString());
-            tableData.push_back(queryObj.value("profession").toString().toStdString());
+            tableData.push_back(queryObj.value("construction_year").toString().toStdString());
+            tableData.push_back(queryObj.value("type").toString().toStdString());
+            tableData.push_back(queryObj.value("built").toString().toStdString());
             tableData.push_back(queryObj.value("description").toString().toStdString());
-            tableData.push_back(queryObj.value("birthyear").toString().toStdString());
-            tableData.push_back(queryObj.value("deathyear").toString().toStdString());
-            tableData.push_back(queryObj.value("sex").toString().toStdString());
-            tableData.push_back(queryObj.value("id").toString().toStdString());
         }
 
         currentEntry = createDelimString(tableData, "|");

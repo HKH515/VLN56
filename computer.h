@@ -23,10 +23,11 @@ public:
     Computer();
 
     string get_name();
-    int get_contruction_year();
+    int get_construction_year();
     string get_type();
     bool get_built();
     int get_id();
+
     vector<string> get_vec();
 
     void set_name(string s);

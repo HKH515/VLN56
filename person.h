@@ -20,11 +20,14 @@ private:
     string profession; // Mathematician, Physicist, bioligist, computer scientist
     int id;
     vector<string> comp_associated;
-
+    
 public:
     /* Constructor */
     Person();
 
+    void push_back_vec(string s);
+    unsigned long size_of_vec();
+    
     /* Set functions */
     void set_name(string n);
     void set_birthyear(int y);

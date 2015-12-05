@@ -15,7 +15,6 @@ SOURCES += main.cpp \
     person.cpp \
     presentation.cpp \
 	domain.cpp \
-	compareperson.cpp \
     computer.cpp \
     verifyinput.cpp
 
@@ -24,7 +23,6 @@ HEADERS += \
     presentation.h \
     person.h \
 	domain.h \
-	compareperson.h \
     computer.h \
     verifyinput.h
 

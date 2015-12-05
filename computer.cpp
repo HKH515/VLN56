@@ -15,7 +15,7 @@ string Computer::get_name()
     return name;
 }
 
-int Computer::get_contruction_year()
+int Computer::get_construction_year()
 {
     return construction_year;
 }

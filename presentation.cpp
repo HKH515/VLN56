@@ -77,7 +77,7 @@ void presentation::choice()
             cin >> order_of_sort;
             order_of_sort = v->verify_order_of_sort(order_of_sort);
             command_vec.push_back(order_of_sort);
-            
+
             d->handle_commands(command_vec);
             print_results_person();
         }
@@ -248,11 +248,6 @@ vector <string> presentation::parse_add(string choice) {
         add_vec = add_connection();
     }
 
-    for (unsigned int i = 0; i < add_vec.size(); i++)
-    {
-        cout << "add_vec[" << i << "] : " << add_vec[i] << endl;
-    }
-    return add_vec;
 }
 
 void presentation::print_results_person()

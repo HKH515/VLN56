@@ -41,48 +41,49 @@ void Domain::parse_query_vector(vector<string> v)
         // find if it is a computer or a person
         position_beg = st.find("|");
         string kind = st.substr(0, position_beg);
-        cout << "kind: " << kind << endl;
+        //cout << "kind: " << kind << endl;
 
-        if (kind == "persons")
+        if (kind == "0")
         {
             Person* p = new Person();
             vector<Person*> vec;
             // find the name
             position_end = st.find("|", position_beg + 1);
-            p->set_name(st.substr(position_beg + 1, position_end - position_beg));
-            cout << "name: " << p->get_name() << endl;
+            p->set_name(st.substr(position_beg + 1, position_end - position_beg - 1));
+            //cout << "name: " << p->get_name() << endl;
 
             // find the profession
             position_beg = st.find("|", position_end + 1);
             p->set_profession(st.substr(position_end + 1, (position_beg - position_end - 1)));
-            cout << "profession: " << p->get_profession() << endl;
+            //cout << "profession: " << p->get_profession() << endl;
 
             // find the description
             position_end = st.find("|", position_beg + 1);
             p->set_description(st.substr(position_beg + 1, (position_end - position_beg - 1)));
-            cout << "description: " << p->get_description() << endl;
+            //cout << "description: " << p->get_description() << endl;
 
             // find the birthyear
             position_beg = st.find("|", position_end + 1);
             p->set_birthyear(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
-            cout << "birthyear: " << p->get_birthyear() << endl;
+            //cout << "birthyear: " << p->get_birthyear() << endl;
 
             // find the deathyear
             position_end = st.find("|", position_beg + 1);
             p->set_deathyear(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
-            cout << "deathyear: " << p->get_deathyear() << endl;
+            //cout << "deathyear: " << p->get_deathyear() << endl;
 
             // find the sex
             position_beg = st.find("|", position_end + 1);
             p->set_sex(st.substr(position_end + 1, (position_beg - position_end - 1)));
-            cout << "sex: " << p->get_sex() << endl;
+            // cout << "sex: " << p->get_sex() << endl;
 
             // find the id
             position_end = st.find("|", position_beg + 1);
             p->set_id(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
-            cout << "id: " << p->get_id() << endl;
+            //cout << "id: " << p->get_id() << endl;
 
-            // Get all connected computers
+            //Aborting mission
+            /*// Get all connected computers
             position_end = st.find(",");
             position_beg = 0;
             string first = st.substr(position_beg, (position_end - position_beg));
@@ -99,11 +100,11 @@ void Domain::parse_query_vector(vector<string> v)
             position_end = st.find("|", position_beg + 1);
             cout << st.substr(position_beg + 1) << endl;
             p->push_back_vec(st.substr(position_beg + 1));
-            cout << p->get_vec().size() << endl;
+            cout << p->get_vec().size() << endl;*/
 
-            vec.push_back(p);
+            p_vec.push_back(p);
         }
-        else if (kind == "computers")
+        else if (kind == "1")
         {
             vector<Computer*> c_vec;
             Computer* c = new Computer();
@@ -175,9 +176,11 @@ void Domain::handle_commands(vector<string> v) {
 void Domain::get_list(vector<string> v)
 {
     string table = get_table(v[1]);
+    cout << "table: " << table << endl;
     string sort_column = get_column(v[2], table);
     string sort_method = get_sort_method(v[3]);
     parse_query_vector(data->readEntries(table, sort_column, sort_method));
+
 }
 
 void Domain::add_entry(vector<string> v)

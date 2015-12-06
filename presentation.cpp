@@ -144,7 +144,14 @@ void presentation::choice()
             }
             else
             {
-                print_results_comp();
+                if (d->get_c_vec().size() == 0)
+                {
+                    cout << "No results found." << endl;
+                }
+                else
+                {
+                    print_results_comp();
+                }
             }
         }
         else if (inputs == "help")
@@ -157,9 +164,9 @@ void presentation::choice()
         }
         else
         {
-            cout << "You entered an invalid command, type help for list of supported commands." << endl;
+            cout << "You entered an invalid command, type help for a list of supported commands." << endl;
         }
-        
+
         /* If we continue running the program we clear the command vector and construct a new one for
            next command */
         if (inputs != "exit")
@@ -168,7 +175,7 @@ void presentation::choice()
             cout << prompt;
             cin >> inputs;
         }
-        
+
     }
     while(inputs != "exit");
     exit(0);
@@ -183,27 +190,27 @@ vector <string> presentation::parse_add(string choice) {
     {
         add_vec.push_back("1");
         cout << "You will be asked to enter information about the person." << endl;
-        
+
         add_msg_person(1);
         input = v->verify_name();
         add_vec.push_back(input);
-        
+
         add_msg_person(2);
         input = v->verify_profession();
         add_vec.push_back(input);
-        
+
         add_msg_person(3);
         getline(cin, input);
         add_vec.push_back(input);
-        
+
         add_msg_person(4);
         input = v->verify_birthyear();
         add_vec.push_back(input);
-        
+
         add_msg_person(5);
         input = v->verify_deathyear(input);
         add_vec.push_back(input);
-        
+
         add_msg_person(6);
         input = v->verify_sex();
         add_vec.push_back(input);
@@ -212,37 +219,35 @@ vector <string> presentation::parse_add(string choice) {
     {
         add_vec.push_back("2");
         cout << "You will be asked to enter information about the computer." << endl;
-        
+
         add_msg_computer(1);
         input = v->verify_name();
         add_vec.push_back(input);
-        
+
         add_msg_computer(2);
         input = v->verify_birthyear();
         add_vec.push_back(input);
-        
+
         add_msg_computer(3);
         cin.ignore();
         getline(cin, input); /* Á eftir að búa til error check hér */
         add_vec.push_back(input);
-        
+
         add_msg_computer(4);
         input = v->verify_built();
-        cout << "Input (á að vera y): " << input << endl;
         add_vec.push_back(input);
-        
+
         add_msg_computer(5);
         cin.ignore();
         getline(cin, input);
         add_vec.push_back(input);
-        
+
     }
     else /* If the user wants to add a connection between a Scientist and a Computer */
     {
         add_vec = add_connection();
-        
     }
-    
+
     for (unsigned int i = 0; i < add_vec.size(); i++)
     {
         cout << "add_vec[" << i << "] : " << add_vec[i] << endl;
@@ -256,7 +261,7 @@ void presentation::print_results_person()
     {
         cout << "Name: " << d->get_p_vec()[i]->get_name() << endl
              << "Born: " << d->get_p_vec()[i]->get_birthyear() << endl;
-        
+
         // If the person is still alive the function displays NA
         if (d->get_p_vec()[i]->get_deathyear() == 0)
         {
@@ -266,7 +271,7 @@ void presentation::print_results_person()
         {
             cout << "Died: " << d->get_p_vec()[i]->get_deathyear() << endl;
         }
-        
+
         if (d->get_p_vec()[i]->get_sex() == "m")
         {
             cout << "Sex: Male" << endl;
@@ -282,7 +287,7 @@ void presentation::print_results_person()
         cout << "Profession: " << d->get_p_vec()[i]->get_profession() << endl
              << "Description: " << d->get_p_vec()[i]->get_description() << endl << endl;
     }
-    
+
 }
 
 void presentation::print_results_comp()
@@ -362,7 +367,7 @@ void presentation::add_msg_computer(int c)
     }
     else if (c == 4)
     {
-        cout << "Was the computer built? (0/1)" << endl << prompt;
+        cout << "Was the computer built? 0 for No, 1 for Yes " << endl << prompt;
     }
     else if (c == 5)
     {
@@ -373,8 +378,9 @@ void presentation::add_msg_computer(int c)
 
 vector<string> presentation::add_connection()
 {
-    cout << "Below is a list of all Scientist in the database"
-         << ",please choose the id of the Scientist you want to connect to a computer." << endl;
+    cout << "Below is a list of all Scientist in the database, "
+         << "please choose the id of the Scientist you want to connect to a computer."
+         << endl << prompt;
 
     /* Get list of all the scientist in the database, ordered after id in ascending order */
     vector<string> list_vec;

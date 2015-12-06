@@ -250,6 +250,8 @@ vector<string> Data::fromDbToVector(string table, QSqlQuery queryObj)
             tableData.push_back(queryObj.value("type").toString().toStdString());
             tableData.push_back(queryObj.value("built").toString().toStdString());
             tableData.push_back(queryObj.value("description").toString().toStdString());
+            tableData.push_back(queryObj.value("id").toString().toStdString());
+
         }
 
         currentEntry = createDelimString(tableData, "|");

@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
     QCoreApplication a(argc, argv);
 
     printSplash();
-    cout << "Welcome to the Archive of all the great IT people!" << endl << "> ";
+    cout << "Welcome to the Archive of all the great Computer Scientists and Computers!" << endl << "> ";
 
 
     presentation* p = new presentation();

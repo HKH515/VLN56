@@ -191,7 +191,10 @@ vector<string> Data::readEntries(string table, string column, string order) {
     queryObj.exec(qQueryString);
     qDebug() << queryObj.lastError() << endl;
     queryVect = fromDbToVector(table, queryObj);
-
+    for (int i = 0; i < queryVect.size(); i++)
+    {
+        cout << queryVect[i] << endl;
+    }
     cout << queryVect.size() << endl;
     db.close();
 
@@ -219,7 +222,6 @@ int Data::nthIndex(string haystack, char needle, int n) {
 vector<string> Data::fromDbToVector(string table, QSqlQuery queryObj)
 {
     vector<string> result;
-    result.push_back(table);
     while(queryObj.next())
     {
         vector<string> tableData;

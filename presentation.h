@@ -51,7 +51,7 @@ public:
 
     Domain* get_domain();
     /* Handles the commands and communicates with the domain-layer */
-    void choice(Domain* d);
+    void choice();
 
 };
 

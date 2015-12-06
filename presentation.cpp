@@ -20,7 +20,7 @@ Domain* presentation::get_domain()
     return d;
 }
 
-void presentation::choice(Domain* d)
+void presentation::choice()
 {
     string inputs, order_of_sort, sort_by, table;
     vector<string> command_vec;

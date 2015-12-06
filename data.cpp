@@ -87,47 +87,86 @@ vector<string> Data::parseDelimString(string delimString, char delim)
 
 vector<string> Data::createCombinedStringVector(vector<string> sourceVec, string delim)
 {
-    vector<string> results;
-    map<string, string> names;
-    for (int i = 0; i < sourceVec.size(); i++)
+    cout << "CONTENTS l" <<  sourceVec[0] << endl;
+    if (sourceVec.size() > 1) //If the input is anything else than just the type of data (person or computer), parse, otherwise return empty vector
     {
-        vector<string> parsedString;
-        parsedString = parseDelimString(sourceVec[i], '|');
-        string lastComputer;
-        for (int o = 0; o < parsedString.size(); o++)
+        vector<string> results;
+        map<string, string> names;
+        for (int i = 0; i < sourceVec.size(); i++)
         {
-            if (parsedString[8] != lastComputer)
+            vector<string> parsedString;
+            parsedString = parseDelimString(sourceVec[i], '|');
+            string lastComputer;
+            for (int o = 0; o < parsedString.size(); o++)
             {
-                names[parsedString[1]] = names[parsedString[1]] + "," + parsedString[8];
-            }
-            lastComputer = parsedString[8];
-            if (o == parsedString.size()-1) //If last iteration
-            {
-                parsedString[8] = names[parsedString[1]];
-            }
+                if (parsedString[8] != lastComputer)
+                {
+                    names[parsedString[1]] = names[parsedString[1]] + "," + parsedString[8];
+                }
+                lastComputer = parsedString[8];
+                if (o == parsedString.size()-1) //If last iteration
+                {
+                    parsedString[8] = names[parsedString[1]];
+                }
 
+
+            }
+            results.push_back(createDelimString(parsedString, "|"));
 
         }
-        results.push_back(createDelimString(parsedString, "|"));
 
-    }
-
-    vector<string> cleanedResults;
-
-    string prevName;
-    for (int j = results.size()-1; j >=0; j--)
-    {
-        /*cout << results[j] << endl;
-        string resultTmpName = parseDelimString(results[j], '|')[1];
-        cout << "COMPARING: " << resultTmpName << " and " << prevName;
-        if (resultTmpName != prevName)
+        vector<string> cleanedResults;
+        //cleanedResults = results;
+        for (int j = results.size()-1; j > 0; j--)
         {
-            cleanedResults.push_back(results[j]);
-        }
-        prevName = resultTmpName;*/
-    }
+            cout << "RESULTS: " << results[0] << endl;
+            string longestComputerField;
 
-    return results;
+            for (int h = results.size()-1; h > 0; h--)
+            {
+                cout << "j: " << j << ", h: " << h << endl;
+                string resultTmpName1 = parseDelimString(results[j], '|')[1];
+                string resultTmpName2 = parseDelimString(results[h], '|')[1];
+                cout << "COMPARING: " << resultTmpName1 << " and " << resultTmpName2;
+
+                bool alreadyExistsInClean = false;
+                for (int a = 0; a < results.size(); a++)
+                {
+                    if (results[a] == resultTmpName1)
+                    {
+                        alreadyExistsInClean = true;
+                    }
+                }
+                if (resultTmpName1 == resultTmpName2 && !alreadyExistsInClean)
+                {
+                    cout << "NAMES MATCH" << endl;
+                    int lengthOfComputerField1 = parseDelimString(results[j], '|')[8].size();
+                    int lengthOfComputerField2 = parseDelimString(results[h], '|')[8].size();
+                    if (lengthOfComputerField1 <= lengthOfComputerField2)
+                    {
+                        longestComputerField = results[h];
+                    }
+                    else
+                    {
+                        longestComputerField = results[j];
+                    }
+                }
+                cout << "EEEEEEEEEEEEEE" << endl;
+             }
+            cout << "AAAAAAAAAAAAA" << endl;
+            cleanedResults.push_back(longestComputerField);
+            cout << cleanedResults.size() << endl;
+            cout << "longestComputerField for iter: " << longestComputerField;
+        }
+
+
+        return cleanedResults;
+    }
+    else
+    {
+        vector<string> empty;
+        return empty;
+    }
 
 }
 
@@ -142,21 +181,18 @@ vector<string> Data::readEntries(string table, string column, string order) {
 
     }
     QSqlQuery queryObj(db);
+    cout << "LE TABL'E " << table << endl;
     if (table == "persons")
     {
-        queryString = "SELECT persons.name, persons.profession, persons.description, persons.birthyear, persons.deathyear, persons.sex, persons.ID, computers.name as computer_name FROM persons INNER JOIN connections ON ID_computers INNER JOIN computers ON computers.ID = connections.ID_computers WHERE persons.ID = connections.ID_persons";
+        queryString = "SELECT * from persons";
     }
     cout << queryString << endl;
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
     qDebug() << queryObj.lastError() << endl;
     queryVect = fromDbToVector(table, queryObj);
-    resultVect = createCombinedStringVector(queryVect, "|");
+
     cout << queryVect.size() << endl;
-    for (int i = 0; i < resultVect.size(); i++)
-    {
-        cout << resultVect[i] << endl;
-    }
     db.close();
 
     return queryVect;
@@ -198,7 +234,6 @@ vector<string> Data::fromDbToVector(string table, QSqlQuery queryObj)
             tableData.push_back(queryObj.value("deathyear").toString().toStdString());
             tableData.push_back(queryObj.value("sex").toString().toStdString());
             tableData.push_back(queryObj.value("id").toString().toStdString());
-            tableData.push_back(queryObj.value("computer_name").toString().toStdString());
 
         }
         else if (table == "computers")

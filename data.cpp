@@ -33,26 +33,28 @@ void Data::write(string table, string line) {
         cout << fields[i] << endl;
     }
     db.open();
-    if( !db.open() )
-    {
-        cout << "failed" << endl;
-    }
 
-    cout << "db opened";
+
     QSqlQuery queryObj(db);
     string queryString;
     cout << "table: " << table << endl;
     cout << "line: " << line << endl;
-    //if (table == "persons")
-    //{
+    if (table == "persons")
+    {
         cout << "inside wadfsadf";
         queryString = "INSERT INTO 'persons' (name, profession, description, birthyear, deathyear, sex) values('" + fields[0] + "', '" + fields[1] + "', '" + fields[2] + "', '" + fields[3] + "', '" + fields[4] + "', '" + fields[5] + "');";
-                //queryString = "INSERT INTO 'persons' (name, profession, description, birthyear, deathyear, sex) values('"
-                //        + fields[0] + "','" + fields[1] + "','" + "','" + fields[2] + "','" + fields[3] + "','" + fields[4] + ','
-                //        + fields[5] + "');";
-        cout << "YO QUERY: " << queryString << endl;
 
-    //}
+
+    }
+    else if (table == "computers")
+    {
+        queryString = "INSERT INTO 'computers' (name, construction_year, type, built, description) values('" + fields[0] + "', '" + fields[1] + "', '" + fields[2] + "', '" + fields[3] + "', '" + fields[4] + "');";
+    }
+
+    else if (table == "connections")
+    {
+        queryString = "INSERT INTO 'connections' (ID_computers, ID_persons) values('" + fields[0] + "', '" + fields[1] + "');";
+    }
     cout << queryString << endl;
 
     QString qQueryString(queryString.c_str());
@@ -85,7 +87,6 @@ vector<string> Data::parseDelimString(string delimString, char delim)
 
 vector<string> Data::createCombinedStringVector(vector<string> sourceVec, string delim)
 {
-    cout << "ENTERING" << endl;
     vector<string> results;
     map<string, string> names;
     for (int i = 0; i < sourceVec.size(); i++)
@@ -100,8 +101,6 @@ vector<string> Data::createCombinedStringVector(vector<string> sourceVec, string
                 names[parsedString[1]] = names[parsedString[1]] + "," + parsedString[8];
             }
             lastComputer = parsedString[8];
-            cout << parsedString[1] << " has ownership of: " << names[parsedString[1]] << endl;
-            cout << "TEST:::::" << names[parsedString[1]] << endl;
             if (o == parsedString.size()-1) //If last iteration
             {
                 parsedString[8] = names[parsedString[1]];
@@ -111,13 +110,22 @@ vector<string> Data::createCombinedStringVector(vector<string> sourceVec, string
         }
         results.push_back(createDelimString(parsedString, "|"));
 
-        //for (int d = 0; d < parsedString.size(); d++)
-        //{
-        //    cout << parsedString[d] << endl;
-        //}
-
     }
-    cout << "EXITING" << endl;
+
+    vector<string> cleanedResults;
+
+    string prevName;
+    for (int j = results.size()-1; j >=0; j--)
+    {
+        /*cout << results[j] << endl;
+        string resultTmpName = parseDelimString(results[j], '|')[1];
+        cout << "COMPARING: " << resultTmpName << " and " << prevName;
+        if (resultTmpName != prevName)
+        {
+            cleanedResults.push_back(results[j]);
+        }
+        prevName = resultTmpName;*/
+    }
 
     return results;
 
@@ -150,6 +158,7 @@ vector<string> Data::readEntries(string table, string column, string order) {
         cout << resultVect[i] << endl;
     }
     db.close();
+
     return queryVect;
 
 }
@@ -209,11 +218,8 @@ vector<string> Data::fromDbToVector(string table, QSqlQuery queryObj)
 
 vector<string> Data::query(string table, string column, string dataQuery, string sortColumn, string order) {
     vector<string> queryVect;
-    if (db.open())
-    {
-        cout << "WORKS" << endl;
-
-    }
+    vector<string> resultVect;
+    db.open();
     QSqlQuery queryObj(db);
     string queryString = "SELECT * FROM '" + table + "' WHERE '" + sortColumn + "' LIKE '%" + dataQuery + "%' ORDER BY '" + column + "';";
     cout << queryString << endl;
@@ -221,7 +227,9 @@ vector<string> Data::query(string table, string column, string dataQuery, string
     queryObj.exec(qQueryString);
     qDebug() << queryObj.lastError() << endl;
     queryVect = fromDbToVector(table, queryObj);
+    resultVect = createCombinedStringVector(queryVect, "|");
     cout << queryVect.size() << endl;
     db.close();
-    return queryVect;
+
+    return resultVect;
 }

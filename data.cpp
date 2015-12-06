@@ -244,6 +244,7 @@ vector<string> Data::fromDbToVector(string table, QSqlQuery queryObj)
         }
         else if (table == "computers")
         {
+            tableData.push_back("1");
             tableData.push_back(queryObj.value("name").toString().toStdString());
             tableData.push_back(queryObj.value("construction_year").toString().toStdString());
             tableData.push_back(queryObj.value("type").toString().toStdString());

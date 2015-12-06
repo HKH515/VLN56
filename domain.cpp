@@ -155,6 +155,10 @@ void Domain::handle_commands(vector<string> v) {
     {
         search(v);
     }
+    else if (command == "remove")
+    {
+        remove_entry(v);
+    }
 }
 
 void Domain::get_list(vector<string> v)
@@ -182,6 +186,14 @@ void Domain::search(vector<string> v)
     string sort_method = get_sort_method(v[5]);
 
     parse_query_vector(data->query(table, query_column, query_string, sort_column, sort_method));
+}
+
+void Domain::remove_entry(vector<string> v)
+{
+    string table = get_table(v[1]);
+    string query_column = get_column(v[2], table);
+    string rem_id = v[3];
+    data->remove(table, query_column, rem_id);
 }
 
 string Domain::get_table(string s)

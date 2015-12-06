@@ -29,6 +29,7 @@ private:
     void get_list(vector<string> v);
     void add_entry(vector<string> v);
     void search(vector<string> v);
+    void remove_entry(vector<string> v);
     string get_table(string s);
     string get_column(string s, string table);
     string get_sort_method(string s);

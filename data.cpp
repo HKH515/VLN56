@@ -272,15 +272,13 @@ vector<string> Data::query(string table, string column, string dataQuery, string
     vector<string> resultVect;
     db.open();
     QSqlQuery queryObj(db);
-    string queryString = "SELECT * FROM '" + table + "' WHERE '" + sortColumn + "' LIKE '%" + dataQuery + "%' ORDER BY '" + column + "';";
+    string queryString = "SELECT * FROM " + table + " WHERE " + sortColumn + " LIKE '%" + dataQuery + "%' ORDER BY " + column + ";";
     cout << queryString << endl;
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
     qDebug() << queryObj.lastError() << endl;
     queryVect = fromDbToVector(table, queryObj);
-    resultVect = createCombinedStringVector(queryVect, "|");
-    cout << queryVect.size() << endl;
     db.close();
 
-    return resultVect;
+    return queryVect;
 }

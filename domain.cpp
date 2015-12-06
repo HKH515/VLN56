@@ -174,7 +174,7 @@ void Domain::handle_commands(vector<string> v) {
 
 void Domain::get_list(vector<string> v)
 {
-    string table = get_table(v[1]);
+    string table = (v[1]);
     string sort_column = get_column(v[2], table);
     string sort_method = get_sort_method(v[3]);
     parse_query_vector(data->readEntries(table, sort_column, sort_method));
@@ -183,6 +183,7 @@ void Domain::get_list(vector<string> v)
 void Domain::add_entry(vector<string> v)
 {
     string table = get_table(v[1]);
+    cout << "v[1]: " << v[1] << endl;
     data->write(table, parse_add_command(v));
 }
 

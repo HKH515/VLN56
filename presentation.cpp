@@ -180,6 +180,7 @@ vector <string> presentation::parse_add(string choice) {
     add_vec.push_back("add");
     if (choice == "1")
     {
+        add_vec.push_back("1");
         cout << "You will be asked to enter information about the person." << endl;
         
         add_msg_person(1);
@@ -208,6 +209,7 @@ vector <string> presentation::parse_add(string choice) {
     }
     else if (choice == "2")
     {
+        add_vec.push_back("2");
         cout << "You will be asked to enter information about the computer." << endl;
         
         add_msg_computer(1);
@@ -239,6 +241,10 @@ vector <string> presentation::parse_add(string choice) {
         
     }
     
+    for (unsigned int i = 0; i < add_vec.size(); i++)
+    {
+        cout << "add_vec[" << i << "] : " << add_vec[i] << endl;
+    }
     return add_vec;
 }
 

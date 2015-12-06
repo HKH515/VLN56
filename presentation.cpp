@@ -247,7 +247,7 @@ vector <string> presentation::parse_add(string choice) {
     {
         add_vec = add_connection();
     }
-
+    return add_vec;
 }
 
 void presentation::print_results_person()

@@ -94,6 +94,7 @@ void presentation::choice()
             string search_column, search_query;
             table_msg(3);
             table = v->verify_table();
+            command_vec.push_back(table);
             /* Ask the user what he wants to search in */
             if (table == "1")
             {

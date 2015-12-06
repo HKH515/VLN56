@@ -141,6 +141,11 @@ void Domain::parse_query_vector(vector<string> v)
             //cout << "Stærð á c_vec nuna: " << c_vec.size() << endl;
             c_vec.push_back(c);
         }
+        else // kind == "2"
+        {
+
+        }
+
     }
 }
 

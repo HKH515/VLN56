@@ -16,9 +16,6 @@ private:
     vector<Person*> p_vec;
     vector<Computer*> c_vec;
 
-    /* Sort functions */
-    void sort_ascending(vector<Person*> &v, int sort_column);
-    void sort_descending(vector<Person*> &v, int sort_column);
     /* parses the information, to be added from the database, from the user the and puts
      * delimeter (|) between */
     string parse_add_command(vector<string> vec);

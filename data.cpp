@@ -1,27 +1,27 @@
 #include "data.h"
 
 Data::Data(string datafile) {
-    setFile(datafile);
-    initDb();
+    set_file(datafile);
+    init_db();
 }
 
-void Data::initDb()
+void Data::init_db()
 {
     db = QSqlDatabase::addDatabase("QSQLITE", "VLN56_connection");
 
-    db.setDatabaseName(getFile());
+    db.setDatabaseName(get_file());
 
 
 }
 
-void Data::setFile(string filename)
+void Data::set_file(string filename)
 {
 
     QString qName(filename.c_str());
     dbName = QString(qName);
 }
 
-QString Data::getFile()
+QString Data::get_file()
 {
     return dbName;
 }
@@ -29,7 +29,7 @@ QString Data::getFile()
 
 void Data::write(string table, string line)
 {
-    vector<string> fields = parseDelimString(line, '|');
+    vector<string> fields = parse_delim_string(line, '|');
     cout << "field no. 0 is" << fields[0];
     for (int i = 0; i < fields.size(); i++)
     {
@@ -66,7 +66,7 @@ void Data::write(string table, string line)
     db.close();
 }
 
-string Data::createDelimString(vector<string> sourceVec, string delim)
+string Data::create_delim_string(vector<string> sourceVec, string delim)
 {
     string results = " ";
     for (int i = 0; i < sourceVec.size(); i++)
@@ -76,19 +76,19 @@ string Data::createDelimString(vector<string> sourceVec, string delim)
     return results;
 }
 
-vector<string> Data::parseDelimString(string delimString, char delim)
+vector<string> Data::parse_delim_string(string delimString, char delim)
 {
     vector<string> results;
 
     for (int i = 0; i < count(delimString.begin(), delimString.end(), delim); i++)
     {
 
-        results.push_back(delimString.substr(nthIndex(delimString, delim, i)+1, nthIndex(delimString, delim, i+1) - nthIndex(delimString, delim, i)-1));
+        results.push_back(delimString.substr(nth_index(delimString, delim, i)+1, nth_index(delimString, delim, i+1) - nth_index(delimString, delim, i)-1));
     }
     return results;
 }
 
-vector<string> Data::createCombinedStringVector(vector<string> sourceVec, string delim)
+vector<string> Data::create_combined_string_vector(vector<string> sourceVec, string delim)
 {
     if (sourceVec.size() > 1) //If the input is anything else than just the type of data (person or computer), parse, otherwise return empty vector
     {
@@ -97,7 +97,7 @@ vector<string> Data::createCombinedStringVector(vector<string> sourceVec, string
         for (int i = 0; i < sourceVec.size(); i++)
         {
             vector<string> parsedString;
-            parsedString = parseDelimString(sourceVec[i], '|');
+            parsedString = parse_delim_string(sourceVec[i], '|');
             string lastComputer;
             for (int o = 0; o < parsedString.size(); o++)
             {
@@ -113,7 +113,7 @@ vector<string> Data::createCombinedStringVector(vector<string> sourceVec, string
 
 
             }
-            results.push_back(createDelimString(parsedString, "|"));
+            results.push_back(create_delim_string(parsedString, "|"));
 
         }
 
@@ -126,8 +126,8 @@ vector<string> Data::createCombinedStringVector(vector<string> sourceVec, string
             for (int h = results.size()-1; h > 0; h--)
             {
                 cout << "j: " << j << ", h: " << h << endl;
-                string resultTmpName1 = parseDelimString(results[j], '|')[1];
-                string resultTmpName2 = parseDelimString(results[h], '|')[1];
+                string resultTmpName1 = parse_delim_string(results[j], '|')[1];
+                string resultTmpName2 = parse_delim_string(results[h], '|')[1];
 
                 bool alreadyExistsInClean = false;
                 for (int a = 0; a < results.size(); a++)
@@ -139,8 +139,8 @@ vector<string> Data::createCombinedStringVector(vector<string> sourceVec, string
                 }
                 if (resultTmpName1 == resultTmpName2 && !alreadyExistsInClean)
                 {
-                    int lengthOfComputerField1 = parseDelimString(results[j], '|')[8].size();
-                    int lengthOfComputerField2 = parseDelimString(results[h], '|')[8].size();
+                    int lengthOfComputerField1 = parse_delim_string(results[j], '|')[8].size();
+                    int lengthOfComputerField2 = parse_delim_string(results[h], '|')[8].size();
                     if (lengthOfComputerField1 <= lengthOfComputerField2)
                     {
                         longestComputerField = results[h];
@@ -154,8 +154,6 @@ vector<string> Data::createCombinedStringVector(vector<string> sourceVec, string
             cleanedResults.push_back(longestComputerField);
             cout << cleanedResults.size() << endl;
         }
-
-
         return cleanedResults;
     }
     else
@@ -166,7 +164,7 @@ vector<string> Data::createCombinedStringVector(vector<string> sourceVec, string
 
 }
 
-vector<string> Data::readEntries(string table, string column, string order) {
+vector<string> Data::read_entries(string table, string column, string order) {
 
     vector<string> queryVect;
     vector<string> resultVect;
@@ -183,7 +181,7 @@ vector<string> Data::readEntries(string table, string column, string order) {
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
     qDebug() << queryObj.lastError() << endl;
-    queryVect = fromDbToVector(table, queryObj);
+    queryVect = from_db_to_vector(table, queryObj);
     for (int i = 0; i < queryVect.size(); i++)
     {
         cout << queryVect[i] << endl;
@@ -215,7 +213,7 @@ void Data::push(string entry)
     internalData.push_back(entry);
 }
 
-int Data::nthIndex(string haystack, char needle, int n)
+int Data::nth_index(string haystack, char needle, int n)
 {
     int occurances = 0;
     for (unsigned int i = 0; i < haystack.size(); i++) {
@@ -229,7 +227,7 @@ int Data::nthIndex(string haystack, char needle, int n)
     return haystack.size()-1; //fallback if char is not found, return end of string
 }
 
-vector<string> Data::fromDbToVector(string table, QSqlQuery queryObj)
+vector<string> Data::from_db_to_vector(string table, QSqlQuery queryObj)
 {
     vector<string> result;
     while(queryObj.next())
@@ -260,7 +258,7 @@ vector<string> Data::fromDbToVector(string table, QSqlQuery queryObj)
 
         }
 
-        currentEntry = createDelimString(tableData, "|");
+        currentEntry = create_delim_string(tableData, "|");
         result.push_back(currentEntry);
     }
     return result;
@@ -277,7 +275,7 @@ vector<string> Data::query(string table, string column, string dataQuery, string
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
     qDebug() << queryObj.lastError() << endl;
-    queryVect = fromDbToVector(table, queryObj);
+    queryVect = from_db_to_vector(table, queryObj);
     db.close();
 
     return queryVect;

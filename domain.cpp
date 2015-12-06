@@ -167,7 +167,7 @@ void Domain::get_list(vector<string> v)
     cout << "table: " << table << endl;
     string sort_column = get_column(v[2], table);
     string sort_method = get_sort_method(v[3]);
-    parse_query_vector(data->readEntries(table, sort_column, sort_method));
+    parse_query_vector(data->read_entries(table, sort_column, sort_method));
 
 }
 

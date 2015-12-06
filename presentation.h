@@ -43,6 +43,10 @@ private:
     void help_msg();
     /* Displays every Person and its id, or Computer and its id that is in the database */
     void display_valid_id(int c);
+
+
+    string verify_person_id();
+    string verify_computer_id();
 public:
     /* Constructor */
     presentation();

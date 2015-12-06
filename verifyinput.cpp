@@ -4,12 +4,12 @@ VerifyInput::VerifyInput()
 {
     input = "";
     prompt = "> ";
-    d = new Domain();
+    //d = new Domain();
 }
 
 VerifyInput::~VerifyInput()
 {
-    delete d;
+    //delete d;
 }
 
 /* Error checking functions*/
@@ -178,43 +178,7 @@ string VerifyInput::verify_search_column_comp(string column)
 
 }
 
-string VerifyInput::verify_person_id()
-{
-    int input;
-    while (1)
-    {
-        cin >> input;
-        if ((input >= 1) && (input <= d->get_p_vec().size()))
-        {
-            break;
-        }
-        cout << "Invalid input, please choose again: "<< endl;
 
-    }
-    stringstream ss;
-    ss << input;
-    string value = ss.str();
-    return value;
-}
-
-string VerifyInput::verify_computer_id()
-{
-    int input;
-    while (1)
-    {
-        cin >> input;
-        if ((input >= 1) && (input <= d->get_c_vec().size()))
-        {
-            break;
-        }
-        cout << "Invalid input, please choose again: "<< endl;
-
-    }
-    stringstream ss;
-    ss << input;
-    string value = ss.str();
-    return value;
-}
 
 bool VerifyInput::check_if_year(string input)
 {

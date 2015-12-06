@@ -14,7 +14,6 @@ class VerifyInput
 private:
     string input;
     string prompt;
-    Domain *d;
 public:
     VerifyInput();
     ~VerifyInput();
@@ -32,8 +31,7 @@ public:
     string verify_order_of_sort(string order);
     string verify_search_column_person(string column);
     string verify_search_column_comp(string column);
-    string verify_person_id();
-    string verify_computer_id();
+
 
     /* Check if the user entered an valid name and profession */
     bool check_if_word(string input);

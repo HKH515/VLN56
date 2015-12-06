@@ -379,7 +379,7 @@ vector<string> presentation::add_connection()
     list_vec.push_back("a"); /* Ascending order */
     d->handle_commands(list_vec);
     display_valid_id(1); /*Display valid persons and their id */
-    string p_id = v->verify_person_id(); /* Verify that the input id is valid */
+    string p_id = verify_person_id(); /* Verify that the input id is valid */
     list_vec.clear();
     list_vec.push_back("list");
     list_vec.push_back("2"); /* Table of computers */
@@ -387,7 +387,7 @@ vector<string> presentation::add_connection()
     list_vec.push_back("a"); /* Ascending order */
     d->handle_commands(list_vec);
     display_valid_id(2);
-    string c_id = v->verify_computer_id(); /* Verify that the input id is valid */
+    string c_id = verify_computer_id(); /* Verify that the input id is valid */
     list_vec.clear();
     list_vec.push_back("add");
     list_vec.push_back("3");
@@ -507,4 +507,42 @@ void presentation::help_msg()
     cout << "exit: Close the program" << endl;
     cout << "help: Displays this screen" << endl;
     cout << "-------------------------------------------------" << endl;
+}
+
+string presentation::verify_person_id()
+{
+    int input;
+    while (1)
+    {
+        cin >> input;
+        if ((input >= 1) && (input <= d->get_p_vec().size()))
+        {
+            break;
+        }
+        cout << "Invalid input, please choose again: "<< endl;
+
+    }
+    stringstream ss;
+    ss << input;
+    string value = ss.str();
+    return value;
+}
+
+string presentation::verify_computer_id()
+{
+    int input;
+    while (1)
+    {
+        cin >> input;
+        if ((input >= 1) && (input <= d->get_c_vec().size()))
+        {
+            break;
+        }
+        cout << "Invalid input, please choose again: "<< endl;
+
+    }
+    stringstream ss;
+    ss << input;
+    string value = ss.str();
+    return value;
 }

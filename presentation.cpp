@@ -177,6 +177,7 @@ void presentation::choice()
 vector <string> presentation::parse_add(string choice) {
     string input;
     vector<string> add_vec;
+    add_vec.clear();
     add_vec.push_back("add");
     if (choice == "1")
     {
@@ -227,6 +228,7 @@ vector <string> presentation::parse_add(string choice) {
         
         add_msg_computer(4);
         input = v->verify_built();
+        cout << "Input (á að vera y): " << input << endl;
         add_vec.push_back(input);
         
         add_msg_computer(5);
@@ -247,9 +249,6 @@ vector <string> presentation::parse_add(string choice) {
     }
     return add_vec;
 }
-
-
-
 
 void presentation::print_results_person()
 {
@@ -351,23 +350,23 @@ void presentation::add_msg_computer(int c)
 {
     if (c == 1)
     {
-        cout << "Please enter the name of the computer: " << endl;
+        cout << "Please enter the name of the computer: " << endl << prompt;
     }
     else if (c == 2)
     {
-        cout << "Please enter the construction year of the computer: " << endl;
+        cout << "Please enter the construction year of the computer: " << endl << prompt;
     }
     else if (c == 3)
     {
-        cout << "Please enter the type of the computer: " << endl;
+        cout << "Please enter the type of the computer: " << endl << prompt;
     }
     else if (c == 4)
     {
-        cout << "Was the computer built? (y/n)" << endl;
+        cout << "Was the computer built? (0/1)" << endl << prompt;
     }
     else if (c == 5)
     {
-        cout << "Please write some description of the computer, can be left blank if desired: " << endl;
+        cout << "Please write some description of the computer, can be left blank if desired: " << endl << prompt;
     }
 
 }
@@ -484,7 +483,8 @@ void presentation::table_msg(int c)
              << "connection between Computer Scientist and a Computer?" << endl
              << "(1) Computer Scientist" << endl
              << "(2) Computer" << endl
-             << "(3) Connection between Computer Scientist and a Computer" << endl;
+             << "(3) Connection between Computer Scientist and a Computer" << endl
+             << prompt;
         return;
     }
     if (c == 2)
@@ -493,13 +493,15 @@ void presentation::table_msg(int c)
              << "connections between Computer Scientist and a Computer?" << endl;
         cout << "(1) Computer Scientists" << endl
              << "(2) Computers" << endl
-             << "(3) Connection between Computer Scientists and Computers" << endl;
+             << "(3) Connection between Computer Scientists and Computers" << endl
+             << prompt;
     }
     if (c == 3)
     {
         cout << "Do you want to search in the database of Computer Scientists or Computers?" << endl;
         cout << "(1) Computer Scientists" << endl
-             << "(2) Computers" << endl;
+             << "(2) Computers" << endl
+             << prompt;
     }
 }
 
@@ -525,7 +527,7 @@ string presentation::verify_person_id()
         {
             break;
         }
-        cout << "Invalid input, please choose again: "<< endl;
+        cout << "Invalid input, please choose again: "<< endl << prompt;
 
     }
     stringstream ss;
@@ -544,7 +546,7 @@ string presentation::verify_computer_id()
         {
             break;
         }
-        cout << "Invalid input, please choose again: "<< endl;
+        cout << "Invalid input, please choose again: "<< endl << prompt;
 
     }
     stringstream ss;

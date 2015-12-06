@@ -183,7 +183,6 @@ void Domain::get_list(vector<string> v)
 void Domain::add_entry(vector<string> v)
 {
     string table = get_table(v[1]);
-    cout << "v[1]: " << v[1] << endl;
     data->write(table, parse_add_command(v));
 }
 

@@ -24,7 +24,7 @@ public:
     string verify_birthyear();
     string verify_deathyear(string birhty);
     string verify_sex();
-    bool verify_built();
+    string verify_built();
     string verify_table();
     string verify_sort_column_person(string sort_by);
     string verify_sort_column_comp(string sort_by);

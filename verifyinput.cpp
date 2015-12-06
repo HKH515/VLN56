@@ -97,20 +97,16 @@ string VerifyInput::verify_sex()
     return input;
 }
 
-bool VerifyInput::verify_built()
+string VerifyInput::verify_built()
 {
-    char input;
+    string input;
     cin >> input;
-    while (input != 'y' && input != 'n')
+    while (input != "0" && input != "1")
     {
-        cout << "Invalid input, please write y or n: " << endl << prompt;
+        cout << "Invalid input, please write 0 (false) or 1(true): " << endl << prompt;
         cin >> input;
     }
-    if (input == 'y')
-    {
-        return true;
-    }
-    return false;
+    return input;
 }
 
 string VerifyInput::verify_table()
@@ -177,8 +173,6 @@ string VerifyInput::verify_search_column_comp(string column)
     return column;
 
 }
-
-
 
 bool VerifyInput::check_if_year(string input)
 {

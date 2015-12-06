@@ -82,26 +82,6 @@ void Domain::parse_query_vector(vector<string> v)
             p->set_id(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
             //cout << "id: " << p->get_id() << endl;
 
-            //Aborting mission
-            /*// Get all connected computers
-            position_end = st.find(",");
-            position_beg = 0;
-            string first = st.substr(position_beg, (position_end - position_beg));
-            cout << first << endl;
-            p->push_back_vec(first);
-            while (position_end != string::npos)
-            {
-                position_beg = position_end;
-                position_end = st.find(",", position_end + 1);
-                p->push_back_vec(st.substr(position_beg + 1, (position_end - position_beg - 1)));
-                cout << st.substr(position_beg + 1, (position_end - position_beg - 1)) << endl;
-            }
-            cout << "Her" << endl;
-            position_end = st.find("|", position_beg + 1);
-            cout << st.substr(position_beg + 1) << endl;
-            p->push_back_vec(st.substr(position_beg + 1));
-            cout << p->get_vec().size() << endl;*/
-
             p_vec.push_back(p);
         }
         else if (kind == "1")

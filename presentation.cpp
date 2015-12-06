@@ -163,6 +163,12 @@ void presentation::choice()
                 }
             }
         }
+        else if (inputs == "remove")
+        {
+            command_vec = remove_entry();
+            d->handle_commands(command_vec);
+
+        }
         else if (inputs == "help")
         {
             help_msg();
@@ -390,25 +396,14 @@ vector<string> presentation::add_connection()
 
     /* Get list of all the scientist in the database, ordered after id in ascending order */
     vector<string> list_vec;
-    list_vec.push_back("list");
-    list_vec.push_back("1"); /* Table of persons */
-    list_vec.push_back("7"); /* Sort after id */
-    list_vec.push_back("a"); /* Ascending order */
-    d->handle_commands(list_vec);
-    display_valid_id(1); /*Display valid persons and their id */
-    string p_id = verify_person_id(); /* Verify that the input id is valid */
+    get_list("1");
+    string p_id = verify_id("1"); /* Verify that the input id is valid */
     cout << "Below is a list of all Computer in the database, "
          << "please choose the id of the Computer you want to connect to the previously chosen Scientist."
          << endl << prompt;
-    list_vec.clear();
-    list_vec.push_back("list");
-    list_vec.push_back("2"); /* Table of computers */
-    list_vec.push_back("5"); /* Sort after id */
-    list_vec.push_back("a"); /* Ascending order */
-    d->handle_commands(list_vec);
-    display_valid_id(2);
-    string c_id = verify_computer_id(); /* Verify that the input id is valid */
-    list_vec.clear();
+    get_list("2");
+    string c_id = verify_id("2"); /* Verify that the input id is valid */
+    //list_vec.clear();
     list_vec.push_back("add");
     list_vec.push_back("3");
     list_vec.push_back(p_id);
@@ -417,9 +412,47 @@ vector<string> presentation::add_connection()
 
 }
 
-void presentation::display_valid_id(int c)
+void presentation::get_list(string table)
 {
-    if (c == 1)
+    vector<string> comm_vec;
+    /* Get list of all Computer Scientists */
+    if (table == "1")
+    {
+        comm_vec.push_back("list");
+        comm_vec.push_back("1"); /* Table of persons */
+        comm_vec.push_back("7"); /* Sort after id */
+        comm_vec.push_back("a"); /* Ascending order */
+        d->handle_commands(comm_vec);
+        display_valid_id("1"); /* Display list */
+    }
+    /* Get list of all Computers */
+    else if (table == "2")
+    {
+        comm_vec.push_back("list");
+        comm_vec.push_back("2"); /* Table of computers */
+        comm_vec.push_back("5"); /* Sort after id */
+        comm_vec.push_back("a"); /* Ascending order */
+        d->handle_commands(comm_vec);
+        display_valid_id("2"); /* Display list */
+    }
+}
+
+vector<string> presentation::remove_entry()
+{
+    vector<string> rem;
+    table_msg(4);
+    string table = v->verify_table();
+    get_list(table);
+    rem.push_back("remove");
+    rem.push_back(table);
+    rem.push_back("7");
+    rem.push_back(verify_id(table));
+    return rem;
+}
+
+void presentation::display_valid_id(string c)
+{
+    if (c == "1")
     {
         for (unsigned int i = 0; i < d->get_p_vec().size(); i++)
         {
@@ -518,6 +551,14 @@ void presentation::table_msg(int c)
              << "(2) Computers" << endl
              << prompt;
     }
+    if (c == 4)
+    {
+        cout << "Do you want to remove a Computer Scientist or a Computer?" << endl;
+        cout << "(1) Computer Scientist" << endl
+             << "(2) Computer" << endl
+             << prompt;
+
+    }
 }
 
 void presentation::help_msg()
@@ -532,37 +573,32 @@ void presentation::help_msg()
     cout << "-------------------------------------------------" << endl;
 }
 
-string presentation::verify_person_id()
+string presentation::verify_id(string table)
 {
     int input;
-    while (1)
+    if (table == "1")
     {
-        cin >> input;
-        if ((input >= 1) && (input <= d->get_p_vec().size()))
+        while (1)
         {
-            break;
+            cin >> input;
+            if ((input >= 1) && (input <= d->get_p_vec().size()))
+            {
+                break;
+            }
+            cout << "Invalid input, please choose again: "<< endl << prompt;
         }
-        cout << "Invalid input, please choose again: "<< endl << prompt;
-
     }
-    stringstream ss;
-    ss << input;
-    string value = ss.str();
-    return value;
-}
-
-string presentation::verify_computer_id()
-{
-    int input;
-    while (1)
+    else
     {
-        cin >> input;
-        if ((input >= 1) && (input <= d->get_c_vec().size()))
+        while (1)
         {
-            break;
+            cin >> input;
+            if ((input >= 1) && (input <= d->get_c_vec().size()))
+            {
+                break;
+            }
         }
         cout << "Invalid input, please choose again: "<< endl << prompt;
-
     }
     stringstream ss;
     ss << input;

@@ -25,6 +25,10 @@ private:
     vector <string> parse_add(string choice);
     /* Helping function to add a connection between a Person and a Computer */
     vector<string> add_connection();
+    /* Removes chosen entry from the database */
+    vector<string> remove_entry();
+    /* Gets all Computer scientists or Computers */
+    void get_list(string table);
     /* Displays the search result or the list of all entries in the Persons table*/
     void print_results_person();
     /* Displays the search result or the list of all entries in the Computer table */
@@ -42,11 +46,10 @@ private:
     /* Displays help message */
     void help_msg();
     /* Displays every Person and its id, or Computer and its id that is in the database */
-    void display_valid_id(int c);
+    void display_valid_id(string c);
 
+    string verify_id(string table);
 
-    string verify_person_id();
-    string verify_computer_id();
 public:
     /* Constructor */
     presentation();

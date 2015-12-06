@@ -184,7 +184,11 @@ vector<string> Data::readEntries(string table, string column, string order) {
     cout << "LE TABL'E " << table << endl;
     if (table == "persons")
     {
-        queryString = "SELECT * from persons";
+        queryString = "SELECT * from persons ORDER BY " + column + " " + order;
+    }
+    else if (table == "computers")
+    {
+        queryString = "SELECT * from computers ORDER BY " + column + " " + order;
     }
     cout << queryString << endl;
     QString qQueryString(queryString.c_str());

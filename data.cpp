@@ -14,18 +14,21 @@ void Data::initDb()
 
 }
 
-void Data::setFile(string filename) {
+void Data::setFile(string filename)
+{
 
     QString qName(filename.c_str());
     dbName = QString(qName);
 }
 
-QString Data::getFile() {
+QString Data::getFile()
+{
     return dbName;
 }
 
 
-void Data::write(string table, string line) {
+void Data::write(string table, string line)
+{
     vector<string> fields = parseDelimString(line, '|');
     cout << "field no. 0 is" << fields[0];
     for (int i = 0; i < fields.size(); i++)
@@ -87,7 +90,6 @@ vector<string> Data::parseDelimString(string delimString, char delim)
 
 vector<string> Data::createCombinedStringVector(vector<string> sourceVec, string delim)
 {
-    cout << "CONTENTS l" <<  sourceVec[0] << endl;
     if (sourceVec.size() > 1) //If the input is anything else than just the type of data (person or computer), parse, otherwise return empty vector
     {
         vector<string> results;
@@ -119,7 +121,6 @@ vector<string> Data::createCombinedStringVector(vector<string> sourceVec, string
         //cleanedResults = results;
         for (int j = results.size()-1; j > 0; j--)
         {
-            cout << "RESULTS: " << results[0] << endl;
             string longestComputerField;
 
             for (int h = results.size()-1; h > 0; h--)
@@ -127,7 +128,6 @@ vector<string> Data::createCombinedStringVector(vector<string> sourceVec, string
                 cout << "j: " << j << ", h: " << h << endl;
                 string resultTmpName1 = parseDelimString(results[j], '|')[1];
                 string resultTmpName2 = parseDelimString(results[h], '|')[1];
-                cout << "COMPARING: " << resultTmpName1 << " and " << resultTmpName2;
 
                 bool alreadyExistsInClean = false;
                 for (int a = 0; a < results.size(); a++)
@@ -139,7 +139,6 @@ vector<string> Data::createCombinedStringVector(vector<string> sourceVec, string
                 }
                 if (resultTmpName1 == resultTmpName2 && !alreadyExistsInClean)
                 {
-                    cout << "NAMES MATCH" << endl;
                     int lengthOfComputerField1 = parseDelimString(results[j], '|')[8].size();
                     int lengthOfComputerField2 = parseDelimString(results[h], '|')[8].size();
                     if (lengthOfComputerField1 <= lengthOfComputerField2)
@@ -151,12 +150,9 @@ vector<string> Data::createCombinedStringVector(vector<string> sourceVec, string
                         longestComputerField = results[j];
                     }
                 }
-                cout << "EEEEEEEEEEEEEE" << endl;
              }
-            cout << "AAAAAAAAAAAAA" << endl;
             cleanedResults.push_back(longestComputerField);
             cout << cleanedResults.size() << endl;
-            cout << "longestComputerField for iter: " << longestComputerField;
         }
 
 
@@ -177,40 +173,50 @@ vector<string> Data::readEntries(string table, string column, string order) {
     string queryString;
     if (db.open())
     {
-        cout << "WORKS" << endl;
 
     }
     QSqlQuery queryObj(db);
-    //cout << "LE TABL'E " << table << endl;
-    if (table == "persons")
-    {
-        queryString = "SELECT * from persons ORDER BY " + column + " " + order;
-    }
-    else if (table == "computers")
-    {
-        queryString = "SELECT * from computers ORDER BY " + column + " " + order;
-    }
-    //cout << queryString << endl;
+
+    queryString = "SELECT * from " + table + " ORDER BY " + column + " " + order;
+
+    cout << queryString << endl;
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
     qDebug() << queryObj.lastError() << endl;
     queryVect = fromDbToVector(table, queryObj);
-    /*for (int i = 0; i < queryVect.size(); i++)
+    for (int i = 0; i < queryVect.size(); i++)
     {
         cout << queryVect[i] << endl;
     }
-    cout << queryVect.size() << endl;*/
+    cout << queryVect.size() << endl;
     db.close();
 
     return queryVect;
 
 }
 
-void Data::push(string entry) {
+void Data::remove(string table, string column, string id)
+{
+    string queryString;
+    db.open();
+    QSqlQuery queryObj(db);
+    queryString = "DELETE from " + table + " WHERE " + column + "=" + id;
+
+    cout << queryString << endl;
+    QString qQueryString(queryString.c_str());
+    queryObj.exec(qQueryString);
+    qDebug() << queryObj.lastError() << endl;
+    db.close();
+
+}
+
+void Data::push(string entry)
+{
     internalData.push_back(entry);
 }
 
-int Data::nthIndex(string haystack, char needle, int n) {
+int Data::nthIndex(string haystack, char needle, int n)
+{
     int occurances = 0;
     for (unsigned int i = 0; i < haystack.size(); i++) {
         if (haystack[i] == needle) {
@@ -260,7 +266,8 @@ vector<string> Data::fromDbToVector(string table, QSqlQuery queryObj)
     return result;
 }
 
-vector<string> Data::query(string table, string column, string dataQuery, string sortColumn, string order) {
+vector<string> Data::query(string table, string column, string dataQuery, string sortColumn, string order)
+{
     vector<string> queryVect;
     vector<string> resultVect;
     db.open();

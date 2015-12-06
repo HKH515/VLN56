@@ -74,3 +74,13 @@ void Computer::set_id(int i)
 {
     id = i;
 }
+
+void Computer::push_back_vec(string s)
+{
+    per_associated.push_back(s);
+}
+
+unsigned long Computer::get_vec_size()
+{
+    return per_associated.size();
+}

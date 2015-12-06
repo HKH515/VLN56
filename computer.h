@@ -21,6 +21,9 @@ private:
 
 public:
     Computer();
+
+    void push_back_vec(string s);
+    unsigned long get_vec_size();
     string get_name();
     int get_construction_year();
     string get_type();

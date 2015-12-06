@@ -25,7 +25,7 @@ private:
     bool greater(Person &lhs, Person &rhs) const;
     /* Receives a vector of strings from data layer and parses the string, fills into
        the persons class and returns a vector of persons* to the presentation layer */
-    void parse_query_vector(vector<string> v, string table);
+    void parse_query_vector(vector<string> v);
     /* deletes all persons object from the vector and clears the vector befor each command to be handled */
     void free_vector_memory();
 

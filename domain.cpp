@@ -28,7 +28,7 @@ Domain::~Domain() {
 }
 
 // Parse function for queries returned from the data layer.
-void Domain::parse_query_vector(vector<string> v, string table)
+void Domain::parse_query_vector(vector<string> v)
 {
     for (unsigned int i = 0; i < v.size(); i++)
     {
@@ -38,6 +38,7 @@ void Domain::parse_query_vector(vector<string> v, string table)
         // cut out the empty space in the beginning of the string
         st = st.substr(1, st.length());
 
+        // find if it is a computer or a person
         position_beg = st.find("|");
         string kind = st.substr(0, position_beg);
         cout << "kind: " << kind << endl;
@@ -176,7 +177,7 @@ void Domain::get_list(vector<string> v)
     string table = get_table(v[1]);
     string sort_column = get_column(v[2], table);
     string sort_method = get_sort_method(v[3]);
-    parse_query_vector(data->readEntries(table, sort_column, sort_method), table);
+    parse_query_vector(data->readEntries(table, sort_column, sort_method));
 }
 
 void Domain::add_entry(vector<string> v)
@@ -193,7 +194,7 @@ void Domain::search(vector<string> v)
     string sort_column = get_column(v[4], table);
     string sort_method = get_sort_method(v[5]);
 
-    parse_query_vector(data->query(table, query_column, query_string, sort_column, sort_method), table);
+    parse_query_vector(data->query(table, query_column, query_string, sort_column, sort_method));
 }
 
 string Domain::get_table(string s)

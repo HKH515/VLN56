@@ -15,7 +15,7 @@ string Computer::get_name()
     return name;
 }
 
-int Computer::get_contruction_year()
+int Computer::get_construction_year()
 {
     return construction_year;
 }
@@ -25,9 +25,14 @@ string Computer::get_type()
     return type;
 }
 
-bool Computer::get_built()
+int Computer::get_built()
 {
     return built;
+}
+
+string Computer::get_description()
+{
+    return description;
 }
 
 int Computer::get_id()
@@ -55,7 +60,7 @@ void Computer::set_type(string s)
     type = s;
 }
 
-void Computer::set_built(bool b)
+void Computer::set_built(int b)
 {
     built = b;
 }
@@ -68,4 +73,14 @@ void Computer::set_description(string s)
 void Computer::set_id(int i)
 {
     id = i;
+}
+
+void Computer::push_back_vec(string s)
+{
+    per_associated.push_back(s);
+}
+
+unsigned long Computer::get_vec_size()
+{
+    return per_associated.size();
 }

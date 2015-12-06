@@ -14,7 +14,7 @@ private:
     string name;
     int construction_year;
     string type;
-    bool built;
+    int built;
     string description;
     int id;
     vector<string> per_associated;
@@ -22,17 +22,21 @@ private:
 public:
     Computer();
 
+    void push_back_vec(string s);
+    unsigned long get_vec_size();
     string get_name();
-    int get_contruction_year();
+    int get_construction_year();
     string get_type();
-    bool get_built();
+    int get_built();
     int get_id();
+    string get_description();
+
     vector<string> get_vec();
 
     void set_name(string s);
     void set_construction_year(int y);
     void set_type(string s);
-    void set_built(bool b);
+    void set_built(int b);
     void set_description(string s);
     void set_id(int i);
 };

@@ -113,12 +113,24 @@ void Person::operator = (const Person& rhs) {
 }
 
 /* copy constructor */
-Person::Person(const Person& copyme) {
+Person::Person(const Person& copyme)
+{
     name = copyme.name;
     birth_year = copyme.birth_year;
     death_year = copyme.death_year;
     sex = copyme.sex;
     description = copyme.description;
     profession = copyme.profession;
+}
+
+void Person::push_back_vec(string s)
+{
+    comp_associated.push_back(s);
+}
+
+unsigned long Person::size_of_vec()
+{
+    return comp_associated.size();
+    
 }
 

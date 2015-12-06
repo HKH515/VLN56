@@ -15,16 +15,16 @@ SOURCES += main.cpp \
     person.cpp \
     presentation.cpp \
 	domain.cpp \
-	compareperson.cpp \
-    computer.cpp
+    computer.cpp \
+    verifyinput.cpp
 
 HEADERS += \
     data.h \
     presentation.h \
     person.h \
 	domain.h \
-	compareperson.h \
-    computer.h
+    computer.h \
+    verifyinput.h
 
 DISTFILES += \
     splash.txt \

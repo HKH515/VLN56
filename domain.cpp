@@ -46,7 +46,7 @@ void Domain::parse_query_vector(vector<string> v)
         if (kind == "0")
         {
             Person* p = new Person();
-            vector<Person*> vec;
+            //vector<Person*> vec;
             // find the name
             position_end = st.find("|", position_beg + 1);
             p->set_name(st.substr(position_beg + 1, position_end - position_beg - 1));
@@ -106,41 +106,40 @@ void Domain::parse_query_vector(vector<string> v)
         }
         else if (kind == "1")
         {
-            vector<Computer*> c_vec;
+            //vector<Computer*>;
             Computer* c = new Computer();
 
             // find the name
             position_end = st.find("|", position_beg + 1);
-            c->set_name(st.substr(position_beg + 1, position_end - position_beg));
-            cout << "name: " << c->get_name() << endl;
+            c->set_name(st.substr(position_beg + 1, position_end - position_beg - 1));
+            //cout << "name: " << c->get_name() << endl;
 
             // find the constructio year
             position_beg = st.find("|", position_end + 1);
             c->set_construction_year(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
-            cout << "constr year: " << c->get_construction_year() << endl;
+            //cout << "constr year: " << c->get_construction_year() << endl;
 
             // find the type
             position_end = st.find("|", position_beg + 1);
             c->set_type(st.substr(position_beg + 1, (position_end - position_beg - 1)));
-            cout << "type: " << c->get_type() << endl;
+            //cout << "type: " << c->get_type() << endl;
 
             // find if built
             position_beg = st.find("|", position_end + 1);
             c->set_built(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
-            cout << "built: " << c->get_built() << endl;
+            //cout << "built: " << c->get_built() << endl;
 
             // find the description
             position_end = st.find("|", position_beg + 1);
             c->set_description(st.substr(position_beg + 1, (position_end - position_beg - 1)));
-            cout << "description: " << c->get_description() << endl;
+            //cout << "description: " << c->get_description() << endl;
 
             // find the id
             position_beg = st.find("|", position_end + 1);
             c->set_id(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
-            cout << "id: " << c->get_id() << endl;
-
+            //cout << "id: " << c->get_id() << endl;
+            //cout << "Stærð á c_vec nuna: " << c_vec.size() << endl;
             c_vec.push_back(c);
-
         }
     }
 }

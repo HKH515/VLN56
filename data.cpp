@@ -181,7 +181,7 @@ vector<string> Data::readEntries(string table, string column, string order) {
 
     }
     QSqlQuery queryObj(db);
-    cout << "LE TABL'E " << table << endl;
+    //cout << "LE TABL'E " << table << endl;
     if (table == "persons")
     {
         queryString = "SELECT * from persons ORDER BY " + column + " " + order;
@@ -190,16 +190,16 @@ vector<string> Data::readEntries(string table, string column, string order) {
     {
         queryString = "SELECT * from computers ORDER BY " + column + " " + order;
     }
-    cout << queryString << endl;
+    //cout << queryString << endl;
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
     qDebug() << queryObj.lastError() << endl;
     queryVect = fromDbToVector(table, queryObj);
-    for (int i = 0; i < queryVect.size(); i++)
+    /*for (int i = 0; i < queryVect.size(); i++)
     {
         cout << queryVect[i] << endl;
     }
-    cout << queryVect.size() << endl;
+    cout << queryVect.size() << endl;*/
     db.close();
 
     return queryVect;

@@ -79,7 +79,15 @@ void presentation::choice()
             command_vec.push_back(order_of_sort);
 
             d->handle_commands(command_vec);
-            print_results_person();
+            if (table == "1")
+            {
+                 print_results_person();
+            }
+            else if (table == "2")
+            {
+                print_results_comp();
+            }
+
         }
         else if(inputs == "search")
         {
@@ -297,7 +305,7 @@ void presentation::print_results_comp()
         }
         else
         {
-            cout << " Building Year: " << d->get_c_vec()[i]->get_construction_year() << endl;
+            cout << "Building Year: " << d->get_c_vec()[i]->get_construction_year() << endl;
         }
 
         cout << "Type: " << d->get_c_vec()[i]->get_type() << endl;
@@ -310,6 +318,8 @@ void presentation::print_results_comp()
         {
             cout << "Built: No" << endl;
         }
+
+        cout << "Description: " << d->get_c_vec()[i]->get_description() << endl;
     }
 }
 
@@ -386,6 +396,9 @@ vector<string> presentation::add_connection()
     d->handle_commands(list_vec);
     display_valid_id(1); /*Display valid persons and their id */
     string p_id = verify_person_id(); /* Verify that the input id is valid */
+    cout << "Below is a list of all Computer in the database, "
+         << "please choose the id of the Computer you want to connect to the previously chosen Scientist."
+         << endl << prompt;
     list_vec.clear();
     list_vec.push_back("list");
     list_vec.push_back("2"); /* Table of computers */
@@ -409,7 +422,7 @@ void presentation::display_valid_id(int c)
     {
         for (unsigned int i = 0; i < d->get_p_vec().size(); i++)
         {
-            cout << "Id: " << d->get_p_vec()[i]->get_id() << endl
+            cout << "Id: " << d->get_p_vec()[i]->get_id() << "\t"
                  << "Name: " << d->get_p_vec()[i]->get_name() << endl;
         }
     }
@@ -417,7 +430,7 @@ void presentation::display_valid_id(int c)
     {
         for (unsigned int i = 0; i < d->get_c_vec().size(); i++)
         {
-            cout << "Id: " << d->get_c_vec()[i]->get_id() << endl
+            cout << "Id: " << d->get_c_vec()[i]->get_id() << "\t"
                  << "Name: " << d->get_c_vec()[i]->get_name() << endl;
         }
     }

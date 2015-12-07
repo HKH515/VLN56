@@ -568,6 +568,7 @@ void presentation::help_msg()
     cout << "add: Add to the database" << endl;
     cout << "search: Search the list for preferred information" << endl;
     cout << "list: Display the whole list in preferred order" << endl;
+    cout << "remove: Remove an entry in the database" << endl;
     cout << "exit: Close the program" << endl;
     cout << "help: Displays this screen" << endl;
     cout << "-------------------------------------------------" << endl;

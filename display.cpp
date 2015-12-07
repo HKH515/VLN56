@@ -58,7 +58,6 @@ void Display::add_msg_computer(int c)
     {
         cout << "Please write some description of the computer, can be left blank if desired: " << endl << prompt;
     }
-
 }
 
 void Display::sort_msg(int c)
@@ -149,7 +148,6 @@ void Display::table_msg(int c)
              << "(2) Computer" << endl
              << "(3) Connection between a Computer Scientist and a Computer" << endl
              << prompt;
-
     }
 }
 

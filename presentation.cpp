@@ -172,10 +172,6 @@ void presentation::choice()
             string valid_id;
             valid_id = verify_id(kind_of_id, id);
             command_vec.push_back(valid_id);
-            for (int i = 0; i < command_vec.size(); i++)
-            {
-                cout << command_vec[i] << endl;
-            }
             d->handle_commands(command_vec);
             if (kind_of_id == "1")
             {

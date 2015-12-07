@@ -45,7 +45,7 @@ void Data::write(string table, string line)
 
     else if (table == "connections")
     {
-        queryString = "INSERT INTO 'connections' (ID_computers, ID_persons) values('" + fields[0] + "', '" + fields[1] + "');";
+        queryString = "INSERT INTO 'connections' (ID_computers, ID_persons) values('" + fields[1] + "', '" + fields[0] + "');";
     }
 
     QString qQueryString(queryString.c_str());

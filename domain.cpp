@@ -41,46 +41,38 @@ void Domain::parse_query_vector(vector<string> v)
         // find if it is a computer or a person
         position_beg = st.find("|");
         string kind = st.substr(0, position_beg);
-        //cout << "kind: " << kind << endl;
 
         if (kind == "0")
         {
             Person* p = new Person();
-            //vector<Person*> vec;
+
             // find the name
             position_end = st.find("|", position_beg + 1);
             p->set_name(st.substr(position_beg + 1, position_end - position_beg - 1));
-            //cout << "name: " << p->get_name() << endl;
 
             // find the profession
             position_beg = st.find("|", position_end + 1);
             p->set_profession(st.substr(position_end + 1, (position_beg - position_end - 1)));
-            //cout << "profession: " << p->get_profession() << endl;
 
             // find the description
             position_end = st.find("|", position_beg + 1);
             p->set_description(st.substr(position_beg + 1, (position_end - position_beg - 1)));
-            //cout << "description: " << p->get_description() << endl;
 
             // find the birthyear
             position_beg = st.find("|", position_end + 1);
             p->set_birthyear(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
-            //cout << "birthyear: " << p->get_birthyear() << endl;
 
             // find the deathyear
             position_end = st.find("|", position_beg + 1);
             p->set_deathyear(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
-            //cout << "deathyear: " << p->get_deathyear() << endl;
 
             // find the sex
             position_beg = st.find("|", position_end + 1);
             p->set_sex(st.substr(position_end + 1, (position_beg - position_end - 1)));
-            // cout << "sex: " << p->get_sex() << endl;
 
             // find the id
             position_end = st.find("|", position_beg + 1);
             p->set_id(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
-            //cout << "id: " << p->get_id() << endl;
 
             p_vec.push_back(p);
         }
@@ -92,40 +84,33 @@ void Domain::parse_query_vector(vector<string> v)
             // find the name
             position_end = st.find("|", position_beg + 1);
             c->set_name(st.substr(position_beg + 1, position_end - position_beg - 1));
-            //cout << "name: " << c->get_name() << endl;
 
-            // find the constructio year
+            // find the construction year
             position_beg = st.find("|", position_end + 1);
             c->set_construction_year(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
-            //cout << "constr year: " << c->get_construction_year() << endl;
 
             // find the type
             position_end = st.find("|", position_beg + 1);
             c->set_type(st.substr(position_beg + 1, (position_end - position_beg - 1)));
-            //cout << "type: " << c->get_type() << endl;
 
             // find if built
             position_beg = st.find("|", position_end + 1);
             c->set_built(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
-            //cout << "built: " << c->get_built() << endl;
 
             // find the description
             position_end = st.find("|", position_beg + 1);
             c->set_description(st.substr(position_beg + 1, (position_end - position_beg - 1)));
-            //cout << "description: " << c->get_description() << endl;
 
             // find the id
             position_beg = st.find("|", position_end + 1);
             c->set_id(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
-            //cout << "id: " << c->get_id() << endl;
-            //cout << "Stærð á c_vec nuna: " << c_vec.size() << endl;
+
             c_vec.push_back(c);
         }
         else // kind == "2"
         {
 
         }
-
     }
 }
 
@@ -155,16 +140,25 @@ void Domain::handle_commands(vector<string> v) {
     {
         search(v);
     }
-    else if (command == "remove")
+    else if (command == "remove") /* remove entry from database */
     {
         remove_entry(v);
     }
+    else if (command == "connection") /* get all Scientists/computers associated with certain Computer/scientist */
+    {
+        get_connected(v);
+    }
+}
+
+void Domain::get_connected(vector<string> v)
+{
+    string table = get_table(v[1]);
+
 }
 
 void Domain::get_list(vector<string> v)
 {
     string table = get_table(v[1]);
-    cout << "table: " << table << endl;
     string sort_column = get_column(v[2], table);
     string sort_method = get_sort_method(v[3]);
     parse_query_vector(data->read_entries(table, sort_column, sort_method));
@@ -174,7 +168,14 @@ void Domain::get_list(vector<string> v)
 void Domain::add_entry(vector<string> v)
 {
     string table = get_table(v[1]);
-    data->write(table, parse_add_command(v));
+    if (table == "persons")
+    {
+
+    }
+    else (table == "computers");
+    {
+
+    }
 }
 
 void Domain::search(vector<string> v)

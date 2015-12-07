@@ -31,8 +31,9 @@ private:
     vector<string> remove_entry();
     /* Gets all Computer scientists or Computers */
     void get_list(string table);
+    vector<int> get_ids(int c);
 
-    string verify_id(string table);
+    string verify_id(string table, int input);
 
 public:
     /* Constructor */

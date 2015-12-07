@@ -298,7 +298,7 @@ void presentation::get_list(string table)
     if (table == "1")
     {
         comm_vec.push_back("list");
-        comm_vec.push_back("1"); /* Table of persons */
+        comm_vec.push_back(table); /* Table of persons */
         comm_vec.push_back("7"); /* Sort after id */
         comm_vec.push_back("a"); /* Ascending order */
         d->handle_commands(comm_vec);
@@ -308,8 +308,8 @@ void presentation::get_list(string table)
     else if (table == "2")
     {
         comm_vec.push_back("list");
-        comm_vec.push_back("2"); /* Table of computers */
-        comm_vec.push_back("5"); /* Sort after id */
+        comm_vec.push_back(table); /* Table of computers */
+        comm_vec.push_back("6"); /* Sort after id */
         comm_vec.push_back("a"); /* Ascending order */
         d->handle_commands(comm_vec);
         msg->display_valid_id("2", d); /* Display list */

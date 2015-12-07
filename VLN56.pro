@@ -17,7 +17,8 @@ SOURCES += main.cpp \
 	domain.cpp \
     computer.cpp \
     verifyinput.cpp \
-    connections.cpp
+    connections.cpp \
+    display.cpp
 
 HEADERS += \
     data.h \
@@ -26,7 +27,8 @@ HEADERS += \
 	domain.h \
     computer.h \
     verifyinput.h \
-    connections.h
+    connections.h \
+    display.h
 
 DISTFILES += \
     splash.txt \

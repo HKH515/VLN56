@@ -149,7 +149,8 @@ vector<string> Data::create_combined_string_vector(vector<string> sourceVec, str
 
 }
 
-vector<string> Data::read_entries(string table, string column, string order) {
+vector<string> Data::read_entries(string table, string column, string order)
+{
 
     vector<string> queryVect;
     vector<string> resultVect;
@@ -236,6 +237,48 @@ vector<string> Data::from_db_to_vector(string table, QSqlQuery queryObj)
         result.push_back(currentEntry);
     }
     return result;
+}
+
+vector<string> Data::getConnectedComputersAssocWithPerson(string personId)
+{
+    vector<string> queryVect;
+    string queryString;
+    if (db.open())
+    {
+
+    }
+    QSqlQuery queryObj(db);
+
+    queryString = "SELECT c.* from computers c INNER JOIN connections con ON c.ID = con.ID_computers WHERE con.ID_persons = " + personId + " ORDER BY c.Name";
+
+    QString qQueryString(queryString.c_str());
+    queryObj.exec(qQueryString);
+    queryVect = from_db_to_vector("computers", queryObj);
+    db.close();
+
+    return queryVect;
+
+}
+
+vector<string> Data::getConnectedPersonsAssocWithComputer(string computerId)
+{
+    vector<string> queryVect;
+    string queryString;
+    if (db.open())
+    {
+
+    }
+    QSqlQuery queryObj(db);
+
+    queryString = "SELECT p.* FROM persons p INNER JOIN connections con ON p.ID = con.ID_persons WHERE con.ID_computers = " + computerId + " ORDER BY p.name";
+
+    QString qQueryString(queryString.c_str());
+    queryObj.exec(qQueryString);
+    queryVect = from_db_to_vector("persons", queryObj);
+    db.close();
+
+    return queryVect;
+
 }
 
 vector<string> Data::query_exact(string table, string column, string dataQuery, string sortColumn, string order)

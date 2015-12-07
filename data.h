@@ -33,6 +33,8 @@ class Data
         vector<string> from_db_to_vector(string table, QSqlQuery queryObj);
         vector<string> query(string table, string column, string dataQuery, string sortColumn, string order); //Fetches all lines matching query (substring search)
         vector<string> query_exact(string table, string column, string dataQuery, string sortColumn, string order); //Fetches all lines matching query exactly
+        vector<string> getConnectedPersonsAssocWithComputer(string computerId);
+        vector<string> getConnectedComputersAssocWithPerson(string personId);
 
         vector<string> read_entries(string table, string column, string order); //Returns a vector of all entries
         void write(string table, string line); //Creates an entry in the database

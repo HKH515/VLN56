@@ -239,7 +239,7 @@ vector<string> Data::from_db_to_vector(string table, QSqlQuery queryObj)
     return result;
 }
 
-vector<string> Data::getConnectedComputersAssocWithPerson(string personId)
+vector<string> Data::get_conn_assoc_with_person(string personId)
 {
     vector<string> queryVect;
     string queryString;
@@ -260,7 +260,7 @@ vector<string> Data::getConnectedComputersAssocWithPerson(string personId)
 
 }
 
-vector<string> Data::getConnectedPersonsAssocWithComputer(string computerId)
+vector<string> Data::get_conn_assoc_with_computer(string computerId)
 {
     vector<string> queryVect;
     string queryString;

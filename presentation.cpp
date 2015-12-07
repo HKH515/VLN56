@@ -1,7 +1,5 @@
 #include "presentation.h"
 
-
-
 presentation::presentation()
 {
     d = new Domain();
@@ -82,7 +80,7 @@ void presentation::choice()
             d->handle_commands(command_vec);
             if (table == "1")
             {
-                 msg->print_results_person(d);
+                msg->print_results_person(d);
             }
             else if (table == "2")
             {
@@ -268,6 +266,7 @@ vector <string> presentation::parse_add(string choice) {
 
 vector<string> presentation::add_connection()
 {
+    int input;
     cout << "Below is a list of all Scientist in the database, "
          << "please choose the id of the Scientist you want to connect to a computer."
          << endl << prompt;
@@ -275,12 +274,14 @@ vector<string> presentation::add_connection()
     /* Get list of all the scientist in the database, ordered after id in ascending order */
     vector<string> list_vec;
     get_list("1");
-    string p_id = verify_id("1"); /* Verify that the input id is valid */
+    cin >> input;
+    string p_id = verify_id("1", input); /* Verify that the input id is valid */
     cout << "Below is a list of all Computer in the database, "
          << "please choose the id of the Computer you want to connect to the previously chosen Scientist."
          << endl << prompt;
     get_list("2");
-    string c_id = verify_id("2"); /* Verify that the input id is valid */
+    cin >> input;
+    string c_id = verify_id("2", input); /* Verify that the input id is valid */
     //list_vec.clear();
     list_vec.push_back("add");
     list_vec.push_back("3");
@@ -297,7 +298,7 @@ void presentation::get_list(string table)
     if (table == "1")
     {
         comm_vec.push_back("list");
-        comm_vec.push_back("1"); /* Table of persons */
+        comm_vec.push_back(table); /* Table of persons */
         comm_vec.push_back("7"); /* Sort after id */
         comm_vec.push_back("a"); /* Ascending order */
         d->handle_commands(comm_vec);
@@ -307,8 +308,8 @@ void presentation::get_list(string table)
     else if (table == "2")
     {
         comm_vec.push_back("list");
-        comm_vec.push_back("2"); /* Table of computers */
-        comm_vec.push_back("5"); /* Sort after id */
+        comm_vec.push_back(table); /* Table of computers */
+        comm_vec.push_back("6"); /* Sort after id */
         comm_vec.push_back("a"); /* Ascending order */
         d->handle_commands(comm_vec);
         msg->display_valid_id("2", d); /* Display list */
@@ -317,6 +318,7 @@ void presentation::get_list(string table)
 
 vector<string> presentation::remove_entry()
 {
+    int id;
     vector<string> rem;
     msg->table_msg(4);
     string table = v->verify_table();
@@ -324,37 +326,59 @@ vector<string> presentation::remove_entry()
     rem.push_back("remove");
     rem.push_back(table);
     rem.push_back("7");
-    rem.push_back(verify_id(table));
+    cin >> id;
+    rem.push_back(verify_id(table, id));
     return rem;
 }
 
-
-string presentation::verify_id(string table)
+vector<int> presentation::get_ids(int c)
 {
-    int input;
-    if (table == "1")
+    vector<int> ids;
+    if (c == 1)
     {
-        while (1)
+        for (unsigned int i = 0; i < d->get_p_vec().size(); i++)
         {
-            cin >> input;
-            if ((input >= 1) && (input <= d->get_p_vec().size()))
-            {
-                break;
-            }
-            cout << "Invalid input, please choose again: "<< endl << prompt;
+            ids.push_back(d->get_p_vec()[i]->get_id());
         }
     }
     else
     {
-        while (1)
+        for (unsigned int i = 0; i < d->get_c_vec().size(); i++)
         {
-            cin >> input;
-            if ((input >= 1) && (input <= d->get_c_vec().size()))
+            ids.push_back(d->get_c_vec()[i]->get_id());
+        }
+    }
+    return ids;
+}
+
+string presentation::verify_id(string table, int input)
+{
+    bool id_not_ok = true;
+    vector <int> ids;
+
+    if (table == "1") /*Get valid persons id */
+    {
+        ids = get_ids(1);
+    }
+    else /* Get valid Computers id */
+    {
+        ids = get_ids(2);
+    }
+    while (id_not_ok)
+    {
+        for (int i = 0; i < ids.size(); i++)
+        {
+            if (input == ids[i])
             {
+                id_not_ok = false;
                 break;
             }
         }
-        cout << "Invalid input, please choose again: "<< endl << prompt;
+        if (id_not_ok)
+        {
+            cout << "Invalid input, please choose again: "<< endl << prompt;
+            cin >> input;
+        }
     }
     stringstream ss;
     ss << input;

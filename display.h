@@ -2,7 +2,7 @@
 #define DISPLAY_H
 
 #include <string>
-#include "Domain.h"
+#include "domain.h"
 
 using namespace std;
 

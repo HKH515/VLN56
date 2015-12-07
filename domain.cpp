@@ -114,7 +114,6 @@ void Domain::parse_query_vector(vector<string> v)
     }
 }
 
-
 string Domain::parse_add_command(vector<string> v) {
     string st = " ";
     for (unsigned int i = 2; i < v.size(); i++) {
@@ -144,7 +143,7 @@ void Domain::handle_commands(vector<string> v) {
     {
         remove_entry(v);
     }
-    else if (command == "connection") /* get all Scientists/computers associated with certain Computer/scientist */
+    else if (command == "connections") /* get all Scientists/computers associated with certain Computer/scientist */
     {
         get_connected(v);
     }
@@ -153,7 +152,16 @@ void Domain::handle_commands(vector<string> v) {
 void Domain::get_connected(vector<string> v)
 {
     string table = get_table(v[1]);
-
+    if (table == "persons")
+    {
+        string id = v[2];
+        parse_query_vector(data->get_conn_assoc_with_person(id));
+    }
+    else
+    {
+        string id = v[2];
+        parse_query_vector(data->get_conn_assoc_with_computer(id));
+    }
 }
 
 void Domain::get_list(vector<string> v)
@@ -162,20 +170,12 @@ void Domain::get_list(vector<string> v)
     string sort_column = get_column(v[2], table);
     string sort_method = get_sort_method(v[3]);
     parse_query_vector(data->read_entries(table, sort_column, sort_method));
-
 }
 
 void Domain::add_entry(vector<string> v)
 {
     string table = get_table(v[1]);
-    if (table == "persons")
-    {
-
-    }
-    else (table == "computers");
-    {
-
-    }
+    data->write(table, parse_add_command(v));
 }
 
 void Domain::search(vector<string> v)

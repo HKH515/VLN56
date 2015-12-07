@@ -41,8 +41,8 @@ void presentation::choice()
         
         if(inputs == "add")
         {
-            msg->table_msg(1);
-            table = v->verify_table();
+            msg->table_msg(1); /* Display choice menu of tables to user */
+            table = v->verify_table(); /* Receive input and verify it */
             /* parse_add() leads the user through the add process */
             command_vec = parse_add(table);
             /* send the string to be added to the database */
@@ -74,33 +74,35 @@ void presentation::choice()
             msg->sort_msg(3);
             order_of_sort = v->verify_order_of_sort();
             command_vec.push_back(order_of_sort);
-
+            /* Send the command to the domain layer */
             d->handle_commands(command_vec);
+
+            /* Printing results from the domain layer */
             if (table == "1")
             {
-                msg->print_results_person(d);
+                msg->print_results_person(d); /* List of Scientists*/
             }
             else if (table == "2")
             {
-                msg->print_results_comp(d);
+                msg->print_results_comp(d); /* List of Computers */
             }
 
         }
         else if(inputs == "search")
         {
             string search_column, search_query;
-            msg->table_msg(3);
-            table = v->verify_table();
+            msg->table_msg(3); /* Display a choice menu for the user */
+            table = v->verify_table(); /* Receive table choice and verify it */
             command_vec.push_back(table);
             /* Ask the user what he wants to search in */
-            if (table == "1")
+            if (table == "1") /* Computer Scientists */
             {
-                msg->search_msg(1);
+                msg->search_msg(1); /* List columns that are available to search in*/
                 search_column = v->verify_search_column_person();
             }
-            else
+            else /* Computers */
             {
-                msg->search_msg(2);
+                msg->search_msg(2); /* List columns that are available to search in */
                 search_column = v->verify_search_column_comp();
             }
             command_vec.push_back(search_column);
@@ -111,29 +113,32 @@ void presentation::choice()
             getline(cin, search_query);
             command_vec.push_back(search_query);
             
-            // Ask the user what he wants to sort by
-            if (table == "1")
+            /* Ask the user what he wants to sort the results from search by */
+            if (table == "1") /* Computer Scientists */
             {
                 msg->sort_msg(1);
                 sort_by = v->verify_sort_column_person();
                 command_vec.push_back(sort_by);
             }
-            else
+            else /* Computers */
             {
                 msg->sort_msg(2);
                 sort_by = v->verify_sort_column_comp();
                 command_vec.push_back(sort_by);
             }
             
-            // Ask in what order the information should be sorted
+            /* Ask in what order the information should be sorted (a/d) */
             msg->sort_msg(3);
             order_of_sort = v->verify_order_of_sort();
             command_vec.push_back(order_of_sort);
             
+            /* Send vector of command to the domain layer to be handled */
             d->handle_commands(command_vec);
             
+            /* Display results */
             if (table == "1")
             {
+                /* If the size of the vector of persons is 0, then no results were found */
                 if (d->get_p_vec().size() == 0)
                 {
                     cout << "No results found." << endl;
@@ -145,6 +150,7 @@ void presentation::choice()
             }
             else
             {
+                /* If the size of the vector of computers is 0, then no results were found */
                 if (d->get_c_vec().size() == 0)
                 {
                     cout << "No results found." << endl;
@@ -351,6 +357,7 @@ vector<string> presentation::remove_entry()
 vector<int> presentation::get_ids(int c)
 {
     vector<int> ids;
+    /* Push all Ids of Computer Scientist in the database into a vector */
     if (c == 1)
     {
         for (unsigned int i = 0; i < d->get_p_vec().size(); i++)
@@ -358,6 +365,7 @@ vector<int> presentation::get_ids(int c)
             ids.push_back(d->get_p_vec()[i]->get_id());
         }
     }
+    /* Push all Ids of Computers in the database into a vector */
     else
     {
         for (unsigned int i = 0; i < d->get_c_vec().size(); i++)
@@ -383,7 +391,7 @@ string presentation::verify_id(string table, int input)
     }
     while (id_not_ok)
     {
-        for (int i = 0; i < ids.size(); i++)
+        for (unsigned int i = 0; i < ids.size(); i++)
         {
             if (input == ids[i])
             {
@@ -400,6 +408,7 @@ string presentation::verify_id(string table, int input)
     return int_to_string(input);
 }
 
+/* Returns the integer variable number as a string using stringstream*/
 string presentation::int_to_string(int number)
 {
     stringstream ss;

@@ -5,6 +5,7 @@ Display::Display()
     prompt = "> ";
 }
 
+/* Leads the user through the process of adding a Scientist to the database */
 void Display::add_msg_person(int c)
 {
     if (c == 1)
@@ -34,6 +35,7 @@ void Display::add_msg_person(int c)
 
 }
 
+/* Leads the user through the process of adding a computer to the database */
 void Display::add_msg_computer(int c)
 {
     if (c == 1)
@@ -60,8 +62,10 @@ void Display::add_msg_computer(int c)
     }
 }
 
+
 void Display::sort_msg(int c)
 {
+    /* Sort choice menu if sorting persons */
     if (c == 1)
     {
         cout << "What do you want to sort by? choose one of the following:" << endl
@@ -72,6 +76,7 @@ void Display::sort_msg(int c)
             << "(5) Profession" << endl
             << prompt;
     }
+    /* Sort choice menu if sorting computers */
     else if (c == 2)
     {
         cout << "What do you want to sort by? choose one of the following:" << endl
@@ -81,6 +86,7 @@ void Display::sort_msg(int c)
             << "(4) Built" << endl
             << prompt;
     }
+    /* Ask if order shoud be ascending or descending */
     else if (c == 3)
     {
         cout << "Do you want the information sorted in ascending or descending order? Choose a/d: " << endl << prompt;
@@ -89,6 +95,7 @@ void Display::sort_msg(int c)
 
 void Display::search_msg(int c)
 {
+    /* If searching in persons */
     if (c == 1)
     {
         cout << "Choose what information you want to search for:" << endl
@@ -100,6 +107,7 @@ void Display::search_msg(int c)
              << "(6) Description" << endl
              << prompt;
     }
+    /* If searching in computers */
     else if (c == 2)
     {
         cout << "Choose what information you want to search for:" << endl
@@ -114,6 +122,7 @@ void Display::search_msg(int c)
 
 void Display::table_msg(int c)
 {
+    /* Choice menu for adding to the database */
     if (c == 1)
     {
         cout << "Do you want to add a Computer Scientists, Computer or "
@@ -124,6 +133,7 @@ void Display::table_msg(int c)
              << prompt;
         return;
     }
+    /* Choice menu for listing from the database */
     if (c == 2)
     {
         cout << "Do you want a list of Computer Scientists, Computers or "
@@ -133,6 +143,7 @@ void Display::table_msg(int c)
              << "(3) Connection between Computer Scientists and Computers" << endl
              << prompt;
     }
+    /* Choice menu for searching in the database */
     if (c == 3)
     {
         cout << "Do you want to search in the database of Computer Scientists or Computers?" << endl;
@@ -140,6 +151,7 @@ void Display::table_msg(int c)
              << "(2) Computers" << endl
              << prompt;
     }
+    /* Choice menu for removing from the database */
     if (c == 4)
     {
         cout << "Do you want to remove a Computer Scientist, a Computer or "
@@ -153,16 +165,19 @@ void Display::table_msg(int c)
 
 void Display::remove_msg(string c)
 {
+    /* If the user wants to remove a Computer Scientist */
     if (c == "1")
     {
         cout << "Below is a list of all Computer Scientists in the database,"
              << " please enter the Id of the Scientist you want to remove: " << endl;
     }
+    /* If the user wants to remove a Computer */
     else if (c == "2")
     {
         cout << "Below is a list of all Computers in the database,"
              << " please enter the Id of the Computer you want to remove: " << endl;
     }
+    /* If the user wants to remove a connection between a Scientist and a Computer */
     else
     {
         cout << "Below is a list of all connections between Scientists and Computers "
@@ -172,25 +187,29 @@ void Display::remove_msg(string c)
 
 void Display::connection_msg(string c)
 {
+    /* Ask the user first if he wants to see all computers connected to a Scientist or
+     * all Scientist connected to a computer */
     if (c == "0")
     {
         cout << "Do you want connections associated with a Computer Scientist or a Computer?" << endl
          << "(1) Computer Scientist" << endl
          << "(2) Computer" << endl;
     }
+    /* If he chooses to see all computer connected to a certain Scientist */
     else if (c == "1")
     {
         cout << "Here below is a list of all Computer Scientists in the database, "
              << "please choose the Id of the Scientist you want to view connections: " << endl;
     }
+    /* If the chooses to see all persons connected to a certain Computer */
     else if (c == "2")
     {
         cout << "Here below is a list of all Computer in the database, "
              << "please choose the Id of the Computer you want to view connections: " << endl;
     }
-
 }
 
+/* Help menu that displays all commands */
 void Display::help_msg()
 {
     cout << endl;
@@ -205,6 +224,7 @@ void Display::help_msg()
          << "-------------------------------------------------" << endl;
 }
 
+/* Displays the result when using search/list and more commands for Persons*/
 void Display::print_results_person(Domain *d)
 {
     for (unsigned int i = 0; i < d->get_p_vec().size(); i++)
@@ -212,7 +232,7 @@ void Display::print_results_person(Domain *d)
         cout << "Name: " << d->get_p_vec()[i]->get_name() << endl
              << "Born: " << d->get_p_vec()[i]->get_birthyear() << endl;
 
-        // If the person is still alive the function displays NA
+        /* If the person is still alive the function displays NA */
         if (d->get_p_vec()[i]->get_deathyear() == 0)
         {
             cout << "Died: NA" << endl;
@@ -222,6 +242,7 @@ void Display::print_results_person(Domain *d)
             cout << "Died: " << d->get_p_vec()[i]->get_deathyear() << endl;
         }
 
+        /* Displays Male, Female or Other instead of m, f or o */
         if (d->get_p_vec()[i]->get_sex() == "m")
         {
             cout << "Sex: Male" << endl;
@@ -234,12 +255,14 @@ void Display::print_results_person(Domain *d)
         {
             cout << "Sex: Other" << endl;
         }
+
         cout << "Profession: " << d->get_p_vec()[i]->get_profession() << endl
              << "Description: " << d->get_p_vec()[i]->get_description() << endl << endl;
     }
 
 }
 
+/* Displays the result when using search/list and more commands for Computers*/
 void Display::print_results_comp(Domain *d)
 {
     for (unsigned int i = 0; i < d->get_c_vec().size(); i++)
@@ -270,8 +293,11 @@ void Display::print_results_comp(Domain *d)
     }
 }
 
+/* Display all Ids and Names of Persons and Computers in the database,
+ * Used when removing, adding a connection and more */
 void Display::display_valid_id(string c, Domain *d)
 {
+    /* Display all Ids and Names of Persons in the database */
     if (c == "1")
     {
         for (unsigned int i = 0; i < d->get_p_vec().size(); i++)
@@ -280,6 +306,7 @@ void Display::display_valid_id(string c, Domain *d)
                  << "Name: " << d->get_p_vec()[i]->get_name() << endl;
         }
     }
+    /* Display all Ids and Names of Computers in the database */
     else
     {
         for (unsigned int i = 0; i < d->get_c_vec().size(); i++)

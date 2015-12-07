@@ -6,9 +6,12 @@
 
 using namespace std;
 
+/* Class that displays messages to the user */
+
 class Display
 {
 private:
+    /* Prompt to separate input from output on the screen */
     string prompt;
 
 public:
@@ -35,7 +38,6 @@ public:
     void print_results_comp(Domain *d);
     /* Displays every Person and its id, or Computer and its id that is in the database */
     void display_valid_id(string c, Domain *d);
-
 };
 
 #endif // DISPLAY_H

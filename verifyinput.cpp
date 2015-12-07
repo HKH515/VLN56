@@ -6,6 +6,7 @@ VerifyInput::VerifyInput()
     prompt = "> ";
 }
 
+/* Name cannot be empty and can not have anything else than alphabet letters */
 string VerifyInput::verify_name()
 {
     cin.ignore();
@@ -19,6 +20,7 @@ string VerifyInput::verify_name()
     return input;
 }
 
+/* Profession can not be empty and can not have anything else than alphabet letters */
 string VerifyInput::verify_profession()
 {
     getline(cin, input);
@@ -31,6 +33,7 @@ string VerifyInput::verify_profession()
     return input;
 }
 
+/* Birthyear needs to be a number >= 0 */
 string VerifyInput::verify_birthyear()
 {
     cin >> input;
@@ -42,6 +45,7 @@ string VerifyInput::verify_birthyear()
     return input;
 }
 
+/* Deathyear needs to be a number >= 0 and can not be prior to birthyear */
 string VerifyInput::verify_deathyear(string birthy)
 {
     cin >> input;
@@ -51,7 +55,6 @@ string VerifyInput::verify_deathyear(string birthy)
         cin >> input;
     }
     /* It is not allowed to add year of death that is before year of birth */
-
     while (stoi(input) < stoi(birthy))
     {
         while (!check_if_year(input))
@@ -73,6 +76,7 @@ string VerifyInput::verify_deathyear(string birthy)
     return input;
 }
 
+/* Sex needs to be m (male), f (female) or o (other) */
 string VerifyInput::verify_sex()
 {
     cin >> input;
@@ -84,6 +88,7 @@ string VerifyInput::verify_sex()
     return input;
 }
 
+/* Built can only be 0 (for No) or 1 (for Yes) */
 string VerifyInput::verify_built()
 {
     cin >> input;
@@ -95,10 +100,11 @@ string VerifyInput::verify_built()
     return input;
 }
 
+/* There are only three available tables in the database, 1 = Persons, 2 = Computers
+ * 3 = Connections */
 string VerifyInput::verify_table()
 {
     cin >> input;
-
     while(input != "1" && input != "2" && input != "3")
     {
         cout << "Invalid input, please choose again" << endl;
@@ -107,6 +113,7 @@ string VerifyInput::verify_table()
     return input;
 }
 
+/* Possible to sort persons by any column except description */
 string VerifyInput::verify_sort_column_person()
 {
     cin >> input;
@@ -117,7 +124,7 @@ string VerifyInput::verify_sort_column_person()
     }
     return input;
 }
-
+/* Possible to sort Computers by any column except description */
 string VerifyInput::verify_sort_column_comp()
 {
     cin >> input;
@@ -130,6 +137,7 @@ string VerifyInput::verify_sort_column_comp()
 
 }
 
+/* Only allowed to sort ascending (a) or descending (d) */
 string VerifyInput::verify_order_of_sort()
 {
     cin >> input;
@@ -141,6 +149,7 @@ string VerifyInput::verify_order_of_sort()
     return input;
 }
 
+/* Possible to search in all six columns for Persons */
 string VerifyInput::verify_search_column_person()
 {
     cin >> input;
@@ -152,6 +161,7 @@ string VerifyInput::verify_search_column_person()
     return input;
 }
 
+/* Possible to search in all 5 columns for Computers */
 string VerifyInput::verify_search_column_comp()
 {
     cin >> input;
@@ -163,6 +173,8 @@ string VerifyInput::verify_search_column_comp()
     return input;
 }
 
+/* Only allowed to choose either to enter a persons Id and get all computers connected
+ * to that person (1), or a computer Id and get all persons connected to that computer (2) */
 string VerifyInput::verify_connections_column()
 {
     cin >> input;
@@ -174,11 +186,12 @@ string VerifyInput::verify_connections_column()
     return input;
 }
 
+/* Only allowed digits */
 bool VerifyInput::check_if_year(string input)
 {
     for (unsigned int i = 0; i < input.length(); i++)
     {
-        // check if each character of the string is a digit, if not return false
+        /* Check if each character of the string is a digit, if not return false */
         if (!isdigit(input.c_str()[i]))
         {
             return false;
@@ -187,6 +200,7 @@ bool VerifyInput::check_if_year(string input)
     return true;
 }
 
+/* Only allowed alphabetic letters and spaces */
 bool VerifyInput::check_if_word(string input)
 {
     for (unsigned int i = 0; i < input.length(); i++)

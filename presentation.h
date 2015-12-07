@@ -16,10 +16,11 @@
 class presentation
 {
 private:
+    /* Buisness layer */
     Domain *d;
-    /* Class that verifies every input that the user inserts */
+    /* Class that receives and verifies every input that the user inserts */
     VerifyInput *v;
-    /* Class that display messages to the screen */
+    /* Class that displays messages to the screen */
     Display *msg;
     /* Prompt to separate input from output on the screen */
     string prompt;
@@ -31,10 +32,11 @@ private:
     vector<string> remove_entry();
     /* Gets all Computer scientists or Computers */
     void get_list(string table);
+    /* Get all Ids in the database of either Computer Scientists or Computers */
     vector<int> get_ids(int c);
 
     string verify_id(string table, int input);
-
+    /* Changes the argument from int to string */
     string int_to_string(int number);
 
 public:
@@ -42,7 +44,7 @@ public:
     presentation();
     /* Destructor */
     ~presentation();
-
+    /* Returns the domain variable */
     Domain* get_domain();
     /* Handles the commands and communicates with the domain-layer */
     void choice();

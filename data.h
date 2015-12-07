@@ -31,7 +31,9 @@ class Data
         vector<string> create_combined_string_vector(vector<string> sourceVec, string delim); //Returns a modified pipe vector that has all appropriate computers in the last index of the vector
         vector<string> parse_delim_string(string delimString, char delim);
         vector<string> from_db_to_vector(string table, QSqlQuery queryObj);
-        vector<string> query(string table, string column, string dataQuery, string sortColumn, string order); //Fetches all lines matching query
+        vector<string> query(string table, string column, string dataQuery, string sortColumn, string order); //Fetches all lines matching query (substring search)
+        vector<string> query_exact(string table, string column, string dataQuery, string sortColumn, string order); //Fetches all lines matching query exactly
+
         vector<string> read_entries(string table, string column, string order); //Returns a vector of all entries
         void write(string table, string line); //Creates an entry in the database
         void remove(string table, string column, string id); //Deletes an entry in the database

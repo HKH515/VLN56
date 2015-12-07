@@ -238,6 +238,22 @@ vector<string> Data::from_db_to_vector(string table, QSqlQuery queryObj)
     return result;
 }
 
+vector<string> Data::query_exact(string table, string column, string dataQuery, string sortColumn, string order)
+{
+    vector<string> queryVect;
+    vector<string> resultVect;
+    db.open();
+    QSqlQuery queryObj(db);
+    string queryString = "SELECT * FROM " + table + " WHERE " + sortColumn + " ='" + dataQuery + "' ORDER BY " + column + ";";
+    QString qQueryString(queryString.c_str());
+    queryObj.exec(qQueryString);
+    queryVect = from_db_to_vector(table, queryObj);
+    db.close();
+
+    return queryVect;
+}
+
+
 vector<string> Data::query(string table, string column, string dataQuery, string sortColumn, string order)
 {
     vector<string> queryVect;

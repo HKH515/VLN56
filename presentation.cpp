@@ -21,7 +21,8 @@ Domain* presentation::get_domain()
 
 void presentation::choice()
 {
-    string inputs, order_of_sort, sort_by, table;
+    string inputs, order_of_sort, sort_by, table, kind_of_id;
+    int id;
     vector<string> command_vec;
     cin >> inputs;
     
@@ -58,23 +59,20 @@ void presentation::choice()
             {
                 /* Ask the user what he wants to sort by */
                 msg->sort_msg(1);
-                cin >> sort_by;
-                /* check if the user's choice is valid */
-                sort_by = v->verify_sort_column_person(sort_by);
+                /* Receive input and check if the user's choice is valid */
+                sort_by = v->verify_sort_column_person();
                 command_vec.push_back(sort_by);
             }
             else /* Table of Computers */
             {
                 msg->sort_msg(2);
-                cin >> sort_by;
-                sort_by = v->verify_sort_column_comp(sort_by);
+                sort_by = v->verify_sort_column_comp();
                 command_vec.push_back(sort_by);
             }
             
             /* Ask in what order the information should be sorted */
             msg->sort_msg(3);
-            cin >> order_of_sort;
-            order_of_sort = v->verify_order_of_sort(order_of_sort);
+            order_of_sort = v->verify_order_of_sort();
             command_vec.push_back(order_of_sort);
 
             d->handle_commands(command_vec);
@@ -98,14 +96,12 @@ void presentation::choice()
             if (table == "1")
             {
                 msg->search_msg(1);
-                cin >> search_column;
-                search_column = v->verify_search_column_person(search_column);
+                search_column = v->verify_search_column_person();
             }
             else
             {
                 msg->search_msg(2);
-                cin >> search_column;
-                search_column = v->verify_search_column_comp(search_column);
+                search_column = v->verify_search_column_comp();
             }
             command_vec.push_back(search_column);
             
@@ -119,22 +115,19 @@ void presentation::choice()
             if (table == "1")
             {
                 msg->sort_msg(1);
-                cin >> sort_by;
-                sort_by = v->verify_sort_column_person(sort_by);
+                sort_by = v->verify_sort_column_person();
                 command_vec.push_back(sort_by);
             }
             else
             {
                 msg->sort_msg(2);
-                cin >> sort_by;
-                sort_by = v->verify_sort_column_comp(sort_by);
+                sort_by = v->verify_sort_column_comp();
                 command_vec.push_back(sort_by);
             }
             
             // Ask in what order the information should be sorted
             msg->sort_msg(3);
-            cin >> order_of_sort;
-            order_of_sort = v->verify_order_of_sort(order_of_sort);
+            order_of_sort = v->verify_order_of_sort();
             command_vec.push_back(order_of_sort);
             
             d->handle_commands(command_vec);
@@ -168,6 +161,34 @@ void presentation::choice()
             d->handle_commands(command_vec);
 
         }
+        else if (inputs == "connections")
+        {
+            msg->connection_msg("0");
+            kind_of_id = v->verify_connections_column();
+            command_vec.push_back(kind_of_id);
+            msg->connection_msg(kind_of_id);
+            get_list(kind_of_id);
+            cin >> id;
+            string valid_id;
+            valid_id = verify_id(kind_of_id, id);
+            command_vec.push_back(valid_id);
+            for (int i = 0; i < command_vec.size(); i++)
+            {
+                cout << command_vec[i] << endl;
+            }
+            d->handle_commands(command_vec);
+            if (kind_of_id == "1")
+            {
+                cout << "The computers connected to the person with Id = " << id << " are: " << endl;
+                msg->print_results_comp(d);
+            }
+            else
+            {
+                cout << "The persons connected to the computer with Id = " << id << " are: " << endl;
+                msg->print_results_person(d);
+            }
+        }
+
         else if (inputs == "help")
         {
             msg->help_msg();
@@ -288,7 +309,6 @@ vector<string> presentation::add_connection()
     list_vec.push_back(p_id);
     list_vec.push_back(c_id);
     return list_vec;
-
 }
 
 void presentation::get_list(string table)
@@ -322,6 +342,7 @@ vector<string> presentation::remove_entry()
     vector<string> rem;
     msg->table_msg(4);
     string table = v->verify_table();
+    msg->remove_msg(table);
     get_list(table);
     rem.push_back("remove");
     rem.push_back(table);
@@ -380,8 +401,13 @@ string presentation::verify_id(string table, int input)
             cin >> input;
         }
     }
+    return int_to_string(input);
+}
+
+string presentation::int_to_string(int number)
+{
     stringstream ss;
-    ss << input;
+    ss << number;
     string value = ss.str();
     return value;
 }

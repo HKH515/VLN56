@@ -35,6 +35,8 @@ private:
 
     string verify_id(string table, int input);
 
+    string int_to_string(int number);
+
 public:
     /* Constructor */
     presentation();

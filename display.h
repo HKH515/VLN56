@@ -23,6 +23,10 @@ public:
     void search_msg(int c);
     /* Displays a choice menu for tables in the database */
     void table_msg(int c);
+    /* Displays instruction for user to remove something from the database */
+    void remove_msg(string c);
+    /* Displays a choice menu for displaying connections */
+    void connection_msg(string c);
     /* Displays help message */
     void help_msg();
     /* Displays the search result or the list of all entries in the Persons table*/

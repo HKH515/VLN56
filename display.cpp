@@ -50,7 +50,9 @@ void Display::add_msg_computer(int c)
     }
     else if (c == 4)
     {
-        cout << "Was the computer built? 0 for No, 1 for Yes " << endl << prompt;
+        cout << "Was the computer built?" << endl
+             << "0 for No " << endl
+             << "1 for Yes " << endl << prompt;
     }
     else if (c == 5)
     {
@@ -141,25 +143,68 @@ void Display::table_msg(int c)
     }
     if (c == 4)
     {
-        cout << "Do you want to remove a Computer Scientist or a Computer?" << endl;
+        cout << "Do you want to remove a Computer Scientist, a Computer or "
+             << "a connection between a Computer Scientist and a Computer?" << endl;
         cout << "(1) Computer Scientist" << endl
              << "(2) Computer" << endl
+             << "(3) Connection between a Computer Scientist and a Computer" << endl
              << prompt;
 
     }
 }
 
+void Display::remove_msg(string c)
+{
+    if (c == "1")
+    {
+        cout << "Below is a list of all Computer Scientists in the database,"
+             << " please enter the Id of the Scientist you want to remove: " << endl;
+    }
+    else if (c == "2")
+    {
+        cout << "Below is a list of all Computers in the database,"
+             << " please enter the Id of the Computer you want to remove: " << endl;
+    }
+    else
+    {
+        cout << "Below is a list of all connections between Scientists and Computers "
+             << "in the database. Please choose first the Id of the connection you want to remove: " << endl;
+    }
+}
+
+void Display::connection_msg(string c)
+{
+    if (c == "0")
+    {
+        cout << "Do you want connections associated with a Computer Scientist or a Computer?" << endl
+         << "(1) Computer Scientist" << endl
+         << "(2) Computer" << endl;
+    }
+    else if (c == "1")
+    {
+        cout << "Here below is a list of all Computer Scientists in the database, "
+             << "please choose the Id of the Scientist you want to view connections: " << endl;
+    }
+    else if (c == "2")
+    {
+        cout << "Here below is a list of all Computer in the database, "
+             << "please choose the Id of the Computer you want to view connections: " << endl;
+    }
+
+}
+
 void Display::help_msg()
 {
     cout << endl;
-    cout << "-------------------------------------------------" << endl;
-    cout << "add: Add to the database" << endl;
-    cout << "search: Search the list for preferred information" << endl;
-    cout << "list: Display the whole list in preferred order" << endl;
-    cout << "remove: Remove an entry in the database" << endl;
-    cout << "exit: Close the program" << endl;
-    cout << "help: Displays this screen" << endl;
-    cout << "-------------------------------------------------" << endl;
+    cout << "-------------------------------------------------" << endl
+         << "add: Add to the database" << endl
+         << "search: Search the list for preferred information" << endl
+         << "list: Display the whole list in preferred order" << endl
+         << "remove: Remove an entry in the database" << endl
+         << "connections: View specific connections" << endl
+         << "exit: Close the program" << endl
+         << "help: Displays this screen" << endl
+         << "-------------------------------------------------" << endl;
 }
 
 void Display::print_results_person(Domain *d)
@@ -223,7 +268,7 @@ void Display::print_results_comp(Domain *d)
             cout << "Built: No" << endl;
         }
 
-        cout << "Description: " << d->get_c_vec()[i]->get_description() << endl;
+        cout << "Description: " << d->get_c_vec()[i]->get_description() << endl << endl;
     }
 }
 

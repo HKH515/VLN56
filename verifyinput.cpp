@@ -4,19 +4,10 @@ VerifyInput::VerifyInput()
 {
     input = "";
     prompt = "> ";
-    //d = new Domain();
 }
-
-VerifyInput::~VerifyInput()
-{
-    //delete d;
-}
-
-/* Error checking functions*/
 
 string VerifyInput::verify_name()
 {
-    string input;
     cin.ignore();
     getline(cin, input);
     while (input.length() == 0 || !check_if_word(input))
@@ -30,7 +21,6 @@ string VerifyInput::verify_name()
 
 string VerifyInput::verify_profession()
 {
-    string input;
     getline(cin, input);
     while (input.length() == 0 || !check_if_word(input))
     {
@@ -43,7 +33,6 @@ string VerifyInput::verify_profession()
 
 string VerifyInput::verify_birthyear()
 {
-    string input;
     cin >> input;
     while (!check_if_year(input))
     {
@@ -55,7 +44,6 @@ string VerifyInput::verify_birthyear()
 
 string VerifyInput::verify_deathyear(string birthy)
 {
-    string input;
     cin >> input;
     while (!check_if_year(input))
     {
@@ -87,7 +75,6 @@ string VerifyInput::verify_deathyear(string birthy)
 
 string VerifyInput::verify_sex()
 {
-    string input;
     cin >> input;
     while (input != "m" && input != "f" && input != "o")
     {
@@ -99,7 +86,6 @@ string VerifyInput::verify_sex()
 
 string VerifyInput::verify_built()
 {
-    string input;
     cin >> input;
     while (input != "0" && input != "1")
     {
@@ -111,67 +97,81 @@ string VerifyInput::verify_built()
 
 string VerifyInput::verify_table()
 {
-    string table;
-    cin >> table;
+    cin >> input;
 
-    while(table != "1" && table != "2" && table != "3")
+    while(input != "1" && input != "2" && input != "3")
     {
         cout << "Invalid input, please choose again" << endl;
-        cin >> table;
+        cin >> input;
     }
-    return table;
+    return input;
 }
 
-string VerifyInput::verify_sort_column_person(string sort_by)
+string VerifyInput::verify_sort_column_person()
 {
-    while ( (sort_by != "1") && (sort_by != "2") && (sort_by != "3") && (sort_by != "4") && (sort_by != "5"))
+    cin >> input;
+    while ( (input != "1") && (input != "2") && (input != "3") && (input != "4") && (input != "5"))
     {
         cout << "This is not a valid choice, please choose again: " << endl << prompt;
-        cin >> sort_by;
+        cin >> input;
     }
-    return sort_by;
+    return input;
 }
 
-string VerifyInput::verify_sort_column_comp(string sort_by)
+string VerifyInput::verify_sort_column_comp()
 {
-    while ( (sort_by != "1") && (sort_by != "2") && (sort_by != "3") && (sort_by != "4"))
+    cin >> input;
+    while ( (input != "1") && (input != "2") && (input != "3") && (input != "4"))
     {
         cout << "This is not a valid choice, please choose again: " << endl << prompt;
-        cin >> sort_by;
+        cin >> input;
     }
-    return sort_by;
+    return input;
 
 }
 
-string VerifyInput::verify_order_of_sort(string order)
+string VerifyInput::verify_order_of_sort()
 {
-    while (order != "a" && order != "d")
+    cin >> input;
+    while (input != "a" && input != "d")
     {
         cout << "Invalid input! Enter a or d: "<< endl << prompt;
-        cin >> order;
+        cin >> input;
     }
-    return order;
+    return input;
 }
 
-string VerifyInput::verify_search_column_person(string column)
+string VerifyInput::verify_search_column_person()
 {
-    while (column != "1" && column != "2" && column != "3" && column!= "4" && column!= "5" && column!= "6")
+    cin >> input;
+    while (input != "1" && input != "2" && input != "3" && input != "4" && input != "5" && input != "6")
     {
         cout << "This is not a valid choice, please choose again: " << endl << prompt;
-        cin >> column;
+        cin >> input;
     }
-    return column;
+    return input;
 }
 
-string VerifyInput::verify_search_column_comp(string column)
+string VerifyInput::verify_search_column_comp()
 {
-    while (column != "1" && column != "2" && column != "3" && column!= "4" && column!= "5")
+    cin >> input;
+    while (input != "1" && input != "2" && input != "3" && input != "4" && input != "5")
     {
         cout << "This is not a valid choice, please choose again: " << endl << prompt;
-        cin >> column;
+        cin >> input;
     }
-    return column;
+    return input;
+}
 
+string VerifyInput::verify_connections_column()
+{
+    cin >> input;
+    while (input != "1" && input != "2")
+    {
+        cout << "This is not a valid choice, please choose again: " << endl << prompt;
+        cin >> input;
+    }
+    return input;
 }
 
 bool VerifyInput::check_if_year(string input)

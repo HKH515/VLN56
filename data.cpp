@@ -30,23 +30,12 @@ QString Data::get_file()
 void Data::write(string table, string line)
 {
     vector<string> fields = parse_delim_string(line, '|');
-    cout << "field no. 0 is" << fields[0];
-    for (int i = 0; i < fields.size(); i++)
-    {
-        cout << fields[i] << endl;
-    }
     db.open();
-
-
     QSqlQuery queryObj(db);
     string queryString;
-    cout << "table: " << table << endl;
-    cout << "line: " << line << endl;
     if (table == "persons")
     {
-        cout << "inside wadfsadf";
         queryString = "INSERT INTO 'persons' (name, profession, description, birthyear, deathyear, sex) values('" + fields[0] + "', '" + fields[1] + "', '" + fields[2] + "', '" + fields[3] + "', '" + fields[4] + "', '" + fields[5] + "');";
-
 
     }
     else if (table == "computers")
@@ -58,11 +47,9 @@ void Data::write(string table, string line)
     {
         queryString = "INSERT INTO 'connections' (ID_computers, ID_persons) values('" + fields[0] + "', '" + fields[1] + "');";
     }
-    cout << queryString << endl;
 
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
-    qDebug() << queryObj.lastError() << endl;
     db.close();
 }
 
@@ -125,7 +112,6 @@ vector<string> Data::create_combined_string_vector(vector<string> sourceVec, str
 
             for (int h = results.size()-1; h > 0; h--)
             {
-                cout << "j: " << j << ", h: " << h << endl;
                 string resultTmpName1 = parse_delim_string(results[j], '|')[1];
                 string resultTmpName2 = parse_delim_string(results[h], '|')[1];
 
@@ -152,7 +138,6 @@ vector<string> Data::create_combined_string_vector(vector<string> sourceVec, str
                 }
              }
             cleanedResults.push_back(longestComputerField);
-            cout << cleanedResults.size() << endl;
         }
         return cleanedResults;
     }
@@ -176,17 +161,9 @@ vector<string> Data::read_entries(string table, string column, string order) {
     QSqlQuery queryObj(db);
 
     queryString = "SELECT * from " + table + " ORDER BY " + column + " " + order;
-
-    cout << queryString << endl;
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
-    qDebug() << queryObj.lastError() << endl;
     queryVect = from_db_to_vector(table, queryObj);
-    for (int i = 0; i < queryVect.size(); i++)
-    {
-        cout << queryVect[i] << endl;
-    }
-    cout << queryVect.size() << endl;
     db.close();
 
     return queryVect;
@@ -199,11 +176,8 @@ void Data::remove(string table, string column, string id)
     db.open();
     QSqlQuery queryObj(db);
     queryString = "DELETE from " + table + " WHERE " + column + "=" + id;
-
-    cout << queryString << endl;
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
-    qDebug() << queryObj.lastError() << endl;
     db.close();
 
 }
@@ -271,10 +245,8 @@ vector<string> Data::query(string table, string column, string dataQuery, string
     db.open();
     QSqlQuery queryObj(db);
     string queryString = "SELECT * FROM " + table + " WHERE " + sortColumn + " LIKE '%" + dataQuery + "%' ORDER BY " + column + ";";
-    cout << queryString << endl;
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
-    qDebug() << queryObj.lastError() << endl;
     queryVect = from_db_to_vector(table, queryObj);
     db.close();
 

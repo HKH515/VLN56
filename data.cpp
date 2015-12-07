@@ -239,6 +239,48 @@ vector<string> Data::from_db_to_vector(string table, QSqlQuery queryObj)
     return result;
 }
 
+vector<string> Data::get_conn_all_computers()
+{
+    vector<string> queryVect;
+    string queryString;
+    if (db.open())
+    {
+
+    }
+    QSqlQuery queryObj(db);
+
+    queryString = "SELECT computers.* FROM persons INNER JOIN connections ON ID_computers INNER JOIN computers ON computers.ID = connections.ID_computers WHERE connections.ID_persons = persons.ID ORDER BY persons.name";
+
+    QString qQueryString(queryString.c_str());
+    queryObj.exec(qQueryString);
+    queryVect = from_db_to_vector("computers", queryObj);
+    db.close();
+
+    return queryVect;
+
+}
+
+vector<string> Data::get_conn_all_persons()
+{
+    vector<string> queryVect;
+    string queryString;
+    if (db.open())
+    {
+
+    }
+    QSqlQuery queryObj(db);
+
+    queryString = "SELECT persons.* FROM persons INNER JOIN connections ON ID_computers INNER JOIN computers ON computers.ID = connections.ID_computers WHERE connections.ID_persons = persons.ID ORDER BY persons.name";
+
+    QString qQueryString(queryString.c_str());
+    queryObj.exec(qQueryString);
+    queryVect = from_db_to_vector("persons", queryObj);
+    db.close();
+
+    return queryVect;
+
+}
+
 vector<string> Data::get_conn_assoc_with_person(string personId)
 {
     vector<string> queryVect;

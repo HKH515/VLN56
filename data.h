@@ -35,7 +35,8 @@ class Data
         vector<string> query_exact(string table, string column, string dataQuery, string sortColumn, string order); //Fetches all lines matching query exactly
         vector<string> get_conn_assoc_with_computer(string computerId);
         vector<string> get_conn_assoc_with_person(string personId);
-
+        vector<string> get_conn_all_computers();
+        vector<string> get_conn_all_persons();
         vector<string> read_entries(string table, string column, string order); //Returns a vector of all entries
         void write(string table, string line); //Creates an entry in the database
         void remove(string table, string column, string id); //Deletes an entry in the database

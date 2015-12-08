@@ -19,15 +19,11 @@ private:
     string description;
     string profession; // Mathematician, Physicist, bioligist, computer scientist
     int id;
-    vector<string> comp_associated;
     
 public:
     /* Constructor */
     Person();
 
-    void push_back_vec(string s);
-    unsigned long size_of_vec();
-    
     /* Set functions */
     void set_name(string n);
     void set_birthyear(int y);
@@ -45,16 +41,7 @@ public:
     string get_description();
     string get_profession();
     int get_id();
-    vector<string> get_vec();
 
-    /* Overloading operators */
-    friend bool operator < (const Person &lhs, const Person &rhs);
-    friend bool operator > (const Person &lhs, const Person &rhs);
-    friend ostream& operator <<(ostream& outs, const Person &p);
-    void operator = (const Person& rhs);
-
-    /* copy constructor */
-    Person(const Person& copyme);
 };
 
 #endif // PERSON_H

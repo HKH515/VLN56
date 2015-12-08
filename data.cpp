@@ -276,7 +276,7 @@ vector<string> Data::query_exact(string table, string column, string dataQuery, 
     vector<string> resultVect;
     db.open();
     QSqlQuery queryObj(db);
-    string queryString = "SELECT * FROM " + table + " WHERE " + column + " ='" + dataQuery + "' ORDER BY " + column + " " + order;
+    string queryString = "SELECT * FROM " + table + " WHERE " + column + " ='" + dataQuery + "' ORDER BY " + sortColumn + " " + order;
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
     queryVect = from_db_to_vector(table, queryObj);
@@ -292,7 +292,7 @@ vector<string> Data::query(string table, string column, string dataQuery, string
     vector<string> resultVect;
     db.open();
     QSqlQuery queryObj(db);
-    string queryString = "SELECT * FROM " + table + " WHERE " + column + " LIKE '%" + dataQuery + "%' ORDER BY " + column + " " + order;
+    string queryString = "SELECT * FROM " + table + " WHERE " + column + " LIKE '%" + dataQuery + "%' ORDER BY " + sortColumn + " " + order;
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
     queryVect = from_db_to_vector(table, queryObj);

@@ -14,7 +14,6 @@ string VerifyInput::verify_name()
     while (input.length() == 0 || !check_if_word(input))
     {
         cout << "Invalid input, please write the name of the person: "<< endl << prompt;
-        cin.ignore();
         getline(cin, input);
     }
     return input;
@@ -27,7 +26,6 @@ string VerifyInput::verify_profession()
     while (input.length() == 0 || !check_if_word(input))
     {
         cout << "Invalid input, please write the profession of the person: "<< endl << prompt;
-        cin.ignore();
         getline(cin, input);
     }
     return input;
@@ -94,7 +92,7 @@ string VerifyInput::verify_built()
     cin >> input;
     while (input != "0" && input != "1")
     {
-        cout << "Invalid input, please write 0 (false) or 1(true): " << endl << prompt;
+        cout << "Invalid input, please write 0 (Not built) or 1 (Built): " << endl << prompt;
         cin >> input;
     }
     return input;

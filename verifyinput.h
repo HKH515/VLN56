@@ -20,7 +20,7 @@ public:
     VerifyInput();
     /* Functions that receive input from user and verifies it */
 
-    /* Verifies the inputted name when adding a Person */
+    /* Receives the inputted name when adding a Person and verifes it*/
     string verify_name();
     /* Verfies profession when adding a Person */
     string verify_profession();

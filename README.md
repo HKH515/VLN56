@@ -1,8 +1,8 @@
 #VLN56
 
-This is our project for the course VLN1, we are group 56
+This is our project for the course VLN1, we are group 56!
 
-The program is simply put a client for interacting with a database, the theme of this database are computer scientists.
+The program, simply put, is a client for interacting with a database. The theme of this database are computer scientists and computers.
 
 ##Commands
 
@@ -19,8 +19,6 @@ The following commands are currently implemented into the program
 | help          | Displays all commands                      | Does not apply                                                                     |
 
 Please keep in mind that the program sorts it's data case sensitively. i.e. given the data set Bob, jack, Susan, susan; it will be sorted Bob, Susan, jack, susan or susan, jack, Susan, Bob.
-
-Even though the list is sorted by something other than Name, it will still be ordered alphabetically internally.
 
 Commands are not case sensitive unless they are used with parameters. For example ADD Jack Sparrow does not work, but ADD works.
 
@@ -110,7 +108,7 @@ Please write some description of the computer, can be left blank if desired:
 > Super Mario Brothers is the best ever!
 ```
 ###search
-The search command can be used to search for entries in the database. When searching the user needs to specify in what column he wants to search. Results can be sorted by name, birth year, death year or sex.
+The search command can be used to search for entries in the database. When searching the user needs to specify in what column he wants to search. Results for computer scientists can be sorted by name, birth year, death year, sex or profession and for computers they can be sorted by name, construction Year, type or year built.
 
 Syntax:
 ```

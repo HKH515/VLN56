@@ -411,7 +411,6 @@ string presentation::verify_id(string table)
             cin >> input;
         }
     }
-    //return int_to_string(input);
     return input;
 }
 

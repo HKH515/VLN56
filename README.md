@@ -155,16 +155,19 @@ search COLUMN_ID SUBSTRING
 Example
 
 ```
-> search 3 American
-Choose what information you want to search for:
+> search 1 6 American
+Do you want to search in the database of Computer Scientists or Computers?
+(1) Computer Scientists
+(2) Computers
+> Choose what information you want to search for:
 (1) Name
-(2) Profession
-(3) Description
-(4) Birthyear
-(5) Deathyear
-(6) Sex
-What substring do you want to search for?
-What do you want to sort by? choose one of the following:
+(2) Birthyear
+(3) Deathyear
+(4) Sex
+(5) Profession
+(6) Description
+> What substring do you want to search for?
+> What do you want to sort by? choose one of the following:
 (1) Name
 (2) Birthyear
 (3) Deathyear
@@ -177,27 +180,30 @@ Do you want the information sorted in ascending or descending order? choose a/d
 
 ```
 search
+Do you want to search in the database of Computer Scientists or Computers?
+(1) Computer Scientists
+(2) Computers
+> 2
 Choose what information you want to search for:
 (1) Name
-(2) Profession
-(3) Description
-(4) Birthyear
-(5) Deathyear
-(6) Sex
+(2) Construction Year
+(3) Type
+(4) Built
+(5) Description
 > 3
 What substring do you want to search for?
-American
+> Mechanical
 What do you want to sort by? choose one of the following:
 (1) Name
-(2) Birthyear
-(3) Deathyear
-(4) Sex
-(5) Profession
-> 1
+(2) Construction Year
+(3) Type
+(4) Built
+> 2
 Do you want the information sorted in ascending or descending order? choose a/d
 > a
 ```
-Both of these examples should display all entries that include an "American" in the description field sorted alphabetically by name in ascending order.
+The first example should display all entries that include "American" in the description field sorted alphabetically by name in ascending order. 
+The second example should display all entries that include "Mechanical" in the description field sorted alphabetically by name in ascending order.
 
 ###help
 This command prints out a list of commands

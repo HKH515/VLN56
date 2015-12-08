@@ -215,7 +215,55 @@ Do you want the information sorted in ascending or descending order? Choose a/d
 > a
 
 ```
+###remove
+This command let's the user remove a computer scientist, a computer or a connection.
+```
+> remove
+Do you want to remove a Computer Scientist, a Computer or a connection between a Computer Scientist and a Computer?
+(1) Computer Scientist
+(2) Computer
+(3) Connection between a Computer Scientist and a Computer
+> 1
+Below is a list of all Computer Scientists in the database, please enter the Id of the Scientist you want to remove: 
+> Id: 1	Name: Ada Lovelace
+Id: 2	Name: Grace Hopper
+Id: 3	Name: Anita Borg
+Id: 4	Name: Shafi Goldwasser 
+Id: 5	Name: Frances E. Allen 
+Id: 6	Name: Erna Schneider 
+Id: 7	Name: Charles Babbage 
+Id: 8	Name: Alan Turing 
+Id: 9	Name: Linus Torvalds
+Id: 10	Name: Edsger W. Dijkstra 
+Id: 11	Name: Jon Von Neuman 
+Id: 12	Name: Claude Shannon
+Id: 13	Name: Donald Knuth
+Id: 15	Name: Leia Organa
+> 15
+```
+This example shows how we remove Leia Organa from the list.
 
+
+###connection
+This command is found under the list command and allows the user to see the connection between a computer scientist and a computer
+
+```
+> list
+Do you want a list of Computer Scientists, Computers or connections between Computer Scientist and a Computer?
+(1) Computer Scientists
+(2) Computers
+(3) Connection between Computer Scientists and Computers
+> 3
+	   Persons 				                     Computers
+Id: 1	Name: Ada Lovelace		    Id: 1	Name: Difference Engine
+Id: 8	Name: Alan Turing 		    Id: 6	Name: The Turing Machine
+Id: 7	Name: Charles Babbage 		Id: 1	Name: Difference Engine
+Id: 7	Name: Charles Babbage 		Id: 2	Name: Analytical Engine
+Id: 2	Name: Grace Hopper		    Id: 5	Name: Harvard Mark I
+Id: 11	Name: Jon Von Neuman 		Id: 5	Name: Harvard Mark I
+Id: 11	Name: Jon Von Neuman 		Id: 3	Name: Eniac
+
+```
 ###help
 This command prints out a list of commands
 

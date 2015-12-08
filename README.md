@@ -27,13 +27,20 @@ Commands are not case sensitive unless they are used with parameters. For exampl
 ##Syntax
 Throughout this section a COLUMN_ID will be referenced.  To better understand what COLUMN_ID is, please refer to the table below: 
 
-|   ID     |   Data      |   |   ID   |         Data      |
-| -------- | ----------- |    ----------------------------
-| 1        | Name        |   |   1    |       Name        |
-| 2        | Birthyear   |   |   2    | Construction year |
-| 3        | Deathyear   |   |   3    |      Type         |
-| 4        | Sex         |   |   4    |      Built        |
+|   ID     |   Data      |
+| -------- | ----------- |
+| 1        | Name        |
+| 2        | Birthyear   |
+| 3        | Deathyear   |
+| 4        | Sex         | 
 | 5        | Profession  |
+
+|   ID   |         Data      |
+ ----------------------------
+|   1    |       Name        |
+|   2    | Construction year |
+|   3    |      Type         |
+|   4    |      Built        |
 
 
 

@@ -178,10 +178,18 @@ void Display::remove_msg(string c)
              << " please enter the Id of the Computer you want to remove: " << endl;
     }
     /* If the user wants to remove a connection between a Scientist and a Computer */
-    else
+    else if (c == "3")
     {
         cout << "Below is a list of all connections between Scientists and Computers "
              << "in the database. Please choose first the Id of the connection you want to remove: " << endl;
+    }
+    else if (c == "4")
+    {
+        cout << "Please enter the Id of the Computer Scientist you want to remove: " << endl;
+    }
+    else if ( c == "5")
+    {
+        cout << "Please enter the Id of the Computer you want to remove: " << endl;
     }
 }
 
@@ -295,13 +303,11 @@ void Display::print_results_comp(Domain *d)
 
 void Display::print_connections_list(Domain *d)
 {
-    cout << "Komin inn í print_conn" << endl;
-    cout << "Size of p_vec" << d->get_p_vec().size() << endl;
-    cout << "Size of c_vec" << d->get_c_vec().size() << endl;
+    cout << "\t Persons \t\t\t\t Computers" << endl;
     for (unsigned int i = 0; i < d->get_p_vec().size(); i++)
     {
         cout << "Id: " << d->get_p_vec()[i]->get_id() << "\t"
-             << "Name: " << d->get_p_vec()[i]->get_name() << "\t"
+             << "Name: " << d->get_p_vec()[i]->get_name() << "\t\t"
              << "Id: " << d->get_c_vec()[i]->get_id() << "\t"
              << "Name: " << d->get_c_vec()[i]->get_name() << endl;
     }

@@ -33,9 +33,9 @@ private:
     /* Gets all Computer scientists or Computers */
     void get_list(string table);
     /* Get all Ids in the database of either Computer Scientists or Computers */
-    vector<int> get_ids(int c);
+    vector<string> get_ids(int c);
 
-    string verify_id(string table, int input);
+    string verify_id(string table);
     /* Changes the argument from int to string */
     string int_to_string(int number);
 

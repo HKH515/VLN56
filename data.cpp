@@ -256,6 +256,10 @@ vector<string> Data::get_conn_all_computers()
     queryVect = from_db_to_vector("computers", queryObj);
     db.close();
 
+    for (unsigned int i = 0; i < queryVect.size(); i++)
+    {
+        cout << "queryVec[i]" << queryVect[i] << endl;
+    }
     return queryVect;
 
 }
@@ -276,7 +280,10 @@ vector<string> Data::get_conn_all_persons()
     queryObj.exec(qQueryString);
     queryVect = from_db_to_vector("persons", queryObj);
     db.close();
-
+    for (unsigned int i = 0; i < queryVect.size(); i++)
+    {
+        cout << "queryVec[i]" << queryVect[i] << endl;
+    }
     return queryVect;
 
 }

@@ -280,6 +280,7 @@ vector<string> Data::get_conn_all_persons()
 
 }
 
+//Returns all computers that have a persons associated with them
 vector<string> Data::get_conn_assoc_with_person(string personId)
 {
     vector<string> queryVect;
@@ -299,22 +300,7 @@ vector<string> Data::get_conn_assoc_with_person(string personId)
 
 }
 
-void Data::remove_conn(string personId, string computerId)
-{
-    string queryString;
-    if (db.open())
-    {
-        QSqlQuery queryObj(db);
-
-        queryString = "DELETE from connections WHERE ID_computers=" + computerId + " AND ID_persons=" + personId + ";";
-
-        QString qQueryString(queryString.c_str());
-        queryObj.exec(qQueryString);
-        db.close();
-    }
-
-}
-
+//Returns all persons that have a persons associated with them
 vector<string> Data::get_conn_assoc_with_computer(string computerId)
 {
     vector<string> queryVect;
@@ -336,13 +322,31 @@ vector<string> Data::get_conn_assoc_with_computer(string computerId)
 
 }
 
+//Removes a specified entry in the connections table
+void Data::remove_conn(string personId, string computerId)
+{
+    string queryString;
+    if (db.open())
+    {
+        QSqlQuery queryObj(db);
+
+        queryString = "DELETE from connections WHERE ID_computers=" + computerId + " AND ID_persons=" + personId + ";";
+
+        QString qQueryString(queryString.c_str());
+        queryObj.exec(qQueryString);
+        db.close();
+    }
+
+}
+
+//Search a specified table
 vector<string> Data::query_exact(string table, string column, string dataQuery, string sortColumn, string order)
 {
     vector<string> queryVect;
     vector<string> resultVect;
     db.open();
     QSqlQuery queryObj(db);
-    string queryString = "SELECT * FROM " + table + " WHERE " + sortColumn + " ='" + dataQuery + "' ORDER BY " + column + ";";
+    string queryString = "SELECT * FROM " + table + " WHERE " + column + " ='" + dataQuery + "' ORDER BY " + column + ";";
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
     queryVect = from_db_to_vector(table, queryObj);
@@ -351,14 +355,15 @@ vector<string> Data::query_exact(string table, string column, string dataQuery, 
     return queryVect;
 }
 
-
+//Search a specified table with substring
 vector<string> Data::query(string table, string column, string dataQuery, string sortColumn, string order)
 {
     vector<string> queryVect;
     vector<string> resultVect;
     db.open();
     QSqlQuery queryObj(db);
-    string queryString = "SELECT * FROM " + table + " WHERE " + sortColumn + " LIKE '%" + dataQuery + "%' ORDER BY " + column + ";";
+    string queryString = "SELECT * FROM " + table + " WHERE " + column + " LIKE '%" + dataQuery + "%' ORDER BY " + column + ";";
+    cout << queryString << endl;
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
     queryVect = from_db_to_vector(table, queryObj);

@@ -34,7 +34,7 @@ void Display::add_msg_person(int c)
     }
     else if (c == 7)
     {
-        cout << "This person has been added to the database" << endl;
+        cout << "This person has been added to the database." << endl;
     }
 
 }
@@ -66,7 +66,7 @@ void Display::add_msg_computer(int c)
     }
     else if (c == 6)
     {
-        cout << "This computer has been added to the database" << endl;
+        cout << "This computer has been added to the database." << endl;
     }
 }
 
@@ -86,7 +86,7 @@ void Display::add_msg_connection(int c)
     }
     else if (c == 3)
     {
-        cout << "This connection has been added to the database" << endl;
+        cout << "This connection has been added to the database." << endl;
     }
 }
 
@@ -197,22 +197,19 @@ void Display::remove_msg(string c)
     if (c == "1")
     {
         cout << "Below is a list of all Computer Scientists in the database,"
-             << " please enter the Id of the Scientist you want to remove: " << endl
-             << prompt;
+             << " please enter the Id of the Scientist you want to remove: " << endl;
     }
     /* If the user wants to remove a Computer */
     else if (c == "2")
     {
         cout << "Below is a list of all Computers in the database,"
-             << " please enter the Id of the Computer you want to remove: " << endl
-             << prompt;
+             << " please enter the Id of the Computer you want to remove: " << endl;
     }
     /* If the user wants to remove a connection between a Scientist and a Computer */
     else if (c == "3")
     {
         cout << "Below is a list of all connections between Scientists and Computers "
-             << "in the database. Please choose first the Id of the connection you want to remove: " << endl
-             << prompt;
+             << "in the database. Please choose first the Id of the connection you want to remove: " << endl;
     }
     else if (c == "4")
     {
@@ -226,15 +223,15 @@ void Display::remove_msg(string c)
     }
     else if (c == "6")
     {
-        cout << "This person has been removed from the database" << endl;
+        cout << "This person has been removed from the database." << endl;
     }
     else if (c == "7")
     {
-        cout << "This computer has been removed from the database" << endl;
+        cout << "This computer has been removed from the database." << endl;
     }
     else if (c == "8")
     {
-        cout << "This connection has been removed from the database" << endl;
+        cout << "This connection has been removed from the database." << endl;
     }
 }
 
@@ -341,7 +338,7 @@ void Display::print_results_comp(Domain *d, int c)
     {
         if (c == 1)
         {
-        cout << "There are no Computers in the database, use add command to add a Computer. " << endl;
+            cout << "There are no Computers in the database, use add command to add a Computer. " << endl;
         }
         else if (c == 2)
         {

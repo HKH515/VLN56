@@ -15,7 +15,8 @@ vector<Computer*> Domain::get_c_vec()
     return c_vec;
 }
 
-Domain::~Domain() {
+Domain::~Domain()
+{
     delete data;
     for (unsigned int i = 0; i < p_vec.size(); i++)
     {
@@ -109,16 +110,19 @@ void Domain::parse_query_vector(vector<string> v)
     }
 }
 
-string Domain::parse_add_command(vector<string> v) {
+string Domain::parse_add_command(vector<string> v)
+{
     string st = " "; /* add space in front of the string */
-    for (unsigned int i = 2; i < v.size(); i++) { /* add | after each vector element */
+    for (unsigned int i = 2; i < v.size(); i++)
+    {
         st += v[i];
-        st += "|";
+        st += "|"; /* add | after each vector element */
     }
     return st;
 }
 
-void Domain::handle_commands(vector<string> v) {
+void Domain::handle_commands(vector<string> v)
+{
     free_vector_memory(); /* Clear vector for new query */
     string command = v[0];
 
@@ -317,11 +321,11 @@ string Domain::get_column(string s, string table)
 /* This function lets the user enter specific key words and returns correct results */
 string Domain::check_type_query(string v)
 {
-    if (v == "1" || v == "built" || v == "yes")
+    if (v == "1" || v == "built" || v == "yes" || v == "Built" || v == "Yes")
     {
         return "1";
     }
-    else if (v == "0" || v == "not built" || v == "no")
+    else if (v == "0" || v == "not built" || v == "no" || v == "Not Built" || v == "No")
     {
         return "0";
     }
@@ -334,15 +338,15 @@ string Domain::check_type_query(string v)
 /* This function lets the user enter specific key words and returns correct results */
 string Domain::check_sex_query(string v)
 {
-    if (v == "m" || v == "male")
+    if (v == "m" || v == "male" || v == "Male")
     {
         return "m";
     }
-    else if (v == "f" || v == "femal")
+    else if (v == "f" || v == "female" || v == "Female")
     {
         return "f";
     }
-    else if (v == "o" || v == "other")
+    else if (v == "o" || v == "other" || v == "Other")
     {
         return "o";
     }

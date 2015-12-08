@@ -71,7 +71,7 @@ void presentation::choice()
                 sort_by = v->verify_sort_column_comp();
                 command_vec.push_back(sort_by);
             }
-           /* The user can choose ascending/descending when listing Persons or Computer
+            /* The user can choose ascending/descending when listing Persons or Computer
             * Not when listing connections, then they will always appear in ascending order after Name */
             if (table != "3")
             {
@@ -218,7 +218,8 @@ void presentation::choice()
     exit(0);
 }
 
-vector <string> presentation::parse_add(string choice) {
+vector <string> presentation::parse_add(string choice)
+{
     string input;
     vector<string> add_vec;
     add_vec.clear();
@@ -266,12 +267,12 @@ vector <string> presentation::parse_add(string choice) {
         add_vec.push_back("2");
         cout << "You will be asked to enter information about the computer." << endl;
 
-        /* Receiving and verifying name of Computer */
+        /* Receiving and verifying name of Computer (Only alphabetic letters and space allowed)*/
         msg->add_msg_computer(1);
         input = v->verify_name();
         add_vec.push_back(input);
 
-        /* Receiving and verifying construction year of Computer */
+        /* Receiving and verifying construction year of Computer, 0 if not known */
         msg->add_msg_computer(2);
         input = v->verify_birthyear();
         add_vec.push_back(input);
@@ -365,10 +366,17 @@ vector<string> presentation::remove_entry()
     rem.push_back("remove");
     rem.push_back(table);
     /* If he wants to remove either a Scientist or a Computer */
-    if (table != "3")
+    if (table == "1")
+    {
+        rem.push_back("7"); /*  7 means Id in domain class */
+        rem.push_back(valid_id(table)); /* Receives input */
+        msg->remove_msg("6");
+    }
+    else if (table == "2")
     {
         rem.push_back("7");
         rem.push_back(valid_id(table));
+        msg->remove_msg("7");
     }
     /* If he wants to remove a Connection */
     else
@@ -377,6 +385,7 @@ vector<string> presentation::remove_entry()
         rem.push_back(valid_id("1"));
         msg->remove_msg("5");
         rem.push_back(valid_id("2"));
+        msg->remove_msg("8");
     }
     return rem;
 }

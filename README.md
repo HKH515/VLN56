@@ -15,7 +15,7 @@ The following commands are currently implemented into the program
 | list   | Displays all entries found in the database | Ascending/Descending by any field (except Description field, does not apply there) |
 | remove  | Remove an entry in the database | Does not apply |
 | connections | View specific connections| Does not apply |
-| exit | Close the program | Does not apply |
+| exit | Closes the program | Does not apply |
 | help          | Displays all commands                      | Does not apply                                                                     |
 
 Please keep in mind that the program sorts it's data case sensitively. i.e. given the data set Bob, jack, Susan, susan; it will be sorted Bob, Susan, jack, susan or susan, jack, Susan, Bob.
@@ -229,7 +229,7 @@ search: Search the list for preferred information
 list: Display the whole list in preferred order
 remove: Remove an entry in the database
 connections: View specific connections
-exit: Close the program
+exit: Closes the program
 help: Displays this screen
 -------------------------------------------------
 

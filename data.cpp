@@ -306,7 +306,7 @@ void Data::remove_conn(string personId, string computerId)
     {
         QSqlQuery queryObj(db);
 
-        queryString = "DELETE from connections WHERE ID_computers=" + computerId " AND ID_persons=" + personId + ";";
+        queryString = "DELETE from connections WHERE ID_computers=" + computerId + " AND ID_persons=" + personId + ";";
 
         QString qQueryString(queryString.c_str());
         queryObj.exec(qQueryString);

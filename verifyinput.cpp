@@ -94,7 +94,7 @@ string VerifyInput::verify_built()
     cin >> input;
     while (input != "0" && input != "1")
     {
-        cout << "Invalid input, please write 0 (false) or 1(true): " << endl << prompt;
+        cout << "Invalid input, please write 0 (Not built) or 1 (Built): " << endl << prompt;
         cin >> input;
     }
     return input;

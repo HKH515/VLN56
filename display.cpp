@@ -44,7 +44,7 @@ void Display::add_msg_computer(int c)
     }
     else if (c == 2)
     {
-        cout << "Please enter the construction year of the computer: " << endl << prompt;
+        cout << "Please enter the construction year of the computer, if not known insert 0: " << endl << prompt;
     }
     else if (c == 3)
     {
@@ -53,8 +53,8 @@ void Display::add_msg_computer(int c)
     else if (c == 4)
     {
         cout << "Was the computer built?" << endl
-             << "0 for No " << endl
-             << "1 for Yes " << endl << prompt;
+             << "(0) No " << endl
+             << "(1) Yes " << endl << prompt;
     }
     else if (c == 5)
     {
@@ -200,8 +200,8 @@ void Display::connection_msg(string c)
     if (c == "0")
     {
         cout << "Do you want connections associated with a Computer Scientist or a Computer?" << endl
-         << "(1) Computer Scientist" << endl
-         << "(2) Computer" << endl;
+             << "(1) Computer Scientist" << endl
+             << "(2) Computer" << endl;
     }
     /* If he chooses to see all computer connected to a certain Scientist */
     else if (c == "1")
@@ -235,37 +235,45 @@ void Display::help_msg()
 /* Displays the result when using search/list and more commands for Persons*/
 void Display::print_results_person(Domain *d)
 {
-    for (unsigned int i = 0; i < d->get_p_vec().size(); i++)
+    /* If there are no Scientists in the database, display message */
+    if (d->get_p_vec().size() == 0)
     {
-        cout << "Name: " << d->get_p_vec()[i]->get_name() << endl
-             << "Born: " << d->get_p_vec()[i]->get_birthyear() << endl;
+        cout << "There are no Scientists in database, use add command to add a Scientist." << endl;
+    }
+    else
+    {
+        for (unsigned int i = 0; i < d->get_p_vec().size(); i++)
+        {
+            cout << "Name: " << d->get_p_vec()[i]->get_name() << endl
+                 << "Born: " << d->get_p_vec()[i]->get_birthyear() << endl;
 
-        /* If the person is still alive the function displays NA */
-        if (d->get_p_vec()[i]->get_deathyear() == 0)
-        {
-            cout << "Died: NA" << endl;
-        }
-        else
-        {
-            cout << "Died: " << d->get_p_vec()[i]->get_deathyear() << endl;
-        }
+            /* If the person is still alive the function displays NA */
+            if (d->get_p_vec()[i]->get_deathyear() == 0)
+            {
+                cout << "Died: NA" << endl;
+            }
+            else
+            {
+                cout << "Died: " << d->get_p_vec()[i]->get_deathyear() << endl;
+            }
 
-        /* Displays Male, Female or Other instead of m, f or o */
-        if (d->get_p_vec()[i]->get_sex() == "m")
-        {
-            cout << "Sex: Male" << endl;
-        }
-        else if (d->get_p_vec()[i]->get_sex() == "f")
-        {
-            cout << "Sex: Female" << endl;
-        }
-        else if (d->get_p_vec()[i]->get_sex() == "o")
-        {
-            cout << "Sex: Other" << endl;
-        }
+            /* Displays Male, Female or Other instead of m, f or o */
+            if (d->get_p_vec()[i]->get_sex() == "m")
+            {
+                cout << "Sex: Male" << endl;
+            }
+            else if (d->get_p_vec()[i]->get_sex() == "f")
+            {
+                cout << "Sex: Female" << endl;
+            }
+            else if (d->get_p_vec()[i]->get_sex() == "o")
+            {
+                cout << "Sex: Other" << endl;
+            }
 
-        cout << "Profession: " << d->get_p_vec()[i]->get_profession() << endl
-             << "Description: " << d->get_p_vec()[i]->get_description() << endl << endl;
+            cout << "Profession: " << d->get_p_vec()[i]->get_profession() << endl
+                 << "Description: " << d->get_p_vec()[i]->get_description() << endl << endl;
+        }
     }
 
 }
@@ -273,11 +281,15 @@ void Display::print_results_person(Domain *d)
 /* Displays the result when using search/list and more commands for Computers*/
 void Display::print_results_comp(Domain *d)
 {
+    if (d->get_c_vec().size() == 0)
+    {
+        cout << "There are no Computers in the database, use add command to add a Computer. " << endl;
+    }
     for (unsigned int i = 0; i < d->get_c_vec().size(); i++)
     {
         cout << "Name: " << d->get_c_vec()[i]->get_name() << endl;
 
-        if (d->get_c_vec()[i]->get_construction_year() == 0) // eða NULL?
+        if (d->get_c_vec()[i]->get_construction_year() == 0)
         {
             cout << "Building Year: Not known" << endl;
         }
@@ -303,13 +315,20 @@ void Display::print_results_comp(Domain *d)
 
 void Display::print_connections_list(Domain *d)
 {
-    cout << "\t Persons \t\t\t\t Computers" << endl;
-    for (unsigned int i = 0; i < d->get_p_vec().size(); i++)
+    if (d->get_c_vec().size() == 0 && d->get_p_vec().size() == 0)
     {
-        cout << "Id: " << d->get_p_vec()[i]->get_id() << "\t"
-             << "Name: " << d->get_p_vec()[i]->get_name() << "\t\t"
-             << "Id: " << d->get_c_vec()[i]->get_id() << "\t"
-             << "Name: " << d->get_c_vec()[i]->get_name() << endl;
+        cout << "There are no Connections in the database, use add command to add a Connection." << endl;
+    }
+    else
+    {
+        cout << "\t Persons \t\t\t\t Computers" << endl;
+        for (unsigned int i = 0; i < d->get_p_vec().size(); i++)
+        {
+            cout << "Id: " << d->get_p_vec()[i]->get_id() << "\t"
+                 << "Name: " << d->get_p_vec()[i]->get_name() << "\t\t"
+                 << "Id: " << d->get_c_vec()[i]->get_id() << "\t"
+                 << "Name: " << d->get_c_vec()[i]->get_name() << endl;
+        }
     }
 }
 

@@ -121,15 +121,25 @@ would display all entries sorted alphabetically by name in ascending order.
 
 ```
 > list
+Do you want a list of Computer Scientists, Computers or connections between Computer Scientist and a Computer?
+(1) Computer Scientists
+(2) Computers
+(3) Connection between Computer Scientists and Computers
+
+> 1
 What do you want to sort by? choose one of the following:
 (1) Name
 (2) Birthyear
 (3) Deathyear
 (4) Sex
 (5) Profession
+
 > 1
-Do you want the information sorted in ascending or descending order? choose a/d
+
+Do you want the information sorted in ascending or descending order? Choose a/d
+
 > a
+
 ```
 ###search
 The search command can be used to search for entries in the database. When searching the user needs to specify in what column he wants to search. Results can be sorted by name, birth year, death year or sex.

@@ -32,6 +32,10 @@ void Display::add_msg_person(int c)
     {
         cout << "Enter the sex of the person: " << endl << "(m) Male\n" << "(f) Female\n" << "(o) Other" << endl << prompt;
     }
+    else if (c == 7)
+    {
+        cout << "This person has been added to the database" << endl;
+    }
 
 }
 
@@ -59,6 +63,10 @@ void Display::add_msg_computer(int c)
     else if (c == 5)
     {
         cout << "Please write some description of the computer, can be left blank if desired: " << endl << prompt;
+    }
+    else if (c == 6)
+    {
+        cout << "This computer has been added to the database" << endl;
     }
 }
 
@@ -196,6 +204,18 @@ void Display::remove_msg(string c)
         cout << "Please enter the Id of the Computer you want to remove: " << endl
              << prompt;
     }
+    else if (c == "6")
+    {
+        cout << "This person has been removed from the database" << endl;
+    }
+    else if (c == "7")
+    {
+        cout << "This computer has been removed from the database" << endl;
+    }
+    else if (c == "8")
+    {
+        cout << "This connection has been removed from the database" << endl;
+    }
 }
 
 void Display::connection_msg(string c)
@@ -219,6 +239,10 @@ void Display::connection_msg(string c)
     {
         cout << "Here below is a list of all Computer in the database, "
              << "please choose the Id of the Computer you want to view connections: " << endl;
+    }
+    else if (c == "3")
+    {
+        cout << "This connection has been added to the database" << endl;
     }
 }
 

@@ -200,9 +200,18 @@ void Domain::search(vector<string> v)
 void Domain::remove_entry(vector<string> v)
 {
     string table = get_table(v[1]);
-    string query_column = get_column(v[2], table);
-    string rem_id = v[3];
-    data->remove(table, query_column, rem_id);
+    if (table == "connections")
+    {
+        string pers_id = v[2];
+        string comp_id = v[3];
+        data->remove_conn(pers_id, comp_id);
+    }
+    else
+    {
+        string query_column = get_column(v[2], table);
+        string rem_id = v[3];
+        data->remove(table, query_column, rem_id);
+    }
 }
 
 string Domain::get_table(string s)

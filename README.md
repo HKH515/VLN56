@@ -87,7 +87,7 @@ Enter the sex of the person:
 ```
 or
  
-for adding a computer
+adding a computer
 ```
 > add
 Do you want to add a Computer Scientists, Computer or connection between Computer Scientist and a Computer?
@@ -111,7 +111,7 @@ Please write some description of the computer, can be left blank if desired:
 ```
 or
 
-for adding a connection
+adding a connection
 ```
 > add
 Do you want to add a Computer Scientists, Computer or connection between Computer Scientist and a Computer?

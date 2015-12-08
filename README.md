@@ -48,9 +48,10 @@ For Computers:
 
 ###add
 The add command can be used with a parameter to denote the name of the entry, or you can run the command interactively. 
-The user is not able to write digits or special characters (like the icelandic letters þ, í, æ) in the name of the person. 
+The user is not able to write digits or special characters (like the icelandic letters þ, í, æ) in the name of the person or the computer. 
 The only field allowed to be empty is the description field.
 The death year cannot be prior to the birth year. But there are no other constrains for the years except they cannot be < 0, i.e. it is allowed to fill in birth year and death year that have not passed. If the person is still alive, the programs asks the user to put in 0 as death year and prints out NA when printing out results.
+If the construction year of a Computer is not known, the user can enter 0.
 
 
 Syntax:
@@ -336,4 +337,13 @@ This command exits the program
 Syntax:
 ```
 > exit
+```
+
+###Extra
+```
+- Remove Computer Scientists, Computers and Connections
+- Searching in all fields
+- Searching for a substring
+- Sort after all information (except description)
+- View specific connections (All computers connected to a certain Scientist or all Scientists connected to a certain Computer)
 ```

@@ -257,6 +257,8 @@ Do you want the information sorted in ascending or descending order? Choose a/d
 ```
 ###remove
 This command can be used to remove a computer scientist, a computer or a connection.
+
+Example
 ```
 > remove
 Do you want to remove a Computer Scientist, a Computer or a connection between a Computer Scientist and a Computer?
@@ -286,6 +288,8 @@ This example shows how the user can remove Leia Organa from the list.
 
 ###connection
 This command is found under the list command and can be used to see the connection between a computer scientist/computer and a computer/computer scientist.
+
+Example
 
 ```
 > list

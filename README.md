@@ -14,8 +14,8 @@ The following commands are currently implemented into the program
 | search        | Searches the database                      | Ascending/Descending by any field (except Description field, does not apply there) |
 | list   | Displays all entries found in the database | Ascending/Descending by any field (except Description field, does not apply there) |
 | remove  | Remove an entry in the database | Does not apply |
-| connections | View specific connections| Does not apply |
-| exit | Closes the program | Does not apply |
+| connections | View specific connections| Ascending/Descending by any field (except Description field, does not apply there) |
+| exit | Close the program | Does not apply |
 | help          | Displays all commands                      | Does not apply                                                                     |
 
 Please keep in mind that the program sorts it's data case sensitively. i.e. given the data set Bob, jack, Susan, susan; it will be sorted Bob, Susan, jack, susan or susan, jack, Susan, Bob.
@@ -109,47 +109,6 @@ Was the computer built?
 Please write some description of the computer, can be left blank if desired: 
 > Super Mario Brothers is the best ever!
 ```
-
-###list
-The list command can be used to list all entries in the database, it can also display data sorted by name, birth year, death year or sex.
-
-Syntax:
-```
-list
-list COLUMN_ID ORDER
-```
-
-
-Example
-
-```
-> list
-```
-would display all entries sorted alphabetically by name in ascending order.
-
-```
-> list
-Do you want a list of Computer Scientists, Computers or connections between Computer Scientist and a Computer?
-(1) Computer Scientists
-(2) Computers
-(3) Connection between Computer Scientists and Computers
-
-> 1
-
-What do you want to sort by? choose one of the following:
-(1) Name
-(2) Birthyear
-(3) Deathyear
-(4) Sex
-(5) Profession
-
-> 1
-
-Do you want the information sorted in ascending or descending order? Choose a/d
-
-> a
-
-```
 ###search
 The search command can be used to search for entries in the database. When searching the user needs to specify in what column he wants to search. Results can be sorted by name, birth year, death year or sex.
 
@@ -216,6 +175,47 @@ Do you want the information sorted in ascending or descending order? choose a/d
 The first example should display all entries that include "Mechanical" in the description field sorted alphabetically by name in ascending order. 
 The second example should display all entries that include "American" in the description field sorted alphabetically by name in ascending order.
 
+###list
+The list command can be used to list all entries in the database, it can also display data sorted by name, birth year, death year or sex.
+
+Syntax:
+```
+list
+list COLUMN_ID ORDER
+```
+
+
+Example
+
+```
+> list
+```
+would display all entries sorted alphabetically by name in ascending order.
+
+```
+> list
+Do you want a list of Computer Scientists, Computers or connections between Computer Scientist and a Computer?
+(1) Computer Scientists
+(2) Computers
+(3) Connection between Computer Scientists and Computers
+
+> 1
+
+What do you want to sort by? choose one of the following:
+(1) Name
+(2) Birthyear
+(3) Deathyear
+(4) Sex
+(5) Profession
+
+> 1
+
+Do you want the information sorted in ascending or descending order? Choose a/d
+
+> a
+
+```
+
 ###help
 This command prints out a list of commands
 
@@ -229,7 +229,7 @@ search: Search the list for preferred information
 list: Display the whole list in preferred order
 remove: Remove an entry in the database
 connections: View specific connections
-exit: Closes the program
+exit: Close the program
 help: Displays this screen
 -------------------------------------------------
 

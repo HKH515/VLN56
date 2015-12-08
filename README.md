@@ -14,7 +14,7 @@ The following commands are currently implemented into the program
 | search        | Searches the database                      | Ascending/Descending by any field (except Description field, does not apply there) |
 | list   | Displays all entries found in the database | Ascending/Descending by any field (except Description field, does not apply there) |
 | remove  | Remove an entry in the database | Does not apply |
-| connections | View specific connections| Does not apply |
+| connections | View specific connections| Ascending/Descending by any field (except Description field, does not apply there) |
 | exit | Close the program | Does not apply |
 | help          | Displays all commands                      | Does not apply                                                                     |
 
@@ -109,47 +109,6 @@ Was the computer built?
 Please write some description of the computer, can be left blank if desired: 
 > Super Mario Brothers is the best ever!
 ```
-
-###list
-The list command can be used to list all entries in the database, it can also display data sorted by name, birth year, death year or sex.
-
-Syntax:
-```
-list
-list COLUMN_ID ORDER
-```
-
-
-Example
-
-```
-> list
-```
-would display all entries sorted alphabetically by name in ascending order.
-
-```
-> list
-Do you want a list of Computer Scientists, Computers or connections between Computer Scientist and a Computer?
-(1) Computer Scientists
-(2) Computers
-(3) Connection between Computer Scientists and Computers
-
-> 1
-
-What do you want to sort by? choose one of the following:
-(1) Name
-(2) Birthyear
-(3) Deathyear
-(4) Sex
-(5) Profession
-
-> 1
-
-Do you want the information sorted in ascending or descending order? Choose a/d
-
-> a
-
-```
 ###search
 The search command can be used to search for entries in the database. When searching the user needs to specify in what column he wants to search. Results can be sorted by name, birth year, death year or sex.
 
@@ -216,6 +175,95 @@ Do you want the information sorted in ascending or descending order? choose a/d
 The first example should display all entries that include "Mechanical" in the description field sorted alphabetically by name in ascending order. 
 The second example should display all entries that include "American" in the description field sorted alphabetically by name in ascending order.
 
+###list
+The list command can be used to list all entries in the database, it can also display data sorted by name, birth year, death year or sex.
+
+Syntax:
+```
+list
+list COLUMN_ID ORDER
+```
+
+
+Example
+
+```
+> list
+```
+would display all entries sorted alphabetically by name in ascending order.
+
+```
+> list
+Do you want a list of Computer Scientists, Computers or connections between Computer Scientist and a Computer?
+(1) Computer Scientists
+(2) Computers
+(3) Connection between Computer Scientists and Computers
+
+> 1
+
+What do you want to sort by? choose one of the following:
+(1) Name
+(2) Birthyear
+(3) Deathyear
+(4) Sex
+(5) Profession
+
+> 1
+
+Do you want the information sorted in ascending or descending order? Choose a/d
+
+> a
+
+```
+###remove
+This command let's the user remove a computer scientist, a computer or a connection.
+```
+> remove
+Do you want to remove a Computer Scientist, a Computer or a connection between a Computer Scientist and a Computer?
+(1) Computer Scientist
+(2) Computer
+(3) Connection between a Computer Scientist and a Computer
+> 1
+Below is a list of all Computer Scientists in the database, please enter the Id of the Scientist you want to remove: 
+> Id: 1	Name: Ada Lovelace
+Id: 2	Name: Grace Hopper
+Id: 3	Name: Anita Borg
+Id: 4	Name: Shafi Goldwasser 
+Id: 5	Name: Frances E. Allen 
+Id: 6	Name: Erna Schneider 
+Id: 7	Name: Charles Babbage 
+Id: 8	Name: Alan Turing 
+Id: 9	Name: Linus Torvalds
+Id: 10	Name: Edsger W. Dijkstra 
+Id: 11	Name: Jon Von Neuman 
+Id: 12	Name: Claude Shannon
+Id: 13	Name: Donald Knuth
+Id: 15	Name: Leia Organa
+> 15
+```
+This example shows how we remove Leia Organa from the list.
+
+
+###connection
+This command is found under the list command and allows the user to see the connection between a computer scientist and a computer
+
+```
+> list
+Do you want a list of Computer Scientists, Computers or connections between Computer Scientist and a Computer?
+(1) Computer Scientists
+(2) Computers
+(3) Connection between Computer Scientists and Computers
+> 3
+	   Persons 				                     Computers
+Id: 1	Name: Ada Lovelace		    Id: 1	Name: Difference Engine
+Id: 8	Name: Alan Turing 		    Id: 6	Name: The Turing Machine
+Id: 7	Name: Charles Babbage 		Id: 1	Name: Difference Engine
+Id: 7	Name: Charles Babbage 		Id: 2	Name: Analytical Engine
+Id: 2	Name: Grace Hopper		    Id: 5	Name: Harvard Mark I
+Id: 11	Name: Jon Von Neuman 		Id: 5	Name: Harvard Mark I
+Id: 11	Name: Jon Von Neuman 		Id: 3	Name: Eniac
+
+```
 ###help
 This command prints out a list of commands
 

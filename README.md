@@ -63,43 +63,52 @@ add
 Example
 
 ```
-> add John Appleseed
-You will be asked to enter information about the person
-Please write the name of the person:
-Please write the profession of the person:
-> Software Tester
-Please write a description of the person:
-> This may be a very detailed description.
-Please write the year that the person was born:
-> 1984
-Please write the year that the person died, if the person is still alive enter 0:
-> 2011
-Enter the sex of the person:
+> add
+Do you want to add a Computer Scientists, Computer or connection between Computer Scientist and a Computer?
+(1) Computer Scientist
+(2) Computer
+(3) Connection between Computer Scientist and a Computer
+> 1
+You will be asked to enter information about the person.
+Please write the name of the person: 
+> Leia Organa
+Please write the profession of the person: 
+> Princess
+Please write a description of the person, can be left blank if you desire: 
+> 
+Please write the year that the person was born: 
+> 32
+Please write the year that the person died, if the person is still alive enter 0: 
+> 0
+Enter the sex of the person: 
 (m) Male
 (f) Female
 (o) Other
-> m
+> f
+
 ```
 or
 
 ```
-add
-You will be asked to enter information about the person
-Please write the name of the person:
-> John Appleseed
-Please write the profession of the person:
-> Software Tester
-Please write a description of the person:
-> This is a very detailed description.
-Please write the year that the person was born:
-> 1984
-Please write the year that the person died, if the person is still alive enter 0:
-> 2011
-Enter the sex of the person:
-(m) Male
-(f) Female
-(o) Other
-> m
+> add
+Do you want to add a Computer Scientists, Computer or connection between Computer Scientist and a Computer?
+(1) Computer Scientist
+(2) Computer
+(3) Connection between Computer Scientist and a Computer
+> 2
+You will be asked to enter information about the computer.
+Please enter the name of the computer: 
+> Nintendo
+Please enter the construction year of the computer: 
+> 1980
+Please enter the type of the computer: 
+> Electronic
+Was the computer built?
+0 for No 
+1 for Yes 
+> 1
+Please write some description of the computer, can be left blank if desired: 
+> Super Mario Brothers is the best ever!
 ```
 
 ###list

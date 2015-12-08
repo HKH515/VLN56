@@ -20,6 +20,8 @@ class Data
         vector<string> internalData;
         QSqlDatabase db;
         QString dbName;
+        string connectionName;
+
 
     public:
         Data(string datafile);
@@ -27,7 +29,6 @@ class Data
         void init_db();
         void set_file(string data);
         int nth_index(string haystack, char needle, int n);
-        vector<string> create_combined_string_vector(vector<string> sourceVec, string delim); //Returns a modified pipe vector that has all appropriate computers in the last index of the vector
         vector<string> parse_delim_string(string delimString, char delim);
         vector<string> from_db_to_vector(string table, QSqlQuery queryObj);
         vector<string> query(string table, string column, string dataQuery, string sortColumn, string order); //Fetches all lines matching query (substring search)

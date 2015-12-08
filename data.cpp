@@ -1,13 +1,18 @@
 #include "data.h"
 
 Data::Data(string datafile) {
+
+    connectionName = "VLN56_connection";
+
     set_file(datafile);
     init_db();
 }
 
 void Data::init_db()
 {
-    db = QSqlDatabase::addDatabase("QSQLITE", "VLN56_connection");
+    QString qConnectionString(connectionName.c_str());
+
+    db = QSqlDatabase::addDatabase("QSQLITE", qConnectionString);
 
     db.setDatabaseName(get_file());
 
@@ -73,80 +78,6 @@ vector<string> Data::parse_delim_string(string delimString, char delim)
         results.push_back(delimString.substr(nth_index(delimString, delim, i)+1, nth_index(delimString, delim, i+1) - nth_index(delimString, delim, i)-1));
     }
     return results;
-}
-
-vector<string> Data::create_combined_string_vector(vector<string> sourceVec, string delim)
-{
-    if (sourceVec.size() > 1) //If the input is anything else than just the type of data (person or computer), parse, otherwise return empty vector
-    {
-        vector<string> results;
-        map<string, string> names;
-        for (int i = 0; i < sourceVec.size(); i++)
-        {
-            vector<string> parsedString;
-            parsedString = parse_delim_string(sourceVec[i], '|');
-            string lastComputer;
-            for (int o = 0; o < parsedString.size(); o++)
-            {
-                if (parsedString[8] != lastComputer)
-                {
-                    names[parsedString[1]] = names[parsedString[1]] + "," + parsedString[8];
-                }
-                lastComputer = parsedString[8];
-                if (o == parsedString.size()-1) //If last iteration
-                {
-                    parsedString[8] = names[parsedString[1]];
-                }
-
-
-            }
-            results.push_back(create_delim_string(parsedString, "|"));
-
-        }
-
-        vector<string> cleanedResults;
-        //cleanedResults = results;
-        for (int j = results.size()-1; j > 0; j--)
-        {
-            string longestComputerField;
-
-            for (int h = results.size()-1; h > 0; h--)
-            {
-                string resultTmpName1 = parse_delim_string(results[j], '|')[1];
-                string resultTmpName2 = parse_delim_string(results[h], '|')[1];
-
-                bool alreadyExistsInClean = false;
-                for (int a = 0; a < results.size(); a++)
-                {
-                    if (results[a] == resultTmpName1)
-                    {
-                        alreadyExistsInClean = true;
-                    }
-                }
-                if (resultTmpName1 == resultTmpName2 && !alreadyExistsInClean)
-                {
-                    int lengthOfComputerField1 = parse_delim_string(results[j], '|')[8].size();
-                    int lengthOfComputerField2 = parse_delim_string(results[h], '|')[8].size();
-                    if (lengthOfComputerField1 <= lengthOfComputerField2)
-                    {
-                        longestComputerField = results[h];
-                    }
-                    else
-                    {
-                        longestComputerField = results[j];
-                    }
-                }
-             }
-            cleanedResults.push_back(longestComputerField);
-        }
-        return cleanedResults;
-    }
-    else
-    {
-        vector<string> empty;
-        return empty;
-    }
-
 }
 
 //Returns all entries in a specified table

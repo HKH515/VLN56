@@ -8,10 +8,12 @@ presentation::presentation()
     prompt = "> ";
 }
 
+/* Free allocated memory */
 presentation::~presentation()
 {
     delete d;
     delete v;
+    delete msg;
 }
 
 Domain* presentation::get_domain()
@@ -38,8 +40,8 @@ void presentation::choice()
         
         /* Put the command into the first element of the vector */
         command_vec.push_back(inputs);
-        
-        if(inputs == "add")
+
+        if(inputs == "add")  /* Handles Add command */
         {
             msg->table_msg(1); /* Display choice menu of tables to user */
             table = v->verify_table(); /* Receive input and verify it */
@@ -48,14 +50,13 @@ void presentation::choice()
             /* send the string to be added to the database */
             d->handle_commands(command_vec);
         }
-        else if(inputs == "list")
+        else if(inputs == "list") /* Handles List command */
         {
-            /* The user needs to choose what he wants a list of */
+            /* The user needs to choose what he wants a list of, Scientists, Computers or Connections */
             msg->table_msg(2);
             table = v->verify_table();
             command_vec.push_back(table);
-            /* Table of Computer Scientists */
-            if (table == "1")
+            if (table == "1") /* Table of Computer Scientists */
             {
                 /* Ask the user what he wants to sort by */
                 msg->sort_msg(1);
@@ -92,11 +93,11 @@ void presentation::choice()
             }
             else
             {
-                msg->print_connections_list(d);
+                msg->print_connections_list(d); /* List of Connections */
             }
 
         }
-        else if(inputs == "search")
+        else if(inputs == "search") /*Handles Search command */
         {
             string search_column, search_query;
             msg->table_msg(3); /* Display a choice menu for the user */
@@ -184,7 +185,7 @@ void presentation::choice()
             get_list(kind_of_id);
             cin >> id;
             string valid_id;
-            valid_id = verify_id(kind_of_id, id);
+            valid_id = verify_id(kind_of_id);
             command_vec.push_back(valid_id);
             d->handle_commands(command_vec);
             if (kind_of_id == "1")
@@ -305,14 +306,12 @@ vector<string> presentation::add_connection()
     /* Get list of all the scientist in the database, ordered after id in ascending order */
     vector<string> list_vec;
     get_list("1");
-    cin >> input;
-    string p_id = verify_id("1", input); /* Verify that the input id is valid */
+    string p_id = verify_id("1"); /* Verify that the input id is valid */
     cout << "Below is a list of all Computer in the database, "
          << "please choose the id of the Computer you want to connect to the previously chosen Scientist."
          << endl << prompt;
     get_list("2");
-    cin >> input;
-    string c_id = verify_id("2", input); /* Verify that the input id is valid */
+    string c_id = verify_id("2"); /* Verify that the input id is valid */
     //list_vec.clear();
     list_vec.push_back("add");
     list_vec.push_back("3");
@@ -344,11 +343,17 @@ void presentation::get_list(string table)
         d->handle_commands(comm_vec);
         msg->display_valid_id("2", d); /* Display list */
     }
+    else
+    {
+        comm_vec.push_back("list");
+        comm_vec.push_back("3");
+        d->handle_commands(comm_vec);
+        msg->print_connections_list(d);
+    }
 }
 
 vector<string> presentation::remove_entry()
 {
-    int id;
     vector<string> rem;
     msg->table_msg(4);
     string table = v->verify_table();
@@ -356,21 +361,30 @@ vector<string> presentation::remove_entry()
     get_list(table);
     rem.push_back("remove");
     rem.push_back(table);
-    rem.push_back("7");
-    cin >> id;
-    rem.push_back(verify_id(table, id));
+    if (table != "3")
+    {
+        rem.push_back("7");
+        rem.push_back(verify_id(table));
+    }
+    else
+    {
+        msg->remove_msg("4");
+        rem.push_back(verify_id("1"));
+        msg->remove_msg("5");
+        rem.push_back(verify_id("2"));
+    }
     return rem;
 }
 
-vector<int> presentation::get_ids(int c)
+vector<string> presentation::get_ids(int c)
 {
-    vector<int> ids;
+    vector<string> ids;
     /* Push all Ids of Computer Scientist in the database into a vector */
     if (c == 1)
     {
         for (unsigned int i = 0; i < d->get_p_vec().size(); i++)
         {
-            ids.push_back(d->get_p_vec()[i]->get_id());
+            ids.push_back(int_to_string(d->get_p_vec()[i]->get_id()));
         }
     }
     /* Push all Ids of Computers in the database into a vector */
@@ -378,16 +392,17 @@ vector<int> presentation::get_ids(int c)
     {
         for (unsigned int i = 0; i < d->get_c_vec().size(); i++)
         {
-            ids.push_back(d->get_c_vec()[i]->get_id());
+            ids.push_back(int_to_string(d->get_c_vec()[i]->get_id()));
         }
     }
     return ids;
 }
 
-string presentation::verify_id(string table, int input)
+string presentation::verify_id(string table)
 {
     bool id_not_ok = true;
-    vector <int> ids;
+    vector <string> ids;
+    string input;
 
     if (table == "1") /*Get valid persons id */
     {
@@ -397,6 +412,7 @@ string presentation::verify_id(string table, int input)
     {
         ids = get_ids(2);
     }
+    cin >> input;
     while (id_not_ok)
     {
         for (unsigned int i = 0; i < ids.size(); i++)
@@ -413,7 +429,8 @@ string presentation::verify_id(string table, int input)
             cin >> input;
         }
     }
-    return int_to_string(input);
+    //return int_to_string(input);
+    return input;
 }
 
 /* Returns the integer variable number as a string using stringstream*/

@@ -14,7 +14,7 @@ The following commands are currently implemented into the program
 | search        | Searches the database                      | Ascending/Descending by any field (except Description field, does not apply there) |
 | list   | Displays all entries found in the database | Ascending/Descending by any field (except Description field, does not apply there) |
 | remove  | Remove an entry in the database | Does not apply |
-| connections | View specific connections| Ascending/Descending by any field (except Description field, does not apply there) |
+| connections | View specific connections| Does not apply |
 | exit | Close the program | Does not apply |
 | help          | Displays all commands                      | Does not apply                                                                     |
 

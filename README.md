@@ -26,6 +26,7 @@ Commands are not case sensitive unless they are used with parameters. For exampl
 
 ##Syntax
 Throughout this section a COLUMN_ID will be referenced.  To better understand what COLUMN_ID is, please refer to the table below: 
+For Persons:
 
 |   ID     |   Data      |
 | -------- | ----------- |
@@ -34,6 +35,8 @@ Throughout this section a COLUMN_ID will be referenced.  To better understand wh
 | 3        | Deathyear   |
 | 4        | Sex         | 
 | 5        | Profession  |
+
+For Computers:
 
 |   ID   |         Data      |
 |------- | ----------------- |

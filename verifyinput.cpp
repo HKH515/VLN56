@@ -210,4 +210,3 @@ bool VerifyInput::check_if_word(string input)
     }
     return true;
 }
-

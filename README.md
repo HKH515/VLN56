@@ -2,7 +2,7 @@
 
 This is our project for the course VLN1, we are group 56!
 
-The program, simply put, is a client for interacting with a database. The theme of this database are computer scientists and computers.
+This program, simply put, is a client for interacting with a database. The theme of this database are computer scientists and computers.
 
 ##Commands
 
@@ -147,6 +147,8 @@ Id: 9	Name: Apple II
 Id: 10	Name: Nintendo
 > 10
 ```
+In the last example, Grace Hopper was connected to Nintendo.
+
 ###search
 The search command can be used to search for entries in the database. When searching the user needs to specify in what column he wants to search. Results for computer scientists can be sorted by name, birth year, death year, sex or profession and for computers they can be sorted by name, construction Year, type or year built.
 

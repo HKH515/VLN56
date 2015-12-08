@@ -205,7 +205,6 @@ vector<string> Data::from_db_to_vector(string table, QSqlQuery queryObj)
     vector<string> result;
     while(queryObj.next())
     {
-        cout << "printing" << endl;
         vector<string> tableData;
         string currentEntry = " ";
         if (table == "persons")
@@ -363,7 +362,6 @@ vector<string> Data::query(string table, string column, string dataQuery, string
     db.open();
     QSqlQuery queryObj(db);
     string queryString = "SELECT * FROM " + table + " WHERE " + column + " LIKE '%" + dataQuery + "%' ORDER BY " + column + " " + order;
-    cout << queryString << endl;
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
     queryVect = from_db_to_vector(table, queryObj);

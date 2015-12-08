@@ -178,10 +178,18 @@ void Display::remove_msg(string c)
              << " please enter the Id of the Computer you want to remove: " << endl;
     }
     /* If the user wants to remove a connection between a Scientist and a Computer */
-    else
+    else if (c == "3")
     {
         cout << "Below is a list of all connections between Scientists and Computers "
              << "in the database. Please choose first the Id of the connection you want to remove: " << endl;
+    }
+    else if (c == "4")
+    {
+        cout << "Please enter the Id of the Computer Scientist you want to remove: " << endl;
+    }
+    else if ( c == "5")
+    {
+        cout << "Please enter the Id of the Computer you want to remove: " << endl;
     }
 }
 

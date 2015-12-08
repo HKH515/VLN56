@@ -295,13 +295,11 @@ void Display::print_results_comp(Domain *d)
 
 void Display::print_connections_list(Domain *d)
 {
-    cout << "Komin inn í print_conn" << endl;
-    cout << "Size of p_vec" << d->get_p_vec().size() << endl;
-    cout << "Size of c_vec" << d->get_c_vec().size() << endl;
+    cout << "\t Persons \t\t\t\t Computers" << endl;
     for (unsigned int i = 0; i < d->get_p_vec().size(); i++)
     {
         cout << "Id: " << d->get_p_vec()[i]->get_id() << "\t"
-             << "Name: " << d->get_p_vec()[i]->get_name() << "\t"
+             << "Name: " << d->get_p_vec()[i]->get_name() << "\t\t"
              << "Id: " << d->get_c_vec()[i]->get_id() << "\t"
              << "Name: " << d->get_c_vec()[i]->get_name() << endl;
     }

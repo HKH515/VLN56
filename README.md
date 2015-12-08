@@ -150,7 +150,7 @@ Id: 10	Name: Nintendo
 In the last example, Grace Hopper was connected to Nintendo.
 
 ###search
-The search command can be used to search for entries in the database. When searching the user needs to specify in what column he wants to search. Results for computer scientists can be sorted by name, birth year, death year, sex or profession and for computers they can be sorted by name, construction Year, type or year built.
+The search command can be used to search for entries in the database. When searching the user needs to specify in what column he wants to search. Results for computer scientists can be sorted by name, birth year, death year, sex or profession and for computers they can be sorted by name, construction year, type or year built. This command is not case sensitive.
 
 Syntax:
 ```
@@ -216,7 +216,7 @@ The first example should display all entries that include "Mechanical" in the de
 The second example should display all entries that include "American" in the description field sorted alphabetically by name in ascending order.
 
 ###list
-The list command can be used to list all entries in the database, it can also display data sorted by name, birth year, death year or sex.
+The list command can be used to list all entries in the database. The results can be sorted as previously stated.
 
 Syntax:
 ```
@@ -285,7 +285,7 @@ This example shows how the user can remove Leia Organa from the list.
 
 
 ###connection
-This command is found under the list command and can be used to see the connection between a computer scientist and a computer
+This command is found under the list command and can be used to see the connection between a computer scientist/computer and a computer/computer scientist.
 
 ```
 > list

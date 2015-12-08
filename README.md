@@ -185,6 +185,8 @@ Syntax:
 add: Add to the database
 search: Search the list for preferred information
 list: Display the whole list in preferred order
+remove: Remove an entry in the database
+connections: View specific connections
 exit: Close the program
 help: Displays this screen
 -------------------------------------------------

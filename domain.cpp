@@ -27,7 +27,7 @@ Domain::~Domain() {
     }
 }
 
-// Parse function for queries returned from the data layer.
+/* Parse function for queries returned from the data layer. */
 void Domain::parse_query_vector(vector<string> v)
 {
     for (unsigned int i = 0; i < v.size(); i++)
@@ -35,10 +35,10 @@ void Domain::parse_query_vector(vector<string> v)
         string st = v[i];
         size_t position_beg = 0;
         size_t position_end = 0;
-        // cut out the empty space in the beginning of the string
+        /* cut out the empty space in the beginning of the string */
         st = st.substr(1, st.length());
 
-        // find if it is a computer or a person
+        /* find if it is a computer or a person */
         position_beg = st.find("|");
         string kind = st.substr(0, position_beg);
 
@@ -46,31 +46,31 @@ void Domain::parse_query_vector(vector<string> v)
         {
             Person* p = new Person();
 
-            // find the name
+            /* find the name */
             position_end = st.find("|", position_beg + 1);
             p->set_name(st.substr(position_beg + 1, position_end - position_beg - 1));
 
-            // find the profession
+            /* find the profession */
             position_beg = st.find("|", position_end + 1);
             p->set_profession(st.substr(position_end + 1, (position_beg - position_end - 1)));
 
-            // find the description
+            /* find the description */
             position_end = st.find("|", position_beg + 1);
             p->set_description(st.substr(position_beg + 1, (position_end - position_beg - 1)));
 
-            // find the birthyear
+            /* find the birthyear */
             position_beg = st.find("|", position_end + 1);
             p->set_birthyear(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
 
-            // find the deathyear
+            /* find the deathyear */
             position_end = st.find("|", position_beg + 1);
             p->set_deathyear(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
 
-            // find the sex
+            /* find the sex */
             position_beg = st.find("|", position_end + 1);
             p->set_sex(st.substr(position_end + 1, (position_beg - position_end - 1)));
 
-            // find the id
+            /* find the id */
             position_end = st.find("|", position_beg + 1);
             p->set_id(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
 
@@ -80,27 +80,27 @@ void Domain::parse_query_vector(vector<string> v)
         {
             Computer* c = new Computer();
 
-            // find the name
+            /* find the name */
             position_end = st.find("|", position_beg + 1);
             c->set_name(st.substr(position_beg + 1, position_end - position_beg - 1));
 
-            // find the construction year
+            /* find the construction year */
             position_beg = st.find("|", position_end + 1);
             c->set_construction_year(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
 
-            // find the type
+            /* find the type */
             position_end = st.find("|", position_beg + 1);
             c->set_type(st.substr(position_beg + 1, (position_end - position_beg - 1)));
 
-            // find if built
+            /* find if built */
             position_beg = st.find("|", position_end + 1);
             c->set_built(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
 
-            // find the description
+            /* find the description */
             position_end = st.find("|", position_beg + 1);
             c->set_description(st.substr(position_beg + 1, (position_end - position_beg - 1)));
 
-            // find the id
+            /* find the id */
             position_beg = st.find("|", position_end + 1);
             c->set_id(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
 

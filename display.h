@@ -20,6 +20,8 @@ public:
     void add_msg_person(int c);
     /* Displays messages to user when adding a Computer */
     void add_msg_computer(int c);
+    /* Displays messages to user when adding a Connection */
+    void add_msg_connection(int c);
     /* Displays a choice menu for sorting methods */
     void sort_msg(int c);
     /* Displays a choice menu for searching */

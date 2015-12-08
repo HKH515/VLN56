@@ -70,6 +70,26 @@ void Display::add_msg_computer(int c)
     }
 }
 
+void Display::add_msg_connection(int c)
+{
+    if (c == 1)
+    {
+        cout << "Below is a list of all Scientist in the database, "
+             << "please choose the id of the Scientist you want to connect to a computer."
+             << endl;
+    }
+    else if (c == 2)
+    {
+        cout << "Below is a list of all Computer in the database, "
+             << "please choose the id of the Computer you want to connect to the previously chosen Scientist."
+             << endl;
+    }
+    else if (c == 3)
+    {
+        cout << "This connection has been added to the database" << endl;
+    }
+}
+
 
 void Display::sort_msg(int c)
 {
@@ -239,10 +259,6 @@ void Display::connection_msg(string c)
     {
         cout << "Here below is a list of all Computer in the database, "
              << "please choose the Id of the Computer you want to view connections: " << endl;
-    }
-    else if (c == "3")
-    {
-        cout << "This connection has been added to the database" << endl;
     }
 }
 

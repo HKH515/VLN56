@@ -17,7 +17,7 @@ private:
     int death_year;
     string sex;
     string description;
-    string profession; // Mathematician, Physicist, bioligist, computer scientist
+    string profession; /* Mathematician, Physicist, bioligist, computer scientist etc */
     int id;
     
 public:

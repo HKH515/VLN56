@@ -14,7 +14,7 @@ The following commands are currently implemented into the program
 | search        | Searches the database                      | Ascending/Descending by any field (except Description field, does not apply there) |
 | list   | Displays all entries found in the database | Ascending/Descending by any field (except Description field, does not apply there) |
 | remove  | Remove an entry in the database | Does not apply |
-| connections | View specific connections| Ascending/Descending by any field (except Description field, does not apply there) |
+| connections | View specific connections| Does not apply |
 | exit | Close the program | Does not apply |
 | help          | Displays all commands                      | Does not apply                                                                     |
 
@@ -57,49 +57,57 @@ The death year cannot be prior to the birth year. But there are no other constra
 
 Syntax:
 ```
-add NAME
 add
 ```
 Example
 
 ```
-> add John Appleseed
-You will be asked to enter information about the person
-Please write the name of the person:
-Please write the profession of the person:
-> Software Tester
-Please write a description of the person:
-> This may be a very detailed description.
-Please write the year that the person was born:
-> 1984
-Please write the year that the person died, if the person is still alive enter 0:
-> 2011
-Enter the sex of the person:
+> add
+Do you want to add a Computer Scientists, Computer or connection between Computer Scientist and a Computer?
+(1) Computer Scientist
+(2) Computer
+(3) Connection between Computer Scientist and a Computer
+> 1
+You will be asked to enter information about the person.
+Please write the name of the person: 
+> Leia Organa
+Please write the profession of the person: 
+> Princess
+Please write a description of the person, can be left blank if you desire: 
+> 
+Please write the year that the person was born: 
+> 32
+Please write the year that the person died, if the person is still alive enter 0: 
+> 0
+Enter the sex of the person: 
 (m) Male
 (f) Female
 (o) Other
-> m
+> f
+
 ```
 or
 
 ```
-add
-You will be asked to enter information about the person
-Please write the name of the person:
-> John Appleseed
-Please write the profession of the person:
-> Software Tester
-Please write a description of the person:
-> This is a very detailed description.
-Please write the year that the person was born:
-> 1984
-Please write the year that the person died, if the person is still alive enter 0:
-> 2011
-Enter the sex of the person:
-(m) Male
-(f) Female
-(o) Other
-> m
+> add
+Do you want to add a Computer Scientists, Computer or connection between Computer Scientist and a Computer?
+(1) Computer Scientist
+(2) Computer
+(3) Connection between Computer Scientist and a Computer
+> 2
+You will be asked to enter information about the computer.
+Please enter the name of the computer: 
+> Nintendo
+Please enter the construction year of the computer: 
+> 1980
+Please enter the type of the computer: 
+> Electronic
+Was the computer built?
+0 for No 
+1 for Yes 
+> 1
+Please write some description of the computer, can be left blank if desired: 
+> Super Mario Brothers is the best ever!
 ```
 
 ###list
@@ -148,35 +156,12 @@ The search command can be used to search for entries in the database. When searc
 Syntax:
 ```
 search
-search COLUMN_ID
-search COLUMN_ID SUBSTRING
+search Table
+search Table   COLUMN_ID
+search Table   COLUMN_ID   COLUMN_ID SUBSTRING
 ```
 
 Example
-
-```
-> search 1 6 American
-Do you want to search in the database of Computer Scientists or Computers?
-(1) Computer Scientists
-(2) Computers
-> Choose what information you want to search for:
-(1) Name
-(2) Birthyear
-(3) Deathyear
-(4) Sex
-(5) Profession
-(6) Description
-> What substring do you want to search for?
-> What do you want to sort by? choose one of the following:
-(1) Name
-(2) Birthyear
-(3) Deathyear
-(4) Sex
-(5) Profession
-> 1
-Do you want the information sorted in ascending or descending order? choose a/d
-> a
-```
 
 ```
 search
@@ -202,8 +187,34 @@ What do you want to sort by? choose one of the following:
 Do you want the information sorted in ascending or descending order? choose a/d
 > a
 ```
-The first example should display all entries that include "American" in the description field sorted alphabetically by name in ascending order. 
-The second example should display all entries that include "Mechanical" in the description field sorted alphabetically by name in ascending order.
+or
+```
+> search 1 6 American
+Do you want to search in the database of Computer Scientists or Computers?
+(1) Computer Scientists
+(2) Computers
+> Choose what information you want to search for:
+(1) Name
+(2) Birthyear
+(3) Deathyear
+(4) Sex
+(5) Profession
+(6) Description
+> What substring do you want to search for?
+> What do you want to sort by? choose one of the following:
+(1) Name
+(2) Birthyear
+(3) Deathyear
+(4) Sex
+(5) Profession
+> 1
+Do you want the information sorted in ascending or descending order? choose a/d
+> a
+```
+
+
+The first example should display all entries that include "Mechanical" in the description field sorted alphabetically by name in ascending order. 
+The second example should display all entries that include "American" in the description field sorted alphabetically by name in ascending order.
 
 ###help
 This command prints out a list of commands

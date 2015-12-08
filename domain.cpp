@@ -190,10 +190,21 @@ void Domain::search(vector<string> v)
 {
     string table = get_table(v[1]);
     string query_column = get_column(v[2], table);
-    string query_string = v[3];
+    string query_string;
+    if (query_column == "built")
+    {
+        query_string = check_type_query(v[3]);
+    }
+    else if (query_column == "sex")
+    {
+        query_string = check_sex_query(v[3]);
+    }
+    else
+    {
+        query_string = v[3];
+    }
     string sort_column = get_column(v[4], table);
     string sort_method = get_sort_method(v[5]);
-
     parse_query_vector(data->query(table, query_column, query_string, sort_column, sort_method));
 }
 
@@ -303,6 +314,43 @@ string Domain::get_column(string s, string table)
             return "id";
         }
     }
+}
+
+string Domain::check_type_query(string v)
+{
+    if (v == "1" || v == "built" || v == "yes")
+    {
+        return "1";
+    }
+    else if (v == "0" || v == "not built" || v == "no")
+    {
+        return "0";
+    }
+    else
+    {
+        return v;
+    }
+}
+
+string Domain::check_sex_query(string v)
+{
+    if (v == "m" || v == "male")
+    {
+        return "m";
+    }
+    else if (v == "f" || v == "femal")
+    {
+        return "f";
+    }
+    else if (v == "o" || v == "other")
+    {
+        return "o";
+    }
+    else
+    {
+        return v;
+    }
+
 }
 
 void Domain::free_vector_memory()

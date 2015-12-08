@@ -40,6 +40,8 @@ private:
     string get_column(string s, string table);
     /* Gets in which order the user wants to sort the results */
     string get_sort_method(string s);
+    string check_type_query(string v);
+    string check_sex_query(string v);
 
 public:
 

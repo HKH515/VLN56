@@ -57,7 +57,6 @@ The death year cannot be prior to the birth year. But there are no other constra
 
 Syntax:
 ```
-add NAME
 add
 ```
 Example
@@ -157,35 +156,12 @@ The search command can be used to search for entries in the database. When searc
 Syntax:
 ```
 search
-search COLUMN_ID
-search COLUMN_ID SUBSTRING
+search Table
+search Table   COLUMN_ID
+search Table   COLUMN_ID   COLUMN_ID SUBSTRING
 ```
 
 Example
-
-```
-> search 1 6 American
-Do you want to search in the database of Computer Scientists or Computers?
-(1) Computer Scientists
-(2) Computers
-> Choose what information you want to search for:
-(1) Name
-(2) Birthyear
-(3) Deathyear
-(4) Sex
-(5) Profession
-(6) Description
-> What substring do you want to search for?
-> What do you want to sort by? choose one of the following:
-(1) Name
-(2) Birthyear
-(3) Deathyear
-(4) Sex
-(5) Profession
-> 1
-Do you want the information sorted in ascending or descending order? choose a/d
-> a
-```
 
 ```
 search
@@ -211,8 +187,33 @@ What do you want to sort by? choose one of the following:
 Do you want the information sorted in ascending or descending order? choose a/d
 > a
 ```
-The first example should display all entries that include "American" in the description field sorted alphabetically by name in ascending order. 
-The second example should display all entries that include "Mechanical" in the description field sorted alphabetically by name in ascending order.
+```
+> search 1 6 American
+Do you want to search in the database of Computer Scientists or Computers?
+(1) Computer Scientists
+(2) Computers
+> Choose what information you want to search for:
+(1) Name
+(2) Birthyear
+(3) Deathyear
+(4) Sex
+(5) Profession
+(6) Description
+> What substring do you want to search for?
+> What do you want to sort by? choose one of the following:
+(1) Name
+(2) Birthyear
+(3) Deathyear
+(4) Sex
+(5) Profession
+> 1
+Do you want the information sorted in ascending or descending order? choose a/d
+> a
+```
+
+
+The first example should display all entries that include "Mechanical" in the description field sorted alphabetically by name in ascending order. 
+The second example should display all entries that include "American" in the description field sorted alphabetically by name in ascending order.
 
 ###help
 This command prints out a list of commands

@@ -11,22 +11,29 @@
 #include <string>
 #include <vector>
 #include <map>
+#include "connectionRepository.h"
+#include "personRepository.h"
+#include "computerRepository.h"
+
 
 using namespace std;
 
 class Data
 {
     private:
+
         vector<string> internalData;
         QSqlDatabase db;
         QString dbName;
+        ConnectionRepository* connection_repo;
+        PersonRepository person_repo;
+        ComputerRepository* computer_repo;
 
     public:
         Data(string datafile);
         QString get_file();
         void init_db();
         void set_file(string data);
-        int nth_index(string haystack, char needle, int n);
         vector<string> create_combined_string_vector(vector<string> sourceVec, string delim); //Returns a modified pipe vector that has all appropriate computers in the last index of the vector
         vector<string> parse_delim_string(string delimString, char delim);
         vector<string> from_db_to_vector(string table, QSqlQuery queryObj);
@@ -40,9 +47,6 @@ class Data
         vector<string> read_entries(string table, string column, string order); //Returns a vector of all entries
         void write(string table, string line); //Creates an entry in the database
         void remove(string table, string column, string id); //Deletes an entry in the database
-
-        string create_delim_string(vector<string> sourceVec, string delim);
-
 };
 
 #endif // DATA_H

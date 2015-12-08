@@ -187,6 +187,7 @@ What do you want to sort by? choose one of the following:
 Do you want the information sorted in ascending or descending order? choose a/d
 > a
 ```
+or
 ```
 > search 1 6 American
 Do you want to search in the database of Computer Scientists or Computers?

@@ -13,7 +13,7 @@ Person::Person()
     id = 0;
 }
 
- /* set functions */
+/* set functions */
 void Person::set_name(string n)
 {
     name = n;

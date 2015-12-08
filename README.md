@@ -11,7 +11,8 @@ The following commands are currently implemented into the program
 | Command       | Description                                | Sortability                                                                        |
 | ------------- |:------------------------------------------:|------------------------------------------------------------------------------------|
 | list   | displays all entries found in the database | Ascending/Descending by any field (except Description field, does not apply there) |
-| remove  | Remove an entry in the database |
+| remove  | Remove an entry in the database | Does not apply |
+| connections | View specific connections| Ascending/Descending by any field (except Description field, does not apply there) |
 | add           | adds a new entry to the database           | Does not apply                                                                     |
 | search        | searches the database                      | Ascending/Descending by any field (except Description field, does not apply there) |
 | help          | displays all commands                      | Does not apply                                                                     |

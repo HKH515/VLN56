@@ -36,11 +36,11 @@ Throughout this section a COLUMN_ID will be referenced.  To better understand wh
 | 5        | Profession  |
 
 |   ID   |         Data      |
- ----------------------------
-|   1    |       Name        |
+|------- | ----------------- |
+|   1    | Name              |
 |   2    | Construction year |
-|   3    |      Type         |
-|   4    |      Built        |
+|   3    | Type              |
+|   4    | Built             |
 
 
 

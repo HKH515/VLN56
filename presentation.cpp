@@ -23,7 +23,7 @@ Domain* presentation::get_domain()
 
 void presentation::choice()
 {
-    string inputs, order_of_sort, sort_by, table, kind_of_id;
+    string inputs, order_of_sort, sort_by, table, kind_of_id, valid_id;
     int id;
     vector<string> command_vec;
     cin >> inputs;
@@ -85,11 +85,11 @@ void presentation::choice()
             /* Printing results from the domain layer */
             if (table == "1")
             {
-                msg->print_results_person(d); /* List of Scientists*/
+                msg->print_results_person(d, 1); /* List of Scientists*/
             }
             else if (table == "2")
             {
-                msg->print_results_comp(d); /* List of Computers */
+                msg->print_results_comp(d, 1); /* List of Computers */
             }
             else
             {
@@ -147,27 +147,11 @@ void presentation::choice()
             /* Display results */
             if (table == "1")
             {
-                /* If the size of the vector of persons is 0, then no results were found */
-                if (d->get_p_vec().size() == 0)
-                {
-                    cout << "No results found." << endl;
-                }
-                else
-                {
-                    msg->print_results_person(d);
-                }
+                msg->print_results_person(d, 2);
             }
             else
             {
-                /* If the size of the vector of computers is 0, then no results were found */
-                if (d->get_c_vec().size() == 0)
-                {
-                    cout << "No results found." << endl;
-                }
-                else
-                {
-                    msg->print_results_comp(d);
-                }
+                msg->print_results_comp(d, 2);
             }
         }
         else if (inputs == "remove")
@@ -183,20 +167,18 @@ void presentation::choice()
             command_vec.push_back(kind_of_id);
             msg->connection_msg(kind_of_id);
             get_list(kind_of_id);
-            cin >> id;
-            string valid_id;
             valid_id = verify_id(kind_of_id);
             command_vec.push_back(valid_id);
             d->handle_commands(command_vec);
             if (kind_of_id == "1")
             {
-                cout << "The computers connected to the person with Id = " << id << " are: " << endl;
-                msg->print_results_comp(d);
+                cout << "The computers connected to the person with Id = " << valid_id << " are: " << endl;
+                msg->print_results_comp(d, 3);
             }
             else
             {
-                cout << "The persons connected to the computer with Id = " << id << " are: " << endl;
-                msg->print_results_person(d);
+                cout << "The persons connected to the computer with Id = " << valid_id << " are: " << endl;
+                msg->print_results_person(d, 3);
             }
         }
 
@@ -298,7 +280,6 @@ vector <string> presentation::parse_add(string choice) {
 
 vector<string> presentation::add_connection()
 {
-    int input;
     cout << "Below is a list of all Scientist in the database, "
          << "please choose the id of the Scientist you want to connect to a computer."
          << endl << prompt;
@@ -312,7 +293,6 @@ vector<string> presentation::add_connection()
          << endl << prompt;
     get_list("2");
     string c_id = verify_id("2"); /* Verify that the input id is valid */
-    //list_vec.clear();
     list_vec.push_back("add");
     list_vec.push_back("3");
     list_vec.push_back(p_id);
@@ -332,6 +312,7 @@ void presentation::get_list(string table)
         comm_vec.push_back("a"); /* Ascending order */
         d->handle_commands(comm_vec);
         msg->display_valid_id("1", d); /* Display list */
+        cout << prompt;
     }
     /* Get list of all Computers */
     else if (table == "2")
@@ -342,6 +323,7 @@ void presentation::get_list(string table)
         comm_vec.push_back("a"); /* Ascending order */
         d->handle_commands(comm_vec);
         msg->display_valid_id("2", d); /* Display list */
+        cout << prompt;
     }
     else
     {

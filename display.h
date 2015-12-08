@@ -33,9 +33,9 @@ public:
     /* Displays help message */
     void help_msg();
     /* Displays the search result or the list of all entries in the Persons table*/
-    void print_results_person(Domain *d);
+    void print_results_person(Domain *d, int c);
     /* Displays the search result or the list of all entries in the Computer table */
-    void print_results_comp(Domain *d);
+    void print_results_comp(Domain *d, int c);
     /* Displays list of connections */
     void print_connections_list(Domain *d);
     /* Displays every Person and its id, or Computer and its id that is in the database */

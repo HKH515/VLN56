@@ -169,27 +169,32 @@ void Display::remove_msg(string c)
     if (c == "1")
     {
         cout << "Below is a list of all Computer Scientists in the database,"
-             << " please enter the Id of the Scientist you want to remove: " << endl;
+             << " please enter the Id of the Scientist you want to remove: " << endl
+             << prompt;
     }
     /* If the user wants to remove a Computer */
     else if (c == "2")
     {
         cout << "Below is a list of all Computers in the database,"
-             << " please enter the Id of the Computer you want to remove: " << endl;
+             << " please enter the Id of the Computer you want to remove: " << endl
+             << prompt;
     }
     /* If the user wants to remove a connection between a Scientist and a Computer */
     else if (c == "3")
     {
         cout << "Below is a list of all connections between Scientists and Computers "
-             << "in the database. Please choose first the Id of the connection you want to remove: " << endl;
+             << "in the database. Please choose first the Id of the connection you want to remove: " << endl
+             << prompt;
     }
     else if (c == "4")
     {
-        cout << "Please enter the Id of the Computer Scientist you want to remove: " << endl;
+        cout << "Please enter the Id of the Computer Scientist you want to remove: " << endl
+             << prompt;
     }
     else if ( c == "5")
     {
-        cout << "Please enter the Id of the Computer you want to remove: " << endl;
+        cout << "Please enter the Id of the Computer you want to remove: " << endl
+             << prompt;
     }
 }
 
@@ -201,7 +206,7 @@ void Display::connection_msg(string c)
     {
         cout << "Do you want connections associated with a Computer Scientist or a Computer?" << endl
              << "(1) Computer Scientist" << endl
-             << "(2) Computer" << endl;
+             << "(2) Computer" << endl << prompt;
     }
     /* If he chooses to see all computer connected to a certain Scientist */
     else if (c == "1")
@@ -227,18 +232,29 @@ void Display::help_msg()
          << "list: Display the whole list in preferred order" << endl
          << "remove: Remove an entry in the database" << endl
          << "connections: View specific connections" << endl
-         << "exit: Close the program" << endl
+         << "exit: Closes the program" << endl
          << "help: Displays this screen" << endl
          << "-------------------------------------------------" << endl;
 }
 
 /* Displays the result when using search/list and more commands for Persons*/
-void Display::print_results_person(Domain *d)
+void Display::print_results_person(Domain *d, int c)
 {
     /* If there are no Scientists in the database, display message */
     if (d->get_p_vec().size() == 0)
     {
-        cout << "There are no Scientists in database, use add command to add a Scientist." << endl;
+        if (c == 1)
+        {
+            cout << "There are no Scientists in database, use add command to add a Scientist." << endl;
+        }
+        else if (c == 2)
+        {
+            cout << "No results found." << endl;
+        }
+        else
+        {
+            cout << "There are no Scientists connected to the Computer with this Id." << endl;
+        }
     }
     else
     {
@@ -279,12 +295,24 @@ void Display::print_results_person(Domain *d)
 }
 
 /* Displays the result when using search/list and more commands for Computers*/
-void Display::print_results_comp(Domain *d)
+void Display::print_results_comp(Domain *d, int c)
 {
     if (d->get_c_vec().size() == 0)
     {
+        if (c == 1)
+        {
         cout << "There are no Computers in the database, use add command to add a Computer. " << endl;
+        }
+        else if (c == 2)
+        {
+            cout << "No results found." << endl;
+        }
+        else
+        {
+            cout << "There are no Computers connected to the Scientist with this Id." << endl;
+        }
     }
+
     for (unsigned int i = 0; i < d->get_c_vec().size(); i++)
     {
         cout << "Name: " << d->get_c_vec()[i]->get_name() << endl;

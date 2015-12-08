@@ -26,7 +26,6 @@ class Data
         QString get_file();
         void init_db();
         void set_file(string data);
-        void push(string entry);
         int nth_index(string haystack, char needle, int n);
         vector<string> create_combined_string_vector(vector<string> sourceVec, string delim); //Returns a modified pipe vector that has all appropriate computers in the last index of the vector
         vector<string> parse_delim_string(string delimString, char delim);
@@ -37,6 +36,7 @@ class Data
         vector<string> get_conn_assoc_with_person(string personId);
         vector<string> get_conn_all_computers();
         vector<string> get_conn_all_persons();
+        void remove_conn(string personId, string computerId);
         vector<string> read_entries(string table, string column, string order); //Returns a vector of all entries
         void write(string table, string line); //Creates an entry in the database
         void remove(string table, string column, string id); //Deletes an entry in the database

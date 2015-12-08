@@ -149,6 +149,7 @@ vector<string> Data::create_combined_string_vector(vector<string> sourceVec, str
 
 }
 
+//Returns all entries in a specified table
 vector<string> Data::read_entries(string table, string column, string order)
 {
 
@@ -171,6 +172,7 @@ vector<string> Data::read_entries(string table, string column, string order)
 
 }
 
+//Removes a certain entry in a speficied table
 void Data::remove(string table, string column, string id)
 {
     string queryString;
@@ -181,11 +183,6 @@ void Data::remove(string table, string column, string id)
     queryObj.exec(qQueryString);
     db.close();
 
-}
-
-void Data::push(string entry)
-{
-    internalData.push_back(entry);
 }
 
 int Data::nth_index(string haystack, char needle, int n)
@@ -202,11 +199,13 @@ int Data::nth_index(string haystack, char needle, int n)
     return haystack.size()-1; //fallback if char is not found, return end of string
 }
 
+//Gets a QSqlQuery object and fetches all entries from it and delivers it in a pipe-seperated-string vector
 vector<string> Data::from_db_to_vector(string table, QSqlQuery queryObj)
 {
     vector<string> result;
     while(queryObj.next())
     {
+        cout << "printing" << endl;
         vector<string> tableData;
         string currentEntry = " ";
         if (table == "persons")
@@ -239,6 +238,7 @@ vector<string> Data::from_db_to_vector(string table, QSqlQuery queryObj)
     return result;
 }
 
+//Returns all computers that have a persons associated with them, returns entries in the same order as get_conn_all_persons
 vector<string> Data::get_conn_all_computers()
 {
     vector<string> queryVect;
@@ -264,6 +264,7 @@ vector<string> Data::get_conn_all_computers()
 
 }
 
+//Returns all persons that have a persons associated with them, returns entries in the same order as get_conn_all_computers
 vector<string> Data::get_conn_all_persons()
 {
     vector<string> queryVect;
@@ -294,18 +295,32 @@ vector<string> Data::get_conn_assoc_with_person(string personId)
     string queryString;
     if (db.open())
     {
+        QSqlQuery queryObj(db);
 
+        queryString = "SELECT c.* from computers c INNER JOIN connections con ON c.ID = con.ID_computers WHERE con.ID_persons = " + personId + " ORDER BY c.Name";
+
+        QString qQueryString(queryString.c_str());
+        queryObj.exec(qQueryString);
+        queryVect = from_db_to_vector("computers", queryObj);
+        db.close();
     }
-    QSqlQuery queryObj(db);
-
-    queryString = "SELECT c.* from computers c INNER JOIN connections con ON c.ID = con.ID_computers WHERE con.ID_persons = " + personId + " ORDER BY c.Name";
-
-    QString qQueryString(queryString.c_str());
-    queryObj.exec(qQueryString);
-    queryVect = from_db_to_vector("computers", queryObj);
-    db.close();
-
     return queryVect;
+
+}
+
+void Data::remove_conn(string personId, string computerId)
+{
+    string queryString;
+    if (db.open())
+    {
+        QSqlQuery queryObj(db);
+
+        queryString = "DELETE from connections WHERE ID_computers=" + computerId " AND ID_persons=" + personId + ";";
+
+        QString qQueryString(queryString.c_str());
+        queryObj.exec(qQueryString);
+        db.close();
+    }
 
 }
 

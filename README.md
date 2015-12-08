@@ -115,7 +115,7 @@ list COLUMN_ID ORDER
 Example
 
 ```
-> list 1 a
+> list
 ```
 would display all entries sorted alphabetically by name in ascending order.
 
@@ -127,6 +127,7 @@ Do you want a list of Computer Scientists, Computers or connections between Comp
 (3) Connection between Computer Scientists and Computers
 
 > 1
+
 What do you want to sort by? choose one of the following:
 (1) Name
 (2) Birthyear

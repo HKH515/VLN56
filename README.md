@@ -59,6 +59,7 @@ add
 ```
 Example
 
+adding a computer scientist
 ```
 > add
 Do you want to add a Computer Scientists, Computer or connection between Computer Scientist and a Computer?
@@ -85,7 +86,8 @@ Enter the sex of the person:
 
 ```
 or
-
+ 
+for adding a computer
 ```
 > add
 Do you want to add a Computer Scientists, Computer or connection between Computer Scientist and a Computer?
@@ -106,6 +108,44 @@ Was the computer built?
 > 1
 Please write some description of the computer, can be left blank if desired: 
 > Super Mario Brothers is the best ever!
+```
+or
+
+for adding a connection
+```
+> add
+Do you want to add a Computer Scientists, Computer or connection between Computer Scientist and a Computer?
+(1) Computer Scientist
+(2) Computer
+(3) Connection between Computer Scientist and a Computer
+> 3
+Below is a list of all Scientist in the database, please choose the id of the Scientist you want to connect to a computer.
+> Id: 1	Name: Ada Lovelace
+Id: 2	Name: Grace Hopper
+Id: 3	Name: Anita Borg
+Id: 4	Name: Shafi Goldwasser 
+Id: 5	Name: Frances E. Allen 
+Id: 6	Name: Erna Schneider 
+Id: 7	Name: Charles Babbage 
+Id: 8	Name: Alan Turing 
+Id: 9	Name: Linus Torvalds
+Id: 10	Name: Edsger W. Dijkstra 
+Id: 11	Name: Jon Von Neuman 
+Id: 12	Name: Claude Shannon
+Id: 13	Name: Donald Knuth
+> 2
+Below is a list of all Computer in the database, please choose the id of the Computer you want to connect to the previously chosen Scientist.
+> Id: 1	Name: Difference Engine
+Id: 2	Name: Analytical Engine
+Id: 3	Name: Eniac
+Id: 4	Name: Apple I
+Id: 5	Name: Harvard Mark I
+Id: 6	Name: The Turing Machine
+Id: 7	Name: Z1
+Id: 8	Name: Transistor computer
+Id: 9	Name: Apple II
+Id: 10	Name: Nintendo
+> 10
 ```
 ###search
 The search command can be used to search for entries in the database. When searching the user needs to specify in what column he wants to search. Results for computer scientists can be sorted by name, birth year, death year, sex or profession and for computers they can be sorted by name, construction Year, type or year built.

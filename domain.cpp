@@ -169,8 +169,8 @@ void Domain::get_list(vector<string> v)
     string table = get_table(v[1]);
     if (table == "connections")
     {
-        data->get_conn_all_computers();
-        data->get_conn_all_persons();
+        parse_query_vector(data->get_conn_all_computers());
+        parse_query_vector(data->get_conn_all_persons());
     }
     else
     {

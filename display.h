@@ -36,6 +36,8 @@ public:
     void print_results_person(Domain *d);
     /* Displays the search result or the list of all entries in the Computer table */
     void print_results_comp(Domain *d);
+    /* Displays list of connections */
+    void print_connections_list(Domain *d);
     /* Displays every Person and its id, or Computer and its id that is in the database */
     void display_valid_id(string c, Domain *d);
 };

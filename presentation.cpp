@@ -63,17 +63,21 @@ void presentation::choice()
                 sort_by = v->verify_sort_column_person();
                 command_vec.push_back(sort_by);
             }
-            else /* Table of Computers */
+            else if (table == "2") /* Table of Computers */
             {
                 msg->sort_msg(2);
                 sort_by = v->verify_sort_column_comp();
                 command_vec.push_back(sort_by);
             }
-            
-            /* Ask in what order the information should be sorted */
-            msg->sort_msg(3);
-            order_of_sort = v->verify_order_of_sort();
-            command_vec.push_back(order_of_sort);
+           /* The user can choose ascending/descending when listing Persons or Computer
+            * Not when listing connections, then they will always appear in ascending order */
+            if (table != "3")
+            {
+                /* Ask in what order the information should be sorted */
+                msg->sort_msg(3);
+                order_of_sort = v->verify_order_of_sort();
+                command_vec.push_back(order_of_sort);
+            }
             /* Send the command to the domain layer */
             d->handle_commands(command_vec);
 
@@ -85,6 +89,10 @@ void presentation::choice()
             else if (table == "2")
             {
                 msg->print_results_comp(d); /* List of Computers */
+            }
+            else
+            {
+                msg->print_connections_list(d);
             }
 
         }

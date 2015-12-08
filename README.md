@@ -190,7 +190,7 @@ Example
 ```
 > list
 ```
-would display all entries sorted alphabetically by name in ascending order.
+displays all entries sorted alphabetically by name in ascending order.
 
 ```
 > list
@@ -216,7 +216,7 @@ Do you want the information sorted in ascending or descending order? Choose a/d
 
 ```
 ###remove
-This command let's the user remove a computer scientist, a computer or a connection.
+This command can be used to remove a computer scientist, a computer or a connection.
 ```
 > remove
 Do you want to remove a Computer Scientist, a Computer or a connection between a Computer Scientist and a Computer?
@@ -241,11 +241,11 @@ Id: 13	Name: Donald Knuth
 Id: 15	Name: Leia Organa
 > 15
 ```
-This example shows how we remove Leia Organa from the list.
+This example shows how the user can remove Leia Organa from the list.
 
 
 ###connection
-This command is found under the list command and allows the user to see the connection between a computer scientist and a computer
+This command is found under the list command and can be used to see the connection between a computer scientist and a computer
 
 ```
 > list

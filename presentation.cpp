@@ -1,129 +1,213 @@
 #include "presentation.h"
-#include <cstdlib>
 
-presentation::presentation() {
+presentation::presentation()
+{
     d = new Domain();
+    v = new VerifyInput();
+    msg = new Display();
     prompt = "> ";
 }
 
-presentation::~presentation() {
-   delete d;
+/* Free allocated memory */
+presentation::~presentation()
+{
+    delete d;
+    delete v;
+    delete msg;
 }
 
-Domain* presentation::get_domain() {
-   return d;
+Domain* presentation::get_domain()
+{
+    return d;
 }
 
-void presentation::choice(Domain* d) {
-    string inputs, order_of_sort, sort_by;
+void presentation::choice()
+{
+    string inputs, order_of_sort, sort_by, table, kind_of_id, right_id;
     vector<string> command_vec;
     cin >> inputs;
-
-    // Infinite while loop that receives and handles commands. If the user enters exit the while
-    // loop terminates.
-    do {
-        // Put all letter to lowercase
-        for (unsigned int i = 0; i < inputs.length(); i++) {
+    
+    /* Infinite while loop that receives and handles commands. If the user enters exit the while
+    loop terminates.*/
+    do
+    {
+        /* Put all letter to lowercase, commands are not case sensitive */
+        for (unsigned int i = 0; i < inputs.length(); i++)
+        {
             inputs[i] = tolower(inputs[i]);
         }
-        // Put the command into the first element of the vector
+        
+        /* Put the command into the first element of the vector */
         command_vec.push_back(inputs);
 
-        if(inputs == "add") {
-            // parse_add() leads the user through the add process
-            command_vec = parse_add();
-            // send the string to be added to the database
+        /* Handles Add command */
+        if(inputs == "add")
+        {
+            msg->table_msg(1); /* Display choice menu of tables to user */
+            table = v->verify_table(); /* Receive input and verify it */
+            /* parse_add() leads the user through the add process */
+            command_vec = parse_add(table);
+            /* send the string to be added to the database */
             d->handle_commands(command_vec);
         }
-        else if(inputs == "list") {
-            // Ask the user what he wants to test by
-            sort_msg(1);
-            cin >> sort_by;
-            // check if the user's choice is valid
-            while ( (sort_by != "1") && (sort_by != "2") && (sort_by != "3") && (sort_by != "4") && (sort_by != "5")) {
-                cout << "This is not a valid choice, please choose again: " << endl << prompt;
-                cin >> sort_by;
+        /* Handles List command */
+        else if(inputs == "list")
+        {
+            /* The user needs to choose what he wants a list of, Scientists, Computers or Connections */
+            msg->table_msg(2);
+            table = v->verify_table();
+            command_vec.push_back(table);
+            if (table == "1") /* Computer Scientists */
+            {
+                /* Ask the user what he wants to sort by */
+                msg->sort_msg(1);
+                /* Receive input and check if the user's choice is valid */
+                sort_by = v->verify_sort_column_person();
+                command_vec.push_back(sort_by);
             }
-            command_vec.push_back(sort_by);
-
-            // Ask in what order the information should be sorted
-            sort_msg(2);
-            cin >> order_of_sort;
-            // Error checking that the user put in either "a" or "d"
-            while (order_of_sort != "a" && order_of_sort != "d") {
-                cout << "Invalid input! Enter a or d: "<< endl << prompt;
-                cin >> order_of_sort;
+            else if (table == "2") /* Computers */
+            {
+                msg->sort_msg(2);
+                sort_by = v->verify_sort_column_comp();
+                command_vec.push_back(sort_by);
             }
-            command_vec.push_back(order_of_sort);
+            /* The user can choose ascending/descending when listing Persons or Computer
+            * Not when listing connections, then they will always appear in ascending order after Name */
+            if (table != "3")
+            {
+                msg->sort_msg(3);
+                order_of_sort = v->verify_order_of_sort();
+                command_vec.push_back(order_of_sort);
+            }
 
+            /* Send the command to the domain layer */
             d->handle_commands(command_vec);
-            print_results(d);
+
+            /* Printing results from the domain layer */
+            if (table == "1")
+            {
+                msg->print_results_person(d, 1); /* List of Scientists*/
+            }
+            else if (table == "2")
+            {
+                msg->print_results_comp(d, 1); /* List of Computers */
+            }
+            else
+            {
+                msg->print_connections_list(d); /* List of Connections */
+            }
+
         }
-        else if(inputs == "search") {
-            // Ask the user what he wants to test by
-            string search_column;
-            sort_msg(3);
-            cin >> search_column;
-            while (search_column != "1" && search_column != "2" && search_column != "3" && search_column!= "4" && search_column!= "5" && search_column!= "6") {
-                cout << "This is not a valid choice, please choose again: " << endl << prompt;
-                cin >> search_column;
+        /*Handles Search command */
+        else if(inputs == "search")
+        {
+            string search_column, search_query;
+            msg->table_msg(3); /* Display a choice menu for the user */
+            table = v->verify_table(); /* Receive table choice and verify it */
+            command_vec.push_back(table);
+            /* Ask the user what he wants to search in */
+            if (table == "1") /* Computer Scientists */
+            {
+                msg->search_msg(1); /* List columns that are available to search in*/
+                search_column = v->verify_search_column_person();
+            }
+            else /* Computers */
+            {
+                msg->search_msg(2);
+                search_column = v->verify_search_column_comp();
             }
             command_vec.push_back(search_column);
-
-            // Ask the user what he wants to search for
+            
+            /* Ask the user what he wants to search for */
             cout << "What substring do you want to search for?" << endl << prompt;
-            string search_query;
             cin.ignore();
             getline(cin, search_query);
             command_vec.push_back(search_query);
-
-            // Ask the user what he wants to sort by
-            sort_msg(1);
-            cin >> sort_by;
-            while ( (sort_by != "1") && (sort_by != "2") && (sort_by != "3") && (sort_by != "4") && (sort_by != "5")) {
-                cout << "This is not a valid choice, please choose again: " << endl << prompt;
-                cin >> sort_by;
+            
+            /* Ask the user what he wants to sort the results from search by */
+            if (table == "1") /* Computer Scientists */
+            {
+                msg->sort_msg(1);
+                sort_by = v->verify_sort_column_person();
+                command_vec.push_back(sort_by);
             }
-            command_vec.push_back(sort_by);
-
-            // Ask in what order the information should be sorted
-            sort_msg(2);
-            cin >> order_of_sort;
-
-            // Error checking that the user put in either "a" or "d"
-            while (order_of_sort != "a" && order_of_sort != "d") {
-                cout << "Invalid input! Enter a or d: "<< endl << prompt;
-                cin >> order_of_sort;
+            else /* Computers */
+            {
+                msg->sort_msg(2);
+                sort_by = v->verify_sort_column_comp();
+                command_vec.push_back(sort_by);
             }
+            
+            /* Ask in what order the information should be sorted (a/d) */
+            msg->sort_msg(3);
+            order_of_sort = v->verify_order_of_sort();
             command_vec.push_back(order_of_sort);
-
+            
+            /* Send vector of command to the domain layer to be handled */
             d->handle_commands(command_vec);
-            if (d->get_vec().size() == 0) {
-                cout << "No results found" << endl;
+            
+            /* Display results */
+            if (table == "1")
+            {
+                msg->print_results_person(d, 2);
             }
-            print_results(d);
+            else
+            {
+                msg->print_results_comp(d, 2);
+            }
         }
-        else if (inputs == "help") {
+        /* Handle remove command */
+        else if (inputs == "remove")
+        {
+            command_vec = remove_entry();
+            d->handle_commands(command_vec);
 
-            cout << endl;
-            cout << "-------------------------------------------------" << endl;
-            cout << "add: Add to the database" << endl;
-            cout << "search: Search the list for preferred information" << endl;
-            cout << "list: Display the whole list in preferred order" << endl;
-            cout << "exit: Close the program" << endl;
-            cout << "help: Displays this screen" << endl;
-            cout << "-------------------------------------------------" << endl;
         }
-        else if (inputs == "exit") {
+        /* Handle connections command */
+        else if (inputs == "connections")
+        {
+            /* Ask the user if he wants to view a Person and all its connected Computers or a Computer and all
+             * its connected Persons */
+            msg->connection_msg("0");
+            kind_of_id = v->verify_connections_column(); /* Receive input and verify that it is valid */
+            command_vec.push_back(kind_of_id);
+            msg->connection_msg(kind_of_id);
+            get_list(kind_of_id); /* Display list of all valid Id's from the database */
+            right_id = valid_id(kind_of_id); /* Receive and verify users inputed Id */
+            command_vec.push_back(right_id);
+            d->handle_commands(command_vec); /* Send the command to the domain layer */
+
+            /* Print results */
+            if (kind_of_id == "1")
+            {
+                cout << "The computers connected to the person with Id = " << right_id << " are: " << endl;
+                msg->print_results_comp(d, 3);
+            }
+            else
+            {
+                cout << "The persons connected to the computer with Id = " << right_id << " are: " << endl;
+                msg->print_results_person(d, 3);
+            }
+        }
+        /* Handle help command */
+        else if (inputs == "help")
+        {
+            msg->help_msg();
+        }
+        /* Handle exit command */
+        else if (inputs == "exit")
+        {
             exit(0);
         }
-        else {
-            cout << "You entered an invalid command, type help for list of supported commands." << endl;
+        else
+        {
+            cout << "You entered an invalid command, type help for a list of supported commands." << endl;
         }
 
         /* If we continue running the program we clear the command vector and construct a new one for
            next command */
-        if (inputs != "exit") {
+        if (inputs != "exit")
+        {
             command_vec.clear();
             cout << prompt;
             cin >> inputs;
@@ -134,147 +218,240 @@ void presentation::choice(Domain* d) {
     exit(0);
 }
 
-vector <string> presentation::parse_add() {
-    string input, birthyear_check;
+vector <string> presentation::parse_add(string choice)
+{
+    string input;
     vector<string> add_vec;
+    add_vec.clear();
     add_vec.push_back("add");
+    /* Adding að Computer Scientist */
+    if (choice == "1")
+    {
+        add_vec.push_back("1");
+        cout << "You will be asked to enter information about the person." << endl;
 
-    cout << "You will be asked to enter information about the person" << endl;
-    cout << "Please write the name of the person: " << endl << prompt;
-    cin.ignore();
-    getline(cin, input);
-    while (input.length() == 0 || !check_if_word(input)) {
-        cout << "Invalid input, please write the name of the person: "<< endl << prompt;
+        /* Receiving and verifying name of Scientist from user */
+        msg->add_msg_person(1);
+        input = v->verify_name();
+        add_vec.push_back(input);
+
+        /* Receiving and verifying profession of Scientist from user */
+        msg->add_msg_person(2);
+        input = v->verify_profession();
+        add_vec.push_back(input);
+
+        /* Receiving description of Scientist */
+        msg->add_msg_person(3);
+        getline(cin, input);
+        add_vec.push_back(input);
+
+        /* Receiving and verifying birthyear of Scientist */
+        msg->add_msg_person(4);
+        input = v->verify_birthyear();
+        add_vec.push_back(input);
+
+        /* Receiving and verifying deathyear of Scientist */
+        msg->add_msg_person(5);
+        input = v->verify_deathyear(input);
+        add_vec.push_back(input);
+
+        /* Receiving and verifying sex of Scientist */
+        msg->add_msg_person(6);
+        input = v->verify_sex();
+        add_vec.push_back(input);
+        msg->add_msg_person(7);
+    }
+    /* Adding a Computer */
+    else if (choice == "2")
+    {
+        add_vec.push_back("2");
+        cout << "You will be asked to enter information about the computer." << endl;
+
+        /* Receiving and verifying name of Computer (Only alphabetic letters and space allowed)*/
+        msg->add_msg_computer(1);
+        input = v->verify_name();
+        add_vec.push_back(input);
+
+        /* Receiving and verifying construction year of Computer, 0 if not known */
+        msg->add_msg_computer(2);
+        input = v->verify_birthyear();
+        add_vec.push_back(input);
+
+        /* Receiving and verifying type of computer */
+        msg->add_msg_computer(3);
+        input = v->verify_name();
+        add_vec.push_back(input);
+
+        /* Receiving and verifying if the Computer was built */
+        msg->add_msg_computer(4);
+        input = v->verify_built();
+        add_vec.push_back(input);
+
+        /* Receiving description of the Computer */
+        msg->add_msg_computer(5);
         cin.ignore();
         getline(cin, input);
+        add_vec.push_back(input);
+        msg->add_msg_computer(6);
     }
-    add_vec.push_back(input);
-
-    cout << "Please write the profession of the person: " << endl << prompt;
-    getline(cin, input);
-    while (input.length() == 0 || !check_if_word(input)) {
-        cout << "Invalid input, please write the profession of the person: "<< endl << prompt;
-        cin.ignore();
-        getline(cin, input);
+    /* Adding a Connection */
+    else /* If the user wants to add a connection between a Scientist and a Computer */
+    {
+        add_vec = add_connection();
+        msg->add_msg_connection(3);
     }
-    add_vec.push_back(input);
-
-    cout << "Please write a description of the person, can be left blank if you desire: " << endl << prompt;
-    getline(cin, input);
-    add_vec.push_back(input);
-
-    cout << "Please write the year that the person was born: " << endl << prompt;
-    cin >> birthyear_check;
-    while (!check_if_year(birthyear_check)) {
-        cout << "Invalid input, please enter a year: "<< endl << prompt;
-        cin >> birthyear_check;
-    }
-    add_vec.push_back(birthyear_check);
-
-    cout << "Please write the year that the person died, if the person is still alive enter 0: " << endl << prompt;
-    cin >> input;
-    while (!check_if_year(input)) {
-        cout << "Invalid input, please enter a year: " << endl << prompt;
-        cin >> input;
-    }
-    /* It is not allowed to add year of death that is before year of birth */
-
-        while (stoi(input) < stoi(birthyear_check)) {
-            while (!check_if_year(input)) {
-                cout << "Invalid input, please enter a year: " << endl << prompt;
-                cin >> input;
-            }
-
-            if (!(stoi(input) == 0)) {
-                cout << "Year of death cannot be prior to year of birth, please enter a year (0 if still alive): " << endl << prompt;
-                cin >> input;
-            }
-            else {
-                break;
-            }
-        }
-    add_vec.push_back(input);
-
-    cout << "Enter the sex of the person: " << endl << "(m) Male\n" << "(f) Female\n" << "(o) Other" << endl << prompt;
-    cin >> input;
-    // Check if valid input
-    while (input != "m" && input != "f" && input != "o") {
-        cout << "Invalid input, please write m, f " << endl << prompt;
-        cin >> input;
-    }
-    add_vec.push_back(input);
-
     return add_vec;
 }
 
-bool presentation::check_if_year(string input) {
-    for (unsigned int i = 0; i < input.length(); i++) {
-        // check if each character of the string is a digit, if not return false
-        if (!isdigit(input.c_str()[i])) {
-            return false;
-        }
-    }
-    return true;
+vector<string> presentation::add_connection()
+{
+    vector<string> list_vec;
+    msg->add_msg_connection(1);
+    /* Get list of all the scientist in the database, ordered after id in ascending order */
+    get_list("1");
+    string p_id = valid_id("1"); /* Verify that the input id is valid */
+    /* Get list of all computers in the database, ordered after id in ascending order */
+    msg->add_msg_connection(2);
+    get_list("2");
+    string c_id = valid_id("2"); /* Verify that the input id is valid */
+    list_vec.push_back("add");
+    list_vec.push_back("3"); /* Table of connections */
+    list_vec.push_back(p_id);
+    list_vec.push_back(c_id);
+    return list_vec;
 }
 
-bool presentation::check_if_word(string input) {
-    for (unsigned int i = 0; i < input.length(); i++) {
-        if (!isalpha(input.c_str()[i]) && !isspace(input.c_str()[i])) {
-            return false;
-        }
+void presentation::get_list(string table)
+{
+    vector<string> comm_vec;
+    /* Get list of all Computer Scientists */
+    if (table == "1")
+    {
+        comm_vec.push_back("list");
+        comm_vec.push_back(table); /* Table of persons */
+        comm_vec.push_back("7"); /* Sort after id */
+        comm_vec.push_back("a"); /* Ascending order */
+        d->handle_commands(comm_vec);
+        msg->display_valid_id("1", d); /* Display list */
+        cout << prompt;
     }
-    return true;
+    /* Get list of all Computers */
+    else if (table == "2")
+    {
+        comm_vec.push_back("list");
+        comm_vec.push_back(table); /* Table of computers */
+        comm_vec.push_back("6"); /* Sort after id */
+        comm_vec.push_back("a"); /* Ascending order */
+        d->handle_commands(comm_vec);
+        msg->display_valid_id("2", d); /* Display list */
+        cout << prompt;
+    }
+    /* Get list of all connections */
+    else
+    {
+        comm_vec.push_back("list");
+        comm_vec.push_back("3");
+        d->handle_commands(comm_vec);
+        msg->print_connections_list(d);
+    }
 }
 
-void presentation::print_results(Domain *d) {
-    for (unsigned int i = 0; i < d->get_vec().size(); i++) {
-        cout << "Name: " << d->get_vec()[i]->get_name() << endl
-             << "Born: " << d->get_vec()[i]->get_birthyear() << endl;
-
-        // If the person is still alive the function displays NA
-        if (d->get_vec()[i]->get_deathyear() == 0) {
-            cout << "Died: NA" << endl;
-        }
-        else {
-             cout << "Died: " << d->get_vec()[i]->get_deathyear() << endl;
-        }
-
-        if (d->get_vec()[i]->get_sex() == "m") {
-            cout << "Sex: Male" << endl;
-        }
-        else if (d->get_vec()[i]->get_sex() == "f") {
-            cout << "Sex: Female" << endl;
-        }
-        else if (d->get_vec()[i]->get_sex() == "o") {
-            cout << "Sex: Other" << endl;
-        }
-        cout << "Profession: " << d->get_vec()[i]->get_profession() << endl
-             << "Description: " << d->get_vec()[i]->get_description() << endl << endl;
+vector<string> presentation::remove_entry()
+{
+    vector<string> rem;
+    msg->table_msg(4); /* Display a choice menu for the user to choose what to remove */
+    string table = v->verify_table();
+    msg->remove_msg(table);
+    get_list(table);
+    rem.push_back("remove");
+    rem.push_back(table);
+    /* If he wants to remove either a Scientist or a Computer */
+    if (table == "1")
+    {
+        rem.push_back("7"); /*  7 means Id in domain class */
+        rem.push_back(valid_id(table)); /* Receives input */
+        msg->remove_msg("6");
     }
-
+    else if (table == "2")
+    {
+        rem.push_back("7");
+        rem.push_back(valid_id(table));
+        msg->remove_msg("7");
+    }
+    /* If he wants to remove a Connection */
+    else
+    {
+        msg->remove_msg("4");
+        rem.push_back(valid_id("1"));
+        msg->remove_msg("5");
+        rem.push_back(valid_id("2"));
+        msg->remove_msg("8");
+    }
+    return rem;
 }
 
-void presentation::sort_msg(int c) {
-    if (c == 1) {
-        cout << "What do you want to sort by? choose one of the following:" << endl
-             <<"(1) Name" << endl
-            << "(2) Birthyear" << endl
-            << "(3) Deathyear" << endl
-            << "(4) Sex" << endl
-            << "(5) Profession" << endl
-            << prompt;
+vector<string> presentation::get_ids(int c)
+{
+    vector<string> ids;
+    /* Push all Ids of Computer Scientist in the database into a vector */
+    if (c == 1)
+    {
+        for (unsigned int i = 0; i < d->get_p_vec().size(); i++)
+        {
+            ids.push_back(int_to_string(d->get_p_vec()[i]->get_id()));
+        }
     }
-    else if (c == 2) {
-        cout << "Do you want the information sorted in ascending or descending order? Choose a/d: " << endl << prompt;
+    /* Push all Ids of Computers in the database into a vector */
+    else
+    {
+        for (unsigned int i = 0; i < d->get_c_vec().size(); i++)
+        {
+            ids.push_back(int_to_string(d->get_c_vec()[i]->get_id()));
+        }
     }
-    else if (c == 3) {
-        cout << "Choose what information you want to search for:" << endl
-             << "(1) Name" << endl
-             << "(2) Profession" << endl
-             << "(3) Description" << endl
-             << "(4) Birthyear" << endl
-             << "(5) Deathyear" << endl
-             << "(6) Sex" << endl
-             << prompt;
+    return ids;
+}
+
+string presentation::valid_id(string table)
+{
+    bool id_not_ok = true;
+    vector <string> ids;
+    string input;
+
+    if (table == "1") /* Get all Persons id in the database*/
+    {
+        ids = get_ids(1);
     }
+    else /* Get all Computers id in the database */
+    {
+        ids = get_ids(2);
+    }
+    cin >> input;
+    while (id_not_ok)
+    {
+        for (unsigned int i = 0; i < ids.size(); i++)
+        {
+            /* If chosen Id matches an id in the vector, return*/
+            if (input == ids[i])
+            {
+                id_not_ok = false;
+                break;
+            }
+        }
+        if (id_not_ok)
+        {
+            cout << "Invalid input, please choose again: "<< endl << prompt;
+            cin >> input;
+        }
+    }
+    return input;
+}
+
+/* Returns the integer variable number as a string using stringstream*/
+string presentation::int_to_string(int number)
+{
+    stringstream ss;
+    ss << number;
+    string value = ss.str();
+    return value;
 }

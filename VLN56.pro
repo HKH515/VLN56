@@ -1,5 +1,6 @@
-QT += core
+QT += core sql
 QT -= gui
+QT += core sql
 
 TARGET = VLN56
 CONFIG += console
@@ -14,14 +15,20 @@ SOURCES += main.cpp \
     person.cpp \
     presentation.cpp \
 	domain.cpp \
-	compareperson.cpp
+    computer.cpp \
+    verifyinput.cpp \
+    connections.cpp \
+    display.cpp
 
 HEADERS += \
     data.h \
     presentation.h \
     person.h \
 	domain.h \
-	compareperson.h
+    computer.h \
+    verifyinput.h \
+    connections.h \
+    display.h
 
 DISTFILES += \
     splash.txt \

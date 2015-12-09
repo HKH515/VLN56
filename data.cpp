@@ -2,43 +2,31 @@
 
 Data::Data(string datafile)
 {
-    set_file(datafile);
     init_db();
 }
 
 void Data::init_db()
 {
-    db = QSqlDatabase::addDatabase("QSQLITE", "VLN56_connection");
-    db.setDatabaseName(get_file());
-    ConnectionRepository connection_repo(&db);
-    PersonRepository person_repo(&db);
-    ComputerRepository computer_repo(&db);
-}
-void Data::set_file(string data)
-{
-    QString qName(data.c_str());
-    dbName = QString(qName);
-}
 
-QString Data::get_file()
-{
-    return dbName;
+    ConnectionRepository connection_repo("VLN56_connection" ,"VLN56_connectionConn");
+    PersonRepository person_repo("VLN56_person", "VLN56_personConn");
+    ComputerRepository computer_repo("VLN56_computer", "VLN56_computerConn");
 }
 
 void Data::write(string table, string line)
 {
     if (table == "persons")
     {
-        person_repo.write(line);
+        person_repo->write(line);
     }
     else if (table == "computers")
     {
-        computer_repo.write(line);
+        computer_repo->write(line);
     }
 
     else if (table == "connections")
     {
-        connection_repo.write(line);
+        connection_repo->write(line);
     }
 }
 
@@ -66,23 +54,23 @@ void Data::remove(string table, string column, string id)
 {
     if (table == "persons")
     {
-        person_repo.remove(column, id);
+        person_repo->remove(column, id);
     }
     else if (table == "computers")
     {
-        computer_repo.remove(column, id);
+        computer_repo->remove(column, id);
     }
 
     else if (table == "connections")
     {
-        connection_repo.remove(column, id);
+        connection_repo->remove(column, id);
     }
 }
 
 //Returns all computers that have a persons associated with them, returns entries in the same order as get_conn_all_persons
 vector<string> Data::get_conn_all_computers()
 {
-    return connection_repo.get_conn_all_computers();
+    return connection_repo->get_conn_all_computers();
 }
 
 //Returns all persons that have a persons associated with them, returns entries in the same order as get_conn_all_computers
@@ -92,55 +80,55 @@ vector<string> Data::get_conn_all_persons()
 }
 
 //Returns all computers that have a persons associated with them
-vector<string> Data::get_conn_assoc_with_person(string personId)
+vector<string> Data::get_conn_assoc_with_person(string person_ID)
 {
-    return connection_repo->get_conn_assoc_with_person(personId);
+    return connection_repo->get_conn_assoc_with_person(person_ID);
 }
 
 //Returns all persons that have a persons associated with them
-vector<string> Data::get_conn_assoc_with_computer(string computerId)
+vector<string> Data::get_conn_assoc_with_computer(string computer_ID)
 {
-    return connection_repo->get_conn_assoc_with_computer(computerId);
+    return connection_repo->get_conn_assoc_with_computer(computer_ID);
 }
 
 //Removes a specified entry in the connections table
-void Data::remove_conn(string personId, string computerId)
+void Data::remove_conn(string person_ID, string computer_ID)
 {
-    connection_repo->remove_conn(personId, computerId);
+    connection_repo->remove_conn(person_ID, computer_ID);
 }
 
 //Search a specified table
-vector<string> Data::query_exact(string table, string column, string dataQuery, string sortColumn, string order)
+vector<string> Data::query_exact(string table, string column, string data_query, string sort_column, string order)
 {
     if (table == "persons")
     {
-        return person_repo->query_exact(column, dataQuery, sortColumn, order);
+        return person_repo->query_exact(column, data_query, sort_column, order);
     }
     else if (table == "computers")
     {
-        return computer_repo->query_exact(column, dataQuery, sortColumn, order);
+        return computer_repo->query_exact(column, data_query, sort_column, order);
     }
 
     else if (table == "connections")
     {
-        return connection_repo->query_exact(column, dataQuery, sortColumn, order);
+        return connection_repo->query_exact(column, data_query, sort_column, order);
     }
 }
 
 //Search a specified table with substring
-vector<string> Data::query(string table, string column, string dataQuery, string sortColumn, string order)
+vector<string> Data::query(string table, string column, string data_query, string sort_column, string order)
 {
     if (table == "persons")
     {
-        return person_repo->query(column, dataQuery, sortColumn, order);
+        return person_repo->query(column, data_query, sort_column, order);
     }
     else if (table == "computers")
     {
-        return computer_repo->query(column, dataQuery, sortColumn, order);
+        return computer_repo->query(column, data_query, sort_column, order);
     }
 
     else if (table == "connections")
     {
-        return connection_repo->query(column, dataQuery, sortColumn, order);
+        return connection_repo->query(column, data_query, sort_column, order);
     }
 }

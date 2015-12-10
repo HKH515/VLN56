@@ -31,9 +31,9 @@ void PersonRepository::write(string line)
 //Returns all entries in a specified table
 vector<string> PersonRepository::read_entries(string column, string order)
 {
-
     vector<string> query_vect;
     vector<string> result_vect;
+    cout << column << " " << order << endl;
     string queryString;
     if (this->db.open())
     {
@@ -46,6 +46,7 @@ vector<string> PersonRepository::read_entries(string column, string order)
         query_vect = from_db_to_vector("persons", queryObj);
     }
     db.close();
+    cout << "query vect" << query_vect.size() << endl;
 
     return query_vect;
 

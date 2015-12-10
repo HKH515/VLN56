@@ -7,7 +7,6 @@ Data::Data(string datafile)
 
 void Data::init_db()
 {
-
     connection_repo = new ConnectionRepository("data.sqlite", "VLN56_connection");
     person_repo = new PersonRepository("data.sqlite", "VLN56_person");
     computer_repo = new ComputerRepository("data.sqlite", "VLN56_computer");
@@ -35,6 +34,7 @@ vector<string> Data::read_entries(string table, string column, string order)
 {
     if (table == "persons")
     {
+        cout << "komin inn í persons read_entries" << endl;
         return person_repo->read_entries(column, order);
     }
     else if (table == "computers")

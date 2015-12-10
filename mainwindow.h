@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "domain.h"
+#include <string>
+#include <vector>
 
 namespace Ui {
 class MainWindow;
@@ -16,10 +19,15 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_listView_clicked(const QModelIndex &index);
+
+    void on_listWidget_clicked(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;
+    Domain d;
+
+    void display_list();
+
 };
 
 #endif // MAINWINDOW_H

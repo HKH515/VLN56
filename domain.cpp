@@ -31,6 +31,7 @@ Domain::~Domain()
 /* Parse function for queries returned from the data layer. */
 void Domain::parse_query_vector(vector<string> v)
 {
+    cout << "size from data layer" << v.size() << endl;
     for (unsigned int i = 0; i < v.size(); i++)
     {
         string st = v[i];
@@ -123,6 +124,7 @@ string Domain::parse_add_command(vector<string> v)
 
 void Domain::handle_commands(vector<string> v)
 {
+    cout << "komin niður í domain " << endl;
     free_vector_memory(); /* Clear vector for new query */
     string command = v[0];
 
@@ -165,7 +167,13 @@ void Domain::get_connected(vector<string> v)
 
 void Domain::get_list(vector<string> v)
 {
+    cout << "komin inn í get list" << endl;
+    for (unsigned int i = 0; i < v.size(); i++)
+    {
+        cout << v[i] << endl;
+    }
     string table = get_table(v[1]);
+    cout << "table: " << table << endl;
     if (table == "connections")
     {
         parse_query_vector(data->get_conn_all_computers()); /* Get all computers ordered by connections*/
@@ -227,11 +235,11 @@ void Domain::remove_entry(vector<string> v)
 /* Returns the name of right table in database to work with */
 string Domain::get_table(string s)
 {
-    if (s == "1")
+    if (s == "Computer Scientists")
     {
         return "persons";
     }
-    else if (s == "2")
+    else if (s == "Computers")
     {
         return "computers";
     }
@@ -245,7 +253,7 @@ string Domain::get_table(string s)
 /* Returns the required sort method */
 string Domain::get_sort_method(string s)
 {
-    if (s == "a")
+    if (s == "Ascending")
     {
         return "ASC";
     }
@@ -260,19 +268,19 @@ string Domain::get_column(string s, string table)
 {
     if (table == "persons")
     {
-        if (s == "1")
+        if (s == "Name")
         {
             return "name";
         }
-        else if (s == "2")
+        else if (s == "Birth Year")
         {
             return "birthyear";
         }
-        else if (s == "3")
+        else if (s == "Death Year")
         {
             return "deathyear";
         }
-        else if (s == "4")
+        else if (s == "Sex")
         {
             return "sex";
         }

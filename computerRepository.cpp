@@ -4,8 +4,16 @@ ComputerRepository::ComputerRepository(string db_name, string conn_name)
 {
     QString q_conn_name = QString(conn_name.c_str());
     QString q_db_name = QString(db_name.c_str());
-    db = QSqlDatabase::addDatabase("QSQLITE", q_conn_name);
-    db.setDatabaseName(q_db_name);
+    if (QSqlDatabase::contains(q_conn_name))
+    {
+        db = QSqlDatabase::database(q_conn_name);
+    }
+    else
+    {
+        db = QSqlDatabase::addDatabase("QSQLITE", q_conn_name);
+        db.setDatabaseName(q_db_name);
+        db.open();
+    }
 }
 
 void ComputerRepository::write(string line)
@@ -28,14 +36,13 @@ vector<string> ComputerRepository::read_entries(string column, string order)
     string query_string;
     if (db.open())
     {
+        QSqlQuery query_obj(db);
 
+        query_string = "SELECT * from computers ORDER BY " + column + " " + order;
+        QString q_query_string(query_string.c_str());
+        query_obj.exec(q_query_string);
+        query_vect = from_db_to_vector("computers", query_obj);
     }
-    QSqlQuery query_obj(db);
-
-    query_string = "SELECT * from computers ORDER BY " + column + " " + order;
-    QString q_query_string(query_string.c_str());
-    query_obj.exec(q_query_string);
-    query_vect = from_db_to_vector("computers", query_obj);
     db.close();
 
     return query_vect;

@@ -15,7 +15,8 @@ vector<Computer*> Domain::get_c_vec()
     return c_vec;
 }
 
-Domain::~Domain() {
+Domain::~Domain()
+{
     delete data;
     for (unsigned int i = 0; i < p_vec.size(); i++)
     {
@@ -27,7 +28,7 @@ Domain::~Domain() {
     }
 }
 
-// Parse function for queries returned from the data layer.
+/* Parse function for queries returned from the data layer. */
 void Domain::parse_query_vector(vector<string> v)
 {
     for (unsigned int i = 0; i < v.size(); i++)
@@ -35,10 +36,10 @@ void Domain::parse_query_vector(vector<string> v)
         string st = v[i];
         size_t position_beg = 0;
         size_t position_end = 0;
-        // cut out the empty space in the beginning of the string
+        /* cut out the empty space in the beginning of the string */
         st = st.substr(1, st.length());
 
-        // find if it is a computer or a person
+        /* find if it is a computer or a person */
         position_beg = st.find("|");
         string kind = st.substr(0, position_beg);
 
@@ -46,31 +47,31 @@ void Domain::parse_query_vector(vector<string> v)
         {
             Person* p = new Person();
 
-            // find the name
+            /* find the name */
             position_end = st.find("|", position_beg + 1);
             p->set_name(st.substr(position_beg + 1, position_end - position_beg - 1));
 
-            // find the profession
+            /* find the profession */
             position_beg = st.find("|", position_end + 1);
             p->set_profession(st.substr(position_end + 1, (position_beg - position_end - 1)));
 
-            // find the description
+            /* find the description */
             position_end = st.find("|", position_beg + 1);
             p->set_description(st.substr(position_beg + 1, (position_end - position_beg - 1)));
 
-            // find the birthyear
+            /* find the birthyear */
             position_beg = st.find("|", position_end + 1);
             p->set_birthyear(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
 
-            // find the deathyear
+            /* find the deathyear */
             position_end = st.find("|", position_beg + 1);
             p->set_deathyear(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
 
-            // find the sex
+            /* find the sex */
             position_beg = st.find("|", position_end + 1);
             p->set_sex(st.substr(position_end + 1, (position_beg - position_end - 1)));
 
-            // find the id
+            /* find the id */
             position_end = st.find("|", position_beg + 1);
             p->set_id(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
 
@@ -78,72 +79,70 @@ void Domain::parse_query_vector(vector<string> v)
         }
         else if (kind == "1")
         {
-            //vector<Computer*>;
             Computer* c = new Computer();
 
-            // find the name
+            /* find the name */
             position_end = st.find("|", position_beg + 1);
             c->set_name(st.substr(position_beg + 1, position_end - position_beg - 1));
 
-            // find the construction year
+            /* find the construction year */
             position_beg = st.find("|", position_end + 1);
             c->set_construction_year(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
 
-            // find the type
+            /* find the type */
             position_end = st.find("|", position_beg + 1);
             c->set_type(st.substr(position_beg + 1, (position_end - position_beg - 1)));
 
-            // find if built
+            /* find if built */
             position_beg = st.find("|", position_end + 1);
             c->set_built(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
 
-            // find the description
+            /* find the description */
             position_end = st.find("|", position_beg + 1);
             c->set_description(st.substr(position_beg + 1, (position_end - position_beg - 1)));
 
-            // find the id
+            /* find the id */
             position_beg = st.find("|", position_end + 1);
             c->set_id(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
 
             c_vec.push_back(c);
         }
-        else // kind == "2"
-        {
-
-        }
     }
 }
 
-string Domain::parse_add_command(vector<string> v) {
-    string st = " ";
-    for (unsigned int i = 2; i < v.size(); i++) {
+string Domain::parse_add_command(vector<string> v)
+{
+    string st = " "; /* add space in front of the string */
+    for (unsigned int i = 2; i < v.size(); i++)
+    {
         st += v[i];
-        st += "|";
+        st += "|"; /* add | after each vector element */
     }
     return st;
 }
 
-void Domain::handle_commands(vector<string> v) {
+void Domain::handle_commands(vector<string> v)
+{
     free_vector_memory(); /* Clear vector for new query */
     string command = v[0];
 
-    if (command == "list") /* returns all entries in specified table */
+    if (command == "list") /* Returns all entries in specified table */
     {
         get_list(v);
     }
-    else if (command == "add") /* adds new entry in specified table */
+    else if (command == "add") /* Adds new entry in specified table */
     {
         add_entry(v);
     }
-    else if (command == "search") /* search in the list */
+    else if (command == "search") /* Search in the list */
     {
         search(v);
     }
-    else if (command == "remove") /* remove entry from database */
+    else if (command == "remove") /* Remove entry from database */
     {
         remove_entry(v);
     }
-    else if (command == "connections") /* get all Scientists/computers associated with certain Computer/scientist */
+    else if (command == "connections") /* Get all Scientists/computers associated with certain Computer/scientist */
     {
         get_connected(v);
     }
@@ -155,12 +154,12 @@ void Domain::get_connected(vector<string> v)
     if (table == "persons")
     {
         string id = v[2];
-        parse_query_vector(data->get_conn_assoc_with_person(id));
+        parse_query_vector(data->get_conn_assoc_with_person(id)); /* Gets all computers associated with the scientist */
     }
     else
     {
         string id = v[2];
-        parse_query_vector(data->get_conn_assoc_with_computer(id));
+        parse_query_vector(data->get_conn_assoc_with_computer(id)); /* Get all scientists associated with the computer */
     }
 }
 
@@ -169,10 +168,10 @@ void Domain::get_list(vector<string> v)
     string table = get_table(v[1]);
     if (table == "connections")
     {
-        parse_query_vector(data->get_conn_all_computers());
-        parse_query_vector(data->get_conn_all_persons());
+        parse_query_vector(data->get_conn_all_computers()); /* Get all computers ordered by connections*/
+        parse_query_vector(data->get_conn_all_persons()); /* Get all scientist ordered by connections */
     }
-    else
+    else /* If list of scientists/computers then get all and sort by requerments */
     {
         string sort_column = get_column(v[2], table);
         string sort_method = get_sort_method(v[3]);
@@ -183,17 +182,28 @@ void Domain::get_list(vector<string> v)
 void Domain::add_entry(vector<string> v)
 {
     string table = get_table(v[1]);
-    data->write(table, parse_add_command(v));
+    data->write(table, parse_add_command(v)); /* Add to the database */
 }
 
 void Domain::search(vector<string> v)
 {
     string table = get_table(v[1]);
     string query_column = get_column(v[2], table);
-    string query_string = v[3];
+    string query_string;
+    if (query_column == "built") /* Let the user enter specific strings if searching for built */
+    {
+        query_string = check_type_query(v[3]);
+    }
+    else if (query_column == "sex") /* Let the user enter specific strings if searching for sex */
+    {
+        query_string = check_sex_query(v[3]);
+    }
+    else
+    {
+        query_string = v[3];
+    }
     string sort_column = get_column(v[4], table);
     string sort_method = get_sort_method(v[5]);
-
     parse_query_vector(data->query(table, query_column, query_string, sort_column, sort_method));
 }
 
@@ -214,6 +224,7 @@ void Domain::remove_entry(vector<string> v)
     }
 }
 
+/* Returns the name of right table in database to work with */
 string Domain::get_table(string s)
 {
     if (s == "1")
@@ -231,6 +242,7 @@ string Domain::get_table(string s)
 
 }
 
+/* Returns the required sort method */
 string Domain::get_sort_method(string s)
 {
     if (s == "a")
@@ -243,6 +255,7 @@ string Domain::get_sort_method(string s)
     }
 }
 
+/* Returns the name of the requried column to sort by or search in */
 string Domain::get_column(string s, string table)
 {
     if (table == "persons")
@@ -305,6 +318,46 @@ string Domain::get_column(string s, string table)
     }
 }
 
+/* This function lets the user enter specific key words and returns correct results */
+string Domain::check_type_query(string v)
+{
+    if (v == "1" || v == "built" || v == "yes" || v == "Built" || v == "Yes")
+    {
+        return "1";
+    }
+    else if (v == "0" || v == "not built" || v == "no" || v == "Not Built" || v == "No")
+    {
+        return "0";
+    }
+    else
+    {
+        return v;
+    }
+}
+
+/* This function lets the user enter specific key words and returns correct results */
+string Domain::check_sex_query(string v)
+{
+    if (v == "m" || v == "male" || v == "Male")
+    {
+        return "m";
+    }
+    else if (v == "f" || v == "female" || v == "Female")
+    {
+        return "f";
+    }
+    else if (v == "o" || v == "other" || v == "Other")
+    {
+        return "o";
+    }
+    else
+    {
+        return v;
+    }
+
+}
+
+/* Deallocate memory for person and computer objects */
 void Domain::free_vector_memory()
 {
     for (unsigned int i = 0; i < p_vec.size(); i++)

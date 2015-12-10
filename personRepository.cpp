@@ -4,8 +4,16 @@ PersonRepository::PersonRepository(string db_name, string conn_name)
 {
     QString q_conn_name = QString(conn_name.c_str());
     QString q_db_name = QString(db_name.c_str());
-    db = QSqlDatabase::addDatabase("QSQLITE", q_conn_name);
-    db.setDatabaseName(q_db_name);
+    if (QSqlDatabase::contains(q_conn_name))
+    {
+        db = QSqlDatabase::database(q_conn_name);
+    }
+    else
+    {
+        db = QSqlDatabase::addDatabase("QSQLITE", q_conn_name);
+        db.setDatabaseName(q_db_name);
+
+    }
 }
 
 void PersonRepository::write(string line)
@@ -24,22 +32,22 @@ void PersonRepository::write(string line)
 vector<string> PersonRepository::read_entries(string column, string order)
 {
 
-    vector<string> queryVect;
-    vector<string> resultVect;
+    vector<string> query_vect;
+    vector<string> result_vect;
     string queryString;
-    if (db.open())
+    if (this->db.open())
     {
 
-    }
-    QSqlQuery queryObj(db);
+        QSqlQuery queryObj(db);
 
-    queryString = "SELECT * from persons ORDER BY " + column + " " + order;
-    QString qQueryString(queryString.c_str());
-    queryObj.exec(qQueryString);
-    queryVect = from_db_to_vector("persons", queryObj);
+        queryString = "SELECT * from persons ORDER BY " + column + " " + order;
+        QString qQueryString(queryString.c_str());
+        queryObj.exec(qQueryString);
+        query_vect = from_db_to_vector("persons", queryObj);
+    }
     db.close();
 
-    return queryVect;
+    return query_vect;
 
 }
 
@@ -60,31 +68,31 @@ void PersonRepository::remove(string column, string id)
 //Search a specified table
 vector<string> PersonRepository::query_exact(string column, string dataQuery, string sortColumn, string order)
 {
-    vector<string> queryVect;
-    vector<string> resultVect;
+    vector<string> query_vect;
+    vector<string> result_vect;
     db.open();
     QSqlQuery queryObj(db);
     string queryString = "SELECT * FROM persons WHERE " + column + " ='" + dataQuery + "' ORDER BY " + sortColumn + " " + order;
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
-    queryVect = from_db_to_vector("persons", queryObj);
+    query_vect = from_db_to_vector("persons", queryObj);
     db.close();
 
-    return queryVect;
+    return query_vect;
 }
 
 //Search a specified table with substring
 vector<string> PersonRepository::query(string column, string dataQuery, string sortColumn, string order)
 {
-    vector<string> queryVect;
-    vector<string> resultVect;
+    vector<string> query_vect;
+    vector<string> result_vect;
     db.open();
     QSqlQuery queryObj(db);
     string queryString = "SELECT * FROM persons WHERE " + column + " LIKE '%" + dataQuery + "%' ORDER BY " + sortColumn + " " + order;
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
-    queryVect = from_db_to_vector("persons", queryObj);
+    query_vect = from_db_to_vector("persons", queryObj);
     db.close();
 
-    return queryVect;
+    return query_vect;
 }

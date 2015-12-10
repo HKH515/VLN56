@@ -2,17 +2,18 @@
 
 using namespace std;
 
-Person::Person() {
+Person::Person()
+{
     name = "";
     birth_year = 0;
     death_year = 0;
-    sex = "f";
+    sex = "";
     description = "";
     profession = "";
     id = 0;
 }
 
- /* set functions */
+/* set functions */
 void Person::set_name(string n)
 {
     name = n;
@@ -82,55 +83,5 @@ string Person::get_profession()
 int Person::get_id()
 {
     return id;
-}
-
-vector<string> Person::get_vec()
-{
-    return comp_associated;
-}
-
-bool operator < (const Person &lhs, const Person &rhs) {
-    return lhs.name < rhs.name;
-}
-
-bool operator > (const Person &lhs, const Person &rhs) {
-    return lhs.name > rhs.name;
-}
-
-/* overloading << */
-ostream& operator << (ostream& outs, const Person &p) {
-    return outs << p.name;
-}
-
-/* assignment operator */
-void Person::operator = (const Person& rhs) {
-    name = rhs.name;
-    birth_year = rhs.birth_year;
-    death_year = rhs.death_year;
-    sex = rhs.sex;
-    description = rhs.description;
-    profession = rhs.profession;
-}
-
-/* copy constructor */
-Person::Person(const Person& copyme)
-{
-    name = copyme.name;
-    birth_year = copyme.birth_year;
-    death_year = copyme.death_year;
-    sex = copyme.sex;
-    description = copyme.description;
-    profession = copyme.profession;
-}
-
-void Person::push_back_vec(string s)
-{
-    comp_associated.push_back(s);
-}
-
-unsigned long Person::size_of_vec()
-{
-    return comp_associated.size();
-    
 }
 

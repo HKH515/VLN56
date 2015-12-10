@@ -40,10 +40,6 @@ int Computer::get_id()
     return id;
 }
 
-vector<string> Computer::get_vec()
-{
-    return per_associated;
-}
 
 void Computer::set_name(string s)
 {
@@ -75,12 +71,3 @@ void Computer::set_id(int i)
     id = i;
 }
 
-void Computer::push_back_vec(string s)
-{
-    per_associated.push_back(s);
-}
-
-unsigned long Computer::get_vec_size()
-{
-    return per_associated.size();
-}

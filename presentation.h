@@ -32,10 +32,10 @@ private:
     vector<string> remove_entry();
     /* Gets all Computer scientists or Computers */
     void get_list(string table);
-    /* Get all Ids in the database of either Computer Scientists or Computers */
+    /* Get all Id's in the database of either Computer Scientists or Computers */
     vector<string> get_ids(int c);
-
-    string verify_id(string table);
+    /* Receives id from user and verifies that it is one of the Id's in the database */
+    string valid_id(string table);
     /* Changes the argument from int to string */
     string int_to_string(int number);
 

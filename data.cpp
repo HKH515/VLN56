@@ -8,9 +8,9 @@ Data::Data(string datafile)
 void Data::init_db()
 {
 
-    ConnectionRepository connection_repo("VLN56_connection" ,"VLN56_connectionConn");
-    PersonRepository person_repo("VLN56_person", "VLN56_personConn");
-    ComputerRepository computer_repo("VLN56_computer", "VLN56_computerConn");
+    connection_repo = new ConnectionRepository("data.sqlite", "VLN56_connection");
+    person_repo = new PersonRepository("data.sqlite", "VLN56_person");
+    computer_repo = new ComputerRepository("data.sqlite", "VLN56_computer");
 }
 
 void Data::write(string table, string line)

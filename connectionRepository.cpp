@@ -4,8 +4,17 @@ ConnectionRepository::ConnectionRepository(string db_name, string conn_name)
 {
     QString q_conn_name = QString(conn_name.c_str());
     QString q_db_name = QString(db_name.c_str());
-    db = QSqlDatabase::addDatabase("QSQLITE", q_conn_name);
-    db.setDatabaseName(q_db_name);
+    if (QSqlDatabase::contains(q_conn_name))
+    {
+        db = QSqlDatabase::database(q_conn_name);
+    }
+    else
+    {
+        db = QSqlDatabase::addDatabase("QSQLITE", q_conn_name);
+        db.setDatabaseName(q_db_name);
+        db.open();
+
+    }
 }
 
 void ConnectionRepository::write(string line)
@@ -23,22 +32,21 @@ void ConnectionRepository::write(string line)
 //Returns all entries in a specified table
 vector<string> ConnectionRepository::read_entries(string column, string order)
 {
-    vector<string> queryVect;
-    vector<string> resultVect;
+    vector<string> query_vect;
+    vector<string> result_vect;
     string query_string;
     if (db.open())
     {
+        QSqlQuery query_obj(db);
 
+        query_string = "SELECT * from connection ORDER BY " + column + " " + order;
+        QString q_query_string(query_string.c_str());
+        query_obj.exec(q_query_string);
+        query_vect = from_db_to_vector("connections", query_obj);
     }
-    QSqlQuery query_obj(db);
-
-    query_string = "SELECT * from connection ORDER BY " + column + " " + order;
-    QString q_query_string(query_string.c_str());
-    query_obj.exec(q_query_string);
-    queryVect = from_db_to_vector("connections", query_obj);
     db.close();
 
-    return queryVect;
+    return query_vect;
 
 }
 
@@ -46,11 +54,13 @@ vector<string> ConnectionRepository::read_entries(string column, string order)
 void ConnectionRepository::remove(string column, string id)
 {
     string query_string;
-    db.open();
-    QSqlQuery query_obj(db);
-    query_string = "DELETE from connection WHERE " + column + "=" + id;
-    QString q_query_string(query_string.c_str());
-    query_obj.exec(q_query_string);
+    if (db.open())
+    {
+        QSqlQuery query_obj(db);
+        query_string = "DELETE from connection WHERE " + column + "=" + id;
+        QString q_query_string(query_string.c_str());
+        query_obj.exec(q_query_string);
+    }
     db.close();
 
 }
@@ -58,7 +68,7 @@ void ConnectionRepository::remove(string column, string id)
 //Returns all computers that have a persons associated with them, returns entries in the same order as get_conn_all_persons
 vector<string> ConnectionRepository::get_conn_all_computers()
 {
-    vector<string> queryVect;
+    vector<string> query_vect;
     string query_string;
     if (db.open())
     {
@@ -68,38 +78,39 @@ vector<string> ConnectionRepository::get_conn_all_computers()
 
         QString q_query_string(query_string.c_str());
         query_obj.exec(q_query_string);
-        queryVect = from_db_to_vector("computers", query_obj);
-        db.close();
+        query_vect = from_db_to_vector("computers", query_obj);
     }
-    return queryVect;
+    db.close();
+
+    return query_vect;
 
 }
 
 //Returns all persons that have a persons associated with them, returns entries in the same order as get_conn_all_computers
 vector<string> ConnectionRepository::get_conn_all_persons()
 {
-    vector<string> queryVect;
+    vector<string> query_vect;
     string query_string;
     if (db.open())
     {
+        QSqlQuery query_obj(db);
+
+        query_string = "SELECT persons.* FROM persons INNER JOIN connections ON ID_computers INNER JOIN computers ON computers.ID = connections.ID_computers WHERE connections.ID_persons = persons.ID ORDER BY persons.name";
+
+        QString q_query_string(query_string.c_str());
+        query_obj.exec(q_query_string);
+        query_vect = from_db_to_vector("persons", query_obj);
 
     }
-    QSqlQuery query_obj(db);
-
-    query_string = "SELECT persons.* FROM persons INNER JOIN connections ON ID_computers INNER JOIN computers ON computers.ID = connections.ID_computers WHERE connections.ID_persons = persons.ID ORDER BY persons.name";
-
-    QString q_query_string(query_string.c_str());
-    query_obj.exec(q_query_string);
-    queryVect = from_db_to_vector("persons", query_obj);
     db.close();
-    return queryVect;
+    return query_vect;
 
 }
 
 //Returns all computers that have a persons associated with them
 vector<string> ConnectionRepository::get_conn_assoc_with_person(string person_ID)
 {
-    vector<string> queryVect;
+    vector<string> query_vect;
     string query_string;
     if (db.open())
     {
@@ -109,17 +120,17 @@ vector<string> ConnectionRepository::get_conn_assoc_with_person(string person_ID
 
         QString q_query_string(query_string.c_str());
         query_obj.exec(q_query_string);
-        queryVect = from_db_to_vector("computers", query_obj);
+        query_vect = from_db_to_vector("computers", query_obj);
         db.close();
     }
-    return queryVect;
+    return query_vect;
 
 }
 
 //Returns all persons that have a persons associated with them
 vector<string> ConnectionRepository::get_conn_assoc_with_computer(string computer_ID)
 {
-    vector<string> queryVect;
+    vector<string> query_vect;
     string query_string;
     if (db.open())
     {
@@ -131,10 +142,10 @@ vector<string> ConnectionRepository::get_conn_assoc_with_computer(string compute
 
     QString q_query_string(query_string.c_str());
     query_obj.exec(q_query_string);
-    queryVect = from_db_to_vector("connections", query_obj);
+    query_vect = from_db_to_vector("connections", query_obj);
     db.close();
 
-    return queryVect;
+    return query_vect;
 
 }
 
@@ -158,31 +169,31 @@ void ConnectionRepository::remove_conn(string person_ID, string computer_ID)
 //Search a specified table
 vector<string> ConnectionRepository::query_exact(string column, string data_query, string sort_column, string order)
 {
-    vector<string> queryVect;
-    vector<string> resultVect;
+    vector<string> query_vect;
+    vector<string> result_vect;
     db.open();
     QSqlQuery query_obj(db);
     string query_string = "SELECT * FROM connections WHERE " + column + " ='" + data_query + "' ORDER BY " + sort_column + " " + order;
     QString q_query_string(query_string.c_str());
     query_obj.exec(q_query_string);
-    queryVect = from_db_to_vector("connections", query_obj);
+    query_vect = from_db_to_vector("connections", query_obj);
     db.close();
 
-    return queryVect;
+    return query_vect;
 }
 
 //Search a specified table with substring
 vector<string> ConnectionRepository::query(string column, string data_query, string sort_column, string order)
 {
-    vector<string> queryVect;
-    vector<string> resultVect;
+    vector<string> query_vect;
+    vector<string> result_vect;
     db.open();
     QSqlQuery query_obj(db);
     string query_string = "SELECT * FROM connections WHERE " + column + " LIKE '%" + data_query + "%' ORDER BY " + sort_column + " " + order;
     QString q_query_string(query_string.c_str());
     query_obj.exec(q_query_string);
-    queryVect = from_db_to_vector("connections", query_obj);
+    query_vect = from_db_to_vector("connections", query_obj);
     db.close();
 
-    return queryVect;
+    return query_vect;
 }

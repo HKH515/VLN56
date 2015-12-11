@@ -49,7 +49,6 @@ namespace utils
             string current_entry = " ";
             if (table == "persons")
             {
-                table_data.push_back("0");
                 table_data.push_back(query_obj.value("name").toString().toStdString());
                 table_data.push_back(query_obj.value("profession").toString().toStdString());
                 table_data.push_back(query_obj.value("description").toString().toStdString());
@@ -61,7 +60,6 @@ namespace utils
             }
             else if (table == "computers")
             {
-                table_data.push_back("1");
                 table_data.push_back(query_obj.value("name").toString().toStdString());
                 table_data.push_back(query_obj.value("construction_year").toString().toStdString());
                 table_data.push_back(query_obj.value("type").toString().toStdString());
@@ -72,6 +70,7 @@ namespace utils
             }
 
             current_entry = create_delim_string(table_data, "|");
+            cout << current_entry << endl;
             result.push_back(current_entry);
         }
         return result;

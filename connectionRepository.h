@@ -25,14 +25,14 @@ class ConnectionRepository
 
     public:
         ConnectionRepository(string db_name, string conn_name);
-        vector<string> query(string column, string data_query, string sort_column, string order); //Fetches all lines matching query (substring search)
-        vector<string> query_exact(string column, string data_query, string sort_column, string order); //Fetches all lines matching query exactly
+        vector<string> query(string column, string data_query); //Fetches all lines matching query (substring search)
+        vector<string> query_exact(string column, string data_query); //Fetches all lines matching query exactly
         vector<string> get_conn_assoc_with_computer(string computer_ID);
         vector<string> get_conn_assoc_with_person(string person_ID);
         vector<string> get_conn_all_computers();
         vector<string> get_conn_all_persons();
         void remove_conn(string person_ID, string computer_ID);
-        vector<string> read_entries(string column, string order); //Returns a vector of all entries
+        vector<string> read_entries(); //Returns a vector of all entries
         void write(string line); //Creates an entry in the database
         void remove(string column, string id); //Deletes an entry in the database
 };

@@ -30,16 +30,15 @@ void ConnectionRepository::write(string line)
 }
 
 //Returns all entries in a specified table
-vector<string> ConnectionRepository::read_entries(string column, string order)
+vector<string> ConnectionRepository::read_entries()
 {
     vector<string> query_vect;
-    vector<string> result_vect;
     string query_string;
     if (db.open())
     {
         QSqlQuery query_obj(db);
 
-        query_string = "SELECT * from connection ORDER BY " + column + " " + order;
+        query_string = "SELECT * from 'connections'";
         QString q_query_string(query_string.c_str());
         query_obj.exec(q_query_string);
         query_vect = from_db_to_vector("connections", query_obj);
@@ -116,7 +115,7 @@ vector<string> ConnectionRepository::get_conn_assoc_with_person(string person_ID
     {
         QSqlQuery query_obj(db);
 
-        query_string = "SELECT c.* from computers c INNER JOIN connections con ON c.ID = con.ID_computers WHERE con.ID_persons = " + person_ID + " ORDER BY c.Name";
+        query_string = "SELECT c.* from computers c INNER JOIN connections con ON c.ID = con.ID_computers WHERE con.ID_persons = " + person_ID;
 
         QString q_query_string(query_string.c_str());
         query_obj.exec(q_query_string);
@@ -167,13 +166,13 @@ void ConnectionRepository::remove_conn(string person_ID, string computer_ID)
 }
 
 //Search a specified table
-vector<string> ConnectionRepository::query_exact(string column, string data_query, string sort_column, string order)
+vector<string> ConnectionRepository::query_exact(string column, string data_query)
 {
     vector<string> query_vect;
     vector<string> result_vect;
     db.open();
     QSqlQuery query_obj(db);
-    string query_string = "SELECT * FROM connections WHERE " + column + " ='" + data_query + "' ORDER BY " + sort_column + " " + order;
+    string query_string = "SELECT * FROM connections WHERE " + column + " ='" + data_query;
     QString q_query_string(query_string.c_str());
     query_obj.exec(q_query_string);
     query_vect = from_db_to_vector("connections", query_obj);
@@ -183,13 +182,13 @@ vector<string> ConnectionRepository::query_exact(string column, string data_quer
 }
 
 //Search a specified table with substring
-vector<string> ConnectionRepository::query(string column, string data_query, string sort_column, string order)
+vector<string> ConnectionRepository::query(string column, string data_query)
 {
     vector<string> query_vect;
     vector<string> result_vect;
     db.open();
     QSqlQuery query_obj(db);
-    string query_string = "SELECT * FROM connections WHERE " + column + " LIKE '%" + data_query + "%' ORDER BY " + sort_column + " " + order;
+    string query_string = "SELECT * FROM connections WHERE " + column + " LIKE '%" + data_query + "%'";
     QString q_query_string(query_string.c_str());
     query_obj.exec(q_query_string);
     query_vect = from_db_to_vector("connections", query_obj);

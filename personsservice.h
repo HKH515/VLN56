@@ -23,7 +23,7 @@ public:
     /* Handles the search command */
     void search_person(string column, string substr);
     /* Handles the remove command */
-    void remove_person(string column, string id);
+    void remove_person(string id);
 
     vector<Person *> get_person_vec();
     PersonsService();

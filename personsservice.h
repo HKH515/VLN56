@@ -27,6 +27,7 @@ public:
 
     vector<Person *> get_person_vec();
     PersonsService();
+    ~PersonsService();
 };
 
 #endif // PERSONSSERVICE_H

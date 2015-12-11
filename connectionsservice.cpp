@@ -6,6 +6,14 @@ ConnectionsService::ConnectionsService()
     person_repo = new PersonRepository("data.sqlite", "person_computer");
 }
 
+ConnectionsService::~ConnectionsService()
+{
+    free_vector_memory();
+    delete computer_repo;
+    delete person_repo;
+    delete connection_repo;
+}
+
 void ConnectionsService::free_vector_memory()
 {
     for (unsigned int i = 0; i < person_vec.size(); i++)

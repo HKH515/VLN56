@@ -12,6 +12,10 @@ private:
     vector<Computer*> computer_vec;
     ComputerRepository* computer_repo;
 
+public:
+    ComputerService();
+    ~ComputerService();
+
     string parse_add_command(vector<string> vec);
     /* Receives a vector of strings from data layer and parses the string, fills into
        the persons class and returns a vector of persons* to the presentation layer */
@@ -26,8 +30,6 @@ private:
     void search_computer(string column, string substring);
     /* Handles the remove command */
     void remove_computer(string rem_id);
-public:
-    ComputerService();
 };
 
 #endif // COMPUTERSERVICE_H

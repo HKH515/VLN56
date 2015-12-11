@@ -5,6 +5,12 @@ PersonsService::PersonsService()
     person_repo = new PersonRepository("data.sqlite", "person_repo_connection");
 }
 
+PersonsService::~PersonsService()
+{
+    free_vector_memory();
+    delete person_repo;
+}
+
 string PersonsService::parse_add_command(vector<string> vec)
 {
     string st = " "; /* add space in front of the string */
@@ -18,6 +24,7 @@ string PersonsService::parse_add_command(vector<string> vec)
 
 void PersonsService::parse_query_vector(vector<string> v)
 {
+    free_vector_memory();
     for (unsigned int i = 0; i < v.size(); i++)
     {
         string st = v[i];

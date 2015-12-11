@@ -21,6 +21,7 @@ private:
 
 public:
     ConnectionsService();
+    ~ConnectionsService();
 
     /* Deletes all persons object from the vectors and clears the vectors before each command to be handled */
     void free_vector_memory();

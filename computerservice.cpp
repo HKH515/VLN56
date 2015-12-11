@@ -5,6 +5,12 @@ ComputerService::ComputerService()
     computer_repo = new ComputerRepository("data.sqlite", "computer_repo_connection");
 }
 
+ComputerService::~ComputerService()
+{
+    free_vector_memory();
+    delete computer_repo;
+}
+
 string ComputerService::parse_add_command(vector<string> v)
 {
     string st = " "; /* add space in front of the string */
@@ -18,6 +24,7 @@ string ComputerService::parse_add_command(vector<string> v)
 
 void ComputerService::parse_query_vector(vector<string> v)
 {
+    free_vector_memory();
     for (unsigned int i = 0; i < v.size(); i++)
     {
         string st = v[i];

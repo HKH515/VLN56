@@ -26,20 +26,17 @@ private slots:
 
     void on_substring_input_returnPressed();
 
-    void on_table_view_clicked(const QModelIndex &index);
+    void display_person_list();
+    void display_computer_list();
+    void display_connections_list();
 
-    void on_remove_pushButton_clicked();
+    void on_type_dropdown_currentIndexChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
     PersonsService* person_service;
     ComputerService* computer_service;
     ConnectionsService* connections_service;
-
-    void display_person_list();
-
-    vector<Person*> curr_disp_scientists;
-    vector<Computer*> curr_disp_computers;
 
 };
 

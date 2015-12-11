@@ -30,6 +30,8 @@ public:
     void search_computer(string column, string substring);
     /* Handles the remove command */
     void remove_computer(string rem_id);
+
+    vector<Computer*> get_computer_vec();
 };
 
 #endif // COMPUTERSERVICE_H

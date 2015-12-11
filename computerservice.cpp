@@ -98,3 +98,8 @@ void ComputerService::remove_computer(string rem_id)
 {
     computer_repo->remove("id", rem_id);
 }
+
+vector<Computer *> ComputerService::get_computer_vec()
+{
+    return computer_vec;
+}

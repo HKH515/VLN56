@@ -24,6 +24,7 @@ string PersonsService::parse_add_command(vector<string> vec)
 
 void PersonsService::parse_query_vector(vector<string> v)
 {
+    cout << "inni í parse_query_vector" << endl;
     free_vector_memory();
     for (unsigned int i = 0; i < v.size(); i++)
     {
@@ -76,6 +77,7 @@ void PersonsService::free_vector_memory()
 
 void PersonsService::get_all_persons()
 {
+    cout << "Inni í get all persons" << endl;
     parse_query_vector(person_repo->read_entries());
 }
 
@@ -89,7 +91,7 @@ void PersonsService::search_person(string column, string substr)
 
 }
 
-vector<Person *> PersonsService::get_person_vec()
+vector<Person*> PersonsService::get_person_vec()
 {
     return person_vec;
 }

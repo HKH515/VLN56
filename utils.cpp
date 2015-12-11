@@ -43,8 +43,9 @@ namespace utils
     vector<string> from_db_to_vector(string table, QSqlQuery query_obj)
     {
         vector<string> result;
+        cout << "komin inn í from_db_to_vector " << endl;
         while(query_obj.next())
-        {
+        {   cout << "komin inn í while lykkju i from database " << endl;
             vector<string> table_data;
             string current_entry = " ";
             if (table == "persons")

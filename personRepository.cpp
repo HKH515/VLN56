@@ -35,20 +35,15 @@ vector<string> PersonRepository::read_entries()
     string queryString;
     if (this->db.open())
     {
-
         QSqlQuery queryObj(db);
 
         queryString = "SELECT * from persons";
         QString qQueryString(queryString.c_str());
         queryObj.exec(qQueryString);
-        cout << query_vect[1] << endl;
         query_vect = from_db_to_vector("persons", queryObj);
     }
     db.close();
-    cout << "query vect" << query_vect.size() << endl;
-
     return query_vect;
-
 }
 
 //Removes a certain entry in a speficied table
@@ -63,7 +58,6 @@ void PersonRepository::remove(string column, string id)
     db.close();
 
 }
-
 
 //Search a specified table
 vector<string> PersonRepository::query_exact(string column, string data_query)

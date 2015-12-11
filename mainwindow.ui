@@ -49,12 +49,17 @@
        <widget class="QComboBox" name="type_dropdown">
         <item>
          <property name="text">
-          <string>Scientist</string>
+          <string>Computer Scientists</string>
          </property>
         </item>
         <item>
          <property name="text">
           <string>Computers</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Connections</string>
          </property>
         </item>
        </widget>
@@ -82,6 +87,16 @@
         <column>
          <property name="text">
           <string>Birth Year</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>New Column</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Sex</string>
          </property>
         </column>
        </widget>
@@ -169,7 +184,38 @@
      <widget class="QWidget" name="search_view" native="true">
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
-        <widget class="QComboBox" name="search_dropdown"/>
+        <widget class="QComboBox" name="search_dropdown">
+         <item>
+          <property name="text">
+           <string>Name</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Birth Year</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Death Year</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Sex</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Profession</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Description</string>
+          </property>
+         </item>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="substring">
@@ -192,7 +238,7 @@
      <x>0</x>
      <y>0</y>
      <width>481</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

@@ -25,14 +25,11 @@ void PersonsService::parse_query_vector(vector<string> v)
         size_t position_end = 0;
         /* cut out the empty space in the beginning of the string */
         st = st.substr(1, st.length());
-
-        /* find if it is a computer or a person */
-        position_beg = st.find("|");
         Person* p = new Person();
 
         /* find the name */
-        position_end = st.find("|", position_beg + 1);
-        p->set_name(st.substr(position_beg + 1, position_end - position_beg - 1));
+        position_end = st.find("|");
+        p->set_name(st.substr(0, position_end - 1));
 
         /* find the profession */
         position_beg = st.find("|", position_end + 1);
@@ -77,11 +74,12 @@ void PersonsService::get_all_persons()
 
 void PersonsService::add_person(vector<string> v)
 {
-
+    person_repo->write(parse_add_command(v));
 }
 
-void PersonsService::search_person(vector<string> v)
+void PersonsService::search_person(string column, string substr)
 {
+
 
 }
 

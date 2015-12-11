@@ -34,9 +34,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    PersonsService person_service;
-    ComputerService computer_service;
-    ConnectionsService connections_service;
+    PersonsService* person_service;
+    ComputerService* computer_service;
+    ConnectionsService* connections_service;
 
     void display_list();
 

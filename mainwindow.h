@@ -28,6 +28,8 @@ private slots:
 
     void on_remove_pushButton_clicked();
 
+    void on_add_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Domain *d;

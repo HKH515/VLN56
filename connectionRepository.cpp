@@ -17,13 +17,12 @@ ConnectionRepository::ConnectionRepository(string db_name, string conn_name)
     }
 }
 
-void ConnectionRepository::write(string line)
+void ConnectionRepository::write(string person_ID, string computer_ID)
 {
-    vector<string> fields = parse_delim_string(line, '|');
     db.open();
     QSqlQuery query_obj(db);
     string query_string;
-    query_string = "INSERT INTO 'connections' (ID_computers, ID_persons) values('" + fields[1] + "', '" + fields[0] + "');";
+    query_string = "INSERT INTO 'connections' (ID_computers, ID_persons) values('" + computer_ID + "', '" + person_ID + "');";
     QString q_query_string(query_string.c_str());
     query_obj.exec(q_query_string);
     db.close();

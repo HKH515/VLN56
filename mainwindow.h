@@ -20,13 +20,22 @@ public:
 
 private slots:
 
-    void on_listWidget_clicked(const QModelIndex &index);
+    void on_search_pushButton_clicked();
+
+    void on_substring_input_returnPressed();
+
+    void on_table_view_clicked(const QModelIndex &index);
+
+    void on_remove_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
-    Domain d;
+    Domain *d;
 
     void display_list();
+
+    vector<Person*> curr_disp_scientists;
+    vector<Computer*> curr_disp_computers;
 
 };
 

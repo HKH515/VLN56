@@ -34,7 +34,8 @@ SOURCES += main.cpp\
     computerservice.cpp \
     connectionsservice.cpp \
     computerRepository.cpp \
-    personRepository.cpp
+    personRepository.cpp    \
+    add_computers.cpp
 
 HEADERS  += mainwindow.h \
     computer.h \
@@ -54,9 +55,13 @@ HEADERS  += mainwindow.h \
     personsservice.h \
     computerRepository.h \
     connectionRepository.h \
-    personRepository.h
+    personRepository.h  \
+    add_computers.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+            add_persons.ui \
+            add_computers.ui
+
 
 DISTFILES += \
     data.sqlite \

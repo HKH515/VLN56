@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>482</width>
-    <height>698</height>
+    <width>481</width>
+    <height>691</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -46,7 +46,18 @@
        <number>6</number>
       </property>
       <item alignment="Qt::AlignLeft">
-       <widget class="QComboBox" name="type_dropdown"/>
+       <widget class="QComboBox" name="type_dropdown">
+        <item>
+         <property name="text">
+          <string>Scientist</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Computers</string>
+         </property>
+        </item>
+       </widget>
       </item>
      </layout>
     </item>
@@ -180,8 +191,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>482</width>
-     <height>22</height>
+     <width>481</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>

@@ -32,7 +32,9 @@ SOURCES += main.cpp\
     verifyinput.cpp \
     personsservice.cpp \
     computerservice.cpp \
-    connectionsservice.cpp
+    connectionsservice.cpp \
+    computerRepository.cpp \
+    personRepository.cpp
 
 HEADERS  += mainwindow.h \
     computer.h \
@@ -49,7 +51,10 @@ HEADERS  += mainwindow.h \
     verifyinput.h \
     computerservice.h \
     connectionsservice.h \
-    personsservice.h
+    personsservice.h \
+    computerRepository.h \
+    connectionRepository.h \
+    personRepository.h
 
 FORMS    += mainwindow.ui
 

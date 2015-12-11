@@ -17,7 +17,7 @@ private:
     /* Deletes all persons object from the vectors and clears the vectors before each command to be handled */
     void free_vector_memory();
     /* Handles the list command */
-    void get_all_persons(vector<string> v);
+    void get_all_persons();
     /* Handles the add command */
     void add_person(vector<string> v);
     /* Handles the search command */

@@ -2,9 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "domain.h"
 #include <string>
 #include <vector>
+#include "personsservice.h"
+#include "computerservice.h"
+#include "connectionsservice.h"
 
 namespace Ui {
 class MainWindow;
@@ -32,7 +34,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Domain *d;
+    PersonsService person_service;
+    ComputerService computer_service;
+    ConnectionsService connections_service;
 
     void display_list();
 

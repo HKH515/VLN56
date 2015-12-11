@@ -8,7 +8,10 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    d = new Domain();
+    person_service = new PersonsService();
+    computer_service = new ComputerService();
+    connections_service = new ConnectionsService();
+
     ui->setupUi(this);
     ui->see_more_view->hide();
     ui->search_view->hide();

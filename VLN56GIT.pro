@@ -22,9 +22,7 @@ SOURCES += main.cpp\
     computerRepository.cpp \
     connectionRepository.cpp \
     connections.cpp \
-    data.cpp \
     display.cpp \
-    domain.cpp \
     person.cpp \
     personRepository.cpp \
     presentation.cpp \
@@ -33,8 +31,6 @@ SOURCES += main.cpp\
     personsservice.cpp \
     computerservice.cpp \
     connectionsservice.cpp \
-    computerRepository.cpp \
-    personRepository.cpp    \
     add_computers.cpp
 
 HEADERS  += mainwindow.h \
@@ -42,9 +38,7 @@ HEADERS  += mainwindow.h \
     computerRepository.h \
     connectionRepository.h \
     connections.h \
-    data.h \
     display.h \
-    domain.h \
     person.h \
     personRepository.h \
     presentation.h \
@@ -53,9 +47,6 @@ HEADERS  += mainwindow.h \
     computerservice.h \
     connectionsservice.h \
     personsservice.h \
-    computerRepository.h \
-    connectionRepository.h \
-    personRepository.h  \
     add_computers.h
 
 FORMS    += mainwindow.ui \

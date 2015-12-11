@@ -33,7 +33,7 @@ class ConnectionRepository
         vector<string> get_conn_all_persons();
         void remove_conn(string person_ID, string computer_ID);
         vector<string> read_entries(); //Returns a vector of all entries
-        void write(string line); //Creates an entry in the database
+        void write(string person_ID, string computer_ID); //Creates an entry in the database
         void remove(string column, string id); //Deletes an entry in the database
 };
 

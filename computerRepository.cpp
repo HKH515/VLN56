@@ -29,16 +29,15 @@ void ComputerRepository::write(string line)
 }
 
 //Returns all entries in a specified table
-vector<string> ComputerRepository::read_entries(string column, string order)
+vector<string> ComputerRepository::read_entries()
 {
     vector<string> query_vect;
-    vector<string> result_vect;
     string query_string;
     if (db.open())
     {
         QSqlQuery query_obj(db);
 
-        query_string = "SELECT * from computers ORDER BY " + column + " " + order;
+        query_string = "SELECT * from computers";
         QString q_query_string(query_string.c_str());
         query_obj.exec(q_query_string);
         query_vect = from_db_to_vector("computers", query_obj);
@@ -62,13 +61,13 @@ void ComputerRepository::remove(string column, string id)
 }
 
 //Search a specified table
-vector<string> ComputerRepository::query_exact(string column, string data_query, string sort_column, string order)
+vector<string> ComputerRepository::query_exact(string column, string data_query)
 {
     vector<string> query_vect;
     vector<string> result_vect;
     db.open();
     QSqlQuery query_obj(db);
-    string query_string = "SELECT * FROM computers WHERE " + column + " ='" + data_query + "' ORDER BY " + sort_column + " " + order;
+    string query_string = "SELECT * FROM computers WHERE " + column + " ='" + data_query;;
     QString q_query_string(query_string.c_str());
     query_obj.exec(q_query_string);
     query_vect = from_db_to_vector("computers", query_obj);
@@ -78,13 +77,13 @@ vector<string> ComputerRepository::query_exact(string column, string data_query,
 }
 
 //Search a specified table with substring
-vector<string> ComputerRepository::query(string column, string data_query, string sort_column, string order)
+vector<string> ComputerRepository::query(string column, string data_query)
 {
     vector<string> query_vect;
     vector<string> result_vect;
     db.open();
     QSqlQuery query_obj(db);
-    string query_string = "SELECT * FROM computers WHERE " + column + " LIKE '%" + data_query + "%' ORDER BY " + sort_column + " " + order;
+    string query_string = "SELECT * FROM computers WHERE " + column + " LIKE '%" + data_query + "%'";
     QString q_query_string(query_string.c_str());
     query_obj.exec(q_query_string);
     query_vect = from_db_to_vector("computers", query_obj);

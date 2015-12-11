@@ -25,9 +25,9 @@ class ComputerRepository
 
     public:
         ComputerRepository(string db_name, string conn_name);
-        vector<string> query(string column, string data_query, string sort_column, string order); //Fetches all lines matching query (substring search)
-        vector<string> query_exact(string column, string data_query, string sort_column, string order); //Fetches all lines matching query exactly
-        vector<string> read_entries(string column, string order); //Returns a vector of all entries
+        vector<string> query(string column, string data_query); //Fetches all lines matching query (substring search)
+        vector<string> query_exact(string column, string data_query); //Fetches all lines matching query exactly
+        vector<string> read_entries(); //Returns a vector of all entries
         void write(string line); //Creates an entry in the database
         void remove(string column, string id); //Deletes an entry in the database
 };

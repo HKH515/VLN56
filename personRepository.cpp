@@ -29,20 +29,19 @@ void PersonRepository::write(string line)
 }
 
 //Returns all entries in a specified table
-vector<string> PersonRepository::read_entries(string column, string order)
+vector<string> PersonRepository::read_entries()
 {
     vector<string> query_vect;
-    vector<string> result_vect;
-    cout << column << " " << order << endl;
     string queryString;
     if (this->db.open())
     {
 
         QSqlQuery queryObj(db);
 
-        queryString = "SELECT * from persons ORDER BY " + column + " " + order;
+        queryString = "SELECT * from persons";
         QString qQueryString(queryString.c_str());
         queryObj.exec(qQueryString);
+        cout << query_vect[1] << endl;
         query_vect = from_db_to_vector("persons", queryObj);
     }
     db.close();
@@ -67,13 +66,13 @@ void PersonRepository::remove(string column, string id)
 
 
 //Search a specified table
-vector<string> PersonRepository::query_exact(string column, string dataQuery, string sortColumn, string order)
+vector<string> PersonRepository::query_exact(string column, string data_query)
 {
     vector<string> query_vect;
     vector<string> result_vect;
     db.open();
     QSqlQuery queryObj(db);
-    string queryString = "SELECT * FROM persons WHERE " + column + " ='" + dataQuery + "' ORDER BY " + sortColumn + " " + order;
+    string queryString = "SELECT * FROM persons WHERE " + column + " ='" + data_query;
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
     query_vect = from_db_to_vector("persons", queryObj);
@@ -83,13 +82,13 @@ vector<string> PersonRepository::query_exact(string column, string dataQuery, st
 }
 
 //Search a specified table with substring
-vector<string> PersonRepository::query(string column, string dataQuery, string sortColumn, string order)
+vector<string> PersonRepository::query(string column, string data_query)
 {
     vector<string> query_vect;
     vector<string> result_vect;
     db.open();
     QSqlQuery queryObj(db);
-    string queryString = "SELECT * FROM persons WHERE " + column + " LIKE '%" + dataQuery + "%' ORDER BY " + sortColumn + " " + order;
+    string queryString = "SELECT * FROM persons WHERE " + column + " LIKE '%" + data_query + "%'";
     QString qQueryString(queryString.c_str());
     queryObj.exec(qQueryString);
     query_vect = from_db_to_vector("persons", queryObj);

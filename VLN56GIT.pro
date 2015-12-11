@@ -21,12 +21,9 @@ SOURCES += main.cpp\
     computer.cpp \
     computerRepository.cpp \
     connectionRepository.cpp \
-    display.cpp \
     person.cpp \
     personRepository.cpp \
-    presentation.cpp \
     utils.cpp \
-    verifyinput.cpp \
     personsservice.cpp \
     computerservice.cpp \
     connectionsservice.cpp \
@@ -36,12 +33,9 @@ HEADERS  += mainwindow.h \
     computer.h \
     computerRepository.h \
     connectionRepository.h \
-    display.h \
     person.h \
     personRepository.h \
-    presentation.h \
     utils.h \
-    verifyinput.h \
     computerservice.h \
     connectionsservice.h \
     personsservice.h \

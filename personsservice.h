@@ -21,9 +21,9 @@ private:
     /* Handles the add command */
     void add_person(vector<string> v);
     /* Handles the search command */
-    void search_person(vector<string> v);
+    void search_person(string column, string substr);
     /* Handles the remove command */
-    void remove_person(vector<string> v);
+    void remove_person(string column, string id);
 public:
     PersonsService();
 };

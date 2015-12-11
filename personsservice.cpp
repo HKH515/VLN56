@@ -80,12 +80,11 @@ void PersonsService::add_person(vector<string> v)
 void PersonsService::search_person(string column, string substr)
 {
 
-
 }
 
-void PersonsService::remove_person(vector<string> v)
+void PersonsService::remove_person(string id)
 {
-
+    person_repo->remove("id", id);
 }
 
 

@@ -1,5 +1,5 @@
 #include "data.h"
-
+/*
 Data::Data(string datafile)
 {
     init_db();
@@ -29,7 +29,7 @@ void Data::write(string table, string line)
     }
 }
 
-//Returns all entries in a specified table
+Returns all entries in a specified table
 vector<string> Data::read_entries(string table, string column, string order)
 {
     if (table == "persons")
@@ -132,3 +132,4 @@ vector<string> Data::query(string table, string column, string data_query, strin
         return connection_repo->query(column, data_query, sort_column, order);
     }
 }
+*/

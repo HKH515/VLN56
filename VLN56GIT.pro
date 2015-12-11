@@ -21,7 +21,6 @@ SOURCES += main.cpp\
     computer.cpp \
     computerRepository.cpp \
     connectionRepository.cpp \
-    connections.cpp \
     display.cpp \
     person.cpp \
     personRepository.cpp \
@@ -37,7 +36,6 @@ HEADERS  += mainwindow.h \
     computer.h \
     computerRepository.h \
     connectionRepository.h \
-    connections.h \
     display.h \
     person.h \
     personRepository.h \

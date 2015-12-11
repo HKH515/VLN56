@@ -34,11 +34,11 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    PersonsService person_service;
-    ComputerService computer_service;
-    ConnectionsService connections_service;
+    PersonsService* person_service;
+    ComputerService* computer_service;
+    ConnectionsService* connections_service;
 
-    void display_list();
+    void display_person_list();
 
     vector<Person*> curr_disp_scientists;
     vector<Computer*> curr_disp_computers;

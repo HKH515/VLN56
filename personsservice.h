@@ -9,7 +9,7 @@ class PersonsService
 private:
     vector<Person*> person_vec;
     PersonRepository* person_repo;
-
+public:
     string parse_add_command(vector<string> vec);
     /* Receives a vector of strings from data layer and parses the string, fills into
        the persons class and returns a vector of persons* to the presentation layer */
@@ -24,7 +24,8 @@ private:
     void search_person(string column, string substr);
     /* Handles the remove command */
     void remove_person(string column, string id);
-public:
+
+    vector<Person *> get_person_vec();
     PersonsService();
 };
 

@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->type_dropdown->addItem("Computer");
     ui->type_dropdown->addItem("Connections");
 
-    display_list();
+    display_person_list();
 }
 
 MainWindow::~MainWindow()
@@ -30,23 +30,16 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::display_list()
+void MainWindow::display_person_list()
 {
     ui->table_view->clearContents();
 
     ui->table_view->setRowCount(13);
-    vector<string> command_vec;
-    command_vec.push_back("list");
-    string table = ui->type_dropdown->currentText().toStdString();
-
-    command_vec.push_back(table);
-    d->handle_commands(command_vec);
-    cout << d->get_p_vec().size() << endl;
-    cout << "size i list view: " << d->get_p_vec().size() << endl;
+    person_service->get_all_persons();
 
     for (unsigned int row = 0; row < 13; row++)
     {
-        Person* current_person = d->get_p_vec()[row];
+        Person* current_person = person_service->get_person_vec()[row];
         QString name = QString::fromStdString(current_person->get_name());
         QString birthyear = QString::number(current_person->get_birthyear());
         QString deathyear = QString::number(current_person->get_deathyear());
@@ -56,7 +49,6 @@ void MainWindow::display_list()
         ui->table_view->setItem(row, 2, new QTableWidgetItem(deathyear));
     }
 
-    curr_disp_scientists = d->get_p_vec();
 }
 
 void MainWindow::on_search_pushButton_clicked()

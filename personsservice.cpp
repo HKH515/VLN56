@@ -82,6 +82,11 @@ void PersonsService::search_person(string column, string substr)
 
 }
 
+vector<Person *> PersonsService::get_person_vec()
+{
+    return person_vec;
+}
+
 void PersonsService::remove_person(string id)
 {
     person_repo->remove("id", id);

@@ -24,6 +24,8 @@ void ConnectionsService::free_vector_memory()
     {
         delete computer_vec[i];
     }
+    person_vec.clear();
+    computer_vec.clear();
 }
 
 void ConnectionsService::get_all_connections()

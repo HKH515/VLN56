@@ -13,8 +13,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connections_service = new ConnectionsService();
 
     ui->setupUi(this);
-    ui->see_more_view->hide();
+    ui->see_more_view_person->hide();
+    ui->see_more_view_computer->hide();
     ui->search_view->hide();
+    ui->table_view_connections->hide();
+    ui->table_view_computers->hide();
     display_person_list();
 
 }
@@ -22,8 +25,10 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete person_service;
+    delete computer_service;
+    delete connections_service;
 }
-
 
 void MainWindow::on_search_pushButton_clicked()
 {
@@ -37,9 +42,12 @@ void MainWindow::on_substring_input_returnPressed()
 
 void MainWindow::display_person_list()
 {
+    ui->table_view_person->show();
+    ui->table_view_connections->hide();
+    ui->table_view_computers->hide();
     person_service->get_all_persons();
     unsigned int vector_size = person_service->get_person_vec().size();
-    ui->table_view->setRowCount(vector_size);
+    ui->table_view_person->setRowCount(vector_size);
 
     for (unsigned int row = 0; row < vector_size; row++)
     {
@@ -49,18 +57,21 @@ void MainWindow::display_person_list()
         QString deathyear = QString::number(current_person->get_deathyear());
         QString sex = QString::fromStdString(current_person->get_sex());
 
-        ui->table_view->setItem(row, 0, new QTableWidgetItem(name));
-        ui->table_view->setItem(row, 1, new QTableWidgetItem(birthyear));
-        ui->table_view->setItem(row, 2, new QTableWidgetItem(deathyear));
-        ui->table_view->setItem(row, 3, new QTableWidgetItem(sex));
+        ui->table_view_person->setItem(row, 0, new QTableWidgetItem(name));
+        ui->table_view_person->setItem(row, 1, new QTableWidgetItem(birthyear));
+        ui->table_view_person->setItem(row, 2, new QTableWidgetItem(deathyear));
+        ui->table_view_person->setItem(row, 3, new QTableWidgetItem(sex));
     }
 }
 
 void MainWindow::display_computer_list()
 {
+    ui->table_view_person->hide();
+    ui->table_view_connections->hide();
+    ui->table_view_computers->show();
     computer_service->get_all_computers();
     unsigned int vector_size = computer_service->get_computer_vec().size();
-    ui->table_view->setRowCount(vector_size);
+    ui->table_view_computers->setRowCount(vector_size);
 
     for (unsigned int row = 0; row < vector_size; row++)
     {
@@ -69,9 +80,9 @@ void MainWindow::display_computer_list()
         QString construction_year = QString::number(current_computer->get_construction_year());
         QString type = QString::fromStdString(current_computer->get_type());
 
-        ui->table_view->setItem(row, 0, new QTableWidgetItem(name));
-        ui->table_view->setItem(row, 1, new QTableWidgetItem(construction_year));
-        ui->table_view->setItem(row, 2, new QTableWidgetItem(type));
+        ui->table_view_computers->setItem(row, 0, new QTableWidgetItem(name));
+        ui->table_view_computers->setItem(row, 1, new QTableWidgetItem(construction_year));
+        ui->table_view_computers->setItem(row, 2, new QTableWidgetItem(type));
     }
 }
 

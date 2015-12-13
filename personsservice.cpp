@@ -24,7 +24,6 @@ string PersonsService::parse_add_command(vector<string> vec)
 
 void PersonsService::parse_query_vector(vector<string> v)
 {
-    cout << "inni í parse_query_vector" << endl;
     free_vector_memory();
     for (unsigned int i = 0; i < v.size(); i++)
     {
@@ -62,7 +61,6 @@ void PersonsService::parse_query_vector(vector<string> v)
         /* find the id */
         position_end = st.find("|", position_beg + 1);
         p->set_id(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
-
         person_vec.push_back(p);
     }
 }
@@ -71,6 +69,7 @@ void PersonsService::free_vector_memory()
 {
     for (unsigned int i = 0; i < person_vec.size(); i++)
     {
+        person_vec.clear();
         delete person_vec[i];
     }
 }

@@ -142,13 +142,13 @@ void MainWindow::on_show_more_pushButton_clicked()
 {
     ui->search_view->hide();
     string current_type = ui->type_dropdown->currentText().toStdString();
-    int currently_chosen_entry;
+    string currently_chosen_entry;
     if (current_type == "Computer Scientists")
     {
         ui->see_more_view_computer->hide();
         ui->description_output_person->clear();
-        currently_chosen_entry = ui->table_view_person->currentIndex().row();
-        Person* current_person = person_vector.at(currently_chosen_entry);
+        currently_chosen_entry = ui->table_view_person->currentItem()->text().toStdString();
+        Person* current_person = find_chosen_person(currently_chosen_entry);
         QString current_profession = QString::fromStdString(current_person->get_profession());
         QString current_description = QString::fromStdString(current_person->get_description());
         ui->profession_output->setText(current_profession);
@@ -160,8 +160,8 @@ void MainWindow::on_show_more_pushButton_clicked()
     {
         ui->see_more_view_person->hide();
         ui->description_output_computer->clear();
-        currently_chosen_entry = ui->table_view_computers->currentIndex().row();
-        Computer* current_computer = computer_vector.at(currently_chosen_entry);
+        currently_chosen_entry = ui->table_view_computers->currentItem()->text().toStdString();
+        Computer* current_computer = find_chosen_computer(currently_chosen_entry);
         QString current_description = QString::fromStdString(current_computer->get_description());
         ui->description_output_computer->append(current_description);
         ui->see_more_view_computer->show();
@@ -183,14 +183,14 @@ void MainWindow::on_table_view_connections_clicked(const QModelIndex &index)
 void MainWindow::on_remove_pushButton_clicked()
 {
     string current_type = ui->type_dropdown->currentText().toStdString();
-    int currently_chosen_entry;
+    string currently_chosen_entry;
     if (current_type == "Computer Scientists")
     {
         ui->see_more_view_computer->hide();
         ui->description_output_person->clear();
-        currently_chosen_entry = ui->table_view_person->currentIndex().row();
-        Person* current_person = person_vector.at(currently_chosen_entry);
-
+        currently_chosen_entry = ui->table_view_person->currentItem()->text().toStdString();
+        Person* current_person = find_chosen_person(currently_chosen_entry);
+        person_service->remove_person(itos(current_person->get_id()));
         display_person_list();
     }
     else if (current_type == "Computers")
@@ -229,3 +229,31 @@ void MainWindow::on_add_pushButton_clicked()
 
 }
 
+Person* MainWindow::find_chosen_person(string chosen_name)
+{
+    for (unsigned int i = 0; i < person_vector.size(); i++)
+    {
+        if (person_vector[i]->get_name() == chosen_name)
+        {
+            return person_vector[i];
+        }
+    }
+    return NULL;
+}
+
+Computer *MainWindow::find_chosen_computer(string chosen_name)
+{
+    for (unsigned int i = 0; i < computer_vector.size(); i++)
+    {
+        if (computer_vector[i]->get_name() == chosen_name)
+        {
+            return computer_vector[i];
+        }
+    }
+    return NULL;
+}
+
+void MainWindow::remove_chosen_connection()
+{
+
+}

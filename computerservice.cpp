@@ -36,7 +36,7 @@ void ComputerService::parse_query_vector(vector<string> v)
 
         /* find the name */
         position_end = st.find("|");
-        c->set_name(st.substr(0, position_end - 1));
+        c->set_name(st.substr(0, position_end));
 
         /* find the construction year */
         position_beg = st.find("|", position_end + 1);

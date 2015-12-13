@@ -36,7 +36,7 @@ void PersonsService::parse_query_vector(vector<string> v)
 
         /* find the name */
         position_end = st.find("|");
-        p->set_name(st.substr(0, position_end - 1));
+        p->set_name(st.substr(0, position_end));
 
         /* find the profession */
         position_beg = st.find("|", position_end + 1);

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>569</width>
-    <height>504</height>
+    <width>518</width>
+    <height>443</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,11 +16,32 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="1" column="1" colspan="4">
-      <widget class="QTextEdit" name="input_ComputersName"/>
+     <item row="5" column="1" colspan="5">
+      <widget class="QPlainTextEdit" name="Input_compDescr">
+       <property name="maximumSize">
+        <size>
+         <width>1000</width>
+         <height>500</height>
+        </size>
+       </property>
+      </widget>
      </item>
-     <item row="3" column="3" colspan="3">
-      <widget class="QTextEdit" name="Input_type"/>
+     <item row="0" column="0" colspan="2">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>&lt;h2&gt;Add Computers&lt;/h2&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1" colspan="4">
+      <widget class="QTextEdit" name="input_ComputersName">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>30</height>
+        </size>
+       </property>
+      </widget>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_2">
@@ -36,44 +57,23 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0" colspan="2">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Computers</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0" colspan="3">
-      <widget class="QLabel" name="label_6">
-       <property name="text">
-        <string>Type</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="3" rowspan="2" colspan="3">
-      <widget class="QPlainTextEdit" name="Input_compDescr"/>
-     </item>
      <item row="2" column="3" colspan="3">
-      <widget class="QTextEdit" name="Input_constructYear"/>
-     </item>
-     <item row="5" column="0" colspan="3">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Description</string>
+      <widget class="QTextEdit" name="Input_constructYear">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>30</height>
+        </size>
        </property>
       </widget>
      </item>
-     <item row="4" column="4">
-      <widget class="QRadioButton" name="radioButton_No">
-       <property name="text">
-        <string>No</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="6">
-      <widget class="QPushButton" name="pushButton_cancel">
-       <property name="text">
-        <string>Cancel</string>
+     <item row="3" column="3" colspan="3">
+      <widget class="QTextEdit" name="Input_type">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>30</height>
+        </size>
        </property>
       </widget>
      </item>
@@ -84,6 +84,13 @@
        </property>
       </widget>
      </item>
+     <item row="3" column="0" colspan="3">
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Type</string>
+       </property>
+      </widget>
+     </item>
      <item row="4" column="2" colspan="2">
       <widget class="QRadioButton" name="radioButton_Yes">
        <property name="text">
@@ -91,10 +98,37 @@
        </property>
       </widget>
      </item>
+     <item row="4" column="4">
+      <widget class="QRadioButton" name="radioButton_No">
+       <property name="text">
+        <string>No</string>
+       </property>
+      </widget>
+     </item>
      <item row="6" column="7">
       <widget class="QPushButton" name="pushButton_Submit">
        <property name="text">
         <string>Submit</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="6">
+      <widget class="QPushButton" name="pushButton_cancel">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="maximumSize">
+        <size>
+         <width>100</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Description</string>
        </property>
       </widget>
      </item>

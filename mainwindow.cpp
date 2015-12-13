@@ -1,5 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "add_computers.h"
+#include "add_persons.h"
+#include "add_connections.h"
 #include <QMessageBox>
 #include <QString>
 #include <QDebug>
@@ -108,3 +111,56 @@ void MainWindow::on_type_dropdown_currentIndexChanged(const QString &arg1)
         display_connections_list();
     }
 }
+
+void MainWindow::on_add_pushButton_clicked()
+{
+    string current_type = ui->type_dropdown->currentText().toStdString();
+
+    if (current_type == "Computer Scientists")
+    {
+        add_computers Newadd_computers;
+
+        int addComputersReturnValue = Newadd_computers.exec();
+
+        if (addComputersReturnValue == 0)
+        {
+
+        }
+        else
+        {
+            // there was an error
+        }
+    }
+    else if (current_type == "Computers")
+    {
+        add_persons Newadd_persons;
+
+        int addPersonsReturnValue = Newadd_persons.exec();
+
+        if (addPersonsReturnValue == 0)
+        {
+
+        }
+        else
+        {
+            // there was an error
+        }
+    }
+    else if (current_type == "connections list")
+    {
+        add_connections Newadd_connections;
+
+        int addConnectionsReturnValue = Newadd_connections.exec();
+
+        if (addConnectionsReturnValue == 0)
+        {
+
+        }
+        else
+        {
+            // there was an error
+        }
+    }
+
+}
+

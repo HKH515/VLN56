@@ -42,7 +42,7 @@ HEADERS  += mainwindow.h \
     connectionsservice.h \
     personsservice.h \
     add_computers.h \
-    add_connections.h
+    add_connections.h \
     add_persons.h
 
 FORMS    += mainwindow.ui \

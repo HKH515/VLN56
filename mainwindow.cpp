@@ -113,6 +113,8 @@ void MainWindow::display_connections_list()
 void MainWindow::on_type_dropdown_currentIndexChanged(const QString &arg1)
 {
     ui->search_view->hide();
+    ui->see_more_view_computer->hide();
+    ui->see_more_view_person->hide();
     string current_type = ui->type_dropdown->currentText().toStdString();
     if (current_type == "Computer Scientists")
     {

@@ -20,6 +20,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->table_view_computers->hide();
     display_person_list();
 
+    ui->table_view_person->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->table_view_computers->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->table_view_connections->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    ui->profession_output->setReadOnly(true);
+    ui->description_output_person->setReadOnly(true);
+    ui->description_output_computer->setReadOnly(true);
 }
 
 MainWindow::~MainWindow()
@@ -33,6 +40,8 @@ MainWindow::~MainWindow()
 void MainWindow::on_search_pushButton_clicked()
 {
     ui->search_view->show();
+    ui->see_more_view_computer->hide();
+    ui->see_more_view_person->hide();
 }
 
 void MainWindow::on_substring_input_returnPressed()
@@ -42,6 +51,7 @@ void MainWindow::on_substring_input_returnPressed()
 
 void MainWindow::display_person_list()
 {
+    ui->search_view->hide();
     ui->table_view_person->show();
     ui->table_view_connections->hide();
     ui->table_view_computers->hide();
@@ -62,10 +72,12 @@ void MainWindow::display_person_list()
         ui->table_view_person->setItem(row, 2, new QTableWidgetItem(deathyear));
         ui->table_view_person->setItem(row, 3, new QTableWidgetItem(sex));
     }
+    person_vector = person_service->get_person_vec();
 }
 
 void MainWindow::display_computer_list()
 {
+    ui->search_view->hide();
     ui->table_view_person->hide();
     ui->table_view_connections->hide();
     ui->table_view_computers->show();
@@ -79,11 +91,14 @@ void MainWindow::display_computer_list()
         QString name = QString::fromStdString(current_computer->get_name());
         QString construction_year = QString::number(current_computer->get_construction_year());
         QString type = QString::fromStdString(current_computer->get_type());
+        QString built = QString::number(current_computer->get_built());
 
         ui->table_view_computers->setItem(row, 0, new QTableWidgetItem(name));
         ui->table_view_computers->setItem(row, 1, new QTableWidgetItem(construction_year));
         ui->table_view_computers->setItem(row, 2, new QTableWidgetItem(type));
+        ui->table_view_computers->setItem(row, 3, new QTableWidgetItem(built));
     }
+    computer_vector = computer_service->get_computer_vec();
 }
 
 void MainWindow::display_connections_list()
@@ -94,6 +109,7 @@ void MainWindow::display_connections_list()
 
 void MainWindow::on_type_dropdown_currentIndexChanged(const QString &arg1)
 {
+    ui->search_view->hide();
     string current_type = ui->type_dropdown->currentText().toStdString();
     if (current_type == "Computer Scientists")
     {
@@ -106,5 +122,79 @@ void MainWindow::on_type_dropdown_currentIndexChanged(const QString &arg1)
     else
     {
         display_connections_list();
+    }
+    ui->remove_pushButton->setEnabled(false);
+    ui->show_more_pushButton->setEnabled(false);
+}
+
+void MainWindow::on_table_view_person_clicked(const QModelIndex &index)
+{
+    ui->remove_pushButton->setEnabled(true);
+    ui->show_more_pushButton->setEnabled(true);
+}
+
+void MainWindow::on_show_more_pushButton_clicked()
+{
+    ui->search_view->hide();
+    string current_type = ui->type_dropdown->currentText().toStdString();
+    int currently_chosen_entry;
+    if (current_type == "Computer Scientists")
+    {
+        ui->see_more_view_computer->hide();
+        ui->description_output_person->clear();
+        currently_chosen_entry = ui->table_view_person->currentIndex().row();
+        Person* current_person = person_vector.at(currently_chosen_entry);
+        QString current_profession = QString::fromStdString(current_person->get_profession());
+        QString current_description = QString::fromStdString(current_person->get_description());
+        ui->profession_output->setText(current_profession);
+        ui->description_output_person->append(current_description);
+        ui->see_more_view_person->show();
+
+    }
+    else if (current_type == "Computers")
+    {
+        ui->see_more_view_person->hide();
+        ui->description_output_computer->clear();
+        currently_chosen_entry = ui->table_view_computers->currentIndex().row();
+        Computer* current_computer = computer_vector.at(currently_chosen_entry);
+        QString current_description = QString::fromStdString(current_computer->get_description());
+        ui->description_output_computer->append(current_description);
+        ui->see_more_view_computer->show();
+    }
+}
+
+void MainWindow::on_table_view_computers_clicked(const QModelIndex &index)
+{
+    ui->remove_pushButton->setEnabled(true);
+    ui->show_more_pushButton->setEnabled(true);
+}
+
+void MainWindow::on_table_view_connections_clicked(const QModelIndex &index)
+{
+    ui->remove_pushButton->setEnabled(true);
+    ui->show_more_pushButton->setEnabled(true);
+}
+
+void MainWindow::on_remove_pushButton_clicked()
+{
+    string current_type = ui->type_dropdown->currentText().toStdString();
+    int currently_chosen_entry;
+    if (current_type == "Computer Scientists")
+    {
+        ui->see_more_view_computer->hide();
+        ui->description_output_person->clear();
+        currently_chosen_entry = ui->table_view_person->currentIndex().row();
+        Person* current_person = person_vector.at(currently_chosen_entry);
+
+        display_person_list();
+    }
+    else if (current_type == "Computers")
+    {
+        ui->see_more_view_person->hide();
+        ui->description_output_computer->clear();
+        currently_chosen_entry = ui->table_view_computers->currentIndex().row();
+        Computer* current_computer = computer_vector.at(currently_chosen_entry);
+
+        display_computer_list();
     }
 }

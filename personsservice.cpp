@@ -69,9 +69,9 @@ void PersonsService::free_vector_memory()
 {
     for (unsigned int i = 0; i < person_vec.size(); i++)
     {
-        person_vec.clear();
         delete person_vec[i];
     }
+    person_vec.clear();
 }
 
 void PersonsService::get_all_persons()

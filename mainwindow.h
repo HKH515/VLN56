@@ -32,12 +32,23 @@ private slots:
 
     void on_type_dropdown_currentIndexChanged(const QString &arg1);
 
+    void on_table_view_person_clicked(const QModelIndex &index);
+
+    void on_show_more_pushButton_clicked();
+
+    void on_table_view_computers_clicked(const QModelIndex &index);
+
+    void on_table_view_connections_clicked(const QModelIndex &index);
+
+    void on_remove_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     PersonsService* person_service;
     ComputerService* computer_service;
     ConnectionsService* connections_service;
-
+    vector<Person*> person_vector;
+    vector<Computer*> computer_vector;
 };
 
 #endif // MAINWINDOW_H

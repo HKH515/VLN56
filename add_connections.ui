@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>add_connections</class>
+ <widget class="QDialog" name="add_connections">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>385</width>
+    <height>181</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Computer ID</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTextEdit" name="Computer_ID"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Person ID:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTextEdit" name="Person_ID"/>
+   </item>
+   <item>
+    <widget class="QPushButton" name="Submit_connections">
+     <property name="text">
+      <string>Submit</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

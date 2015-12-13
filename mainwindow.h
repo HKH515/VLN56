@@ -31,6 +31,8 @@ private slots:
     void display_connections_list();
 
     void on_type_dropdown_currentIndexChanged(const QString &arg1);
+	
+	 void on_add_pushButton_clicked();
 
     void on_table_view_person_clicked(const QModelIndex &index);
 

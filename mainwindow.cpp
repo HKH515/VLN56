@@ -218,7 +218,7 @@ void MainWindow::on_add_pushButton_clicked()
 
         int addPersonsReturnValue = newadd_computers.exec();
     }
-    else if (current_type == "connections list")
+    else if (current_type == "Connections")
     {
         add_connections newadd_connections;
 

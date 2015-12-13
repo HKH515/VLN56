@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     computerservice.cpp \
     connectionsservice.cpp \
     add_computers.cpp \
-    add_connections.cpp
+    add_connections.cpp \
+    add_persons.cpp
 
 HEADERS  += mainwindow.h \
     computer.h \
@@ -42,6 +43,7 @@ HEADERS  += mainwindow.h \
     personsservice.h \
     add_computers.h \
     add_connections.h
+    add_persons.h
 
 FORMS    += mainwindow.ui \
             add_persons.ui \

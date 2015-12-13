@@ -118,48 +118,21 @@ void MainWindow::on_add_pushButton_clicked()
 
     if (current_type == "Computer Scientists")
     {
-        add_computers Newadd_computers;
+        add_persons newadd_persons;
 
-        int addComputersReturnValue = Newadd_computers.exec();
-
-        if (addComputersReturnValue == 0)
-        {
-
-        }
-        else
-        {
-            // there was an error
-        }
+        int addComputersReturnValue = newadd_persons.exec();
     }
     else if (current_type == "Computers")
     {
-        add_persons Newadd_persons;
+        add_computers newadd_computers;
 
-        int addPersonsReturnValue = Newadd_persons.exec();
-
-        if (addPersonsReturnValue == 0)
-        {
-
-        }
-        else
-        {
-            // there was an error
-        }
+        int addPersonsReturnValue = newadd_computers.exec();
     }
     else if (current_type == "connections list")
     {
-        add_connections Newadd_connections;
+        add_connections newadd_connections;
 
-        int addConnectionsReturnValue = Newadd_connections.exec();
-
-        if (addConnectionsReturnValue == 0)
-        {
-
-        }
-        else
-        {
-            // there was an error
-        }
+        int addConnectionsReturnValue = newadd_connections.exec();
     }
 
 }

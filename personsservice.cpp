@@ -95,9 +95,12 @@ vector<Person*> PersonsService::get_person_vec()
     return person_vec;
 }
 
-void PersonsService::remove_person(string id)
+void PersonsService::remove_person(int id)
 {
-    person_repo->remove("id", id);
+    stringstream ss;
+    ss << id;
+    string str_id = ss.str();
+    person_repo->remove("id", str_id);
 }
 
 

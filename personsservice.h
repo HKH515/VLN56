@@ -3,6 +3,7 @@
 
 #include "personRepository.h"
 #include "person.h"
+#include <sstream>
 
 class PersonsService
 {
@@ -23,7 +24,7 @@ public:
     /* Handles the search command */
     void search_person(string column, string substr);
     /* Handles the remove command */
-    void remove_person(string id);
+    void remove_person(int id);
 
     vector<Person *> get_person_vec();
     PersonsService();

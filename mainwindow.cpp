@@ -46,6 +46,14 @@ void MainWindow::on_search_pushButton_clicked()
     ui->search_view->show();
     ui->see_more_view_computer->hide();
     ui->see_more_view_person->hide();
+
+    string current_type = ui->type_dropdown->currentText().toStdString();
+    if (current_type == "Computer Scientists")
+    {
+
+
+    }
+
 }
 
 void MainWindow::on_substring_input_returnPressed()
@@ -189,49 +197,20 @@ void MainWindow::on_remove_pushButton_clicked()
     {
         ui->see_more_view_computer->hide();
         ui->description_output_person->clear();
-
-
-
-
-
-        currently_chosen_entry = ui->table_view_person->currentIndex().row();
-        QTableWidgetItem *entry_name = ui->table_view_person->item(currently_chosen_entry, 0);
-        string name = entry_name->text().toStdString();
-        vector<Person*> person_vec = person_service->get_person_vec();
-        for (int i = 0; i < person_vec.size(); i++)
-        {
-            if (person_vec[i]->get_name() == name)
-            {
-                int id = person_vec[i]->get_id();
-                stringstream ss;
-                ss << id;
-                string str_id = ss.str();
-                person_service->remove_person(str_id);
-            }
-        }
-
-
+        currently_chosen_entry = ui->table_view_person->currentItem()->text().toStdString();
+        Person* current_person = find_chosen_person(currently_chosen_entry);
+        int current_id = current_person->get_id();
+        person_service->remove_person(current_id);
         display_person_list();
     }
     else if (current_type == "Computers")
     {
         ui->see_more_view_person->hide();
         ui->description_output_computer->clear();
-        currently_chosen_entry = ui->table_view_computers->currentIndex().row();
-        QTableWidgetItem *entry_name = ui->table_view_computers->item(currently_chosen_entry, 0);
-        string name = entry_name->text().toStdString();
-        vector<Computer*> computer_vec = computer_service->get_computer_vec();
-        for (int i = 0; i < computer_vec.size(); i++)
-        {
-            if (computer_vec[i]->get_name() == name)
-            {
-                int id = computer_vec[i]->get_id();
-                stringstream ss;
-                ss << id;
-                string str_id = ss.str();
-                computer_service->remove_computer(str_id);
-            }
-        }
+        currently_chosen_entry = ui->table_view_computers->currentItem()->text().toStdString();
+        Computer* current_computer = find_chosen_computer(currently_chosen_entry);
+        int current_id = current_computer->get_id();
+        computer_service->remove_computer(current_id);
 
         display_computer_list();
     }

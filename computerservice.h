@@ -3,6 +3,7 @@
 
 #include "computerRepository.h"
 #include "computer.h"
+#include <sstream>
 
 #include <vector>
 class ComputerService
@@ -29,7 +30,7 @@ public:
     /* Handles the search command */
     void search_computer(string column, string substring);
     /* Handles the remove command */
-    void remove_computer(string rem_id);
+    void remove_computer(int id);
 
     vector<Computer*> get_computer_vec();
 };

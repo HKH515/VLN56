@@ -94,9 +94,12 @@ void ComputerService::search_computer(string column, string substring)
     parse_query_vector(computer_repo->query(column, substring));*/
 }
 
-void ComputerService::remove_computer(string rem_id)
+void ComputerService::remove_computer(int id)
 {
-    computer_repo->remove("id", rem_id);
+    stringstream ss;
+    ss << id;
+    string str_id = ss.str();
+    computer_repo->remove("id", str_id);
 }
 
 vector<Computer *> ComputerService::get_computer_vec()

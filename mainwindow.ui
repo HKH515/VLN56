@@ -248,7 +248,7 @@
      <widget class="QWidget" name="search_view_person" native="true">
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item alignment="Qt::AlignLeft">
-        <widget class="QComboBox" name="search_dropdown">
+        <widget class="QComboBox" name="search_dropdown_person">
          <item>
           <property name="text">
            <string>Name</string>
@@ -305,7 +305,7 @@
      <widget class="QWidget" name="search_view_computer" native="true">
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <item alignment="Qt::AlignLeft">
-        <widget class="QComboBox" name="comboBox">
+        <widget class="QComboBox" name="search_dropdown_computer">
          <item>
           <property name="text">
            <string>Name</string>

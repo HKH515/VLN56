@@ -83,15 +83,11 @@ void ComputerService::add_computer(vector<string> v)
 
 void ComputerService::search_computer(string column, string substring)
 {
-    /*if (column == "built")  Let the user enter specific strings if searching for built
+    if (column == "Construction Year")
     {
-        substring = check_type_query(v[3]);
+        column = "construction_year";
     }
-    else
-    {
-        substring = v[3];
-    }
-    parse_query_vector(computer_repo->query(column, substring));*/
+    parse_query_vector(computer_repo->query(column, substring));
 }
 
 void ComputerService::remove_computer(int id)

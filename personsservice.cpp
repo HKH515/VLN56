@@ -87,7 +87,16 @@ void PersonsService::add_person(vector<string> v)
 
 void PersonsService::search_person(string column, string substr)
 {
-
+    if (column == "Birth Year")
+    {
+        column = "birthyear";
+    }
+    else if (column == "Death Year")
+    {
+        column = "deathyear";
+    }
+    cout << column << ": " << substr << endl;
+    parse_query_vector(person_repo->query(column, substr));
 }
 
 vector<Person*> PersonsService::get_person_vec()

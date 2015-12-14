@@ -24,9 +24,9 @@ private slots:
 
     void on_search_pushButton_clicked();
 
-    void display_person_list();
-    void display_computer_list();
-    void display_connections_list();
+    void display_person_list(int display_type);
+    void display_computer_list(int display_type);
+    void display_connections_list(int display_type);
 
     void on_type_dropdown_currentIndexChanged(const QString &arg1);
 	

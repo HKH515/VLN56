@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->search_view_computer->hide();
     ui->table_view_connections->hide();
     ui->table_view_computers->hide();
-    display_person_list();
+    display_person_list(1);
 
     ui->table_view_person->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->table_view_computers->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -46,12 +46,10 @@ void MainWindow::on_search_pushButton_clicked()
 {
     ui->see_more_view_computer->hide();
     ui->see_more_view_person->hide();
-
     string current_type = ui->type_dropdown->currentText().toStdString();
     if (current_type == "Computer Scientists")
     {
         ui->search_view_person->show();
-
     }
     else if (current_type == "Computers")
     {
@@ -60,14 +58,17 @@ void MainWindow::on_search_pushButton_clicked()
 }
 
 
-void MainWindow::display_person_list()
+void MainWindow::display_person_list(int display_type)
 {
     ui->search_view_person->hide();
     ui->search_view_computer->hide();
     ui->table_view_person->show();
     ui->table_view_connections->hide();
     ui->table_view_computers->hide();
-    person_service->get_all_persons();
+    if (display_type == 1)
+    {
+        person_service->get_all_persons();
+    }
     unsigned int vector_size = person_service->get_person_vec().size();
     ui->table_view_person->setRowCount(vector_size);
 
@@ -87,14 +88,17 @@ void MainWindow::display_person_list()
     person_vector = person_service->get_person_vec();
 }
 
-void MainWindow::display_computer_list()
+void MainWindow::display_computer_list(int display_type)
 {
     ui->search_view_person->hide();
     ui->search_substring_computer->hide();
     ui->table_view_person->hide();
     ui->table_view_connections->hide();
     ui->table_view_computers->show();
-    computer_service->get_all_computers();
+    if (display_type == 1)
+    {
+        computer_service->get_all_computers();
+    }
     unsigned int vector_size = computer_service->get_computer_vec().size();
     ui->table_view_computers->setRowCount(vector_size);
 
@@ -114,7 +118,7 @@ void MainWindow::display_computer_list()
     computer_vector = computer_service->get_computer_vec();
 }
 
-void MainWindow::display_connections_list()
+void MainWindow::display_connections_list(int display_type)
 {
 
 }
@@ -129,15 +133,15 @@ void MainWindow::on_type_dropdown_currentIndexChanged(const QString &arg1)
     string current_type = ui->type_dropdown->currentText().toStdString();
     if (current_type == "Computer Scientists")
     {
-        display_person_list();
+        display_person_list(1);
     }
     else if (current_type == "Computers")
     {
-        display_computer_list();
+        display_computer_list(1);
     }
     else
     {
-        display_connections_list();
+        display_connections_list(1);
     }
     ui->remove_pushButton->setEnabled(false);
     ui->show_more_pushButton->setEnabled(false);
@@ -204,7 +208,7 @@ void MainWindow::on_remove_pushButton_clicked()
         Person* current_person = find_chosen_person(currently_chosen_entry);
         int current_id = current_person->get_id();
         person_service->remove_person(current_id);
-        display_person_list();
+        display_person_list(1);
     }
     else if (current_type == "Computers")
     {
@@ -215,7 +219,7 @@ void MainWindow::on_remove_pushButton_clicked()
         int current_id = current_computer->get_id();
         computer_service->remove_computer(current_id);
 
-        display_computer_list();
+        display_computer_list(1);
     }
 }
 
@@ -275,9 +279,17 @@ void MainWindow::remove_chosen_connection()
 void MainWindow::on_substring_input_person_returnPressed()
 {
     ui->search_view_person->hide();
+    string search_column = ui->search_dropdown_person->currentText().toStdString();
+    string search_substring = ui->substring_input_person->text().toStdString();
+    person_service->search_person(search_column, search_substring);
+    display_person_list(2);
 }
 
 void MainWindow::on_substring_input_computer_returnPressed()
 {
     ui->search_view_computer->hide();
+    string search_column = ui->search_dropdown_computer->currentText().toStdString();
+    string search_substring = ui->substring_input_computer->text().toStdString();
+    computer_service->search_computer(search_column, search_substring);
+    display_computer_list(2);
 }

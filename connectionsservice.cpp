@@ -55,7 +55,6 @@ void ConnectionsService::get_connected(string kind, string name)
     if (kind == "Computer Scientist")
     {
         free_computer_vector_memory();
-
         Person* current_person = find_chosen_person(name);
         string str_id = int_to_string(current_person->get_id());
         parse_query_vector(connection_repo->get_conn_assoc_with_person(str_id));
@@ -66,7 +65,6 @@ void ConnectionsService::get_connected(string kind, string name)
         Computer* current_computer = find_chosen_computer(name);
         string str_id = int_to_string(current_computer->get_id());
         parse_query_vector(connection_repo->get_conn_assoc_with_computer(str_id));
-        cout << person_vec.size() << endl;
     }
 }
 
@@ -171,14 +169,13 @@ void ConnectionsService::parse_query_vector(vector<string> v)
 
 Computer *ConnectionsService::find_chosen_computer(string name)
 {
-    cout << "c size: " << computer_vec.size() << endl;
+    free_computer_vector_memory();
     parse_query_vector(connection_repo->get_conn_all_computers());
     for (unsigned int i = 0; i < computer_vec.size(); i++)
     {
         cout << computer_vec[i]->get_name() << endl;
         if (computer_vec[i]->get_name() == name)
         {
-            cout << "Fann tölvu!" << endl;
             return computer_vec[i];
         }
     }
@@ -187,6 +184,8 @@ Computer *ConnectionsService::find_chosen_computer(string name)
 
 Person *ConnectionsService::find_chosen_person(string name)
 {
+    free_person_vector_memory();
+    parse_query_vector(connection_repo->get_conn_all_persons());
     for (unsigned int i = 0; i < person_vec.size(); i++)
     {
         if (person_vec[i]->get_name() == name)

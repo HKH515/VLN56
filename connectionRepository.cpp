@@ -70,9 +70,7 @@ vector<string> ConnectionRepository::get_conn_all_computers()
     if (db.open())
     {
         QSqlQuery query_obj(db);
-
         query_string = "SELECT computers.* FROM persons INNER JOIN connections ON ID_computers INNER JOIN computers ON computers.ID = connections.ID_computers WHERE connections.ID_persons = persons.ID ORDER BY persons.name";
-
         QString q_query_string(query_string.c_str());
         query_obj.exec(q_query_string);
         query_vect = from_db_to_vector("computers", query_obj);
@@ -90,9 +88,7 @@ vector<string> ConnectionRepository::get_conn_all_persons()
     if (db.open())
     {
         QSqlQuery query_obj(db);
-
         query_string = "SELECT persons.* FROM persons INNER JOIN connections ON ID_computers INNER JOIN computers ON computers.ID = connections.ID_computers WHERE connections.ID_persons = persons.ID ORDER BY persons.name";
-
         QString q_query_string(query_string.c_str());
         query_obj.exec(q_query_string);
         query_vect = from_db_to_vector("persons", query_obj);
@@ -110,9 +106,7 @@ vector<string> ConnectionRepository::get_conn_assoc_with_person(string person_ID
     if (db.open())
     {
         QSqlQuery query_obj(db);
-
         query_string = "SELECT c.* from computers c INNER JOIN connections con ON c.ID = con.ID_computers WHERE con.ID_persons = " + person_ID;
-
         QString q_query_string(query_string.c_str());
         query_obj.exec(q_query_string);
         query_vect = from_db_to_vector("computers", query_obj);
@@ -129,17 +123,13 @@ vector<string> ConnectionRepository::get_conn_assoc_with_computer(string compute
     string query_string;
     if (db.open())
     {
-
+        QSqlQuery query_obj(db);
+        query_string = "SELECT p.* FROM persons p INNER JOIN connections con ON p.ID = con.ID_persons WHERE con.ID_computers = " + computer_ID + " ORDER BY p.name";
+        QString q_query_string(query_string.c_str());
+        query_obj.exec(q_query_string);
+        query_vect = from_db_to_vector("persons", query_obj);
     }
-    QSqlQuery query_obj(db);
-
-    query_string = "SELECT p.* FROM persons p INNER JOIN connections con ON p.ID = con.ID_persons WHERE con.ID_computers = " + computer_ID + " ORDER BY p.name";
-
-    QString q_query_string(query_string.c_str());
-    query_obj.exec(q_query_string);
-    query_vect = from_db_to_vector("connections", query_obj);
     db.close();
-
     return query_vect;
 
 }
@@ -151,9 +141,7 @@ void ConnectionRepository::remove_conn(string person_ID, string computer_ID)
     if (db.open())
     {
         QSqlQuery query_obj(db);
-
         query_string = "DELETE from connections WHERE ID_computers=" + computer_ID + " AND ID_persons=" + person_ID + ";";
-
         QString q_query_string(query_string.c_str());
         query_obj.exec(q_query_string);
         db.close();

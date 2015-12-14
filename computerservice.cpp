@@ -98,7 +98,6 @@ void ComputerService::remove_computer(int id)
     stringstream ss;
     ss << id;
     string str_id = ss.str();
-    cout << "er inn i remove computer, str_id: " << str_id << endl;
     computer_repo->remove("id", str_id);
 }
 

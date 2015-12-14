@@ -59,7 +59,14 @@ void PersonsService::parse_query_vector(vector<string> v)
 
         // find the sex
         position_beg = st.find("|", position_end + 1);
-        p->set_sex(st.substr(position_end + 1, (position_beg - position_end - 1)));
+        if (st.substr(position_end + 1, (position_beg - position_end - 1)) == "1")
+        {
+            p->set_sex("male");
+        }
+        else
+        {
+            p->set_sex("female");
+        }
 
         // find the id
         position_end = st.find("|", position_beg + 1);

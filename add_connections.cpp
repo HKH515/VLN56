@@ -15,11 +15,6 @@ add_connections::~add_connections()
     delete connections_service;
 }
 
-void add_connections::on_pushbutton_cancel_clicked()
-{
-
-}
-
 void add_connections::on_pushbutton_add_clicked()
 {
     string person_ID = ui->person_dropdown->currentText().toStdString();

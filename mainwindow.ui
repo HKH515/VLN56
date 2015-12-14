@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>481</width>
-    <height>1030</height>
+    <height>1071</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -135,6 +135,9 @@
     </item>
     <item>
      <widget class="QTableWidget" name="table_view_connections">
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
       <column>
        <property name="text">
         <string>Computer Scientists</string>
@@ -349,6 +352,38 @@
           <widget class="QLineEdit" name="substring_input_computer"/>
          </item>
         </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="search_view_connections" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>20</width>
+        <height>60</height>
+       </size>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QComboBox" name="search_dropdown_connections">
+         <item>
+          <property name="text">
+           <string>Computer Scientist</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Computer</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="dropdown_list_all_ids_person"/>
+       </item>
+       <item>
+        <widget class="QComboBox" name="dropdown_list_all_ids_computer"/>
        </item>
       </layout>
      </widget>

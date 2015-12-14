@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "add_computers.h"
 #include "add_persons.h"
@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->see_more_view_computer->hide();
     ui->search_view_person->hide();
     ui->search_view_computer->hide();
+    ui->search_view_connections->hide();
     ui->table_view_connections->hide();
     ui->table_view_computers->hide();
     display_person_list(1);
@@ -54,6 +55,13 @@ void MainWindow::on_search_pushButton_clicked()
     else if (current_type == "Computers")
     {
         ui->search_view_computer->show();
+    }
+    else
+    {
+        ui->search_view_connections->show();
+        // Default list all Computer Scientist
+        ui->dropdown_list_all_ids_computer->hide();
+        insert_all_person_ids();
     }
 }
 
@@ -156,7 +164,6 @@ void MainWindow::display_connections_list(int display_type)
     }
 
 }
-
 
 void MainWindow::on_type_dropdown_currentIndexChanged(const QString &arg1)
 {
@@ -339,6 +346,27 @@ Computer *MainWindow::find_chosen_computer(string chosen_name)
     return NULL;
 }
 
+void MainWindow::insert_all_person_ids()
+{
+    person_service->get_all_persons();
+    vector<Person*> person_vec = person_service->get_person_vec();
+    for (unsigned int i = 0; i < person_vec.size(); i++)
+    {
+        ui->dropdown_list_all_ids_person->addItem(QString::fromStdString(person_vec[i]->get_name()));
+    }
+}
+
+void MainWindow::insert_all_computer_ids()
+{
+    computer_service->get_all_computers();
+    vector<Computer*> computer_vec = computer_service->get_computer_vec();
+
+    for (unsigned int i = 0; i < computer_vec.size(); i++)
+    {
+        ui->dropdown_list_all_ids_computer->addItem(QString::fromStdString(computer_vec[i]->get_name()));
+    }
+}
+
 void MainWindow::on_substring_input_person_returnPressed()
 {
     string search_column = ui->search_dropdown_person->currentText().toStdString();
@@ -355,4 +383,37 @@ void MainWindow::on_substring_input_computer_returnPressed()
     computer_service->search_computer(search_column, search_substring);
     display_computer_list(2);
     ui->substring_input_computer->clear();
+}
+
+
+void MainWindow::on_search_dropdown_connections_currentIndexChanged(const QString &arg1)
+{
+    if (arg1.toStdString() == "Computer Scientist")
+    {
+        ui->dropdown_list_all_ids_computer->hide();
+        ui->dropdown_list_all_ids_person->show();
+        insert_all_person_ids();
+    }
+    else
+    {
+        ui->dropdown_list_all_ids_person->hide();
+        ui->dropdown_list_all_ids_computer->show();
+        insert_all_computer_ids();
+    }
+}
+
+void MainWindow::on_dropdown_list_all_ids_person_currentIndexChanged(const QString &arg1)
+{
+    string type = ui->search_dropdown_connections->currentText().toStdString();
+    if (type == "Computer Scientist")
+    {
+        connections_service->get_connected(type, arg1.toStdString());
+        cout << "Búin í get_connected, er að fara að displaya" << endl;
+        display_computer_list(2);
+    }
+    else
+    {
+        connections_service->get_connected(type, arg1.toStdString());
+        display_person_list(2);
+    }
 }

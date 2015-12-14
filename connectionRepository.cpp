@@ -13,7 +13,6 @@ ConnectionRepository::ConnectionRepository(string db_name, string conn_name)
         db = QSqlDatabase::addDatabase("QSQLITE", q_conn_name);
         db.setDatabaseName(q_db_name);
         db.open();
-
     }
 }
 
@@ -116,9 +115,11 @@ vector<string> ConnectionRepository::get_conn_assoc_with_person(string person_ID
 
         QString q_query_string(query_string.c_str());
         query_obj.exec(q_query_string);
+        cout << query_string << endl;
         query_vect = from_db_to_vector("computers", query_obj);
         db.close();
     }
+    cout << "Size of query_vect from data layer: "<< query_vect.size() << endl;
     return query_vect;
 
 }

@@ -47,3 +47,8 @@ void add_persons::on_pushbutton_add_clicked()
     person_service->add_person(add_person_vec);
     this->close();
 }
+
+void add_persons::on_pushbutton_cancel_clicked()
+{
+    this->close();
+}

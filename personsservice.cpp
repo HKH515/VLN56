@@ -32,37 +32,42 @@ void PersonsService::parse_query_vector(vector<string> v)
         size_t position_end = 0;
         /* cut out the empty space in the beginning of the string */
         st = st.substr(1, st.length());
+        position_beg = st.find("|");
+        string kind = st.substr(0, position_beg);
+
         Person* p = new Person();
 
-        /* find the name */
-        position_end = st.find("|");
-        p->set_name(st.substr(0, position_end));
+        // find the name
+        position_end = st.find("|", position_beg + 1);
+        p->set_name(st.substr(position_beg + 1, position_end - position_beg - 1));
 
-        /* find the profession */
+        // find the profession
         position_beg = st.find("|", position_end + 1);
         p->set_profession(st.substr(position_end + 1, (position_beg - position_end - 1)));
 
-        /* find the description */
+        // find the description
         position_end = st.find("|", position_beg + 1);
         p->set_description(st.substr(position_beg + 1, (position_end - position_beg - 1)));
 
-        /* find the birthyear */
+        // find the birthyear
         position_beg = st.find("|", position_end + 1);
         p->set_birthyear(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
 
-        /* find the deathyear */
+        // find the deathyear
         position_end = st.find("|", position_beg + 1);
         p->set_deathyear(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
 
-        /* find the sex */
+        // find the sex
         position_beg = st.find("|", position_end + 1);
         p->set_sex(st.substr(position_end + 1, (position_beg - position_end - 1)));
 
-        /* find the id */
+        // find the id
         position_end = st.find("|", position_beg + 1);
         p->set_id(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
+
         person_vec.push_back(p);
     }
+
 }
 
 void PersonsService::free_vector_memory()
@@ -87,7 +92,16 @@ void PersonsService::add_person(vector<string> v)
 
 void PersonsService::search_person(string column, string substr)
 {
-
+    if (column == "Birth Year")
+    {
+        column = "birthyear";
+    }
+    else if (column == "Death Year")
+    {
+        column = "deathyear";
+    }
+    cout << column << ": " << substr << endl;
+    parse_query_vector(person_repo->query(column, substr));
 }
 
 vector<Person*> PersonsService::get_person_vec()

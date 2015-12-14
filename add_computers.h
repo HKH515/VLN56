@@ -15,6 +15,9 @@ public:
     explicit add_computers(QWidget *parent = 0);
     ~add_computers();
 
+private slots:
+    void on_cancel_pushbutton_clicked();
+
 private:
     Ui::add_computers *ui;
 };

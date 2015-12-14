@@ -180,7 +180,10 @@ void MainWindow::on_show_more_pushButton_clicked()
     {
         ui->see_more_view_computer->hide();
         ui->description_output_person->clear();
-        currently_chosen_entry = ui->table_view_person->currentItem()->text().toStdString();
+        int row = ui->table_view_person->currentIndex().row();
+        // Get the name of the person in the connection
+        currently_chosen_entry = ui->table_view_person->item(row, 0)->text().toStdString();
+        // Find the corresponding person
         Person* current_person = find_chosen_person(currently_chosen_entry);
         QString current_profession = QString::fromStdString(current_person->get_profession());
         QString current_description = QString::fromStdString(current_person->get_description());
@@ -193,8 +196,10 @@ void MainWindow::on_show_more_pushButton_clicked()
     {
         ui->see_more_view_person->hide();
         ui->description_output_computer->clear();
-        currently_chosen_entry = ui->table_view_computers->currentItem()->text().toStdString();
-        Computer* current_computer = find_chosen_computer(currently_chosen_entry);
+        int row = ui->table_view_computers->currentIndex().row();
+        string currently_chosen_entry_comp = ui->table_view_computers->item(row, 0)->text().toStdString();
+        // Find the corresponding computer
+        Computer* current_computer = find_chosen_computer(currently_chosen_entry_comp);
         QString current_description = QString::fromStdString(current_computer->get_description());
         ui->description_output_computer->append(current_description);
         ui->see_more_view_computer->show();
@@ -221,20 +226,27 @@ void MainWindow::on_remove_pushButton_clicked()
     {
         ui->see_more_view_computer->hide();
         ui->description_output_person->clear();
-        currently_chosen_entry = ui->table_view_person->currentItem()->text().toStdString();
+        int row = ui->table_view_person->currentIndex().row();
+        // Get the name of the person in the connection
+        currently_chosen_entry = ui->table_view_person->item(row, 0)->text().toStdString();
+        // Find the corresponding person
         Person* current_person = find_chosen_person(currently_chosen_entry);
-        int current_id = current_person->get_id();
-        person_service->remove_person(current_id);
+        // Get the id of this person
+        int person_id = current_person->get_id();
+        person_service->remove_person(person_id);
         display_person_list(1);
     }
     else if (current_type == "Computers")
     {
         ui->see_more_view_person->hide();
         ui->description_output_computer->clear();
-        currently_chosen_entry = ui->table_view_computers->currentItem()->text().toStdString();
-        Computer* current_computer = find_chosen_computer(currently_chosen_entry);
-        int current_id = current_computer->get_id();
-        computer_service->remove_computer(current_id);
+        int row = ui->table_view_computers->currentIndex().row();
+        string currently_chosen_entry_comp = ui->table_view_computers->item(row, 1)->text().toStdString();
+        // Find the corresponding computer
+        Computer* current_computer = find_chosen_computer(currently_chosen_entry_comp);
+        // Get the id of the computer
+        int computer_id = current_computer->get_id();
+        computer_service->remove_computer(computer_id);
 
         display_computer_list(1);
     }
@@ -316,18 +328,18 @@ void MainWindow::remove_chosen_connection()
 
 void MainWindow::on_substring_input_person_returnPressed()
 {
-    ui->search_view_person->hide();
     string search_column = ui->search_dropdown_person->currentText().toStdString();
     string search_substring = ui->substring_input_person->text().toStdString();
     person_service->search_person(search_column, search_substring);
     display_person_list(2);
+    ui->substring_input_person->clear();
 }
 
 void MainWindow::on_substring_input_computer_returnPressed()
 {
-    ui->search_view_computer->hide();
     string search_column = ui->search_dropdown_computer->currentText().toStdString();
     string search_substring = ui->substring_input_computer->text().toStdString();
     computer_service->search_computer(search_column, search_substring);
     display_computer_list(2);
+    ui->substring_input_computer->clear();
 }

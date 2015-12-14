@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <sstream>
 #include "personsservice.h"
 #include "computerservice.h"
 #include "personRepository.h"
@@ -28,11 +29,18 @@ public:
     /* Handles the list command */
     void get_all_connections();
     /* Handles the add command */
-    void add_connection(string person_id, string computer_id);
+    void add_connection(int person_id, int computer_id);
     /* Handles the remove command */
-    void remove_connection(string person_id, string computer_id);
+    void remove_connection(int person_id, int computer_id);
     /* Gets all computer/computer scientists connected to certain computer scientist/computer */
     void get_connected(vector<string> v);
+
+    void parse_query_vector(vector<string> v);
+
+    string int_to_string(int id);
+
+    vector<Person*> get_person_vec();
+    vector<Computer*> get_computer_vec();
 
 };
 

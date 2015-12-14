@@ -116,6 +116,28 @@ void MainWindow::display_computer_list()
 
 void MainWindow::display_connections_list()
 {
+    ui->search_view_person->hide();
+    ui->search_substring_computer->hide();
+    ui->table_view_person->hide();
+    ui->table_view_computers->hide();
+    ui->table_view_connections->show();
+
+    cout << "Er að fara í get_all_connections" << endl;
+    connections_service->get_all_connections();
+    unsigned int vector_size = connections_service->get_person_vec().size();
+    ui->table_view_connections->setRowCount(vector_size);
+    cout << "Er að fara að byrja í forlykkju" << endl;
+    for (unsigned int row = 0; row < vector_size; row++)
+    {
+        Person* current_person = connections_service->get_person_vec()[row];
+        QString name_person = QString::fromStdString(current_person->get_name());
+        Computer* current_computer = connections_service->get_computer_vec()[row];
+        QString name_computer = QString::fromStdString(current_computer->get_name());
+
+        ui->table_view_connections->setItem(row, 0, new QTableWidgetItem(name_person));
+        ui->table_view_connections->setItem(row, 1, new QTableWidgetItem(name_computer));
+
+    }
 
 }
 
@@ -216,6 +238,19 @@ void MainWindow::on_remove_pushButton_clicked()
         computer_service->remove_computer(current_id);
 
         display_computer_list();
+    }
+    else
+    {
+        int row = ui->table_view_person->currentIndex().row();
+        // Get the name of the person in the connection
+        currently_chosen_entry = ui->table_view_connections->item(row, 0)->text().toStdString();
+        // Find the appropriate person
+        Person* current_person = find_chosen_person(currently_chosen_entry);
+        int person_id = current_person->get_id();
+        string currently_chosen_entry_comp = ui->table_view_connections->item(row, 1)->text().toStdString();
+        Computer* current_computer = find_chosen_computer(currently_chosen_entry_comp);
+        int computer_id = current_computer->get_id();
+        connections_service->remove_connection(person_id, computer_id);
     }
 }
 

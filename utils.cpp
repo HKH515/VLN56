@@ -72,7 +72,6 @@ namespace utils
             }
 
             current_entry = create_delim_string(table_data, "|");
-            cout << current_entry << endl;
             result.push_back(current_entry);
         }
         return result;

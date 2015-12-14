@@ -62,12 +62,15 @@ void MainWindow::on_search_pushButton_clicked()
         // Default list all Computer Scientist
         ui->dropdown_list_all_ids_computer->hide();
         insert_all_person_ids();
+        display_computer_list(3);
     }
 }
 
 
 void MainWindow::display_person_list(int display_type)
 {
+    unsigned int vector_size;
+    Person *current_person;
     ui->search_view_person->hide();
     ui->search_view_computer->hide();
     ui->table_view_person->show();
@@ -76,13 +79,29 @@ void MainWindow::display_person_list(int display_type)
     if (display_type == 1)
     {
         person_service->get_all_persons();
+        vector_size = person_service->get_person_vec().size();
     }
-    unsigned int vector_size = person_service->get_person_vec().size();
+    else if (display_type == 2)
+    {
+        vector_size = person_service->get_person_vec().size();
+    }
+    else
+    {
+        vector_size = connections_service->get_person_vec().size();
+    }
+
     ui->table_view_person->setRowCount(vector_size);
 
     for (unsigned int row = 0; row < vector_size; row++)
     {
-        Person* current_person = person_service->get_person_vec()[row];
+        if (display_type == 1 || display_type == 2)
+        {
+            current_person = person_service->get_person_vec()[row];
+        }
+        else
+        {
+            current_person = connections_service->get_person_vec()[row];
+        }
         QString name = QString::fromStdString(current_person->get_name());
         QString birthyear = QString::number(current_person->get_birthyear());
         int death_year = current_person->get_deathyear();
@@ -106,6 +125,8 @@ void MainWindow::display_person_list(int display_type)
 
 void MainWindow::display_computer_list(int display_type)
 {
+    unsigned int vector_size;
+    Computer *current_computer;
     ui->search_view_person->hide();
     ui->search_substring_computer->hide();
     ui->table_view_person->hide();
@@ -114,13 +135,28 @@ void MainWindow::display_computer_list(int display_type)
     if (display_type == 1)
     {
         computer_service->get_all_computers();
+        vector_size = computer_service->get_computer_vec().size();
     }
-    unsigned int vector_size = computer_service->get_computer_vec().size();
+    else if (display_type == 2)
+    {
+        vector_size = computer_service->get_computer_vec().size();
+    }
+    else
+    {
+        vector_size = connections_service->get_computer_vec().size();
+    }
     ui->table_view_computers->setRowCount(vector_size);
 
     for (unsigned int row = 0; row < vector_size; row++)
     {
-        Computer* current_computer = computer_service->get_computer_vec()[row];
+        if (display_type == 1 || display_type == 2)
+        {
+            current_computer = computer_service->get_computer_vec()[row];
+        }
+        else
+        {
+            current_computer = connections_service->get_computer_vec()[row];
+        }
         QString name = QString::fromStdString(current_computer->get_name());
         QString construction_year = QString::number(current_computer->get_construction_year());
         QString type = QString::fromStdString(current_computer->get_type());
@@ -404,16 +440,21 @@ void MainWindow::on_search_dropdown_connections_currentIndexChanged(const QStrin
 
 void MainWindow::on_dropdown_list_all_ids_person_currentIndexChanged(const QString &arg1)
 {
-    string type = ui->search_dropdown_connections->currentText().toStdString();
-    if (type == "Computer Scientist")
-    {
-        connections_service->get_connected(type, arg1.toStdString());
-        cout << "Búin í get_connected, er að fara að displaya" << endl;
-        display_computer_list(2);
-    }
-    else
-    {
-        connections_service->get_connected(type, arg1.toStdString());
-        display_person_list(2);
-    }
+        connections_service->get_connected("Computer Scientist", arg1.toStdString());
+        display_computer_list(3);
+        //ui->search_dropdown_connections->hide();
+        //ui->dropdown_list_all_ids_person->hide();
+
+}
+
+void MainWindow::display_connections_associated(int type)
+{
+
+}
+
+void MainWindow::on_dropdown_list_all_ids_computer_currentIndexChanged(const QString &arg1)
+{
+    connections_service->get_connected("Computer", arg1.toStdString());
+    display_person_list(3);
+
 }

@@ -55,12 +55,10 @@ void ConnectionsService::get_connected(string kind, string name)
     if (kind == "Computer Scientist")
     {
         free_computer_vector_memory();
-        cout << "Búin að free-a memory" << endl;
+
         Person* current_person = find_chosen_person(name);
-        cout << "Búin að finna current person" << endl;
         string str_id = int_to_string(current_person->get_id());
         parse_query_vector(connection_repo->get_conn_assoc_with_person(str_id));
-        cout << "size of p_vec after parse_query_vector:" << person_vec.size() << endl;
     }
     else
     {
@@ -68,6 +66,7 @@ void ConnectionsService::get_connected(string kind, string name)
         Computer* current_computer = find_chosen_computer(name);
         string str_id = int_to_string(current_computer->get_id());
         parse_query_vector(connection_repo->get_conn_assoc_with_computer(str_id));
+        cout << person_vec.size() << endl;
     }
 }
 
@@ -136,7 +135,6 @@ void ConnectionsService::parse_query_vector(vector<string> v)
             p->set_id(stoi(st.substr(position_beg + 1, (position_end - position_beg - 1))));
 
             person_vec.push_back(p);
-            cout << person_vec.size() << endl;
         }
         else if (kind == "1")
         {
@@ -173,10 +171,14 @@ void ConnectionsService::parse_query_vector(vector<string> v)
 
 Computer *ConnectionsService::find_chosen_computer(string name)
 {
-    for (int i = 0; i < computer_vec.size(); i++)
+    cout << "c size: " << computer_vec.size() << endl;
+    parse_query_vector(connection_repo->get_conn_all_computers());
+    for (unsigned int i = 0; i < computer_vec.size(); i++)
     {
+        cout << computer_vec[i]->get_name() << endl;
         if (computer_vec[i]->get_name() == name)
         {
+            cout << "Fann tölvu!" << endl;
             return computer_vec[i];
         }
     }
@@ -185,11 +187,12 @@ Computer *ConnectionsService::find_chosen_computer(string name)
 
 Person *ConnectionsService::find_chosen_person(string name)
 {
-    for (int i = 0; i < person_vec.size(); i++)
+    for (unsigned int i = 0; i < person_vec.size(); i++)
     {
         if (person_vec[i]->get_name() == name)
         {
             return person_vec[i];
         }
     }
+    return NULL;
 }

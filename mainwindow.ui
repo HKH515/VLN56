@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>481</width>
-    <height>761</height>
+    <height>1030</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -245,9 +245,9 @@
      </layout>
     </item>
     <item>
-     <widget class="QWidget" name="search_view" native="true">
+     <widget class="QWidget" name="search_view_person" native="true">
       <layout class="QVBoxLayout" name="verticalLayout_4">
-       <item>
+       <item alignment="Qt::AlignLeft">
         <widget class="QComboBox" name="search_dropdown">
          <item>
           <property name="text">
@@ -282,14 +282,73 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="substring">
-         <property name="text">
-          <string>Substring:</string>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <property name="topMargin">
+          <number>20</number>
          </property>
+         <item>
+          <widget class="QLabel" name="search_substring_person">
+           <property name="text">
+            <string>Substring:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="substring_input_person"/>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="search_view_computer" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item alignment="Qt::AlignLeft">
+        <widget class="QComboBox" name="comboBox">
+         <item>
+          <property name="text">
+           <string>Name</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Construction Year</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Built</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Type</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Description</string>
+          </property>
+         </item>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="substring_input"/>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <property name="topMargin">
+          <number>20</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="search_substring_computer">
+           <property name="text">
+            <string>Substring</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="substring_input_computer"/>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>

@@ -55,8 +55,6 @@ private:
     vector<Computer*> computer_vector;
     Person* find_chosen_person(string chosen_name);
     Computer* find_chosen_computer(string chosen_name);
-    void remove_chosen_connection();
-
 };
 
 #endif // MAINWINDOW_H

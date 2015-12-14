@@ -338,11 +338,6 @@ Computer *MainWindow::find_chosen_computer(string chosen_name)
     return NULL;
 }
 
-void MainWindow::remove_chosen_connection()
-{
-
-}
-
 void MainWindow::on_substring_input_person_returnPressed()
 {
     string search_column = ui->search_dropdown_person->currentText().toStdString();

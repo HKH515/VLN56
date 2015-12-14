@@ -129,14 +129,14 @@
       <number>20</number>
      </property>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pushbutton_add">
        <property name="text">
         <string>Add</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushbutton_cancel">
        <property name="text">
         <string>Cancel</string>
        </property>

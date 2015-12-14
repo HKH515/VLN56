@@ -50,6 +50,8 @@ private slots:
 
     void on_dropdown_list_all_ids_person_currentIndexChanged(const QString &arg1);
 
+    void on_dropdown_list_all_ids_computer_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     PersonsService* person_service;
@@ -58,6 +60,8 @@ private:
     Person* find_chosen_person(string chosen_name);
     void insert_all_person_ids();
     void insert_all_computer_ids();
+    void display_connections_associated(int type);
+
 
 };
 

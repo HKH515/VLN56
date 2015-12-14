@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>489</width>
+    <width>521</width>
     <height>537</height>
    </rect>
   </property>
@@ -15,139 +15,132 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="4" column="0" colspan="2">
-      <widget class="QLabel" name="label_5">
+    <widget class="QLabel" name="add_scientist">
+     <property name="font">
+      <font>
+       <family>Georgia</family>
+       <pointsize>15</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Please enter following information:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="name">
        <property name="text">
-        <string>Sex</string>
+        <string>Name:</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="5">
-      <widget class="QRadioButton" name="radioButton_Other">
+     <item>
+      <widget class="QLineEdit" name="name_input"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="birth_year">
        <property name="text">
-        <string>Other</string>
+        <string>Birth Year:</string>
        </property>
       </widget>
      </item>
-     <item row="5" column="0" colspan="3">
-      <widget class="QLabel" name="label_4">
+     <item>
+      <widget class="QLineEdit" name="birth_year_input"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="death_year">
        <property name="text">
-        <string>Profession</string>
+        <string>Death Year:</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="2" colspan="2">
-      <widget class="QRadioButton" name="radioButton_Male">
+     <item>
+      <widget class="QLineEdit" name="death_year_input"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLabel" name="sex">
+       <property name="text">
+        <string>Sex:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="radiobutton_male">
        <property name="text">
         <string>Male</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="0" colspan="3">
-      <widget class="QLabel" name="label_6">
-       <property name="text">
-        <string>Death Year</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="3" colspan="3">
-      <widget class="QTextEdit" name="Input_Profession">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>30</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="3" colspan="3">
-      <widget class="QTextEdit" name="Input_birthYear">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>30</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="6">
-      <widget class="QPushButton" name="pushButton_Cancel">
-       <property name="text">
-        <string>Cancel</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="7">
-      <widget class="QPushButton" name="pushButton_Submit">
-       <property name="text">
-        <string>Submit</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0" colspan="3">
-      <widget class="QLabel" name="label_7">
-       <property name="text">
-        <string>Birth Year</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="3" colspan="3">
-      <widget class="QTextEdit" name="Input_Personsname">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>30</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="4">
-      <widget class="QRadioButton" name="radioButton_Female">
+     <item>
+      <widget class="QRadioButton" name="radiobutton_female">
        <property name="text">
         <string>Female</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="3" colspan="3">
-      <widget class="QTextEdit" name="input_deathYear">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>30</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_2">
+     <item>
+      <widget class="QRadioButton" name="radiobutton_other">
        <property name="text">
-        <string>Name</string>
+        <string>Other</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="0" colspan="3">
-      <widget class="QLabel" name="label">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>90</height>
-        </size>
-       </property>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QLabel" name="profession">
        <property name="text">
-        <string>&lt;h2&gt;Add Scientists&lt;/h2&gt;</string>
+        <string>Profession:</string>
        </property>
       </widget>
      </item>
-     <item row="6" column="0" colspan="2">
-      <widget class="QLabel" name="label_3">
+     <item>
+      <widget class="QLineEdit" name="lineEdit_4"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="description">
+     <property name="text">
+      <string>Description:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTextEdit" name="description_input"/>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <property name="topMargin">
+      <number>20</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
        <property name="text">
-        <string>Description</string>
+        <string>Add</string>
        </property>
       </widget>
      </item>
-     <item row="6" column="2" rowspan="2" colspan="4">
-      <widget class="QPlainTextEdit" name="Input_PersonDescription"/>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

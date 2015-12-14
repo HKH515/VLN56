@@ -19,13 +19,13 @@
      <property name="font">
       <font>
        <family>Georgia</family>
-       <pointsize>24</pointsize>
+       <pointsize>15</pointsize>
        <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
      <property name="text">
-      <string>Add Computer</string>
+      <string>Please enter the following information:</string>
      </property>
     </widget>
    </item>

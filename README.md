@@ -5,24 +5,7 @@ This is our project for the course VLN1, we are group 56
 The program is simply put a client for interacting with a database, the theme of this database are computer scientists.
 
 ##Commands
-
-The following commands are currently implemented into the program
-
-| Command       | Description                                | Sortability                                                                        |
-| ------------- |:------------------------------------------:|------------------------------------------------------------------------------------|
-| add           | Adds a new entry to the database           | Does not apply                                                                     |
-| search        | Searches the database                      | Ascending/Descending by any field (except Description field, does not apply there) |
-| list   | Displays all entries found in the database | Ascending/Descending by any field (except Description field, does not apply there) |
-| remove  | Remove an entry in the database | Does not apply |
-| connections | View specific connections| Ascending/Descending by any field (except Description field, does not apply there) |
-| exit | Close the program | Does not apply |
-| help          | Displays all commands                      | Does not apply                                                                     |
-
-Please keep in mind that the program sorts it's data case sensitively. i.e. given the data set Bob, jack, Susan, susan; it will be sorted Bob, Susan, jack, susan or susan, jack, Susan, Bob.
-
-Even though the list is sorted by something other than Name, it will still be ordered alphabetically internally.
-
-Commands are not case sensitive unless they are used with parameters. For example ADD Jack Sparrow does not work, but ADD works.
+![test image] (https://github.com/HKH515/VLN56/blob/85f3ea3e2189482629c1c217b79258ab7072c479/Images/Screen%20Shot%202015-12-14%20at%2011.28.12%20AM%20copy.jpg?raw=true)
 
 ##Syntax
 Throughout this section a COLUMN_ID will be referenced.  To better understand what COLUMN_ID is, please refer to the table below: 

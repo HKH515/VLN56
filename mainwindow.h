@@ -24,8 +24,6 @@ private slots:
 
     void on_search_pushButton_clicked();
 
-    void on_substring_input_returnPressed();
-
     void display_person_list();
     void display_computer_list();
     void display_connections_list();
@@ -43,6 +41,10 @@ private slots:
     void on_table_view_connections_clicked(const QModelIndex &index);
 
     void on_remove_pushButton_clicked();
+
+    void on_substring_input_person_returnPressed();
+
+    void on_substring_input_computer_returnPressed();
 
 private:
     Ui::MainWindow *ui;

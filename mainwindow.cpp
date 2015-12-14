@@ -19,7 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->see_more_view_person->hide();
     ui->see_more_view_computer->hide();
-    ui->search_view->hide();
+    ui->search_view_person->hide();
+    ui->search_view_computer->hide();
     ui->table_view_connections->hide();
     ui->table_view_computers->hide();
     display_person_list();
@@ -43,27 +44,26 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_search_pushButton_clicked()
 {
-    ui->search_view->show();
     ui->see_more_view_computer->hide();
     ui->see_more_view_person->hide();
 
     string current_type = ui->type_dropdown->currentText().toStdString();
     if (current_type == "Computer Scientists")
     {
-
+        ui->search_view_person->show();
 
     }
-
+    else if (current_type == "Computers")
+    {
+        ui->search_view_computer->show();
+    }
 }
 
-void MainWindow::on_substring_input_returnPressed()
-{
-    ui->search_view->hide();
-}
 
 void MainWindow::display_person_list()
 {
-    ui->search_view->hide();
+    ui->search_view_person->hide();
+    ui->search_view_computer->hide();
     ui->table_view_person->show();
     ui->table_view_connections->hide();
     ui->table_view_computers->hide();
@@ -89,7 +89,8 @@ void MainWindow::display_person_list()
 
 void MainWindow::display_computer_list()
 {
-    ui->search_view->hide();
+    ui->search_view_person->hide();
+    ui->search_substring_computer->hide();
     ui->table_view_person->hide();
     ui->table_view_connections->hide();
     ui->table_view_computers->show();
@@ -121,7 +122,8 @@ void MainWindow::display_connections_list()
 
 void MainWindow::on_type_dropdown_currentIndexChanged(const QString &arg1)
 {
-    ui->search_view->hide();
+    ui->search_view_person->hide();
+    ui->search_substring_computer->hide();
     ui->see_more_view_computer->hide();
     ui->see_more_view_person->hide();
     string current_type = ui->type_dropdown->currentText().toStdString();
@@ -149,7 +151,8 @@ void MainWindow::on_table_view_person_clicked(const QModelIndex &index)
 
 void MainWindow::on_show_more_pushButton_clicked()
 {
-    ui->search_view->hide();
+    ui->search_view_person->hide();
+    ui->search_view_computer->hide();
     string current_type = ui->type_dropdown->currentText().toStdString();
     string currently_chosen_entry;
     if (current_type == "Computer Scientists")
@@ -267,4 +270,14 @@ Computer *MainWindow::find_chosen_computer(string chosen_name)
 void MainWindow::remove_chosen_connection()
 {
 
+}
+
+void MainWindow::on_substring_input_person_returnPressed()
+{
+    ui->search_view_person->hide();
+}
+
+void MainWindow::on_substring_input_computer_returnPressed()
+{
+    ui->search_view_computer->hide();
 }

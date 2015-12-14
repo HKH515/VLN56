@@ -32,29 +32,32 @@ void ComputerService::parse_query_vector(vector<string> v)
         size_t position_end = 0;
         /* cut out the empty space in the beginning of the string */
         st = st.substr(1, st.length());
+
+        position_beg = st.find("|");
+        string kind = st.substr(0, position_beg);
         Computer* c = new Computer();
 
-        /* find the name */
-        position_end = st.find("|");
-        c->set_name(st.substr(0, position_end));
+        // find the name
+        position_end = st.find("|", position_beg + 1);
+        c->set_name(st.substr(position_beg + 1, position_end - position_beg - 1));
 
-        /* find the construction year */
+        // find the construction year
         position_beg = st.find("|", position_end + 1);
         c->set_construction_year(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
 
-        /* find the type */
+        // find the type
         position_end = st.find("|", position_beg + 1);
         c->set_type(st.substr(position_beg + 1, (position_end - position_beg - 1)));
 
-        /* find if built */
+        // find if built
         position_beg = st.find("|", position_end + 1);
         c->set_built(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
 
-        /* find the description */
+        // find the description
         position_end = st.find("|", position_beg + 1);
         c->set_description(st.substr(position_beg + 1, (position_end - position_beg - 1)));
 
-        /* find the id */
+        // find the id
         position_beg = st.find("|", position_end + 1);
         c->set_id(stoi(st.substr(position_end + 1, (position_beg - position_end - 1))));
 

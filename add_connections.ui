@@ -15,15 +15,15 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QComboBox" name="computer_dropdown"/>
+    <widget class="QComboBox" name="person_dropdown"/>
    </item>
    <item>
-    <widget class="QComboBox" name="person_dropdown"/>
+    <widget class="QComboBox" name="computer_dropdown"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pushbutton_cancel">
+      <widget class="QPushButton" name="pushbutton_add">
        <property name="text">
         <string>Add</string>
        </property>

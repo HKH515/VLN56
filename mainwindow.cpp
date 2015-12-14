@@ -363,6 +363,7 @@ void MainWindow::on_add_pushButton_clicked()
     {
         add_connections newadd_connections;
 
+
         int addConnectionsReturnValue = newadd_connections.exec();
     }
 }

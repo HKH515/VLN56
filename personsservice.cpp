@@ -126,5 +126,18 @@ void PersonsService::remove_person(int id)
     person_repo->remove("id", str_id);
 }
 
+Person* PersonsService::find_chosen_person(string name)
+{
+    free_vector_memory();
+    parse_query_vector(person_repo->read_entries()); // Nauðsynlegt??
 
+    for (unsigned int i = 0; i < get_person_vec().size(); i++)
+    {
+        if (get_person_vec()[i]->get_name() == name)
+        {
+            return get_person_vec()[i];
+        }
+    }
+    return NULL;
+}
 

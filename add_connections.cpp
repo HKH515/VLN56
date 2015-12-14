@@ -12,3 +12,8 @@ add_connections::~add_connections()
 {
     delete ui;
 }
+
+void add_connections::on_pushButton_cancel_clicked()
+{
+    this->close();
+}

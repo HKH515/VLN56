@@ -47,3 +47,8 @@ vector<string> add_persons::on_pushbutton_add_clicked()
     return add_person_vec;
 
 }
+
+void add_persons::on_pushbutton_cancel_clicked()
+{
+    this->close();
+}

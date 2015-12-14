@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <string>
 #include <vector>
+#include "personsservice.h"
 
 using namespace std;
 
@@ -20,11 +21,11 @@ public:
     ~add_persons();
 
 private slots:
-
-    vector<string> on_pushbutton_add_clicked();
+    void on_pushbutton_add_clicked();
 
 private:
     Ui::add_persons *ui;
+    PersonsService *person_service;
 };
 
 #endif // ADD_PERSONS_H

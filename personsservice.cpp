@@ -14,7 +14,7 @@ PersonsService::~PersonsService()
 string PersonsService::parse_add_command(vector<string> vec)
 {
     string st = " "; /* add space in front of the string */
-    for (unsigned int i = 2; i < vec.size(); i++)
+    for (unsigned int i = 0; i < vec.size(); i++)
     {
         st += vec[i];
         st += "|"; /* add | after each vector element */
@@ -33,7 +33,6 @@ void PersonsService::parse_query_vector(vector<string> v)
         /* cut out the empty space in the beginning of the string */
         st = st.substr(1, st.length());
         position_beg = st.find("|");
-        string kind = st.substr(0, position_beg);
 
         Person* p = new Person();
 
@@ -59,14 +58,18 @@ void PersonsService::parse_query_vector(vector<string> v)
 
         // find the sex
         position_beg = st.find("|", position_end + 1);
-        cout << st.substr(position_end + 1, (position_beg - position_end - 1)) << endl;
-        if (st.substr(position_end + 1, (position_beg - position_end - 1)) == "m")
+        string sex = st.substr(position_end + 1, (position_beg - position_end - 1));
+        if (sex == "m")
         {
-            p->set_sex("male");
+            p->set_sex("Male");
+        }
+        else if (sex == "f")
+        {
+            p->set_sex("Female");
         }
         else
         {
-            p->set_sex("female");
+            p->set_sex("Other");
         }
 
         // find the id
@@ -107,7 +110,6 @@ void PersonsService::search_person(string column, string substr)
     {
         column = "deathyear";
     }
-    cout << column << ": " << substr << endl;
     parse_query_vector(person_repo->query(column, substr));
 }
 

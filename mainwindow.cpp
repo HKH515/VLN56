@@ -299,6 +299,7 @@ void MainWindow::on_add_pushButton_clicked()
         add_persons newadd_persons;
 
         int addPersonsReturnValue = newadd_persons.exec();
+        display_person_list(1);
     }
     else if (current_type == "Computers")
     {

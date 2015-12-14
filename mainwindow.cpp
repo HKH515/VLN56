@@ -77,7 +77,16 @@ void MainWindow::display_person_list(int display_type)
         Person* current_person = person_service->get_person_vec()[row];
         QString name = QString::fromStdString(current_person->get_name());
         QString birthyear = QString::number(current_person->get_birthyear());
-        QString deathyear = QString::number(current_person->get_deathyear());
+        int death_year = current_person->get_deathyear();
+        QString deathyear;
+        if (death_year == 0)
+        {
+            deathyear = QString::fromStdString("-");
+        }
+        else
+        {
+            deathyear = QString::number(current_person->get_deathyear());
+        }
         QString sex = QString::fromStdString(current_person->get_sex());
 
         ui->table_view_person->setItem(row, 0, new QTableWidgetItem(name));
@@ -107,8 +116,16 @@ void MainWindow::display_computer_list(int display_type)
         QString name = QString::fromStdString(current_computer->get_name());
         QString construction_year = QString::number(current_computer->get_construction_year());
         QString type = QString::fromStdString(current_computer->get_type());
-        QString built = QString::number(current_computer->get_built());
-
+        int check_if_built = current_computer->get_built();
+        QString built;
+        if (check_if_built == 0)
+        {
+            built = QString::fromStdString("No");
+        }
+        else
+        {
+            built = QString::fromStdString("Yes");
+        }
         ui->table_view_computers->setItem(row, 0, new QTableWidgetItem(name));
         ui->table_view_computers->setItem(row, 1, new QTableWidgetItem(construction_year));
         ui->table_view_computers->setItem(row, 2, new QTableWidgetItem(type));

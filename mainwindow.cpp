@@ -223,7 +223,7 @@ void MainWindow::on_show_more_pushButton_clicked()
         int row = ui->table_view_computers->currentIndex().row();
         string currently_chosen_entry_comp = ui->table_view_computers->item(row, 0)->text().toStdString();
         // Find the corresponding computer
-        Computer* current_computer = find_chosen_computer(currently_chosen_entry_comp);
+        Computer* current_computer = computer_service->find_chosen_computer(currently_chosen_entry_comp);
         QString current_description = QString::fromStdString(current_computer->get_description());
         ui->description_output_computer->append(current_description);
         ui->see_more_view_computer->show();
@@ -265,9 +265,9 @@ void MainWindow::on_remove_pushButton_clicked()
         ui->see_more_view_person->hide();
         ui->description_output_computer->clear();
         int row = ui->table_view_computers->currentIndex().row();
-        string currently_chosen_entry_comp = ui->table_view_computers->item(row, 1)->text().toStdString();
+        string currently_chosen_entry_comp = ui->table_view_computers->item(row, 0)->text().toStdString();
         // Find the corresponding computer
-        Computer* current_computer = find_chosen_computer(currently_chosen_entry_comp);
+        Computer* current_computer = computer_service->find_chosen_computer(currently_chosen_entry_comp);
         // Get the id of the computer
         int computer_id = current_computer->get_id();
         computer_service->remove_computer(computer_id);
@@ -289,7 +289,7 @@ void MainWindow::on_remove_pushButton_clicked()
         // Get the name of the computer in the connection
         string currently_chosen_entry_comp = ui->table_view_connections->item(row, 1)->text().toStdString();
         // Find the corresponding computer
-        Computer* current_computer = find_chosen_computer(currently_chosen_entry_comp);
+        Computer* current_computer = computer_service->find_chosen_computer(currently_chosen_entry_comp);
         // Get the id of the computer
         int computer_id = current_computer->get_id();
         connections_service->remove_connection(person_id, computer_id);
@@ -313,6 +313,7 @@ void MainWindow::on_add_pushButton_clicked()
         add_computers newadd_computers;
 
         int addComputersReturnValue = newadd_computers.exec();
+        display_computer_list(1);
     }
     else if (current_type == "Connections")
     {
@@ -334,17 +335,6 @@ Person* MainWindow::find_chosen_person(string chosen_name)
     return NULL;
 }
 
-Computer *MainWindow::find_chosen_computer(string chosen_name)
-{
-    for (unsigned int i = 0; i < computer_service->get_computer_vec().size(); i++)
-    {
-        if (computer_service->get_computer_vec()[i]->get_name() == chosen_name)
-        {
-            return computer_service->get_computer_vec()[i];
-        }
-    }
-    return NULL;
-}
 
 void MainWindow::insert_all_person_ids()
 {

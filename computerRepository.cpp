@@ -56,6 +56,7 @@ void ComputerRepository::remove(string column, string id)
     query_string = "DELETE from computers WHERE " + column + "=" + id;
     QString q_query_string(query_string.c_str());
     query_obj.exec(q_query_string);
+    cout << "buin ad remova ur database" << endl;
     db.close();
 
 }

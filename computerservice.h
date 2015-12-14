@@ -31,6 +31,7 @@ public:
     void search_computer(string column, string substring);
     /* Handles the remove command */
     void remove_computer(int id);
+    Computer* find_chosen_computer(string chosen_name);
 
     vector<Computer*> get_computer_vec();
 };

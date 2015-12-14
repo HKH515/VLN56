@@ -14,7 +14,7 @@ ComputerService::~ComputerService()
 string ComputerService::parse_add_command(vector<string> v)
 {
     string st = " "; /* add space in front of the string */
-    for (unsigned int i = 2; i < v.size(); i++)
+    for (unsigned int i = 0; i < v.size(); i++)
     {
         st += v[i];
         st += "|"; /* add | after each vector element */
@@ -98,10 +98,23 @@ void ComputerService::remove_computer(int id)
     stringstream ss;
     ss << id;
     string str_id = ss.str();
+    cout << "er inn i remove computer, str_id: " << str_id << endl;
     computer_repo->remove("id", str_id);
 }
 
 vector<Computer *> ComputerService::get_computer_vec()
 {
     return computer_vec;
+}
+
+Computer* ComputerService::find_chosen_computer(string chosen_name)
+{
+    for (unsigned int i = 0; i < computer_vec.size(); i++)
+    {
+        if (computer_vec[i]->get_name() == chosen_name)
+        {
+            return computer_vec[i];
+        }
+    }
+    return NULL;
 }

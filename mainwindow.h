@@ -56,7 +56,6 @@ private:
     ComputerService* computer_service;
     ConnectionsService* connections_service;
     Person* find_chosen_person(string chosen_name);
-    Computer* find_chosen_computer(string chosen_name);
     void insert_all_person_ids();
     void insert_all_computer_ids();
 

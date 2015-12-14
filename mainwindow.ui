@@ -297,7 +297,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="substring_input_person"/>
+          <widget class="QLineEdit" name="substring_input_person">
+           <property name="placeholderText">
+            <string>Search for a Scientist</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -349,7 +353,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="substring_input_computer"/>
+          <widget class="QLineEdit" name="substring_input_computer">
+           <property name="placeholderText">
+            <string>Search for a Computer</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>

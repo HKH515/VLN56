@@ -59,7 +59,6 @@ void PersonsService::parse_query_vector(vector<string> v)
 
         // find the sex
         position_beg = st.find("|", position_end + 1);
-        cout << st.substr(position_end + 1, (position_beg - position_end - 1)) << endl;
         if (st.substr(position_end + 1, (position_beg - position_end - 1)) == "m")
         {
             p->set_sex("male");

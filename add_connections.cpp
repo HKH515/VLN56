@@ -26,3 +26,8 @@ void add_connections::on_pushbutton_add_clicked()
     string computer_ID = ui->computer_dropdown->currentText().toStdString();
     connections_service->add_connection(person_ID, computer_ID);
 }
+
+void add_connections::on_pushButton_cancel_clicked()
+{
+    this->close();
+}

@@ -23,6 +23,8 @@ private slots:
 
     vector<string> on_pushbutton_add_clicked();
 
+    void on_pushbutton_cancel_clicked();
+
 private:
     Ui::add_persons *ui;
 };

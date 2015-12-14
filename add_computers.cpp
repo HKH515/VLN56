@@ -12,3 +12,8 @@ add_computers::~add_computers()
 {
     delete ui;
 }
+
+void add_computers::on_cancel_pushbutton_clicked()
+{
+    this->close();
+}

@@ -85,7 +85,16 @@ void MainWindow::display_person_list(int display_type)
         Person* current_person = person_service->get_person_vec()[row];
         QString name = QString::fromStdString(current_person->get_name());
         QString birthyear = QString::number(current_person->get_birthyear());
-        QString deathyear = QString::number(current_person->get_deathyear());
+        int death_year = current_person->get_deathyear();
+        QString deathyear;
+        if (death_year == 0)
+        {
+            deathyear = QString::fromStdString("-");
+        }
+        else
+        {
+            deathyear = QString::number(current_person->get_deathyear());
+        }
         QString sex = QString::fromStdString(current_person->get_sex());
 
         ui->table_view_person->setItem(row, 0, new QTableWidgetItem(name));
@@ -115,8 +124,16 @@ void MainWindow::display_computer_list(int display_type)
         QString name = QString::fromStdString(current_computer->get_name());
         QString construction_year = QString::number(current_computer->get_construction_year());
         QString type = QString::fromStdString(current_computer->get_type());
-        QString built = QString::number(current_computer->get_built());
-
+        int check_if_built = current_computer->get_built();
+        QString built;
+        if (check_if_built == 0)
+        {
+            built = QString::fromStdString("No");
+        }
+        else
+        {
+            built = QString::fromStdString("Yes");
+        }
         ui->table_view_computers->setItem(row, 0, new QTableWidgetItem(name));
         ui->table_view_computers->setItem(row, 1, new QTableWidgetItem(construction_year));
         ui->table_view_computers->setItem(row, 2, new QTableWidgetItem(type));
@@ -187,7 +204,10 @@ void MainWindow::on_show_more_pushButton_clicked()
     {
         ui->see_more_view_computer->hide();
         ui->description_output_person->clear();
-        currently_chosen_entry = ui->table_view_person->currentItem()->text().toStdString();
+        int row = ui->table_view_person->currentIndex().row();
+        // Get the name of the person in the connection
+        currently_chosen_entry = ui->table_view_person->item(row, 0)->text().toStdString();
+        // Find the corresponding person
         Person* current_person = find_chosen_person(currently_chosen_entry);
         QString current_profession = QString::fromStdString(current_person->get_profession());
         QString current_description = QString::fromStdString(current_person->get_description());
@@ -200,8 +220,10 @@ void MainWindow::on_show_more_pushButton_clicked()
     {
         ui->see_more_view_person->hide();
         ui->description_output_computer->clear();
-        currently_chosen_entry = ui->table_view_computers->currentItem()->text().toStdString();
-        Computer* current_computer = find_chosen_computer(currently_chosen_entry);
+        int row = ui->table_view_computers->currentIndex().row();
+        string currently_chosen_entry_comp = ui->table_view_computers->item(row, 0)->text().toStdString();
+        // Find the corresponding computer
+        Computer* current_computer = find_chosen_computer(currently_chosen_entry_comp);
         QString current_description = QString::fromStdString(current_computer->get_description());
         ui->description_output_computer->append(current_description);
         ui->see_more_view_computer->show();
@@ -228,20 +250,27 @@ void MainWindow::on_remove_pushButton_clicked()
     {
         ui->see_more_view_computer->hide();
         ui->description_output_person->clear();
-        currently_chosen_entry = ui->table_view_person->currentItem()->text().toStdString();
+        int row = ui->table_view_person->currentIndex().row();
+        // Get the name of the person in the connection
+        currently_chosen_entry = ui->table_view_person->item(row, 0)->text().toStdString();
+        // Find the corresponding person
         Person* current_person = find_chosen_person(currently_chosen_entry);
-        int current_id = current_person->get_id();
-        person_service->remove_person(current_id);
+        // Get the id of this person
+        int person_id = current_person->get_id();
+        person_service->remove_person(person_id);
         display_person_list(1);
     }
     else if (current_type == "Computers")
     {
         ui->see_more_view_person->hide();
         ui->description_output_computer->clear();
-        currently_chosen_entry = ui->table_view_computers->currentItem()->text().toStdString();
-        Computer* current_computer = find_chosen_computer(currently_chosen_entry);
-        int current_id = current_computer->get_id();
-        computer_service->remove_computer(current_id);
+        int row = ui->table_view_computers->currentIndex().row();
+        string currently_chosen_entry_comp = ui->table_view_computers->item(row, 1)->text().toStdString();
+        // Find the corresponding computer
+        Computer* current_computer = find_chosen_computer(currently_chosen_entry_comp);
+        // Get the id of the computer
+        int computer_id = current_computer->get_id();
+        computer_service->remove_computer(computer_id);
 
         display_computer_list(1);
     }
@@ -316,10 +345,7 @@ Computer *MainWindow::find_chosen_computer(string chosen_name)
     return NULL;
 }
 
-void MainWindow::remove_chosen_connection()
-{
-
-}
+<<<<<<< HEAD
 
 void MainWindow::insert_all_person_ids()
 {
@@ -344,20 +370,20 @@ void MainWindow::insert_all_computer_ids()
 
 void MainWindow::on_substring_input_person_returnPressed()
 {
-    ui->search_view_person->hide();
     string search_column = ui->search_dropdown_person->currentText().toStdString();
     string search_substring = ui->substring_input_person->text().toStdString();
     person_service->search_person(search_column, search_substring);
     display_person_list(2);
+    ui->substring_input_person->clear();
 }
 
 void MainWindow::on_substring_input_computer_returnPressed()
 {
-    ui->search_view_computer->hide();
     string search_column = ui->search_dropdown_computer->currentText().toStdString();
     string search_substring = ui->substring_input_computer->text().toStdString();
     computer_service->search_computer(search_column, search_substring);
     display_computer_list(2);
+    ui->substring_input_computer->clear();
 }
 
 

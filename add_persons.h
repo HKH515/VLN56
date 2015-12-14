@@ -2,6 +2,10 @@
 #define ADD_PERSONS_H
 
 #include <QDialog>
+#include <string>
+#include <vector>
+
+using namespace std;
 
 namespace Ui {
 class add_persons;
@@ -14,6 +18,12 @@ class add_persons : public QDialog
 public:
     explicit add_persons(QWidget *parent = 0);
     ~add_persons();
+
+private slots:
+
+    vector<string> on_pushbutton_add_clicked();
+
+    void on_pushbutton_cancel_clicked();
 
 private:
     Ui::add_persons *ui;

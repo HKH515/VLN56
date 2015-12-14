@@ -85,7 +85,6 @@ void MainWindow::display_person_list(int display_type)
         ui->table_view_person->setItem(row, 2, new QTableWidgetItem(deathyear));
         ui->table_view_person->setItem(row, 3, new QTableWidgetItem(sex));
     }
-    person_vector = person_service->get_person_vec();
 }
 
 void MainWindow::display_computer_list(int display_type)
@@ -115,7 +114,6 @@ void MainWindow::display_computer_list(int display_type)
         ui->table_view_computers->setItem(row, 2, new QTableWidgetItem(type));
         ui->table_view_computers->setItem(row, 3, new QTableWidgetItem(built));
     }
-    computer_vector = computer_service->get_computer_vec();
 }
 
 void MainWindow::display_connections_list(int display_type)
@@ -126,11 +124,9 @@ void MainWindow::display_connections_list(int display_type)
     ui->table_view_computers->hide();
     ui->table_view_connections->show();
 
-    cout << "Er að fara í get_all_connections" << endl;
     connections_service->get_all_connections();
     unsigned int vector_size = connections_service->get_person_vec().size();
     ui->table_view_connections->setRowCount(vector_size);
-    cout << "Er að fara að byrja í forlykkju" << endl;
     for (unsigned int row = 0; row < vector_size; row++)
     {
         Person* current_person = connections_service->get_person_vec()[row];
@@ -140,7 +136,6 @@ void MainWindow::display_connections_list(int display_type)
 
         ui->table_view_connections->setItem(row, 0, new QTableWidgetItem(name_person));
         ui->table_view_connections->setItem(row, 1, new QTableWidgetItem(name_computer));
-
     }
 
 }
@@ -245,16 +240,24 @@ void MainWindow::on_remove_pushButton_clicked()
     }
     else
     {
-        int row = ui->table_view_person->currentIndex().row();
+        person_service->get_all_persons();
+        computer_service->get_all_computers();
+        // Get the number of the selected row
+        int row = ui->table_view_connections->currentIndex().row();
         // Get the name of the person in the connection
         currently_chosen_entry = ui->table_view_connections->item(row, 0)->text().toStdString();
-        // Find the appropriate person
+        // Find the corresponding person
         Person* current_person = find_chosen_person(currently_chosen_entry);
+        // Get the id of this person
         int person_id = current_person->get_id();
+        // Get the name of the computer in the connection
         string currently_chosen_entry_comp = ui->table_view_connections->item(row, 1)->text().toStdString();
+        // Find the corresponding computer
         Computer* current_computer = find_chosen_computer(currently_chosen_entry_comp);
+        // Get the id of the computer
         int computer_id = current_computer->get_id();
         connections_service->remove_connection(person_id, computer_id);
+        display_connections_list(1);
     }
 }
 
@@ -284,11 +287,11 @@ void MainWindow::on_add_pushButton_clicked()
 
 Person* MainWindow::find_chosen_person(string chosen_name)
 {
-    for (unsigned int i = 0; i < person_vector.size(); i++)
+    for (unsigned int i = 0; i < person_service->get_person_vec().size(); i++)
     {
-        if (person_vector[i]->get_name() == chosen_name)
+        if (person_service->get_person_vec()[i]->get_name() == chosen_name)
         {
-            return person_vector[i];
+            return person_service->get_person_vec()[i];
         }
     }
     return NULL;
@@ -296,11 +299,11 @@ Person* MainWindow::find_chosen_person(string chosen_name)
 
 Computer *MainWindow::find_chosen_computer(string chosen_name)
 {
-    for (unsigned int i = 0; i < computer_vector.size(); i++)
+    for (unsigned int i = 0; i < computer_service->get_computer_vec().size(); i++)
     {
-        if (computer_vector[i]->get_name() == chosen_name)
+        if (computer_service->get_computer_vec()[i]->get_name() == chosen_name)
         {
-            return computer_vector[i];
+            return computer_service->get_computer_vec()[i];
         }
     }
     return NULL;

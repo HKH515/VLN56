@@ -2,15 +2,12 @@
 
 ConnectionsService::ConnectionsService()
 {
-    computer_repo = new ComputerRepository("data.sqlite", "computer_connection");
-    person_repo = new PersonRepository("data.sqlite", "person_computer");
+    connection_repo = new ConnectionRepository("data.sqlite", "connection_connection");
 }
 
 ConnectionsService::~ConnectionsService()
 {
     free_vector_memory();
-    delete computer_repo;
-    delete person_repo;
     delete connection_repo;
 }
 
@@ -30,12 +27,9 @@ void ConnectionsService::free_vector_memory()
 
 void ConnectionsService::get_all_connections()
 {
-    cout << "Komin inn´i get_all_connections" << endl;
     free_vector_memory();
-    cout << "Búin í free memory" << endl;
     parse_query_vector(connection_repo->get_conn_all_persons());
     parse_query_vector(connection_repo->get_conn_all_computers());
-    cout << "Búin í get_all_connections" << endl;
 }
 
 void ConnectionsService::add_connection(int person_id, int computer_id)
@@ -51,7 +45,7 @@ void ConnectionsService::remove_connection(int person_id, int computer_id)
 {
     string p_id = int_to_string(person_id);
     string c_id = int_to_string(computer_id);
-
+    cout << "Er að fara að kalla á remove_conn" << endl;
     connection_repo->remove_conn(p_id, c_id);
 }
 

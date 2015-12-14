@@ -16,8 +16,8 @@ class ConnectionsService
 private:
     vector<Person*> person_vec;
     vector<Computer*> computer_vec;
-    ComputerRepository* computer_repo;
-    PersonRepository* person_repo;
+    //ComputerRepository* computer_repo;
+    //PersonRepository* person_repo;
     ConnectionRepository* connection_repo;
 
 public:

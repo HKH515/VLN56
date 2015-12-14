@@ -81,7 +81,6 @@ void PersonsService::free_vector_memory()
 
 void PersonsService::get_all_persons()
 {
-    cout << "Inni í get all persons" << endl;
     parse_query_vector(person_repo->read_entries());
 }
 

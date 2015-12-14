@@ -79,7 +79,6 @@ vector<string> ConnectionRepository::get_conn_all_computers()
         query_vect = from_db_to_vector("computers", query_obj);
     }
     db.close();
-
     return query_vect;
 
 }
@@ -102,7 +101,6 @@ vector<string> ConnectionRepository::get_conn_all_persons()
     }
     db.close();
     return query_vect;
-
 }
 
 //Returns all computers that have a persons associated with them

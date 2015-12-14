@@ -46,16 +46,20 @@ private slots:
 
     void on_substring_input_computer_returnPressed();
 
+    void on_search_dropdown_connections_currentIndexChanged(const QString &arg1);
+
+    void on_dropdown_list_all_ids_person_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     PersonsService* person_service;
     ComputerService* computer_service;
     ConnectionsService* connections_service;
-    vector<Person*> person_vector;
-    vector<Computer*> computer_vector;
     Person* find_chosen_person(string chosen_name);
     Computer* find_chosen_computer(string chosen_name);
     void remove_chosen_connection();
+    void insert_all_person_ids();
+    void insert_all_computer_ids();
 
 };
 

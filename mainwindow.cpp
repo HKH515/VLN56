@@ -224,13 +224,13 @@ void MainWindow::on_add_pushButton_clicked()
     {
         add_persons newadd_persons;
 
-        int addComputersReturnValue = newadd_persons.exec();
+        int addPersonsReturnValue = newadd_persons.exec();
     }
     else if (current_type == "Computers")
     {
         add_computers newadd_computers;
 
-        int addPersonsReturnValue = newadd_computers.exec();
+        int addComputersReturnValue = newadd_computers.exec();
     }
     else if (current_type == "Connections")
     {

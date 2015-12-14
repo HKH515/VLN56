@@ -6,7 +6,13 @@ This program, simply put, is a client for interacting with a database. The theme
 
 ##How to use this program:
 
-![test image] (https://github.com/HKH515/VLN56/blob/85f3ea3e2189482629c1c217b79258ab7072c479/Images/Screen%20Shot%202015-12-14%20at%2011.28.12%20AM%20copy.jpg?raw=true)
+![test image] (https://github.com/HKH515/VLN56/blob/0c78fb7631f60e033bdf94880eae1098d164e9f9/Screen%20Shot%202015-12-14%20at%202.47.32%20PM.png?raw=true)
 
 In this window the user is able to learn about the fascinating world of computer science by choosing Computer Scientists, Computers or Connections between the two, in the dropdown box located at the top left side.
-The sorting can be changed from ascending to descending by clicking on the Name, Birth Year, Death Year or Sex tab. Note that only one sorting option is available at a time. In this example the list is sorted by Name and in ascending order, where Ada Lovelace is first. To display more information on each computer scientist, the user can simply highlight the row of interest by clicking on it and then clicking on show more, located at the mid bottom of the program.
+
+The sorting order can be changed from ascending to descending by clicking on the Name, Birth Year, Death Year or Sex tab, located under the dropdown box. Note that only one sorting option is available at a time. 
+
+In this example the list is sorted by Name and in ascending order, where (A) Ada Lovelace is first. To display more information on each computer scientist, the user can simply highlight the row of interest by clicking on it and then clicking on show more tab, located at the mid bottom of the program.
+
+
+![test image2](https://github.com/HKH515/VLN56/blob/0c78fb7631f60e033bdf94880eae1098d164e9f9/Screen%20Shot%202015-12-14%20at%202.47.58%20PM.png?raw=true)

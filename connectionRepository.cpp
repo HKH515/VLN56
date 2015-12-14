@@ -84,7 +84,7 @@ vector<string> ConnectionRepository::get_conn_all_computers()
 
 }
 
-//Returns all persons that have a persons associated with them, returns entries in the same order as get_conn_all_computers
+//Returns all persons that have a computer associated with them, returns entries in the same order as get_conn_all_computers
 vector<string> ConnectionRepository::get_conn_all_persons()
 {
     vector<string> query_vect;

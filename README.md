@@ -25,9 +25,9 @@ Table of Contents:
 
 In this window the user is able to learn about the fascinating world of computer science by choosing Computer Scientists, Computers or Connections between the two, in the dropdown box located at the top left side.
 
-The sorting order can be changed from Ascending to Descending by clicking on the Name, Birth Year, Death Year or Sex tab, located under the dropdown box. Note that only one sorting option is available at a time. 
+The sorting order can be changed from Ascending to Descending by clicking on the Name, Birth Year, Death Year or Sex button, located under the dropdown box. Note that only one sorting option is available at a time. 
 
-In this example the list is sorted by Name and in ascending order, where (A) Ada Lovelace is first. To display more information on each computer scientist, the user can simply highlight the row of interest by clicking on it and then clicking on show more tab, located at the mid bottom of the program. This displays profession and a short description of the person chosen.
+In this example the list is sorted by Name and in ascending order, where (A) Ada Lovelace is first. To display more information on each computer scientist, the user can simply highlight the row of interest by clicking on it and then clicking on show more button, located at the mid bottom of the program. This displays profession and a short description of the person chosen.
 
 ##Add a Computer Scientist:
 

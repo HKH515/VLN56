@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/icons">
         <file>images/computer.ico</file>
+        <file>images/Alan-Turing.png</file>
     </qresource>
 </RCC>

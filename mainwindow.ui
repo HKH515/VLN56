@@ -18,7 +18,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="resources.qrc">
-    <normaloff>:/icons/images/computer.ico</normaloff>:/icons/images/computer.ico</iconset>
+    <normaloff>:/icons/images/Alan-Turing.png</normaloff>:/icons/images/Alan-Turing.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">

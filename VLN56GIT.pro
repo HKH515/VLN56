@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     connectionsservice.cpp \
     add_computers.cpp \
     add_connections.cpp \
-    add_persons.cpp
+    add_persons.cpp \
+    verification.cpp
 
 HEADERS  += mainwindow.h \
     computer.h \
@@ -43,7 +44,8 @@ HEADERS  += mainwindow.h \
     personsservice.h \
     add_computers.h \
     add_connections.h \
-    add_persons.h
+    add_persons.h \
+    verification.h
 
 FORMS    += mainwindow.ui \
             add_persons.ui \

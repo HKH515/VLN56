@@ -234,6 +234,7 @@ void MainWindow::on_search_pushButton_clicked()
     {
         ui->search_view_connections->show();
         // Default list all Computer Scientist
+        ui->search_dropdown_connections->show();
         ui->dropdown_list_all_ids_computer->hide();
         ui->dropdown_list_all_ids_person->show();
         // Fill in the dropdown

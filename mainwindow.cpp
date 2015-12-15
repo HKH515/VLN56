@@ -34,10 +34,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->table_view_computers->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->table_view_connections->setSelectionBehavior(QAbstractItemView::SelectRows);
 
-    // only allowed to read
-    ui->profession_output->setReadOnly(true);
-    ui->description_output_person->setReadOnly(true);
-    ui->description_output_computer->setReadOnly(true);
 }
 
 MainWindow::~MainWindow()
@@ -123,7 +119,7 @@ void MainWindow::on_show_more_pushButton_clicked()
         QString current_description = QString::fromStdString(current_person->get_description());
         // Displaying the persons profession and description
         ui->profession_output->setText(current_profession);
-        ui->description_output_person->append(current_description);
+        ui->description_output_person->setText(current_description);
         ui->see_more_view_person->show();
 
     }
@@ -136,7 +132,7 @@ void MainWindow::on_show_more_pushButton_clicked()
         // Find the corresponding computer
         Computer* current_computer = computer_service->find_chosen_computer(currently_chosen_entry_comp);
         QString current_description = QString::fromStdString(current_computer->get_description());
-        ui->description_output_computer->append(current_description);
+        ui->description_output_computer->setText(current_description);
         ui->see_more_view_computer->show();
     }
 }
@@ -530,9 +526,9 @@ void MainWindow::display_connections_search_list(int kind, string name)
         connections_service->get_connected("Computer Scientist", name);
         unsigned int vector_size = connections_service->get_computer_vec().size();
 
-        for (int row = 0; row < vector_size; row++)
+        for (unsigned int row = 0; row < vector_size; row++)
         {
-            Computer* current_computer;
+            Computer* current_computer = NULL;
             QString id = QString::number(current_computer->get_id());
             QString name = QString::fromStdString(current_computer->get_name());
             QString construction_year = QString::number(current_computer->get_construction_year());

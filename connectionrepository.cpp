@@ -18,12 +18,14 @@ ConnectionRepository::ConnectionRepository(string db_name, string conn_name)
 
 void ConnectionRepository::write(string person_ID, string computer_ID)
 {
-    db.open();
-    QSqlQuery query_obj(db);
-    string query_string;
-    query_string = "INSERT INTO 'connections' (ID_computers, ID_persons) values('" + computer_ID + "', '" + person_ID + "');";
-    QString q_query_string(query_string.c_str());
-    query_obj.exec(q_query_string);
+    if (db.open())
+    {
+        QSqlQuery query_obj(db);
+        string query_string;
+        query_string = "INSERT INTO 'connections' (ID_computers, ID_persons) values('" + computer_ID + "', '" + person_ID + "');";
+        QString q_query_string(query_string.c_str());
+        query_obj.exec(q_query_string);
+    }
     db.close();
 }
 
@@ -154,12 +156,14 @@ vector<string> ConnectionRepository::query_exact(string column, string data_quer
 {
     vector<string> query_vect;
     vector<string> result_vect;
-    db.open();
-    QSqlQuery query_obj(db);
-    string query_string = "SELECT * FROM connections WHERE " + column + " ='" + data_query + "'";
-    QString q_query_string(query_string.c_str());
-    query_obj.exec(q_query_string);
-    query_vect = from_db_to_vector("connections", query_obj);
+    if (db.open())
+    {
+        QSqlQuery query_obj(db);
+        string query_string = "SELECT * FROM connections WHERE " + column + " ='" + data_query + "'";
+        QString q_query_string(query_string.c_str());
+        query_obj.exec(q_query_string);
+        query_vect = from_db_to_vector("connections", query_obj);
+    }
     db.close();
 
     return query_vect;
@@ -170,12 +174,14 @@ vector<string> ConnectionRepository::query(string column, string data_query)
 {
     vector<string> query_vect;
     vector<string> result_vect;
-    db.open();
-    QSqlQuery query_obj(db);
-    string query_string = "SELECT * FROM connections WHERE " + column + " LIKE '%" + data_query + "%'";
-    QString q_query_string(query_string.c_str());
-    query_obj.exec(q_query_string);
-    query_vect = from_db_to_vector("connections", query_obj);
+    if (db.open())
+    {
+        QSqlQuery query_obj(db);
+        string query_string = "SELECT * FROM connections WHERE " + column + " LIKE '%" + data_query + "%'";
+        QString q_query_string(query_string.c_str());
+        query_obj.exec(q_query_string);
+        query_vect = from_db_to_vector("connections", query_obj);
+    }
     db.close();
 
     return query_vect;

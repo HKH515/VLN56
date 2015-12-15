@@ -98,6 +98,11 @@ void ComputerService::search_computer(string column, string substring)
     {
         column = "construction_year";
     }
+    if (column == "Built")
+    {
+        substring = check_search_substring(substring);
+    }
+
     // Send search command to data layer
     parse_query_vector(computer_repo->query(column, substring));
 }
@@ -122,4 +127,21 @@ Computer* ComputerService::find_chosen_computer(string chosen_name)
         }
     }
     return NULL;
+}
+
+
+string ComputerService::check_search_substring(string subst)
+{
+    if (subst == "No" || subst == "no" || subst == "n" || subst == "N")
+    {
+        return "0";
+    }
+    else if (subst == "Yes" || subst == "yes" || subst == "y" || subst == "Y")
+    {
+        return "1";
+    }
+    else
+    {
+        return subst;
+    }
 }

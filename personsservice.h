@@ -10,6 +10,8 @@ class PersonsService
 private:
     vector<Person*> person_vec;
     PersonRepository* person_repo;
+    string check_search_substring(string column, string substring);
+
 public:
     PersonsService();
     ~PersonsService();
@@ -30,8 +32,12 @@ public:
     void search_person(string column, string substr);
     // Handles the remove command
     void remove_person(int id);
-    // Returns the Person* that has the name 'name'
-    Person* find_chosen_person(string name);
+    // Handles the search command 
+    void search_person(string column, string substring);
+    // Handles the remove command 
+    void remove_person(int id);
+    Person* find_chosen_person(string chosen_name);
+
 };
 
 #endif // PERSONSSERVICE_H

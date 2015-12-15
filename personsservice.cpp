@@ -23,6 +23,33 @@ void PersonsService::free_vector_memory()
         delete person_vec[i];
     }
     person_vec.clear();
+
+string PersonsService::check_search_substring(string column, string substring)
+{
+    if (column == "Sex")
+    {
+        if (substring == "Male" || substring == "male" || substring == "M" || substring == "m")
+        {
+            return "m";
+        }
+        else if (substring == "Female" || substring == "female" || substring == "F" || substring == "f")
+        {
+            return "f";
+        }
+        else
+        {
+            return "o";
+        }
+    }
+    if (column == "deathyear")
+    {
+        if (substring == "-")
+        {
+            return "0";
+        }
+    }
+    return substring;
+
 }
 
 string PersonsService::parse_add_command(vector<string> vec)
@@ -107,7 +134,7 @@ void PersonsService::add_person(vector<string> v)
     person_repo->write(parse_add_command(v));
 }
 
-void PersonsService::search_person(string column, string substr)
+void PersonsService::search_person(string column, string substring)
 {
     // The columns in the database are named birthyear and deathyear
     if (column == "Birth Year")
@@ -118,8 +145,10 @@ void PersonsService::search_person(string column, string substr)
     {
         column = "deathyear";
     }
+
     // Sends search command to data layer
-    parse_query_vector(person_repo->query(column, substr));
+    substring = check_search_substring(column, substring);
+    parse_query_vector(person_repo->query(column, substring));
 }
 
 
@@ -133,18 +162,13 @@ void PersonsService::remove_person(int id)
     person_repo->remove("id", str_id);
 }
 
-Person* PersonsService::find_chosen_person(string name)
+Person* PersonsService::find_chosen_person(string chosen_name)
 {
-    // Make sure the vector is empty
-    free_vector_memory();
-    // Fill in all persons in the database
-    parse_query_vector(person_repo->read_entries()); // Nauðsynlegt??
-
-    for (unsigned int i = 0; i < get_person_vec().size(); i++)
+    for (unsigned int i = 0; i < person_vec.size(); i++)
     {
-        if (get_person_vec()[i]->get_name() == name)
+        if (person_vec[i]->get_name() == chosen_name)
         {
-            return get_person_vec()[i];
+            return person_vec[i];
         }
     }
     return NULL;

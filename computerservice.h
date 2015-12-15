@@ -13,6 +13,8 @@ private:
     vector<Computer*> computer_vec;
     ComputerRepository* computer_repo;
 
+    string check_search_substring(string subst);
+
 public:
     ComputerService();
     ~ComputerService();

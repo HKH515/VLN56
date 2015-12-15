@@ -59,10 +59,10 @@ void MainWindow::on_search_pushButton_clicked()
     }
     else
     {
-
         ui->search_view_connections->show();
         // Default list all Computer Scientist
         ui->dropdown_list_all_ids_computer->hide();
+        ui->dropdown_list_all_ids_person->show();
         insert_all_person_ids();
         display_computer_list(3);
     }
@@ -100,7 +100,10 @@ void MainWindow::display_person_list(int display_type)
     else
     {
         vector_size = connections_service->get_person_vec().size();
+        cout << "Name:" << connections_service->get_person_vec()[0]->get_name() << endl;
     }
+
+    cout << "vector_size: " << vector_size << endl;
 
     ui->table_view_person->setRowCount(vector_size);
 
@@ -129,7 +132,6 @@ void MainWindow::display_person_list(int display_type)
             deathyear = QString::number(current_person->get_deathyear());
         }
         QString sex = QString::fromStdString(current_person->get_sex());
-
         ui->table_view_person->setItem(row, 0, new QTableWidgetItem(id));
         ui->table_view_person->setItem(row, 1, new QTableWidgetItem(name));
         ui->table_view_person->setItem(row, 2, new QTableWidgetItem(birthyear));
@@ -143,7 +145,6 @@ void MainWindow::display_computer_list(int display_type)
     unsigned int vector_size;
     Computer *current_computer;
     ui->search_view_person->hide();
-    ui->search_substring_computer->hide();
     ui->table_view_person->hide();
     ui->table_view_connections->hide();
     ui->table_view_computers->show();
@@ -206,7 +207,6 @@ void MainWindow::display_computer_list(int display_type)
 void MainWindow::display_connections_list(int display_type)
 {
     ui->search_view_person->hide();
-    ui->search_substring_computer->hide();
     ui->table_view_person->hide();
     ui->table_view_computers->hide();
     ui->table_view_connections->show();
@@ -241,7 +241,6 @@ void MainWindow::display_connections_list(int display_type)
 void MainWindow::on_type_dropdown_currentIndexChanged(const QString &arg1)
 {
     ui->search_view_person->hide();
-    ui->search_substring_computer->hide();
 
     ui->see_more_view_computer->hide();
     ui->see_more_view_person->hide();
@@ -251,14 +250,12 @@ void MainWindow::on_type_dropdown_currentIndexChanged(const QString &arg1)
     {
         display_person_list(1);
         ui->search_dropdown_connections->hide();
-        ui->dropdown_list_all_ids_person->hide();
         ui->dropdown_list_all_ids_computer->hide();
     }
     else if (current_type == "Computers")
     {
         display_computer_list(1);
         ui->search_dropdown_connections->hide();
-        ui->dropdown_list_all_ids_person->hide();
         ui->dropdown_list_all_ids_computer->hide();
     }
     else
@@ -408,6 +405,7 @@ void MainWindow::insert_all_person_ids()
 {
     person_service->get_all_persons();
     vector<Person*> person_vec = person_service->get_person_vec();
+
     for (unsigned int i = 0; i < person_vec.size(); i++)
     {
         ui->dropdown_list_all_ids_person->addItem(QString::fromStdString(person_vec[i]->get_name()));

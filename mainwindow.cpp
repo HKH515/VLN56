@@ -279,13 +279,38 @@ void MainWindow::on_dropdown_list_all_ids_computer_currentIndexChanged(const QSt
     ui->search_dropdown_connections->show();
 }
 
+void MainWindow::on_substring_input_person_textEdited(const QString &arg1)
+{
+    string search_column = ui->search_dropdown_person->currentText().toStdString();
+    string search_substring = ui->substring_input_person->text().toStdString();
+    person_service->search_person(search_column, search_substring);
+    display_person_list(2);
+    if (ui->substring_input_person->text().isEmpty())
+    {
+        ui->search_view_person->hide();
+    }
+
+}
+
+void MainWindow::on_substring_input_computer_textEdited(const QString &arg1)
+{
+    string search_column = ui->search_dropdown_computer->currentText().toStdString();
+    string search_substring = ui->substring_input_computer->text().toStdString();
+    computer_service->search_computer(search_column, search_substring);
+    display_computer_list(2);
+    if (ui->substring_input_computer->text().isEmpty())
+    {
+        ui->search_view_computer->hide();
+    }
+
+}
+
 // Private functions
 
 void MainWindow::display_person_list(int display_type)
 {
     unsigned int vector_size;
     Person *current_person;
-    //ui->search_view_person->hide();
     ui->search_view_computer->hide();
     ui->table_view_person->show();
     ui->table_view_connections->hide();
@@ -494,66 +519,3 @@ void MainWindow::insert_all_computer_ids()
     }
 }
 
-void MainWindow::display_connections_search_list(int kind, string name)
-{
-    if (kind == 1)
-    {
-        connections_service->get_connected("Computer Scientist", name);
-        unsigned int vector_size = connections_service->get_computer_vec().size();
-
-        for (int row = 0; row < vector_size; row++)
-        {
-            Computer* current_computer;
-            QString id = QString::number(current_computer->get_id());
-            QString name = QString::fromStdString(current_computer->get_name());
-            QString construction_year = QString::number(current_computer->get_construction_year());
-            QString type = QString::fromStdString(current_computer->get_type());
-            int check_if_built = current_computer->get_built();
-            QString built;
-            if (check_if_built == 0)
-            {
-                built = QString::fromStdString("No");
-            }
-            else
-            {
-                built = QString::fromStdString("Yes");
-            }
-            ui->table_view_computers->setItem(row, 0, new QTableWidgetItem(id));
-            ui->table_view_computers->setItem(row, 1, new QTableWidgetItem(name));
-            ui->table_view_computers->setItem(row, 2, new QTableWidgetItem(construction_year));
-            ui->table_view_computers->setItem(row, 3, new QTableWidgetItem(type));
-            ui->table_view_computers->setItem(row, 4, new QTableWidgetItem(built));
-        }
-
-    }
-}
-
-
-void MainWindow::on_substring_input_person_textEdited(const QString &arg1)
-{
-    string search_column = ui->search_dropdown_person->currentText().toStdString();
-    string search_substring = ui->substring_input_person->text().toStdString();
-    cout << "return pressed, buin að na i colum: " << search_column << " substring " << search_substring << endl;
-    person_service->search_person(search_column, search_substring);
-    cout << "sendi search nidur i domain layer" << endl;
-    display_person_list(2);
-    cout << "gat ekkert displayað" << endl;
-    if (ui->substring_input_person->text().isEmpty())
-    {
-        ui->search_view_person->hide();
-    }
-
-}
-
-void MainWindow::on_substring_input_computer_textEdited(const QString &arg1)
-{
-    string search_column = ui->search_dropdown_computer->currentText().toStdString();
-    string search_substring = ui->substring_input_computer->text().toStdString();
-    computer_service->search_computer(search_column, search_substring);
-    display_computer_list(2);
-    if (ui->substring_input_computer->text().isEmpty())
-    {
-        ui->search_view_computer->hide();
-    }
-
-}

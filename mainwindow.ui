@@ -83,6 +83,11 @@
       </attribute>
       <column>
        <property name="text">
+        <string>Id</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
         <string>Name</string>
        </property>
       </column>
@@ -113,6 +118,11 @@
       </property>
       <column>
        <property name="text">
+        <string>Id</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
         <string>Name</string>
        </property>
       </column>
@@ -140,7 +150,17 @@
       </attribute>
       <column>
        <property name="text">
+        <string>Scientist id</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
         <string>Computer Scientists</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Computer id</string>
        </property>
       </column>
       <column>

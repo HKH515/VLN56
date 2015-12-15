@@ -34,6 +34,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->table_view_computers->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->table_view_connections->setSelectionBehavior(QAbstractItemView::SelectRows);
 
+    // User is not allowed to edit the tables
+    ui->table_view_person->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->table_view_person->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->table_view_person->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
     // only allowed to read
     ui->profession_output->setReadOnly(true);
     ui->description_output_person->setReadOnly(true);
@@ -392,7 +397,7 @@ void MainWindow::display_computer_list(int display_type)
 
     // Adjust column widths in table
     ui->table_view_computers->setColumnWidth(1, this->width()/3.5);
-    ui->table_view_computers->setColumnWidth(2, this->width()/4.5);
+    ui->table_view_computers->setColumnWidth(2, this->width()/5);
     ui->table_view_computers->setColumnWidth(3, this->width()/4);
     ui->table_view_computers->setColumnWidth(4, this->width()/7);
 
@@ -492,7 +497,7 @@ void MainWindow::display_connections_list(int display_type)
 void MainWindow::insert_all_person_ids()
 {
     // Clear the dropdown so each person only appears once
-    ui->dropdown_list_all_ids_person->clear();
+    //ui->dropdown_list_all_ids_person->clear();
     cout << "er að fara að cleara" << endl;
     person_service->free_vector_memory();
     person_service->get_all_persons();

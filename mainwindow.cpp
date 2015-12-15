@@ -302,7 +302,7 @@ void MainWindow::display_person_list(int display_type)
 {
     unsigned int vector_size;
     Person *current_person;
-    ui->search_view_person->hide();
+    //ui->search_view_person->hide();
     ui->search_view_computer->hide();
     ui->table_view_person->show();
     ui->table_view_connections->hide();
@@ -548,3 +548,16 @@ void MainWindow::display_connections_search_list(int kind, string name)
     }
 }
 
+
+void MainWindow::on_substring_input_person_textEdited(const QString &arg1)
+{
+    string search_column = ui->search_dropdown_person->currentText().toStdString();
+    string search_substring = ui->substring_input_person->text().toStdString();
+    cout << "return pressed, buin að na i colum: " << search_column << " substring " << search_substring << endl;
+    person_service->search_person(search_column, search_substring);
+    cout << "sendi search nidur i domain layer" << endl;
+    display_person_list(2);
+    cout << "gat ekkert displayað" << endl;
+    //ui->substring_input_person->clear();
+
+}

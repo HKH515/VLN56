@@ -46,6 +46,8 @@ private slots:
     void on_dropdown_list_all_ids_person_currentIndexChanged(const QString &arg1);
     void on_dropdown_list_all_ids_computer_currentIndexChanged(const QString &arg1);
 
+    void on_substring_input_person_textEdited(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     PersonsService* person_service;

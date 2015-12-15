@@ -171,6 +171,7 @@ void MainWindow::display_computer_list(int display_type)
     else
     {
         vector_size = connections_service->get_computer_vec().size();
+        cout << "vector size: " << vector_size << endl;
     }
     ui->table_view_computers->setRowCount(vector_size);
 
@@ -476,6 +477,7 @@ void MainWindow::on_dropdown_list_all_ids_person_currentIndexChanged(const QStri
 void MainWindow::on_dropdown_list_all_ids_computer_currentIndexChanged(const QString &arg1)
 {
     connections_service->get_connected("Computer", arg1.toStdString());
-    display_person_list(3);
+    cout << "Er að fara í display" << endl;
+    display_computer_list(3);
 
 }

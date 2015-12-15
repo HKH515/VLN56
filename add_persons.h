@@ -41,6 +41,7 @@ private:
     Verification *verify_input;
 
     void display_error_msg(string error_msg);
+    void enable_add_button();
 };
 
 #endif // ADD_PERSONS_H

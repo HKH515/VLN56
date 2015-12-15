@@ -11,7 +11,7 @@ This program, simply put, is a client for interacting with a database. The theme
 
 In this window the user is able to learn about the fascinating world of computer science by choosing Computer Scientists, Computers or Connections between the two, in the dropdown box located at the top left side.
 
-The sorting order can be changed from ascending to descending by clicking on the Name, Birth Year, Death Year or Sex tab, located under the dropdown box. Note that only one sorting option is available at a time. 
+The sorting order can be changed from Ascending to Descending by clicking on the Name, Birth Year, Death Year or Sex tab, located under the dropdown box. Note that only one sorting option is available at a time. 
 
 In this example the list is sorted by Name and in ascending order, where (A) Ada Lovelace is first. To display more information on each computer scientist, the user can simply highlight the row of interest by clicking on it and then clicking on show more tab, located at the mid bottom of the program. This displays profession and a short description of the person chosen.
 
@@ -25,7 +25,7 @@ To add a computer scientist simply choose Computer Scientist in the dropdown box
 
 ![SearchScientist](https://github.com/HKH515/VLN56/blob/qt/Images/Search_ComputerScientist.jpg?raw=true)
 
-To search for a computer scientist simply choose Computer Scientist in the dropdown box and click on the search button and a search field will appear at the bottom of the program window. The search is sorted by Name, Birth Year, Death Year, Sex, Profession and Description and once one has been chosen, the user can search by a certain substring. In the example below, the user chooses to search by Name and puts the name Ada in the substring. 
+To search for a computer scientist the user can choose Computer Scientist in the dropdown box and then clicks on the search button. A search field will appear at the bottom of the program window. The search is sorted by Name, Birth Year, Death Year, Sex, Profession and Description and once one has been chosen, the user can search by a certain substring. In the example below, the user chooses to search by Name and puts the name Ada in the substring. 
 
 ![SearchAda](https://github.com/HKH515/VLN56/blob/qt/Images/Search_Ada.jpg?raw=true)
 

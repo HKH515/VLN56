@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>800</height>
+    <height>1083</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -33,7 +33,7 @@
     <normaloff>:/icons/images/Alan-Turing.png</normaloff>:/icons/images/Alan-Turing.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #FCE3FE;
+   <string notr="true">background-color: #90F2E4;
 color: #272728;</string>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -72,16 +72,8 @@ color: #272728;</string>
       <item alignment="Qt::AlignLeft">
        <widget class="QComboBox" name="type_dropdown">
         <property name="styleSheet">
-         <string notr="true">
-QComboBox{ 
-color:#000000;
-background-color:#ffffff;
-    selection-background-color:#D562FB;
-    border-color: rgba(255,255,255,200);
-    border-width: 1px;
-    border-style: solid;
-    padding: 1px 0px 1px 3px;
-}
+         <string notr="true">background-color:#ffffff;
+selection-background-color:#D562FB;
 </string>
         </property>
         <item>
@@ -513,7 +505,7 @@ selection-background-color:#D562FB;</string>
      <x>0</x>
      <y>0</y>
      <width>500</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

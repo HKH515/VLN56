@@ -18,7 +18,7 @@
     <normaloff>:/icons/images/Link_Building.png</normaloff>:/icons/images/Link_Building.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #FCE3FE;
+   <string notr="true">background-color: #90F2E4;
 color: #272728;
 </string>
   </property>

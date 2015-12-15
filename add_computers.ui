@@ -18,7 +18,7 @@
     <normaloff>:/icons/images/computer-add.png</normaloff>:/icons/images/computer-add.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #FCE3FE;
+   <string notr="true">background-color: #90F2E4;
 color: #272728;</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -92,6 +92,11 @@ color: #272728;</string>
      </item>
      <item>
       <widget class="QRadioButton" name="radioButton_yes">
+       <property name="styleSheet">
+        <string notr="true">QRadioButton::indicator::checked{ border: 2px solid darkgray; border-radius: 6px; background-color:#D562FB ; width: 10px; height: 10px; margin-left:10px;}
+
+</string>
+       </property>
        <property name="text">
         <string>Yes</string>
        </property>
@@ -99,6 +104,10 @@ color: #272728;</string>
      </item>
      <item>
       <widget class="QRadioButton" name="radioButton_no">
+       <property name="styleSheet">
+        <string notr="true">QRadioButton::indicator::checked{ border: 2px solid darkgray; border-radius: 6px; background-color:#D562FB ; width: 10px; height: 10px; margin-left:10px;}
+</string>
+       </property>
        <property name="text">
         <string>No</string>
        </property>
@@ -113,6 +122,10 @@ color: #272728;</string>
      </item>
      <item>
       <widget class="QComboBox" name="type_dropdown">
+       <property name="styleSheet">
+        <string notr="true">background-color:#ffffff;
+selection-background-color:#D562FB;</string>
+       </property>
        <item>
         <property name="text">
          <string>Electrical</string>

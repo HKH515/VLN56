@@ -29,11 +29,15 @@ The sorting order can be changed from Ascending to Descending by clicking on the
 
 In this example the list is sorted by Name and in ascending order, where (A) Ada Lovelace is first. To display more information on each computer scientist, the user can simply highlight the row of interest by clicking on it and then clicking on show more button, located at the mid bottom of the program. This displays profession and a short description of the person chosen.
 
+**[Back to top](#table-of-contents)**
+
 ##Add a Computer Scientist:
 
 ![AddComputerScientist](https://github.com/HKH515/VLN56/blob/qt/Images/Add_Computer_Scientist.jpg?raw=true)
 
 To add a computer scientist simply choose Computer Scientist in the dropdown box and click on the add button at the bottom of the program window. A new window will appear where the user can input Name, Birth Year, Death Year, Sex, Profession and a short Description, although Description is optional. Once completed all the user needs to do is press Add and the computer scientist has been added to the database. Note that symbols and numbers will not work in the name, sex and profession fields and symbols or letters will not work in the Birth Year and Death Year fields.
+
+**[Back to top](#table-of-contents)**
 
 ##Search for a Computer Scientist:
 
@@ -45,17 +49,22 @@ To search for a computer scientist the user can choose Computer Scientist in the
 
 Note that symbols and numbers will not work in the name, sex and profession feilds and symbols or letters will not work in the Birth Year and Death Year fields.
 
+**[Back to top](#table-of-contents)**
 
 ##Computers:
 ![Computers](https://github.com/HKH515/VLN56/blob/qt/Images/Computers.jpg?raw=true)
 
 Here is an example of the options available for Computers. The same as above applies for Ascending or Descending sorted order. The information available is Name, Construction Year, Type and whether it was built or not. Show more, displays a short description of the computer.
 
+**[Back to top](#table-of-contents)**
+
 ##Add a Computer:
 
 ![AddComputer](https://github.com/HKH515/VLN56/blob/qt/Images/Add_Computer.jpg?raw=true)
 
 To add a computer the user can choose Computer in the dropdown box and then clicks on the Add button at the bottom of the program. A new window will appear where the user can input Name, Construction Year, whether is was Built or not, Type, and a short Description, although Description is optional. Once completed all the user needs to do is press Add and the computer has been added to the database. Note that symbols and numbers will not work in the name field and symbols or letters will not work in the Construction Year field.
+
+**[Back to top](#table-of-contents)**
 
 ##Search for Computer:
 
@@ -67,11 +76,15 @@ To search for a computer the user can choose Computer in the dropdown box and th
 
 Note that symbols and numbers will not work in the name feild and symbols or letters will not work in the Construction Year field.
 
+**[Back to top](#table-of-contents)**
+
 ##Connections:
 
 ![ViewConnections](https://github.com/HKH515/VLN56/blob/qt/Images/View_Connections.jpg?raw=true)
 
 To view the connections that are already in the database the user can choose Connections in the dropdown box. 
+
+**[Back to top](#table-of-contents)**
 
 ##Add a Connection:
 
@@ -79,17 +92,22 @@ To view the connections that are already in the database the user can choose Con
 
 To add a connection the user can choose Connection in the dropdown box and then clicks on the Add button at the bottom of the program. A new window will appear where the user can choose a computer scientist that is already in the database and link him or her to a computer that is also already in the database. If the user wants to connect a computer scientist that is already available to a computer that is not, the user must first add the computer into the database and vice versa. (See "Add Computer" above)
 
+**[Back to top](#table-of-contents)**
+
 ##Search Connections:
 
 ![SearchConnections](https://github.com/HKH515/VLN56/blob/qt/Images/SearchConnections.jpg?raw=true)
 
 To search for a connection between a computer scientist and a computer or vice versa, the user can choose Connections in the dropdown box and then clicks on the search button located at the bottom of the program window. A new dropbox with the option to choose Computer Scientist or Computers will appear on the left and a dropbox with the names of either computer scientists or computers appears on the right. In this example the user chooses Computer Scientists and Ada Lovelace. The computer that Ada Lovelace is connected to, along with Construction Year, Type and whether it was built or not appears in the main window. 
+**[Back to top](#table-of-contents)**
 
 ##Remove:
 
 ![Remove](https://github.com/HKH515/VLN56/blob/qt/Images/Remove.jpg?raw=true)
 
 To remove any information that has been saved to the database the user needs to choose either Computer Scientists, Computers or Connections from the dropdown box, highlight the information that is to be removed and click on the Remove button located at the bottom of the program.
+
+**[Back to top](#table-of-contents)**
 
 ##Extras:
 
@@ -106,4 +124,8 @@ To remove any information that has been saved to the database the user needs to 
 - Changed fonts
 
 There is a zip file including the pictures of rough drafts for how the program should turn out.
+
+##Takk fyrir okkur :computer:
+
+**[Back to top](#table-of-contents)**
 

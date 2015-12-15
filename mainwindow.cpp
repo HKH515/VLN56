@@ -70,8 +70,6 @@ void MainWindow::on_type_dropdown_currentIndexChanged(const QString &arg1)
     else if (current_type == "Computers")
     {
         display_computer_list(1);
-        //ui->search_dropdown_connections->hide();
-        //ui->dropdown_list_all_ids_computer->hide();
     }
     else
     {
@@ -233,10 +231,13 @@ void MainWindow::on_search_pushButton_clicked()
     else
     {
         ui->search_view_connections->show();
-        // Default list all Computer Scientist
         ui->search_dropdown_connections->show();
+        // Default list all Computer Scientist
+        ui->search_dropdown_connections->setCurrentIndex(ui->search_dropdown_connections->findText("Computer Scientist"));
         ui->dropdown_list_all_ids_computer->hide();
         ui->dropdown_list_all_ids_person->show();
+        // Clear the dropdown so each person only appears once
+        ui->dropdown_list_all_ids_person->clear();
         // Fill in the dropdown
         insert_all_person_ids();
         display_computer_list(3);
@@ -271,12 +272,16 @@ void MainWindow::on_search_dropdown_connections_currentIndexChanged(const QStrin
     {
         ui->dropdown_list_all_ids_computer->hide();
         ui->dropdown_list_all_ids_person->show();
+        // Clear the dropdown so each person only appears once
+        ui->dropdown_list_all_ids_person->clear();
         insert_all_person_ids();
     }
     else
     {
         ui->dropdown_list_all_ids_computer->show();
         ui->dropdown_list_all_ids_person->hide();
+        // Clear the dropdown so each computer only appears once
+        ui->dropdown_list_all_ids_computer->clear();
         insert_all_computer_ids();
     }
 }
@@ -488,8 +493,6 @@ void MainWindow::display_connections_list(int display_type)
 
 void MainWindow::insert_all_person_ids()
 {
-    // Clear the dropdown so each person only appears once
-    //ui->dropdown_list_all_ids_person->clear();
     person_service->free_vector_memory();
     person_service->get_all_persons();
     vector<Person*> person_vec = person_service->get_person_vec();
@@ -503,7 +506,6 @@ void MainWindow::insert_all_person_ids()
 void MainWindow::insert_all_computer_ids()
 {
     // Clear the dropdown so each computer only appears once
-    //ui->dropdown_list_all_ids_computer->clear();
     computer_service->free_vector_memory();
     computer_service->get_all_computers();
     vector<Computer*> computer_vec = computer_service->get_computer_vec();

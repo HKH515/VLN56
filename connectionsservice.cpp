@@ -193,7 +193,6 @@ Computer *ConnectionsService::find_chosen_computer(string name)
     {
         if (computer_vec[i]->get_name() == name)
         {
-            cout << "Fann í alvörunni tölvu!!" << endl;
             return computer_vec[i];
         }
     }

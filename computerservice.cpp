@@ -25,6 +25,7 @@ void ComputerService::free_vector_memory()
     computer_vec.clear();
 }
 
+// Construct the string to be sent to the data-layer
 string ComputerService::parse_add_command(vector<string> v)
 {
     string st = " "; // add space in front of the string
@@ -36,6 +37,7 @@ string ComputerService::parse_add_command(vector<string> v)
     return st;
 }
 
+// Construct a vector that contains all computers sent from the data-layer
 void ComputerService::parse_query_vector(vector<string> v)
 {
     free_vector_memory();
@@ -79,17 +81,20 @@ void ComputerService::parse_query_vector(vector<string> v)
     }
 }
 
+// Gets all computers from the data-layer
 void ComputerService::get_all_computers()
 {
     // Send list command to the data layer
     parse_query_vector(computer_repo->read_entries());
 }
 
+
 void ComputerService::add_computer(vector<string> v)
 {
     // Send add command to the data layer
     computer_repo->write(parse_add_command(v));
 }
+
 
 void ComputerService::search_computer(string column, string substring)
 {
@@ -129,6 +134,7 @@ Computer* ComputerService::find_chosen_computer(int chosen_id)
     return NULL;
 }
 
+// finds all information about a computer with certain name
 Computer *ComputerService::find_chosen_computer_by_name(string chosen_name)
 {
     for (unsigned int i = 0; i < computer_vec.size(); i++)
@@ -142,7 +148,7 @@ Computer *ComputerService::find_chosen_computer_by_name(string chosen_name)
 
 }
 
-
+// lets the user search built with certain keywords
 string ComputerService::check_search_substring(string subst)
 {
     if (subst == "No" || subst == "no" || subst == "n" || subst == "N")

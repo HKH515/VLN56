@@ -29,6 +29,8 @@ private:
     ConnectionsService* connections_service;
     PersonsService* person_service;
     ComputerService* computer_service;
+
+    // Private helper functions:
     void get_all_persons_ids();
     void get_all_computer_ids();
 };

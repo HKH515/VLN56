@@ -165,6 +165,7 @@ void PersonsService::remove_person(int id)
     person_repo->remove("id", str_id);
 }
 
+// Finds all information about a person with certain id
 Person* PersonsService::find_chosen_person(int chosen_id)
 {
     for (unsigned int i = 0; i < person_vec.size(); i++)
@@ -177,6 +178,7 @@ Person* PersonsService::find_chosen_person(int chosen_id)
     return NULL;
 }
 
+// Finds all information about a person with certain name
 Person *PersonsService::find_chosen_person_by_name(string chosen_name)
 {
     for (unsigned int i = 0; i < person_vec.size(); i++)

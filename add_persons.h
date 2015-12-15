@@ -39,6 +39,8 @@ private:
     Ui::add_persons *ui;
     PersonsService *person_service;
     Verification *verify_input;
+
+    void display_error_msg(string error_msg);
 };
 
 #endif // ADD_PERSONS_H

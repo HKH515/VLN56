@@ -17,8 +17,8 @@
    <string>The archive of computer scientists</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>images/computer.ico</normaloff>images/computer.ico</iconset>
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/images/Alan-Turing.png</normaloff>:/icons/images/Alan-Turing.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -446,6 +446,8 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

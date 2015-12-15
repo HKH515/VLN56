@@ -87,45 +87,33 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Type:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="type_dropdown">
+       <item>
+        <property name="text">
+         <string>Electrical</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Mechanical</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Transistor</string>
+        </property>
+       </item>
+      </widget>
+     </item>
     </layout>
-   </item>
-   <item>
-    <widget class="QWidget" name="widget" native="true">
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <widget class="QLabel" name="type">
-          <property name="text">
-           <string>Type:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="radiobutton_electrical">
-          <property name="text">
-           <string>Electrical</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="radiobutton_mechanical">
-          <property name="text">
-           <string>Mechanical</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QRadioButton" name="radiobutton_transistor">
-          <property name="text">
-           <string>Transistor</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </widget>
    </item>
    <item>
     <widget class="QLabel" name="description">

@@ -45,19 +45,27 @@ To add a computer the user can choose Computer in the dropdown box and then clic
 
 ![SearchComputer](https://github.com/HKH515/VLN56/blob/qt/Images/Search_Computers.jpg?raw=true)
 
-
+To search for a computer the user can choose Computer in the dropdown box and then clicks on the search button. A search field will appear at the bottom of the program window. The search is sorted by Name, Construction Year, Built, Type, and Description and once one has been chosen, the user can search by a certain substring. In the example below, the user chooses to search by Type and inputs Abstract in the substring.
 
 ![SearchAbstract](https://github.com/HKH515/VLN56/blob/qt/Images/Search_Abstract.jpg?raw=true)
+
 
 ##Connections:
 
 ![ViewConnections](https://github.com/HKH515/VLN56/blob/qt/Images/View_Connections.jpg?raw=true)
 
+To view the connections that are already in the database the user can choose Connections in the dropdown box. 
+
 ##Add a Connection:
 
 ![AddConnection](https://github.com/HKH515/VLN56/blob/qt/Images/Add_Connection.jpg?raw=true)
 
+To add a connection the user can choose Connection in the dropdown box and then clicks on the Add button at the bottom of the program. A new window will appear where the user can choose a computer scientist that is already in the database and link him or her to a computer that is also already in the database. If the user wants to connect a computer scientist that is already available to a computer that is not, the user must first add the computer into the database. (See Add Computer above)
 
 ##Remove:
 
 ![Remove](https://github.com/HKH515/VLN56/blob/qt/Images/Remove.jpg?raw=true)
+
+To remove any information that has been saved to the database the user needs to choose either Computer Scientists, Computers or Connections from the dropdown box and highlight the information that is to be removed and click on the Remove button located at the bottom of the program.
+
+

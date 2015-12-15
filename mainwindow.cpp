@@ -38,6 +38,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->profession_output->setReadOnly(true);
     ui->description_output_person->setReadOnly(true);
     ui->description_output_computer->setReadOnly(true);
+
+    ui->table_view_person->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
 MainWindow::~MainWindow()
@@ -51,9 +53,10 @@ MainWindow::~MainWindow()
 // When the 'big' Combobox at the top changes (Computer Scientist - Computer - Connections)
 void MainWindow::on_type_dropdown_currentIndexChanged(const QString &arg1)
 {
-    ui->search_view_person->hide();
     ui->search_dropdown_connections->hide();
+    ui->search_view_person->hide();
     ui->search_view_connections->hide();
+    ui->search_view_computer->hide();
     ui->see_more_view_computer->hide();
     ui->see_more_view_person->hide();
 

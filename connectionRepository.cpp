@@ -156,7 +156,7 @@ vector<string> ConnectionRepository::query_exact(string column, string data_quer
     vector<string> result_vect;
     db.open();
     QSqlQuery query_obj(db);
-    string query_string = "SELECT * FROM connections WHERE " + column + " ='" + data_query;
+    string query_string = "SELECT * FROM connections WHERE " + column + " ='" + data_query + "'";
     QString q_query_string(query_string.c_str());
     query_obj.exec(q_query_string);
     query_vect = from_db_to_vector("connections", query_obj);

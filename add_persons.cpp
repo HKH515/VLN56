@@ -10,6 +10,7 @@ add_persons::add_persons(QWidget *parent) :
     verify_input = new Verification;
 
     ui->error_label->hide();
+    ui->radiobutton_other->setChecked(true);
 }
 
 add_persons::~add_persons()
@@ -61,52 +62,43 @@ void add_persons::on_pushbutton_cancel_clicked()
 
 void add_persons::on_name_input_editingFinished()
 {
-    cout << "name " << endl;
     string name = ui->name_input->text().toStdString();
-    if (!verify_input->verify_name(name))
+    if ((name != "") && (!verify_input->verify_name(name)))
     {
         ui->name_input->clear();
         display_error_msg("Invalid Name");
-
     }
-    cout << "út ur name" << endl;
 }
 
 void add_persons::on_birth_year_input_editingFinished()
 {
-    cout << "birthyear " << endl;
     string birth_year = ui->birth_year_input->text().toStdString();
-    if (!verify_input->verify_year(birth_year))
+    if ((birth_year != "") && (!verify_input->verify_year(birth_year)))
     {
         ui->birth_year_input->clear();
         display_error_msg("Invalid Birth Year");
     }
-    cout << "út ur birthyear" << endl;
 }
 
 void add_persons::on_death_year_input_editingFinished()
 {
-    cout << "deathyear " << endl;
     string birth_year = ui->birth_year_input->text().toStdString();
     string death_year = ui->death_year_input->text().toStdString();
-    while (!verify_input->verify_deathyear(birth_year, death_year))
+    if ((death_year != "") && (!verify_input->verify_deathyear(birth_year, death_year)))
     {
         ui->death_year_input->clear();
         display_error_msg("Invalid Death Year");
     }
-    cout << "út ur deathyear" << endl;
 }
 
 void add_persons::on_profession_input_editingFinished()
 {
-    cout << "profession " << endl;
     string profession = ui->profession_input->text().toStdString();
-    while (!verify_input->verify_profession(profession))
+    if ((profession != "") && (!verify_input->verify_profession(profession)))
     {
         ui->profession_input->clear();
         display_error_msg("Invalid Profession");
     }
-    cout << "út ur profession" << endl;
 }
 
 void add_persons::display_error_msg(string error_msg)

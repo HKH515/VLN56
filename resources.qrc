@@ -2,5 +2,8 @@
     <qresource prefix="/icons">
         <file>images/computer.ico</file>
         <file>images/Alan-Turing.png</file>
+        <file>images/add_user.png</file>
+        <file>images/computer-add.png</file>
+        <file>images/Link_Building.png</file>
     </qresource>
 </RCC>

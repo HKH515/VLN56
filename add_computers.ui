@@ -6,12 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>518</width>
+    <width>526</width>
     <height>443</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Add computer</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/icons/images/computer-add.png</normaloff>:/icons/images/computer-add.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -83,19 +87,31 @@
        </property>
       </widget>
      </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QLabel" name="type">
+      <widget class="QLabel" name="label">
        <property name="text">
         <string>Type:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="type_input"/>
+      <widget class="QComboBox" name="type_dropdown">
+       <item>
+        <property name="text">
+         <string>Electrical</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Mechanical</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Transistor</string>
+        </property>
+       </item>
+      </widget>
      </item>
     </layout>
    </item>
@@ -130,8 +146,17 @@
      </item>
     </layout>
    </item>
+   <item>
+    <widget class="QLabel" name="error_label">
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

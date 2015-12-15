@@ -37,7 +37,7 @@ vector<string> ComputerRepository::read_entries()
     {
         QSqlQuery query_obj(db);
 
-        query_string = "SELECT * from computers";
+        query_string = "SELECT * from computers ORDER BY name";
         QString q_query_string(query_string.c_str());
         query_obj.exec(q_query_string);
         query_vect = from_db_to_vector("computers", query_obj);
@@ -68,7 +68,7 @@ vector<string> ComputerRepository::query_exact(string column, string data_query)
     vector<string> result_vect;
     db.open();
     QSqlQuery query_obj(db);
-    string query_string = "SELECT * FROM computers WHERE " + column + " ='" + data_query;;
+    string query_string = "SELECT * FROM computers WHERE " + column + " ='" + data_query + "'";;
     QString q_query_string(query_string.c_str());
     query_obj.exec(q_query_string);
     query_vect = from_db_to_vector("computers", query_obj);

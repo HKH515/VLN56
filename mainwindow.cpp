@@ -56,8 +56,6 @@ void MainWindow::on_type_dropdown_currentIndexChanged(const QString &arg1)
     ui->search_view_connections->hide();
     ui->see_more_view_computer->hide();
     ui->see_more_view_person->hide();
-    //ui->dropdown_list_all_ids_computer->hide();
-    //ui->dropdown_list_all_ids_person->hide();
 
     // Get the chosen value from the dropdown
     string current_type = ui->type_dropdown->currentText().toStdString();
@@ -273,8 +271,8 @@ void MainWindow::on_search_dropdown_connections_currentIndexChanged(const QStrin
     }
     else
     {
-        ui->dropdown_list_all_ids_person->hide();
         ui->dropdown_list_all_ids_computer->show();
+        ui->dropdown_list_all_ids_person->hide();
         insert_all_computer_ids();
     }
 }
@@ -282,10 +280,6 @@ void MainWindow::on_search_dropdown_connections_currentIndexChanged(const QStrin
 void MainWindow::on_dropdown_list_all_ids_person_currentIndexChanged(const QString &arg1)
 {
     connections_service->get_connected("Computer Scientist", arg1.toStdString());
-    //display_connections_search_list(1, arg1.toStdString());
-    cout << connections_service->get_computer_vec().size() << endl;
-    cout << connections_service->get_computer_vec()[0]->get_name() << endl;
-    cout << connections_service->get_computer_vec()[1]->get_name() << endl;
     display_computer_list(3);
     ui->search_dropdown_connections->show();
 }
@@ -294,10 +288,8 @@ void MainWindow::on_dropdown_list_all_ids_person_currentIndexChanged(const QStri
 void MainWindow::on_dropdown_list_all_ids_computer_currentIndexChanged(const QString &arg1)
 {
     connections_service->get_connected("Computer", arg1.toStdString());
-    cout << "Er að fara í display" << endl;
     display_person_list(3);
     ui->search_dropdown_connections->show();
-
 }
 
 // Private functions
@@ -337,9 +329,9 @@ void MainWindow::display_person_list(int display_type)
     // Displaying search for connections
     else
     {
-        cout << "fór inní else" << endl;
+        cout << "fór inní else í display_person" << endl;
         vector_size = connections_service->get_person_vec().size();
-        cout << "Name:" << connections_service->get_person_vec()[0]->get_name() << endl;
+        //cout << "Name:" << connections_service->get_person_vec()[0]->get_name() << endl;
         cout << "vector_size: " << vector_size << endl;
     }
 
@@ -354,6 +346,7 @@ void MainWindow::display_person_list(int display_type)
         else
         {
             current_person = connections_service->get_person_vec()[row];
+            cout << connections_service->get_person_vec()[row]->get_name() << endl;
         }
 
         // Get all information from the Person object and change to QStrings
@@ -381,6 +374,8 @@ void MainWindow::display_person_list(int display_type)
         ui->table_view_person->setItem(row, 3, new QTableWidgetItem(deathyear));
         ui->table_view_person->setItem(row, 4, new QTableWidgetItem(sex));
     }
+
+    cout << "----------------------Búin í display list ------------------------" << endl;
 }
 
 void MainWindow::display_computer_list(int display_type)
@@ -497,7 +492,7 @@ void MainWindow::display_connections_list(int display_type)
 void MainWindow::insert_all_person_ids()
 {
     // Clear the dropdown so each person only appears once
-     //ui->dropdown_list_all_ids_person->clear();
+    ui->dropdown_list_all_ids_person->clear();
     cout << "er að fara að cleara" << endl;
     person_service->free_vector_memory();
     person_service->get_all_persons();
@@ -512,7 +507,7 @@ void MainWindow::insert_all_person_ids()
 void MainWindow::insert_all_computer_ids()
 {
     // Clear the dropdown so each computer only appears once
-    ui->dropdown_list_all_ids_computer->clear();
+    //ui->dropdown_list_all_ids_computer->clear();
     computer_service->free_vector_memory();
     computer_service->get_all_computers();
     vector<Computer*> computer_vec = computer_service->get_computer_vec();

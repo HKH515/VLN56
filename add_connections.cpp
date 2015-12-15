@@ -25,10 +25,10 @@ add_connections::~add_connections()
 void add_connections::on_pushbutton_add_clicked()
 {
     string name_person = ui->person_dropdown->currentText().toStdString();
-    Person *current_person = person_service->find_chosen_person(name_person);
+    Person *current_person = person_service->find_chosen_person_by_name(name_person);
     string name_computer = ui->computer_dropdown->currentText().toStdString();
     string person_id = connections_service->int_to_string(current_person->get_id());
-    Computer *current_computer = computer_service->find_chosen_computer(name_computer);
+    Computer *current_computer = computer_service->find_chosen_computer_by_name(name_computer);
     string computer_id = connections_service->int_to_string(current_computer->get_id());
     connections_service->add_connection(person_id, computer_id);
     this->close();

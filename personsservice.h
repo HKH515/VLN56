@@ -32,7 +32,9 @@ public:
     void remove_person(int id);
     // Handles the search command 
     void search_person(string column, string substring);
-    Person* find_chosen_person(string chosen_name);
+    Person* find_chosen_person(int chosen_id);
+
+    Person* find_chosen_person_by_name(string chosen_name);
 
 };
 

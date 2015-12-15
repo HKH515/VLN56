@@ -35,8 +35,10 @@ public:
     void search_computer(string column, string substring);
     // Handles the remove command
     void remove_computer(int id);
-    // Returns the computer with the name 'name'
-    Computer* find_chosen_computer(string chosen_name);
+    // Returns the computer with the id 'chosen_id'
+    Computer* find_chosen_computer(int chosen_id);
+
+    Computer* find_chosen_computer_by_name(string chosen_name);
 };
 
 #endif // COMPUTERSERVICE_H

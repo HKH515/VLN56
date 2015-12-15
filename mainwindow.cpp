@@ -3,6 +3,7 @@
 #include "add_computers.h"
 #include "add_persons.h"
 #include "add_connections.h"
+#include <QTableView>
 #include <QMessageBox>
 #include <QString>
 #include <QDebug>
@@ -78,11 +79,14 @@ void MainWindow::display_person_list(int display_type)
     ui->table_view_connections->hide();
     ui->table_view_computers->hide();
 
+    // Don't display the id column - only used to find the right person
+    ui->table_view_person->setColumnHidden(0, true);
+
     // Adjust column widths in table
-    ui->table_view_person->setColumnWidth(0, this->width()/3);
-    ui->table_view_person->setColumnWidth(1, this->width()/5);
+    ui->table_view_person->setColumnWidth(1, this->width()/3);
     ui->table_view_person->setColumnWidth(2, this->width()/5);
-    ui->table_view_person->setColumnWidth(3, this->width()/6);
+    ui->table_view_person->setColumnWidth(3, this->width()/5);
+    ui->table_view_person->setColumnWidth(4, this->width()/6);
 
     if (display_type == 1)
     {
@@ -110,6 +114,8 @@ void MainWindow::display_person_list(int display_type)
         {
             current_person = connections_service->get_person_vec()[row];
         }
+
+        QString id = QString::number(current_person->get_id());
         QString name = QString::fromStdString(current_person->get_name());
         QString birthyear = QString::number(current_person->get_birthyear());
         int death_year = current_person->get_deathyear();
@@ -124,10 +130,11 @@ void MainWindow::display_person_list(int display_type)
         }
         QString sex = QString::fromStdString(current_person->get_sex());
 
-        ui->table_view_person->setItem(row, 0, new QTableWidgetItem(name));
-        ui->table_view_person->setItem(row, 1, new QTableWidgetItem(birthyear));
-        ui->table_view_person->setItem(row, 2, new QTableWidgetItem(deathyear));
-        ui->table_view_person->setItem(row, 3, new QTableWidgetItem(sex));
+        ui->table_view_person->setItem(row, 0, new QTableWidgetItem(id));
+        ui->table_view_person->setItem(row, 1, new QTableWidgetItem(name));
+        ui->table_view_person->setItem(row, 2, new QTableWidgetItem(birthyear));
+        ui->table_view_person->setItem(row, 3, new QTableWidgetItem(deathyear));
+        ui->table_view_person->setItem(row, 4, new QTableWidgetItem(sex));
     }
 }
 
@@ -141,11 +148,13 @@ void MainWindow::display_computer_list(int display_type)
     ui->table_view_connections->hide();
     ui->table_view_computers->show();
 
+    ui->table_view_computers->setColumnHidden(0, true);
+
     // Adjust column widths in table
-    ui->table_view_person->setColumnWidth(0, this->width()/2);
-    ui->table_view_person->setColumnWidth(1, this->width()/4);
-    ui->table_view_person->setColumnWidth(2, this->width()/5);
-    ui->table_view_person->setColumnWidth(3, this->width()/6);
+    ui->table_view_computers->setColumnWidth(1, this->width()/3.5);
+    ui->table_view_computers->setColumnWidth(2, this->width()/4.5);
+    ui->table_view_computers->setColumnWidth(3, this->width()/4);
+    ui->table_view_computers->setColumnWidth(4, this->width()/7);
 
     if (display_type == 1)
     {
@@ -172,6 +181,7 @@ void MainWindow::display_computer_list(int display_type)
         {
             current_computer = connections_service->get_computer_vec()[row];
         }
+        QString id = QString::number(current_computer->get_id());
         QString name = QString::fromStdString(current_computer->get_name());
         QString construction_year = QString::number(current_computer->get_construction_year());
         QString type = QString::fromStdString(current_computer->get_type());
@@ -185,10 +195,11 @@ void MainWindow::display_computer_list(int display_type)
         {
             built = QString::fromStdString("Yes");
         }
-        ui->table_view_computers->setItem(row, 0, new QTableWidgetItem(name));
-        ui->table_view_computers->setItem(row, 1, new QTableWidgetItem(construction_year));
-        ui->table_view_computers->setItem(row, 2, new QTableWidgetItem(type));
-        ui->table_view_computers->setItem(row, 3, new QTableWidgetItem(built));
+        ui->table_view_computers->setItem(row, 0, new QTableWidgetItem(id));
+        ui->table_view_computers->setItem(row, 1, new QTableWidgetItem(name));
+        ui->table_view_computers->setItem(row, 2, new QTableWidgetItem(construction_year));
+        ui->table_view_computers->setItem(row, 3, new QTableWidgetItem(type));
+        ui->table_view_computers->setItem(row, 4, new QTableWidgetItem(built));
     }
 }
 
@@ -199,8 +210,14 @@ void MainWindow::display_connections_list(int display_type)
     ui->table_view_person->hide();
     ui->table_view_computers->hide();
     ui->table_view_connections->show();
-    ui->table_view_connections->setColumnWidth(0, this->width()/2);
+
+    // Do not display the ids of the scientists/computers - only used to find the right one
+    ui->table_view_connections->setColumnHidden(0, true);
+    ui->table_view_connections->setColumnHidden(2, true);
+
+    // Adjust column sizes
     ui->table_view_connections->setColumnWidth(1, this->width()/2);
+    ui->table_view_connections->setColumnWidth(3, this->width()/2);
 
     connections_service->get_all_connections();
     unsigned int vector_size = connections_service->get_person_vec().size();
@@ -208,12 +225,16 @@ void MainWindow::display_connections_list(int display_type)
     for (unsigned int row = 0; row < vector_size; row++)
     {
         Person* current_person = connections_service->get_person_vec()[row];
+        QString person_id = QString::number(current_person->get_id());
         QString name_person = QString::fromStdString(current_person->get_name());
         Computer* current_computer = connections_service->get_computer_vec()[row];
+        QString computer_id = QString::number(current_computer->get_id());
         QString name_computer = QString::fromStdString(current_computer->get_name());
 
-        ui->table_view_connections->setItem(row, 0, new QTableWidgetItem(name_person));
-        ui->table_view_connections->setItem(row, 1, new QTableWidgetItem(name_computer));
+        ui->table_view_connections->setItem(row, 0, new QTableWidgetItem(person_id));
+        ui->table_view_connections->setItem(row, 1, new QTableWidgetItem(name_person));
+        ui->table_view_connections->setItem(row, 2, new QTableWidgetItem(computer_id));
+        ui->table_view_connections->setItem(row, 3, new QTableWidgetItem(name_computer));
     }
 }
 
@@ -259,14 +280,14 @@ void MainWindow::on_show_more_pushButton_clicked()
     ui->search_view_person->hide();
     ui->search_view_computer->hide();
     string current_type = ui->type_dropdown->currentText().toStdString();
-    string currently_chosen_entry;
+    int currently_chosen_entry;
     if (current_type == "Computer Scientists")
     {
         ui->see_more_view_computer->hide();
         ui->description_output_person->clear();
         int row = ui->table_view_person->currentIndex().row();
         // Get the name of the person in the connection
-        currently_chosen_entry = ui->table_view_person->item(row, 0)->text().toStdString();
+        currently_chosen_entry = ui->table_view_person->item(row, 0)->text().toInt();
         // Find the corresponding person
         Person* current_person = person_service->find_chosen_person(currently_chosen_entry);
         QString current_profession = QString::fromStdString(current_person->get_profession());
@@ -281,7 +302,7 @@ void MainWindow::on_show_more_pushButton_clicked()
         ui->see_more_view_person->hide();
         ui->description_output_computer->clear();
         int row = ui->table_view_computers->currentIndex().row();
-        string currently_chosen_entry_comp = ui->table_view_computers->item(row, 0)->text().toStdString();
+        int currently_chosen_entry_comp = ui->table_view_computers->item(row, 0)->text().toInt();
         // Find the corresponding computer
         Computer* current_computer = computer_service->find_chosen_computer(currently_chosen_entry_comp);
         QString current_description = QString::fromStdString(current_computer->get_description());
@@ -305,14 +326,14 @@ void MainWindow::on_table_view_connections_clicked(const QModelIndex &index)
 void MainWindow::on_remove_pushButton_clicked()
 {
     string current_type = ui->type_dropdown->currentText().toStdString();
-    string currently_chosen_entry;
+    int currently_chosen_entry;
     if (current_type == "Computer Scientists")
     {
         ui->see_more_view_computer->hide();
         ui->description_output_person->clear();
         int row = ui->table_view_person->currentIndex().row();
         // Get the name of the person in the connection
-        currently_chosen_entry = ui->table_view_person->item(row, 0)->text().toStdString();
+        currently_chosen_entry = ui->table_view_person->item(row, 0)->text().toInt();
         // Find the corresponding person
         Person* current_person = person_service->find_chosen_person(currently_chosen_entry);
         // Get the id of this person
@@ -325,7 +346,7 @@ void MainWindow::on_remove_pushButton_clicked()
         ui->see_more_view_person->hide();
         ui->description_output_computer->clear();
         int row = ui->table_view_computers->currentIndex().row();
-        string currently_chosen_entry_comp = ui->table_view_computers->item(row, 0)->text().toStdString();
+        int currently_chosen_entry_comp = ui->table_view_computers->item(row, 0)->text().toInt();
         // Find the corresponding computer
         Computer* current_computer = computer_service->find_chosen_computer(currently_chosen_entry_comp);
         // Get the id of the computer
@@ -340,14 +361,14 @@ void MainWindow::on_remove_pushButton_clicked()
         computer_service->get_all_computers();
         // Get the number of the selected row
         int row = ui->table_view_connections->currentIndex().row();
-        // Get the name of the person in the connection
-        currently_chosen_entry = ui->table_view_connections->item(row, 0)->text().toStdString();
+        // Get the id of the person in the connection
+        currently_chosen_entry = ui->table_view_connections->item(row, 0)->text().toInt();
         // Find the corresponding person
         Person* current_person = person_service->find_chosen_person(currently_chosen_entry);
         // Get the id of this person
         int person_id = current_person->get_id();
-        // Get the name of the computer in the connection
-        string currently_chosen_entry_comp = ui->table_view_connections->item(row, 1)->text().toStdString();
+        // Get the id of the computer in the connection
+        int currently_chosen_entry_comp = ui->table_view_connections->item(row, 2)->text().toInt();
         // Find the corresponding computer
         Computer* current_computer = computer_service->find_chosen_computer(currently_chosen_entry_comp);
         // Get the id of the computer

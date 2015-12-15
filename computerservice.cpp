@@ -117,7 +117,19 @@ void ComputerService::remove_computer(int id)
 }
 
 
-Computer* ComputerService::find_chosen_computer(string chosen_name)
+Computer* ComputerService::find_chosen_computer(int chosen_id)
+{
+    for (unsigned int i = 0; i < computer_vec.size(); i++)
+    {
+        if (computer_vec[i]->get_id() == chosen_id)
+        {
+            return computer_vec[i];
+        }
+    }
+    return NULL;
+}
+
+Computer *ComputerService::find_chosen_computer_by_name(string chosen_name)
 {
     for (unsigned int i = 0; i < computer_vec.size(); i++)
     {
@@ -127,6 +139,7 @@ Computer* ComputerService::find_chosen_computer(string chosen_name)
         }
     }
     return NULL;
+
 }
 
 

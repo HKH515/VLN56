@@ -14,35 +14,37 @@
 class ConnectionsService
 {
 private:
-    vector<Person*> person_vec;
-    vector<Computer*> computer_vec;
-    ConnectionRepository* connection_repo;
+    vector<Person*> person_vec; // Stores all persons that have a connection
+    vector<Computer*> computer_vec; // Stores all computers that have a connection
+    ConnectionRepository* connection_repo; // Data layer
 
 public:
     ConnectionsService();
     ~ConnectionsService();
 
-    /* Deletes all persons object from the vectors and clears the vectors before each command to be handled */
-    void free_person_vector_memory();
-    void free_computer_vector_memory();
-    /* Handles the list command */
-    void get_all_connections();
-    /* Handles the add command */
-    void add_connection(string person_id, string computer_id);
-    /* Handles the remove command */
-    void remove_connection(int person_id, int computer_id);
-    /* Gets all computer/computer scientists connected to certain computer scientist/computer */
-    void get_connected(string kind, string name);
-
-    void parse_query_vector(vector<string> v);
-
-    string int_to_string(int id);
-
+    // Get functions
     vector<Person*> get_person_vec();
     vector<Computer*> get_computer_vec();
-
+    // Deletes all persons object from the person_vec and clears the vector
+    void free_person_vector_memory();
+    // Deletes all computer objects from the computer_vec and clears the vector
+    void free_computer_vector_memory();
+    // List all connections
+    void get_all_connections();
+    // Adds a connection to the database
+    void add_connection(string person_id, string computer_id);
+    // Removes a connection from the database
+    void remove_connection(int person_id, int computer_id);
+    // Gets all computers/scientists connected to certain scientist/computer
+    void get_connected(string kind, string name);
+    // Parses vector from the data layer and fills into Person* and Computer* objects and pushbacks to person_vec and computer_vec
+    void parse_query_vector(vector<string> v);
+    // Returns the Person object for the person with name 'name'
     Person* find_chosen_person(string name);
+    // Returns the Computer object for the computer with name 'name'
     Computer* find_chosen_computer(string name);
+    // Changes the input integer to string
+    string int_to_string(int id);
 
 };
 

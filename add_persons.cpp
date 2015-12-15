@@ -8,6 +8,8 @@ add_persons::add_persons(QWidget *parent) :
     ui->setupUi(this);
     person_service = new PersonsService;
     verify_input = new Verification;
+
+    ui->error_label->hide();
 }
 
 add_persons::~add_persons()
@@ -47,6 +49,7 @@ void add_persons::on_pushbutton_add_clicked()
     add_person_vec.push_back(death_year);
     add_person_vec.push_back(sex);
     person_service->add_person(add_person_vec);
+    this->close();
 
 }
 
@@ -63,7 +66,8 @@ void add_persons::on_name_input_editingFinished()
     if (!verify_input->verify_name(name))
     {
         ui->name_input->clear();
-        ui->name_input->setText(QString::fromStdString("Invalid name"));
+        display_error_msg("Invalid Name");
+
     }
     cout << "út ur name" << endl;
 }
@@ -75,7 +79,7 @@ void add_persons::on_birth_year_input_editingFinished()
     if (!verify_input->verify_year(birth_year))
     {
         ui->birth_year_input->clear();
-        ui->birth_year_input->setText(QString::fromStdString("Invalid birthyear"));
+        display_error_msg("Invalid Birth Year");
     }
     cout << "út ur birthyear" << endl;
 }
@@ -88,7 +92,7 @@ void add_persons::on_death_year_input_editingFinished()
     while (!verify_input->verify_deathyear(birth_year, death_year))
     {
         ui->death_year_input->clear();
-        ui->death_year_input->setText(QString::fromStdString("Invalid deathyear"));
+        display_error_msg("Invalid Death Year");
     }
     cout << "út ur deathyear" << endl;
 }
@@ -100,7 +104,15 @@ void add_persons::on_profession_input_editingFinished()
     while (!verify_input->verify_profession(profession))
     {
         ui->profession_input->clear();
-        ui->profession_input->setText(QString::fromStdString("Invalid profession"));
+        display_error_msg("Invalid Profession");
     }
     cout << "út ur profession" << endl;
+}
+
+void add_persons::display_error_msg(string error_msg)
+{
+    string color = "<span style='color: #ED1C58'><font size='4'>";
+    string colored_error = color + error_msg;
+    ui->error_label->setText(QString::fromStdString(colored_error));
+    ui->error_label->show();
 }

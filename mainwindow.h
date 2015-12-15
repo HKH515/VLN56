@@ -37,16 +37,14 @@ private slots:
     void on_add_pushButton_clicked();
     // Pushing search button
     void on_search_pushButton_clicked();
-    // Pressing return when searching for something in person table
-    void on_substring_input_person_returnPressed();
-    // Pressing return when searching for something in computer table
-    void on_substring_input_computer_returnPressed();
     // Changing if looking at scientist/computers in search menu for connections
     void on_search_dropdown_connections_currentIndexChanged(const QString &arg1);
     void on_dropdown_list_all_ids_person_currentIndexChanged(const QString &arg1);
     void on_dropdown_list_all_ids_computer_currentIndexChanged(const QString &arg1);
 
     void on_substring_input_person_textEdited(const QString &arg1);
+
+    void on_substring_input_computer_textEdited(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;

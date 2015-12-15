@@ -243,28 +243,6 @@ void MainWindow::on_search_pushButton_clicked()
     }
 }
 
-void MainWindow::on_substring_input_person_returnPressed()
-{
-    string search_column = ui->search_dropdown_person->currentText().toStdString();
-    string search_substring = ui->substring_input_person->text().toStdString();
-    cout << "return pressed, buin að na i colum: " << search_column << " substring " << search_substring << endl;
-    person_service->search_person(search_column, search_substring);
-    cout << "sendi search nidur i domain layer" << endl;
-    display_person_list(2);
-    cout << "gat ekkert displayað" << endl;
-    ui->substring_input_person->clear();
-}
-
-void MainWindow::on_substring_input_computer_returnPressed()
-{
-    string search_column = ui->search_dropdown_computer->currentText().toStdString();
-    string search_substring = ui->substring_input_computer->text().toStdString();
-    computer_service->search_computer(search_column, search_substring);
-    display_computer_list(2);
-    ui->substring_input_computer->clear();
-}
-
-
 void MainWindow::on_search_dropdown_connections_currentIndexChanged(const QString &arg1)
 {
     if (arg1.toStdString() == "Computer Scientist")
@@ -558,6 +536,22 @@ void MainWindow::on_substring_input_person_textEdited(const QString &arg1)
     cout << "sendi search nidur i domain layer" << endl;
     display_person_list(2);
     cout << "gat ekkert displayað" << endl;
-    //ui->substring_input_person->clear();
+    if (ui->substring_input_person->text().isEmpty())
+    {
+        ui->search_view_person->hide();
+    }
+
+}
+
+void MainWindow::on_substring_input_computer_textEdited(const QString &arg1)
+{
+    string search_column = ui->search_dropdown_computer->currentText().toStdString();
+    string search_substring = ui->substring_input_computer->text().toStdString();
+    computer_service->search_computer(search_column, search_substring);
+    display_computer_list(2);
+    if (ui->substring_input_computer->text().isEmpty())
+    {
+        ui->search_view_computer->hide();
+    }
 
 }

@@ -37,7 +37,7 @@ vector<string> ComputerRepository::read_entries()
     {
         QSqlQuery query_obj(db);
 
-        query_string = "SELECT * from computers";
+        query_string = "SELECT * from computers ORDER BY name";
         QString q_query_string(query_string.c_str());
         query_obj.exec(q_query_string);
         query_vect = from_db_to_vector("computers", query_obj);

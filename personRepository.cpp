@@ -37,7 +37,7 @@ vector<string> PersonRepository::read_entries()
     {
         QSqlQuery queryObj(db);
 
-        queryString = "SELECT * from persons";
+        queryString = "SELECT * from persons ORDER BY name";
         QString qQueryString(queryString.c_str());
         queryObj.exec(qQueryString);
         query_vect = from_db_to_vector("persons", queryObj);

@@ -10,6 +10,7 @@ add_computers::add_computers(QWidget *parent) :
     verify_input = new Verification();
 
     ui->error_label->hide();
+    ui->radioButton_no->setChecked(true);
 }
 
 add_computers::~add_computers()
@@ -39,19 +40,7 @@ void add_computers::on_add_pushbutton_clicked()
     {
         built = "0";
     }
-    string type = "";
-    if (ui->radiobutton_electrical->isChecked())
-    {
-        type = "Electrical";
-    }
-    else if (ui->radiobutton_mechanical->isChecked())
-    {
-        type = "Mechanical";
-    }
-    else if (ui->radiobutton_transistor->isChecked())
-    {
-        type = "Transistor";
-    }
+    string type = ui->type_dropdown->currentText().toStdString();
     string description = ui->description_input->toPlainText().toStdString();
 
     vector<string> add_computer_vec;

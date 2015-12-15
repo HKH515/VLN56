@@ -1,4 +1,4 @@
-#include "personsservice.h"
+#include "personsService.h"
 
 PersonsService::PersonsService()
 {
@@ -145,6 +145,8 @@ void PersonsService::search_person(string column, string substring)
     else if (column == "Death Year")
     {
         column = "deathyear";
+        parse_query_vector(person_repo->query_exact(column, check_search_substring(column, substring)));
+        return;
     }
 
     // Sends search command to data layer

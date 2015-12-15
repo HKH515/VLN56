@@ -17,12 +17,28 @@
    <iconset resource="resources.qrc">
     <normaloff>:/icons/images/Link_Building.png</normaloff>:/icons/images/Link_Building.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #FCE3FE;
+color: #272728;
+</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QComboBox" name="person_dropdown"/>
+    <widget class="QComboBox" name="person_dropdown">
+     <property name="styleSheet">
+      <string notr="true">background-color:#ffffff;
+selection-background-color:#D562FB;
+</string>
+     </property>
+    </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="computer_dropdown"/>
+    <widget class="QComboBox" name="computer_dropdown">
+     <property name="styleSheet">
+      <string notr="true">background-color:#ffffff;
+selection-background-color:#D562FB;</string>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">

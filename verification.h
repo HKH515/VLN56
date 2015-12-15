@@ -13,7 +13,6 @@ public:
     bool verify_name(string name_input);
     bool verify_profession(string profession_input);
     bool verify_year(string year_input);
-    bool verify_deathyear(string birthyear_input, string deathyear_input);
 
 private:
     bool check_if_word(string input);

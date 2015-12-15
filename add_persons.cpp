@@ -55,12 +55,14 @@ void add_persons::on_pushbutton_add_clicked()
 
 }
 
+// Closes the add window
 void add_persons::on_pushbutton_cancel_clicked()
 {
     this->close();
 }
 
-
+// Gets the name from the user input and validates it, sends error msg if
+// the name contains numbers or symbols
 void add_persons::on_name_input_editingFinished()
 {
     string name = ui->name_input->text().toStdString();
@@ -72,6 +74,8 @@ void add_persons::on_name_input_editingFinished()
     enable_add_button();
 }
 
+// Gets the birth year from the user input and validates it, sends error msg if
+// the birth year is negative or contains letters or symbols
 void add_persons::on_birth_year_input_editingFinished()
 {
     string birth_year = ui->birth_year_input->text().toStdString();
@@ -83,6 +87,8 @@ void add_persons::on_birth_year_input_editingFinished()
     enable_add_button();
 }
 
+// Gets the death year from the user input and validated it, sends error msg if
+// the deathyear is negative or contains letters and symbols
 void add_persons::on_death_year_input_editingFinished()
 {
     string death_year = ui->death_year_input->text().toStdString();
@@ -94,6 +100,8 @@ void add_persons::on_death_year_input_editingFinished()
     enable_add_button();
 }
 
+// Gets the profession from the user input and validates it, sends error msg if the profession
+// contains numbers or symbols.
 void add_persons::on_profession_input_editingFinished()
 {
     string profession = ui->profession_input->text().toStdString();
@@ -105,6 +113,7 @@ void add_persons::on_profession_input_editingFinished()
     enable_add_button();
 }
 
+// Displays error msg if the user input is invalid
 void add_persons::display_error_msg(string error_msg)
 {
     string color = "<span style='color: #ED1C58'><font size='4'>";
@@ -113,6 +122,7 @@ void add_persons::display_error_msg(string error_msg)
     ui->error_label->show();
 }
 
+// When all necessary information have been entered the add button is enabled
 void add_persons::enable_add_button()
 {
     if (ui->name_input->text().isEmpty() || ui->profession_input->text().isEmpty() || ui->birth_year_input->text().isEmpty() || ui->death_year_input->text().isEmpty())

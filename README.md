@@ -6,6 +6,18 @@ This program, simply put, is a client for interacting with a database. The theme
 
 ##How to use this program:
 
+Table of Contents:
+==================
+* [Computer Scientists](#computer-scientists)
+* [Add Computer Scientist](#add-a-computer-scientist)
+* [Search for a Computer Scientist](#search-for-a-computer-scientist)
+* [Computers](#computers)
+* [Add a Computer](#add-a-computer)
+* [Search for a Computer](#search-for-computer)
+* [Connections](#connections)
+* [Add a Connection](#add-a-connection)
+* [Remove](#remove)
+
 ##Computer Scientists:
 ![ShowMoreScientists] (https://github.com/HKH515/VLN56/blob/qt/Images/Show_More_Scientist.jpg?raw=true)
 

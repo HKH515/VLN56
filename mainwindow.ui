@@ -21,8 +21,8 @@
     <normaloff>:/icons/images/Alan-Turing.png</normaloff>:/icons/images/Alan-Turing.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #253542;
-color: #6c7c8c;</string>
+   <string notr="true">background-color: #FCE3FE;
+color: #272728;</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -32,14 +32,18 @@ color: #6c7c8c;</string>
        <widget class="QLabel" name="label">
         <property name="font">
          <font>
-          <family>Georgia</family>
-          <pointsize>24</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
+          <family>Lucida Grande</family>
+          <pointsize>48</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
+        <property name="styleSheet">
+         <string notr="true">font: 48pt &quot;Lucida Grande&quot;;</string>
+        </property>
         <property name="text">
-         <string>Welcome</string>
+         <string>VLN56</string>
         </property>
        </widget>
       </item>
@@ -55,6 +59,19 @@ color: #6c7c8c;</string>
       </property>
       <item alignment="Qt::AlignLeft">
        <widget class="QComboBox" name="type_dropdown">
+        <property name="styleSheet">
+         <string notr="true">
+QComboBox{ 
+color:#000000;
+background-color:#ffffff;
+    selection-background-color:#D562FB;
+    border-color: rgba(255,255,255,200);
+    border-width: 1px;
+    border-style: solid;
+    padding: 1px 0px 1px 3px;
+}
+</string>
+        </property>
         <item>
          <property name="text">
           <string>Computer Scientists</string>
@@ -83,6 +100,10 @@ color: #6c7c8c;</string>
     </item>
     <item>
      <widget class="QTableWidget" name="table_view_person">
+      <property name="styleSheet">
+       <string notr="true">background-color:#ffffff;
+selection-background-color:#D562FB;</string>
+      </property>
       <property name="sortingEnabled">
        <bool>true</bool>
       </property>
@@ -118,6 +139,10 @@ color: #6c7c8c;</string>
     </item>
     <item>
      <widget class="QTableWidget" name="table_view_computers">
+      <property name="styleSheet">
+       <string notr="true">background-color:#ffffff;
+selection-background-color:#D562FB;</string>
+      </property>
       <property name="sortingEnabled">
        <bool>true</bool>
       </property>
@@ -156,6 +181,10 @@ color: #6c7c8c;</string>
     </item>
     <item>
      <widget class="QTableWidget" name="table_view_connections">
+      <property name="styleSheet">
+       <string notr="true">background-color:#ffffff;
+selection-background-color:#D562FB;</string>
+      </property>
       <attribute name="horizontalHeaderStretchLastSection">
        <bool>true</bool>
       </attribute>
@@ -194,25 +223,39 @@ color: #6c7c8c;</string>
          </property>
          <item>
           <widget class="QLabel" name="profession">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
            <property name="text">
             <string>Profession:</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="profession_output"/>
+          <widget class="QLineEdit" name="profession_output">
+           <property name="styleSheet">
+            <string notr="true">background-color:#ffffff;</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
        <item>
         <widget class="QLabel" name="description_person">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string>Description:</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QTextEdit" name="description_output_person"/>
+        <widget class="QTextEdit" name="description_output_person">
+         <property name="styleSheet">
+          <string notr="true">background-color:#ffffff;</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -232,6 +275,9 @@ color: #6c7c8c;</string>
          <property name="enabled">
           <bool>true</bool>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:#ffffff;</string>
+         </property>
         </widget>
        </item>
       </layout>
@@ -244,6 +290,9 @@ color: #6c7c8c;</string>
       </property>
       <item>
        <widget class="QPushButton" name="search_pushButton">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="text">
          <string>Search</string>
         </property>
@@ -253,6 +302,9 @@ color: #6c7c8c;</string>
        <widget class="QPushButton" name="remove_pushButton">
         <property name="enabled">
          <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Remove</string>
@@ -283,6 +335,10 @@ color: #6c7c8c;</string>
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item alignment="Qt::AlignLeft">
         <widget class="QComboBox" name="search_dropdown_person">
+         <property name="styleSheet">
+          <string notr="true">background-color:#ffffff;
+selection-background-color:#D562FB;</string>
+         </property>
          <item>
           <property name="text">
            <string>Name</string>
@@ -322,6 +378,9 @@ color: #6c7c8c;</string>
          </property>
          <item>
           <widget class="QLineEdit" name="substring_input_person">
+           <property name="styleSheet">
+            <string notr="true">background-color:#ffffff;</string>
+           </property>
            <property name="placeholderText">
             <string>Search for a Scientist</string>
            </property>
@@ -337,6 +396,10 @@ color: #6c7c8c;</string>
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <item alignment="Qt::AlignLeft">
         <widget class="QComboBox" name="search_dropdown_computer">
+         <property name="styleSheet">
+          <string notr="true">background-color:#ffffff;
+selection-background-color:#D562FB;</string>
+         </property>
          <item>
           <property name="text">
            <string>Name</string>
@@ -371,6 +434,9 @@ color: #6c7c8c;</string>
          </property>
          <item>
           <widget class="QLineEdit" name="substring_input_computer">
+           <property name="styleSheet">
+            <string notr="true">background-color:#ffffff;</string>
+           </property>
            <property name="placeholderText">
             <string>Search for a Computer</string>
            </property>
@@ -392,6 +458,10 @@ color: #6c7c8c;</string>
       <layout class="QHBoxLayout" name="horizontalLayout_7">
        <item>
         <widget class="QComboBox" name="search_dropdown_connections">
+         <property name="styleSheet">
+          <string notr="true">background-color:#ffffff;
+selection-background-color:#D562FB;</string>
+         </property>
          <item>
           <property name="text">
            <string>Computer Scientist</string>
@@ -405,10 +475,20 @@ color: #6c7c8c;</string>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="dropdown_list_all_ids_person"/>
+        <widget class="QComboBox" name="dropdown_list_all_ids_person">
+         <property name="styleSheet">
+          <string notr="true">background-color:#ffffff;
+selection-background-color:#D562FB;</string>
+         </property>
+        </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="dropdown_list_all_ids_computer"/>
+        <widget class="QComboBox" name="dropdown_list_all_ids_computer">
+         <property name="styleSheet">
+          <string notr="true">background-color:#ffffff;
+selection-background-color:#D562FB;</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -421,7 +501,7 @@ color: #6c7c8c;</string>
      <x>0</x>
      <y>0</y>
      <width>481</width>
-     <height>19</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

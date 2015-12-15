@@ -17,16 +17,24 @@
    <iconset resource="resources.qrc">
     <normaloff>:/icons/images/add_user.png</normaloff>:/icons/images/add_user.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #FCE3FE;
+color: #272728;</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="add_scientist">
      <property name="font">
       <font>
-       <family>Georgia</family>
-       <pointsize>15</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
+       <family>Lucida Grande</family>
+       <pointsize>13</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 13pt &quot;Lucida Grande&quot;;</string>
      </property>
      <property name="text">
       <string>Please enter following information:</string>
@@ -43,7 +51,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="name_input"/>
+      <widget class="QLineEdit" name="name_input">
+       <property name="styleSheet">
+        <string notr="true">background-color:#ffffff;</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -57,7 +69,12 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="birth_year_input"/>
+      <widget class="QLineEdit" name="birth_year_input">
+       <property name="styleSheet">
+        <string notr="true">background-color:#ffffff;
+</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="death_year">
@@ -67,7 +84,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="death_year_input"/>
+      <widget class="QLineEdit" name="death_year_input">
+       <property name="styleSheet">
+        <string notr="true">background-color:#ffffff;</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -82,6 +103,10 @@
      </item>
      <item>
       <widget class="QRadioButton" name="radiobutton_male">
+       <property name="styleSheet">
+        <string notr="true">QRadioButton::indicator::checked{ border: 2px solid darkgray; border-radius: 6px; background-color:#D562FB ; width: 10px; height: 10px; margin-left:10px;}
+</string>
+       </property>
        <property name="text">
         <string>Male</string>
        </property>
@@ -89,6 +114,10 @@
      </item>
      <item>
       <widget class="QRadioButton" name="radiobutton_female">
+       <property name="styleSheet">
+        <string notr="true">QRadioButton::indicator::checked{ border: 2px solid darkgray; border-radius: 6px; background-color:#D562FB ; width: 10px; height: 10px; margin-left:10px;}
+</string>
+       </property>
        <property name="text">
         <string>Female</string>
        </property>
@@ -96,6 +125,10 @@
      </item>
      <item>
       <widget class="QRadioButton" name="radiobutton_other">
+       <property name="styleSheet">
+        <string notr="true">QRadioButton::indicator::checked{ border: 2px solid darkgray; border-radius: 6px; background-color:#D562FB ; width: 10px; height: 10px; margin-left:10px;}
+</string>
+       </property>
        <property name="text">
         <string>Other</string>
        </property>
@@ -113,7 +146,12 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="profession_input"/>
+      <widget class="QLineEdit" name="profession_input">
+       <property name="styleSheet">
+        <string notr="true">background-color:#ffffff;
+</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -125,7 +163,11 @@
     </widget>
    </item>
    <item>
-    <widget class="QTextEdit" name="description_input"/>
+    <widget class="QTextEdit" name="description_input">
+     <property name="styleSheet">
+      <string notr="true">background-color:#ffffff;</string>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_5">

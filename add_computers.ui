@@ -17,16 +17,24 @@
    <iconset resource="resources.qrc">
     <normaloff>:/icons/images/computer-add.png</normaloff>:/icons/images/computer-add.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #FCE3FE;
+color: #272728;</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="add_computer">
      <property name="font">
       <font>
-       <family>Georgia</family>
-       <pointsize>15</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
+       <family>Lucida Grande</family>
+       <pointsize>13</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 13pt &quot;Lucida Grande&quot;;</string>
      </property>
      <property name="text">
       <string>Please enter the following information:</string>
@@ -43,7 +51,12 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="name_input"/>
+      <widget class="QLineEdit" name="name_input">
+       <property name="styleSheet">
+        <string notr="true">background-color:#ffffff;
+</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -57,7 +70,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="construction_year_input"/>
+      <widget class="QLineEdit" name="construction_year_input">
+       <property name="styleSheet">
+        <string notr="true">background-color:#ffffff;</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -135,7 +152,11 @@
     </widget>
    </item>
    <item>
-    <widget class="QTextEdit" name="description_input"/>
+    <widget class="QTextEdit" name="description_input">
+     <property name="styleSheet">
+      <string notr="true">background-color:#ffffff;</string>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_5">

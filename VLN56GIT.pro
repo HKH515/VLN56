@@ -15,7 +15,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = VLN56GIT
 TEMPLATE = app
 
-
 SOURCES += main.cpp\
         mainwindow.cpp \
     computer.cpp \
@@ -59,3 +58,9 @@ DISTFILES += \
     data.dat \
     splash.txt \
     README.md
+
+OTHER_FILES += \
+    images/computer.ico
+
+RESOURCES += \
+    resources.qrc

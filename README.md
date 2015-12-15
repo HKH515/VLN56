@@ -2,7 +2,7 @@
 
 This is our project for the course VLN1, we are group 56!
 
-This program, simply put, is a client for interacting with a database. The theme of this database are computer scientists and computers.
+This program, simply put, is a client for interacting with a database. The theme of this database is computer scientists and computers.
 
 ##How to use this program:
 

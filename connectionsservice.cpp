@@ -76,6 +76,11 @@ void ConnectionsService::get_connected(string kind, string name)
         free_computer_vector_memory();
         // Find the right person
         Person* current_person = find_chosen_person(name);
+        // If this person is not connected to any computer
+        if (current_person == NULL)
+        {
+            return;
+        }
         // Change the Id from int to string
         string str_id = int_to_string(current_person->get_id());
         // Send command to data layer
@@ -86,6 +91,11 @@ void ConnectionsService::get_connected(string kind, string name)
     {
         free_person_vector_memory();
         Computer* current_computer = find_chosen_computer(name);
+        // If this computer is not connected to any person
+        if (current_computer == NULL)
+        {
+            return;
+        }
         string str_id = int_to_string(current_computer->get_id());
         parse_query_vector(connection_repo->get_conn_assoc_with_computer(str_id));
     }
@@ -183,6 +193,7 @@ Computer *ConnectionsService::find_chosen_computer(string name)
     {
         if (computer_vec[i]->get_name() == name)
         {
+            cout << "Fann í alvörunni tölvu!!" << endl;
             return computer_vec[i];
         }
     }

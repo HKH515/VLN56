@@ -319,23 +319,18 @@ void MainWindow::display_person_list(int display_type)
     // Dispaying all persons
     if (display_type == 1)
     {
-        cout << "display_type == 1" << endl;
         person_service->get_all_persons();
         vector_size = person_service->get_person_vec().size();
     }
     // Displaying search results
     else if (display_type == 2)
     {
-        cout << "display type 2" << endl;
         vector_size = person_service->get_person_vec().size();
     }
     // Displaying search for connections
     else
     {
-        cout << "fór inní else í display_person" << endl;
         vector_size = connections_service->get_person_vec().size();
-        //cout << "Name:" << connections_service->get_person_vec()[0]->get_name() << endl;
-        cout << "vector_size: " << vector_size << endl;
     }
 
     ui->table_view_person->setRowCount(vector_size);
@@ -378,7 +373,6 @@ void MainWindow::display_person_list(int display_type)
         ui->table_view_person->setItem(row, 4, new QTableWidgetItem(sex));
     }
 
-    cout << "----------------------Búin í display list ------------------------" << endl;
 }
 
 void MainWindow::display_computer_list(int display_type)
@@ -395,7 +389,7 @@ void MainWindow::display_computer_list(int display_type)
 
     // Adjust column widths in table
     ui->table_view_computers->setColumnWidth(1, this->width()/3.5);
-    ui->table_view_computers->setColumnWidth(2, this->width()/4.5);
+    ui->table_view_computers->setColumnWidth(2, this->width()/5);
     ui->table_view_computers->setColumnWidth(3, this->width()/4);
     ui->table_view_computers->setColumnWidth(4, this->width()/7);
 
@@ -414,7 +408,6 @@ void MainWindow::display_computer_list(int display_type)
     else
     {
         vector_size = connections_service->get_computer_vec().size();
-        cout << "vector size: " << vector_size << endl;
     }
 
     ui->table_view_computers->setRowCount(vector_size);
@@ -495,8 +488,7 @@ void MainWindow::display_connections_list(int display_type)
 void MainWindow::insert_all_person_ids()
 {
     // Clear the dropdown so each person only appears once
-    ui->dropdown_list_all_ids_person->clear();
-    cout << "er að fara að cleara" << endl;
+    //ui->dropdown_list_all_ids_person->clear();
     person_service->free_vector_memory();
     person_service->get_all_persons();
     vector<Person*> person_vec = person_service->get_person_vec();

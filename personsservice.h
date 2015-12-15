@@ -28,14 +28,10 @@ public:
     void get_all_persons();
     // Handles the add command
     void add_person(vector<string> v);
-    // Handles the search command
-    void search_person(string column, string substr);
     // Handles the remove command
     void remove_person(int id);
     // Handles the search command 
     void search_person(string column, string substring);
-    // Handles the remove command 
-    void remove_person(int id);
     Person* find_chosen_person(string chosen_name);
 
 };

@@ -23,6 +23,7 @@ void PersonsService::free_vector_memory()
         delete person_vec[i];
     }
     person_vec.clear();
+}
 
 string PersonsService::check_search_substring(string column, string substring)
 {

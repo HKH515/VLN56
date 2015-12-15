@@ -10,6 +10,7 @@ add_persons::add_persons(QWidget *parent) :
     verify_input = new Verification;
 
     ui->error_label->hide();
+    ui->radiobutton_other->setChecked(true);
 }
 
 add_persons::~add_persons()

@@ -11,13 +11,27 @@ ComputerService::~ComputerService()
     delete computer_repo;
 }
 
+vector<Computer *> ComputerService::get_computer_vec()
+{
+    return computer_vec;
+}
+
+void ComputerService::free_vector_memory()
+{
+    for (unsigned int i = 0; i < computer_vec.size(); i++)
+    {
+        delete computer_vec[i];
+    }
+    computer_vec.clear();
+}
+
 string ComputerService::parse_add_command(vector<string> v)
 {
-    string st = " "; /* add space in front of the string */
+    string st = " "; // add space in front of the string
     for (unsigned int i = 0; i < v.size(); i++)
     {
         st += v[i];
-        st += "|"; /* add | after each vector element */
+        st += "|"; // add | after each vector element
     }
     return st;
 }
@@ -30,7 +44,7 @@ void ComputerService::parse_query_vector(vector<string> v)
         string st = v[i];
         size_t position_beg = 0;
         size_t position_end = 0;
-        /* cut out the empty space in the beginning of the string */
+        // cut out the empty space in the beginning of the string
         st = st.substr(1, st.length());
 
         position_beg = st.find("|");
@@ -65,51 +79,43 @@ void ComputerService::parse_query_vector(vector<string> v)
     }
 }
 
-void ComputerService::free_vector_memory()
-{
-    for (unsigned int i = 0; i < computer_vec.size(); i++)
-    {
-        delete computer_vec[i];
-    }
-    computer_vec.clear();
-}
-
 void ComputerService::get_all_computers()
 {
+    // Send list command to the data layer
     parse_query_vector(computer_repo->read_entries());
 }
 
 void ComputerService::add_computer(vector<string> v)
 {
+    // Send add command to the data layer
     computer_repo->write(parse_add_command(v));
 }
 
 void ComputerService::search_computer(string column, string substring)
 {
+    // The column name in the database does not have space in it
     if (column == "Construction Year")
     {
         column = "construction_year";
     }
-
     if (column == "Built")
     {
         substring = check_search_substring(substring);
     }
+
+    // Send search command to data layer
     parse_query_vector(computer_repo->query(column, substring));
 }
 
 void ComputerService::remove_computer(int id)
 {
+    // Change id from int to string
     stringstream ss;
     ss << id;
     string str_id = ss.str();
     computer_repo->remove("id", str_id);
 }
 
-vector<Computer *> ComputerService::get_computer_vec()
-{
-    return computer_vec;
-}
 
 Computer* ComputerService::find_chosen_computer(string chosen_name)
 {

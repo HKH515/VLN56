@@ -60,8 +60,6 @@ private:
     void insert_all_person_ids();
     void insert_all_computer_ids();
     void display_connections_associated(int type);
-
-
 };
 
 #endif // MAINWINDOW_H

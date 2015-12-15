@@ -173,7 +173,6 @@ Computer *ConnectionsService::find_chosen_computer(string name)
     parse_query_vector(connection_repo->get_conn_all_computers());
     for (unsigned int i = 0; i < computer_vec.size(); i++)
     {
-        cout << computer_vec[i]->get_name() << endl;
         if (computer_vec[i]->get_name() == name)
         {
             return computer_vec[i];

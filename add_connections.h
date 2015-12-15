@@ -27,6 +27,10 @@ private slots:
 private:
     Ui::add_connections *ui;
     ConnectionsService* connections_service;
+    PersonsService* person_service;
+    ComputerService* computer_service;
+    void get_all_persons_ids();
+    void get_all_computer_ids();
 };
 
 #endif // ADD_CONNECTIONS_H

@@ -156,6 +156,7 @@ void PersonsService::remove_person(int id)
     person_repo->remove("id", str_id);
 }
 
+
 Person* PersonsService::find_chosen_person(string chosen_name)
 {
     for (unsigned int i = 0; i < person_vec.size(); i++)
@@ -167,6 +168,4 @@ Person* PersonsService::find_chosen_person(string chosen_name)
     }
     return NULL;
 }
-
-
 

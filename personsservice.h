@@ -29,6 +29,8 @@ public:
     void remove_person(int id);
     Person* find_chosen_person(string chosen_name);
 
+    Person* find_chosen_person(string name);
+
     vector<Person *> get_person_vec();
     PersonsService();
     ~PersonsService();

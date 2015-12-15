@@ -206,16 +206,24 @@ void MainWindow::on_type_dropdown_currentIndexChanged(const QString &arg1)
 {
     ui->search_view_person->hide();
     ui->search_substring_computer->hide();
+
     ui->see_more_view_computer->hide();
     ui->see_more_view_person->hide();
+
     string current_type = ui->type_dropdown->currentText().toStdString();
     if (current_type == "Computer Scientists")
     {
         display_person_list(1);
+        ui->search_dropdown_connections->hide();
+        ui->dropdown_list_all_ids_person->hide();
+        ui->dropdown_list_all_ids_computer->hide();
     }
     else if (current_type == "Computers")
     {
         display_computer_list(1);
+        ui->search_dropdown_connections->hide();
+        ui->dropdown_list_all_ids_person->hide();
+        ui->dropdown_list_all_ids_computer->hide();
     }
     else
     {
@@ -355,6 +363,7 @@ void MainWindow::on_add_pushButton_clicked()
     else if (current_type == "Connections")
     {
         add_connections newadd_connections;
+
 
         int addConnectionsReturnValue = newadd_connections.exec();
     }

@@ -20,6 +20,10 @@
    <iconset resource="resources.qrc">
     <normaloff>:/icons/images/Alan-Turing.png</normaloff>:/icons/images/Alan-Turing.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #253542;
+color: #6c7c8c;</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
@@ -417,17 +421,9 @@
      <x>0</x>
      <y>0</y>
      <width>481</width>
-     <height>22</height>
+     <height>19</height>
     </rect>
    </property>
-  </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>

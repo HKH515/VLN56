@@ -20,13 +20,13 @@ public:
     ~add_computers();
 
 private slots:
+     // Leave the window
     void on_cancel_pushbutton_clicked();
-
-
+    // Add information from the user input to the database
     void on_add_pushbutton_clicked();
-
+    // Gets the name from the user input and validates it
     void on_name_input_editingFinished();
-
+    // Gets the construction year from the user input and validates it
     void on_construction_year_input_editingFinished();
 
 private:
@@ -34,7 +34,12 @@ private:
     ComputerService* computer_service;
     Verification* verify_input;
 
+    // Private helper function:
+
+    // Displays error msg if the user input is invalid
     void display_error_msg(string error_msg);
+    // When all necessary information have been entered the add button is enabled
+    void enable_add_button();
 };
 
 #endif // ADD_COMPUTERS_H

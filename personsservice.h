@@ -10,6 +10,8 @@ class PersonsService
 private:
     vector<Person*> person_vec;
     PersonRepository* person_repo;
+    string check_search_substring(string column, string substring);
+
 public:
     string parse_add_command(vector<string> vec);
     /* Receives a vector of strings from data layer and parses the string, fills into
@@ -22,9 +24,10 @@ public:
     /* Handles the add command */
     void add_person(vector<string> v);
     /* Handles the search command */
-    void search_person(string column, string substr);
+    void search_person(string column, string substring);
     /* Handles the remove command */
     void remove_person(int id);
+    Person* find_chosen_person(string chosen_name);
 
     vector<Person *> get_person_vec();
     PersonsService();

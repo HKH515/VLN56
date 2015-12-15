@@ -11,6 +11,33 @@ PersonsService::~PersonsService()
     delete person_repo;
 }
 
+string PersonsService::check_search_substring(string column, string substring)
+{
+    if (column == "Sex")
+    {
+        if (substring == "Male" || substring == "male" || substring == "M" || substring == "m")
+        {
+            return "m";
+        }
+        else if (substring == "Female" || substring == "female" || substring == "F" || substring == "f")
+        {
+            return "f";
+        }
+        else
+        {
+            return "o";
+        }
+    }
+    if (column == "deathyear")
+    {
+        if (substring == "-")
+        {
+            return "0";
+        }
+    }
+    return substring;
+}
+
 string PersonsService::parse_add_command(vector<string> vec)
 {
     string st = " "; /* add space in front of the string */
@@ -100,7 +127,7 @@ void PersonsService::add_person(vector<string> v)
     person_repo->write(parse_add_command(v));
 }
 
-void PersonsService::search_person(string column, string substr)
+void PersonsService::search_person(string column, string substring)
 {
     if (column == "Birth Year")
     {
@@ -110,7 +137,10 @@ void PersonsService::search_person(string column, string substr)
     {
         column = "deathyear";
     }
-    parse_query_vector(person_repo->query(column, substr));
+
+
+    substring = check_search_substring(column, substring);
+    parse_query_vector(person_repo->query(column, substring));
 }
 
 vector<Person*> PersonsService::get_person_vec()
@@ -124,6 +154,18 @@ void PersonsService::remove_person(int id)
     ss << id;
     string str_id = ss.str();
     person_repo->remove("id", str_id);
+}
+
+Person* PersonsService::find_chosen_person(string chosen_name)
+{
+    for (unsigned int i = 0; i < person_vec.size(); i++)
+    {
+        if (person_vec[i]->get_name() == chosen_name)
+        {
+            return person_vec[i];
+        }
+    }
+    return NULL;
 }
 
 

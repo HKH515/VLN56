@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 #include "personsservice.h"
+#include "verification.h"
+#include <QMessageBox>
 
 using namespace std;
 
@@ -25,9 +27,18 @@ private slots:
 
     void on_pushbutton_cancel_clicked();
 
+    void on_name_input_editingFinished();
+
+    void on_birth_year_input_editingFinished();
+
+    void on_death_year_input_editingFinished();
+
+    void on_profession_input_editingFinished();
+
 private:
     Ui::add_persons *ui;
     PersonsService *person_service;
+    Verification *verify_input;
 };
 
 #endif // ADD_PERSONS_H

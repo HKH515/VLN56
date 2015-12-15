@@ -58,6 +58,7 @@ void MainWindow::on_search_pushButton_clicked()
     }
     else
     {
+
         ui->search_view_connections->show();
         // Default list all Computer Scientist
         ui->dropdown_list_all_ids_computer->hide();
@@ -244,7 +245,7 @@ void MainWindow::on_show_more_pushButton_clicked()
         // Get the name of the person in the connection
         currently_chosen_entry = ui->table_view_person->item(row, 0)->text().toStdString();
         // Find the corresponding person
-        Person* current_person = find_chosen_person(currently_chosen_entry);
+        Person* current_person = person_service->find_chosen_person(currently_chosen_entry);
         QString current_profession = QString::fromStdString(current_person->get_profession());
         QString current_description = QString::fromStdString(current_person->get_description());
         ui->profession_output->setText(current_profession);
@@ -290,7 +291,7 @@ void MainWindow::on_remove_pushButton_clicked()
         // Get the name of the person in the connection
         currently_chosen_entry = ui->table_view_person->item(row, 0)->text().toStdString();
         // Find the corresponding person
-        Person* current_person = find_chosen_person(currently_chosen_entry);
+        Person* current_person = person_service->find_chosen_person(currently_chosen_entry);
         // Get the id of this person
         int person_id = current_person->get_id();
         person_service->remove_person(person_id);
@@ -319,7 +320,7 @@ void MainWindow::on_remove_pushButton_clicked()
         // Get the name of the person in the connection
         currently_chosen_entry = ui->table_view_connections->item(row, 0)->text().toStdString();
         // Find the corresponding person
-        Person* current_person = find_chosen_person(currently_chosen_entry);
+        Person* current_person = person_service->find_chosen_person(currently_chosen_entry);
         // Get the id of this person
         int person_id = current_person->get_id();
         // Get the name of the computer in the connection
@@ -359,19 +360,6 @@ void MainWindow::on_add_pushButton_clicked()
     }
 }
 
-Person* MainWindow::find_chosen_person(string chosen_name)
-{
-    for (unsigned int i = 0; i < person_service->get_person_vec().size(); i++)
-    {
-        if (person_service->get_person_vec()[i]->get_name() == chosen_name)
-        {
-            return person_service->get_person_vec()[i];
-        }
-    }
-    return NULL;
-}
-
-
 void MainWindow::insert_all_person_ids()
 {
     person_service->get_all_persons();
@@ -397,8 +385,11 @@ void MainWindow::on_substring_input_person_returnPressed()
 {
     string search_column = ui->search_dropdown_person->currentText().toStdString();
     string search_substring = ui->substring_input_person->text().toStdString();
+    cout << "return pressed, buin að na i colum: " << search_column << " substring " << search_substring << endl;
     person_service->search_person(search_column, search_substring);
+    cout << "sendi search nidur i domain layer" << endl;
     display_person_list(2);
+    cout << "gat ekkert displayað" << endl;
     ui->substring_input_person->clear();
 }
 

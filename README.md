@@ -16,6 +16,7 @@ Table of Contents:
 * [Search for a Computer](#search-for-computer)
 * [Connections](#connections)
 * [Add a Connection](#add-a-connection)
+* [Search Connections](#search-connections)
 * [Remove](#remove)
 
 ##Computer Scientists:
@@ -76,6 +77,12 @@ To view the connections that are already in the database the user can choose Con
 ![AddConnection](https://github.com/HKH515/VLN56/blob/qt/Images/Add_Connection.jpg?raw=true)
 
 To add a connection the user can choose Connection in the dropdown box and then clicks on the Add button at the bottom of the program. A new window will appear where the user can choose a computer scientist that is already in the database and link him or her to a computer that is also already in the database. If the user wants to connect a computer scientist that is already available to a computer that is not, the user must first add the computer into the database and vice versa. (See "Add Computer" above)
+
+##Search Connections:
+
+![SearchConnections](https://github.com/HKH515/VLN56/blob/qt/Images/Search_Connection.jpg?raw=true)
+
+To search for a connection between a computer scientist and a computer or vice versa, the user can choose Connections in the dropdown box and then clicks on the search button located at the bottom of the program window. A new dropbox with the option to choose Computer Scientist or Computers will appear on the left and a dropbox with the names of either computer scientists or computers appears on the right. In this example the user chooses Computer Scientists and Ada Lovelace. The computer that Ada Lovelace is connected to, along with Construction Year, Type and whether it was built or not appears in the main window. 
 
 ##Remove:
 

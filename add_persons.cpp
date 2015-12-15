@@ -11,6 +11,7 @@ add_persons::add_persons(QWidget *parent) :
 
     ui->error_label->hide();
     ui->radiobutton_other->setChecked(true);
+    ui->pushbutton_add->setEnabled(false);
 }
 
 add_persons::~add_persons()
@@ -68,6 +69,7 @@ void add_persons::on_name_input_editingFinished()
         ui->name_input->clear();
         display_error_msg("Invalid Name");
     }
+    enable_add_button();
 }
 
 void add_persons::on_birth_year_input_editingFinished()
@@ -78,17 +80,18 @@ void add_persons::on_birth_year_input_editingFinished()
         ui->birth_year_input->clear();
         display_error_msg("Invalid Birth Year");
     }
+    enable_add_button();
 }
 
 void add_persons::on_death_year_input_editingFinished()
 {
-    string birth_year = ui->birth_year_input->text().toStdString();
     string death_year = ui->death_year_input->text().toStdString();
-    if ((death_year != "") && (!verify_input->verify_deathyear(birth_year, death_year)))
+    if ((death_year != "") && (!verify_input->verify_year(death_year)))
     {
         ui->death_year_input->clear();
         display_error_msg("Invalid Death Year");
     }
+    enable_add_button();
 }
 
 void add_persons::on_profession_input_editingFinished()
@@ -99,6 +102,7 @@ void add_persons::on_profession_input_editingFinished()
         ui->profession_input->clear();
         display_error_msg("Invalid Profession");
     }
+    enable_add_button();
 }
 
 void add_persons::display_error_msg(string error_msg)
@@ -107,4 +111,16 @@ void add_persons::display_error_msg(string error_msg)
     string colored_error = color + error_msg;
     ui->error_label->setText(QString::fromStdString(colored_error));
     ui->error_label->show();
+}
+
+void add_persons::enable_add_button()
+{
+    if (ui->name_input->text().isEmpty() || ui->profession_input->text().isEmpty() || ui->birth_year_input->text().isEmpty() || ui->death_year_input->text().isEmpty())
+    {
+        ui->pushbutton_add->setEnabled(false);
+    }
+    else
+    {
+        ui->pushbutton_add->setEnabled(true);
+    }
 }

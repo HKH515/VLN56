@@ -31,21 +31,6 @@ bool Verification::verify_year(string year_input)
     return check_if_year(year_input) && stoi(year_input) >= 0;
 }
 
-bool Verification::verify_deathyear(string birthyear_input, string deathyear_input)
-{
-    int birthyear = stoi(birthyear_input);
-    int deathyear = stoi(deathyear_input);
-
-    if (!check_if_year(deathyear_input) || stoi(deathyear_input) < 0)
-    {
-        return false;
-    }
-    if (birthyear > deathyear)
-    {
-        return false;
-    }
-    return true;
-}
 
 // Checks if all letters are either alphabet letters or spaces
 bool Verification::check_if_word(string input)

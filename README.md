@@ -7,7 +7,7 @@ This program, simply put, is a client for interacting with a database. The theme
 ##How to use this program:
 
 ##Computer Scientists:
-![test image] (https://github.com/HKH515/VLN56/blob/0c78fb7631f60e033bdf94880eae1098d164e9f9/Screen%20Shot%202015-12-14%20at%202.47.32%20PM.png?raw=true)
+![ShowMoreScientists] (https://github.com/HKH515/VLN56/blob/qt/Images/Show_More_Scientist.jpg?raw=true)
 
 In this window the user is able to learn about the fascinating world of computer science by choosing Computer Scientists, Computers or Connections between the two, in the dropdown box located at the top left side.
 
@@ -17,13 +17,13 @@ In this example the list is sorted by Name and in ascending order, where (A) Ada
 
 ##Add a Computer Scientist:
 
-![AddScientist](https://github.com/HKH515/VLN56/blob/qt/Images/Add_ComputerScientist.png?raw=true)
+![AddComputerScientist](https://github.com/HKH515/VLN56/blob/qt/Images/Add_Computer_Scientist.jpg?raw=true)
 
 To add a computer scientist simply choose Computer Scientist in the dropdown box and click on the add button at the bottom of the program window. A new window will appear where you can input Name, Birth Year, Death Year, Sex, Profession and a short Description, although Description is optional. Once completed all the user needs to do is press Add. 
 
 ##Search for a Computer Scientist:
 
-![SearchScientist](https://github.com/HKH515/VLN56/blob/qt/Images/Search_ComputerScientist.jpg?raw=true)
+![SearchScientist](https://github.com/HKH515/VLN56/blob/qt/Images/Search_Computer_Scientists.jpg?raw=true)
 
 To search for a computer scientist the user can choose Computer Scientist in the dropdown box and then clicks on the search button. A search field will appear at the bottom of the program window. The search is sorted by Name, Birth Year, Death Year, Sex, Profession and Description and once one has been chosen, the user can search by a certain substring. In the example below, the user chooses to search by Name and puts the name Ada in the substring. 
 
@@ -31,7 +31,7 @@ To search for a computer scientist the user can choose Computer Scientist in the
 
 
 ##Computers:
-![test image2](https://github.com/HKH515/VLN56/blob/0c78fb7631f60e033bdf94880eae1098d164e9f9/Screen%20Shot%202015-12-14%20at%202.47.58%20PM.png?raw=true)
+![SearchComputers](https://github.com/HKH515/VLN56/blob/qt/Images/Search_Computers.jpg?raw=true)
 
 Here is an example of the options available for Computers. The same as above applies for ascending or descending sorted order. The information available is Name, Construction Year, Type and whether it was built or not. Show more displays a short description of the computer.
 
@@ -41,13 +41,13 @@ Here is an example of the options available for Computers. The same as above app
 
 ##Search for Computer:
 
-![SearchComputer](https://github.com/HKH515/VLN56/blob/qt/Images/Search_Computer.jpg?raw=true)
+![SearchComputer](https://github.com/HKH515/VLN56/blob/qt/Images/Search_Computers.jpg?raw=true)
 
 ![SearchAbstract](https://github.com/HKH515/VLN56/blob/qt/Images/Search_Abstract.jpg?raw=true)
 
 ##Connections:
 
-![ViewConnections](https://github.com/HKH515/VLN56/blob/qt/Images/Veiw_Connections.jpg?raw=true)
+![ViewConnections](https://github.com/HKH515/VLN56/blob/qt/Images/View_Connections.jpg?raw=true)
 
 ##Add a Connection:
 

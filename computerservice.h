@@ -1,7 +1,7 @@
 #ifndef COMPUTERSERVICE_H
 #define COMPUTERSERVICE_H
 
-#include "computerRepository.h"
+#include "computerrepository.h"
 #include "computer.h"
 #include <sstream>
 

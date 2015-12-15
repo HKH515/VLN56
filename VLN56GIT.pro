@@ -18,38 +18,38 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     computer.cpp \
-    computerRepository.cpp \
-    connectionRepository.cpp \
     person.cpp \
-    personRepository.cpp \
     utils.cpp \
     personsservice.cpp \
     computerservice.cpp \
     connectionsservice.cpp \
-    add_computers.cpp \
-    add_connections.cpp \
-    add_persons.cpp \
-    verification.cpp
+    verification.cpp \
+    addcomputers.cpp \
+    addpersons.cpp \
+    addconnections.cpp \
+    computerrepository.cpp \
+    connectionrepository.cpp \
+    personrepository.cpp
 
 HEADERS  += mainwindow.h \
     computer.h \
-    computerRepository.h \
-    connectionRepository.h \
     person.h \
-    personRepository.h \
     utils.h \
     computerservice.h \
-    add_computers.h \
-    add_connections.h \
-    add_persons.h \
     verification.h \
-    connectionsService.h \
-    personsService.h
+    connectionsservice.h \
+    connectionrepository.h \
+    computerrepository.h \
+    personrepository.h \
+    personsservice.h \
+    addcomputers.h \
+    addpersons.h \
+    addconnections.h
 
 FORMS    += mainwindow.ui \
-            add_persons.ui \
-            add_computers.ui \
-    add_connections.ui
+    addcomputers.ui \
+    addpersons.ui \
+    addconnections.ui
 
 
 DISTFILES += \

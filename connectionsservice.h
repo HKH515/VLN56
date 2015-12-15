@@ -4,10 +4,10 @@
 #include <vector>
 #include <string>
 #include <sstream>
-#include "personsService.h"
+#include "personsservice.h"
 #include "computerservice.h"
-#include "personRepository.h"
-#include "connectionRepository.h"
+#include "personrepository.h"
+#include "connectionrepository.h"
 #include "person.h"
 #include "computer.h"
 

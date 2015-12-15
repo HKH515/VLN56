@@ -1,4 +1,4 @@
-#include "computerRepository.h"
+#include "computerrepository.h"
 
 ComputerRepository::ComputerRepository(string db_name, string conn_name)
 {

@@ -1,4 +1,4 @@
-#include "add_computers.h"
+#include "addcomputers.h"
 #include "ui_add_computers.h"
 
 add_computers::add_computers(QWidget *parent) :

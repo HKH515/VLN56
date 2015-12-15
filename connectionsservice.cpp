@@ -1,4 +1,4 @@
-#include "connectionsService.h"
+#include "connectionsservice.h"
 
 ConnectionsService::ConnectionsService()
 {

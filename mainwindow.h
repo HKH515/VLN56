@@ -4,9 +4,9 @@
 #include <QMainWindow>
 #include <string>
 #include <vector>
-#include "personsService.h"
+#include "personsservice.h"
 #include "computerservice.h"
-#include "connectionsService.h"
+#include "connectionsservice.h"
 
 namespace Ui {
 class MainWindow;
@@ -41,9 +41,9 @@ private slots:
     void on_search_dropdown_connections_currentIndexChanged(const QString &arg1);
     void on_dropdown_list_all_ids_person_currentIndexChanged(const QString &arg1);
     void on_dropdown_list_all_ids_computer_currentIndexChanged(const QString &arg1);
-
+    // After each letter written in the input the search function is called
     void on_substring_input_person_textEdited(const QString &arg1);
-
+    // After each letter written in the input the search function is called
     void on_substring_input_computer_textEdited(const QString &arg1);
 
 private:

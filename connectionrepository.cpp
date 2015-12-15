@@ -1,4 +1,4 @@
-#include "connectionRepository.h"
+#include "connectionrepository.h"
 
 ConnectionRepository::ConnectionRepository(string db_name, string conn_name)
 {

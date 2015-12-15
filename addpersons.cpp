@@ -1,4 +1,4 @@
-#include "add_persons.h"
+#include "addpersons.h"
 #include "ui_add_persons.h"
 
 add_persons::add_persons(QWidget *parent) :

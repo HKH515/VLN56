@@ -1,8 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "add_computers.h"
-#include "add_persons.h"
-#include "add_connections.h"
+#include "addcomputers.h"
+#include "addpersons.h"
+#include "addconnections.h"
 #include <QTableView>
 #include <QMessageBox>
 #include <QString>

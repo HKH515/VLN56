@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <string>
 #include <vector>
-#include "personsService.h"
+#include "personsservice.h"
 #include "verification.h"
 #include <QMessageBox>
 

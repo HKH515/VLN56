@@ -1,4 +1,4 @@
-#include "add_connections.h"
+#include "addconnections.h"
 #include "ui_add_connections.h"
 
 add_connections::add_connections(QWidget *parent) :

@@ -19,7 +19,7 @@ In this example the list is sorted by Name and in ascending order, where (A) Ada
 
 ![AddComputerScientist](https://github.com/HKH515/VLN56/blob/qt/Images/Add_Computer_Scientist.jpg?raw=true)
 
-To add a computer scientist simply choose Computer Scientist in the dropdown box and click on the add button at the bottom of the program window. A new window will appear where the user can input Name, Birth Year, Death Year, Sex, Profession and a short Description, although Description is optional. Once completed all the user needs to do is press Add and the computer scientist has been added to the database. 
+To add a computer scientist simply choose Computer Scientist in the dropdown box and click on the add button at the bottom of the program window. A new window will appear where the user can input Name, Birth Year, Death Year, Sex, Profession and a short Description, although Description is optional. Once completed all the user needs to do is press Add and the computer scientist has been added to the database. Keep in mind that symbols and numbers will not work in the name, sex and profession feilds and symbols or letters will not work in the Birth Year and Death Year fields.
 
 ##Search for a Computer Scientist:
 
@@ -28,6 +28,8 @@ To add a computer scientist simply choose Computer Scientist in the dropdown box
 To search for a computer scientist the user can choose Computer Scientist in the dropdown box and then clicks on the search button. A search field will appear at the bottom of the program window. The search is sorted by Name, Birth Year, Death Year, Sex, Profession and Description and once one has been chosen, the user can search by a certain substring. In the example below, the user chooses to search by Name and puts the name Ada in the substring. 
 
 ![SearchAda](https://github.com/HKH515/VLN56/blob/qt/Images/Search_Ada.jpg?raw=true)
+
+Keep in mind that symbols and numbers will not work in the name, sex and profession feilds and symbols or letters will not work in the Birth Year and Death Year fields.
 
 
 ##Computers:
@@ -39,7 +41,7 @@ Here is an example of the options available for Computers. The same as above app
 
 ![AddComputer](https://github.com/HKH515/VLN56/blob/qt/Images/Add_Computer.jpg?raw=true)
 
-To add a computer the user can choose Computer in the dropdown box and then clicks on the Add button at the bottom of the program. A new window will appear where the user can input Name, Construction Year, whether is was Built or not, Type, and a short Description, although Description is optional. Once completed all the user needs to do is press Add and the computer has been added to the database.
+To add a computer the user can choose Computer in the dropdown box and then clicks on the Add button at the bottom of the program. A new window will appear where the user can input Name, Construction Year, whether is was Built or not, Type, and a short Description, although Description is optional. Once completed all the user needs to do is press Add and the computer has been added to the database. Keep in mind that symbols and numbers will not work in the name feild and symbols or letters will not work in the Construction Year field.
 
 ##Search for Computer:
 
@@ -49,6 +51,7 @@ To search for a computer the user can choose Computer in the dropdown box and th
 
 ![SearchAbstract](https://github.com/HKH515/VLN56/blob/qt/Images/Search_Abstract.jpg?raw=true)
 
+Keep in mind that symbols and numbers will not work in the name feild and symbols or letters will not work in the Construction Year field.
 
 ##Connections:
 

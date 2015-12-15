@@ -18,6 +18,7 @@ Table of Contents:
 * [Add a Connection](#add-a-connection)
 * [Search Connections](#search-connections)
 * [Remove](#remove)
+* [Extras](#extras)
 
 ##Computer Scientists:
 ![ShowMoreScientists] (https://github.com/HKH515/VLN56/blob/qt/Images/Show_More_Scientist.jpg?raw=true)
@@ -90,4 +91,19 @@ To search for a connection between a computer scientist and a computer or vice v
 
 To remove any information that has been saved to the database the user needs to choose either Computer Scientists, Computers or Connections from the dropdown box, highlight the information that is to be removed and click on the Remove button located at the bottom of the program.
 
+##Extras:
+
+- Searching by substring in any column in both Scientists and Computers
+- Removing computer Scientists, Computers and Connections
+- View all computers connected to a certain scientist (Connection->search)
+- View all scientists connected to a certain computer
+- On the fly search (filtering results everytime a letter is entered) 
+- Sorting ascending/descending by each column in scientist and computer table
+- Really good README
+- Changed the color scheme for background
+- Changed the color scheme for the highlights
+- Changed the color scheme for choices
+- Changed fonts
+
+There is a zip file including the pictures of rough drafts for how the program should turn out.
 

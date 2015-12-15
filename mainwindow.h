@@ -4,9 +4,9 @@
 #include <QMainWindow>
 #include <string>
 #include <vector>
-#include "personsservice.h"
+#include "personsService.h"
 #include "computerservice.h"
-#include "connectionsservice.h"
+#include "connectionsService.h"
 
 namespace Ui {
 class MainWindow;

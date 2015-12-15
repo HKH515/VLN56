@@ -39,12 +39,12 @@ HEADERS  += mainwindow.h \
     personRepository.h \
     utils.h \
     computerservice.h \
-    connectionsservice.h \
-    personsservice.h \
     add_computers.h \
     add_connections.h \
     add_persons.h \
-    verification.h
+    verification.h \
+    connectionsService.h \
+    personsService.h
 
 FORMS    += mainwindow.ui \
             add_persons.ui \

@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <string>
 #include <vector>
-#include "connectionsservice.h"
+#include "connectionsService.h"
 
 using namespace std;
 

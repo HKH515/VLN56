@@ -19,7 +19,7 @@ In this example the list is sorted by Name and in ascending order, where (A) Ada
 
 ![AddComputerScientist](https://github.com/HKH515/VLN56/blob/qt/Images/Add_Computer_Scientist.jpg?raw=true)
 
-To add a computer scientist simply choose Computer Scientist in the dropdown box and click on the add button at the bottom of the program window. A new window will appear where you can input Name, Birth Year, Death Year, Sex, Profession and a short Description, although Description is optional. Once completed all the user needs to do is press Add. 
+To add a computer scientist simply choose Computer Scientist in the dropdown box and click on the add button at the bottom of the program window. A new window will appear where the user can input Name, Birth Year, Death Year, Sex, Profession and a short Description, although Description is optional. Once completed all the user needs to do is press Add and the computer scientist has been added to the database. 
 
 ##Search for a Computer Scientist:
 
@@ -31,17 +31,21 @@ To search for a computer scientist the user can choose Computer Scientist in the
 
 
 ##Computers:
-![SearchComputers](https://github.com/HKH515/VLN56/blob/qt/Images/Search_Computers.jpg?raw=true)
+![Computers](https://github.com/HKH515/VLN56/blob/qt/Images/Computers.jpg?raw=true)
 
-Here is an example of the options available for Computers. The same as above applies for ascending or descending sorted order. The information available is Name, Construction Year, Type and whether it was built or not. Show more displays a short description of the computer.
+Here is an example of the options available for Computers. The same as above applies for Ascending or Descending sorted order. The information available is Name, Construction Year, Type and whether it was built or not. Show more, displays a short description of the computer.
 
 ##Add a Computer:
 
 ![AddComputer](https://github.com/HKH515/VLN56/blob/qt/Images/Add_Computer.jpg?raw=true)
 
+To add a computer the user can choose Computer in the dropdown box and then clicks on the Add button at the bottom of the program. A new window will appear where the user can input Name, Construction Year, whether is was Built or not, Type, and a short Description, although Description is optional. Once completed all the user needs to do is press Add and the computer has been added to the database.
+
 ##Search for Computer:
 
 ![SearchComputer](https://github.com/HKH515/VLN56/blob/qt/Images/Search_Computers.jpg?raw=true)
+
+
 
 ![SearchAbstract](https://github.com/HKH515/VLN56/blob/qt/Images/Search_Abstract.jpg?raw=true)
 

@@ -16,6 +16,7 @@ ComputerRepository::ComputerRepository(string db_name, string conn_name)
     }
 }
 
+// Add an entry to the Computer table
 void ComputerRepository::write(string line)
 {
     vector<string> fields = parse_delim_string(line, '|');

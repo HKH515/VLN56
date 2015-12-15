@@ -10,6 +10,7 @@ add_connections::add_connections(QWidget *parent) :
     person_service = new PersonsService();
     computer_service = new ComputerService();
 
+    // Gets all Scientist and Computers in database in certain order
     get_all_persons_ids();
     get_all_computer_ids();
 }
@@ -25,20 +26,24 @@ add_connections::~add_connections()
 void add_connections::on_pushbutton_add_clicked()
 {
     string name_person = ui->person_dropdown->currentText().toStdString();
+    // get all information about the person with name_person
     Person *current_person = person_service->find_chosen_person_by_name(name_person);
-    string name_computer = ui->computer_dropdown->currentText().toStdString();
     string person_id = connections_service->int_to_string(current_person->get_id());
+    string name_computer = ui->computer_dropdown->currentText().toStdString();
+    // get all information about the computer with name_computer
     Computer *current_computer = computer_service->find_chosen_computer_by_name(name_computer);
     string computer_id = connections_service->int_to_string(current_computer->get_id());
-    connections_service->add_connection(person_id, computer_id);
+    connections_service->add_connection(person_id, computer_id); // add connection do database
     this->close();
 }
 
+// Close the window
 void add_connections::on_pushButton_cancel_clicked()
 {
     this->close();
 }
 
+// Add all Scientist to the dropdown
 void add_connections::get_all_persons_ids()
 {
     person_service->get_all_persons();
@@ -49,6 +54,7 @@ void add_connections::get_all_persons_ids()
     }
 }
 
+// Add all Computers to the dropdown
 void add_connections::get_all_computer_ids()
 {
     computer_service->get_all_computers();

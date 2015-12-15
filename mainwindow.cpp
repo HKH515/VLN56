@@ -34,12 +34,15 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->table_view_computers->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->table_view_connections->setSelectionBehavior(QAbstractItemView::SelectRows);
 
-    // only allowed to read
+    // Only allowed to read
     ui->profession_output->setReadOnly(true);
     ui->description_output_person->setReadOnly(true);
     ui->description_output_computer->setReadOnly(true);
 
+    // Make the table uneditable
     ui->table_view_person->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->table_view_computers->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->table_view_connections->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
 MainWindow::~MainWindow()

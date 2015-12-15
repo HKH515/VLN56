@@ -11,13 +11,27 @@ PersonsService::~PersonsService()
     delete person_repo;
 }
 
+vector<Person*> PersonsService::get_person_vec()
+{
+    return person_vec;
+}
+
+void PersonsService::free_vector_memory()
+{
+    for (unsigned int i = 0; i < person_vec.size(); i++)
+    {
+        delete person_vec[i];
+    }
+    person_vec.clear();
+}
+
 string PersonsService::parse_add_command(vector<string> vec)
 {
-    string st = " "; /* add space in front of the string */
+    string st = " "; // add space in front of the string
     for (unsigned int i = 0; i < vec.size(); i++)
     {
         st += vec[i];
-        st += "|"; /* add | after each vector element */
+        st += "|"; // add | after each vector element
     }
     return st;
 }
@@ -30,7 +44,7 @@ void PersonsService::parse_query_vector(vector<string> v)
         string st = v[i];
         size_t position_beg = 0;
         size_t position_end = 0;
-        /* cut out the empty space in the beginning of the string */
+        // cut out the empty space in the beginning of the string
         st = st.substr(1, st.length());
         position_beg = st.find("|");
 
@@ -81,27 +95,21 @@ void PersonsService::parse_query_vector(vector<string> v)
 
 }
 
-void PersonsService::free_vector_memory()
-{
-    for (unsigned int i = 0; i < person_vec.size(); i++)
-    {
-        delete person_vec[i];
-    }
-    person_vec.clear();
-}
-
 void PersonsService::get_all_persons()
 {
+    // Pushbacks all persons in the database into the person_vec
     parse_query_vector(person_repo->read_entries());
 }
 
 void PersonsService::add_person(vector<string> v)
 {
+    // Sends add command to the database
     person_repo->write(parse_add_command(v));
 }
 
 void PersonsService::search_person(string column, string substr)
 {
+    // The columns in the database are named birthyear and deathyear
     if (column == "Birth Year")
     {
         column = "birthyear";
@@ -110,25 +118,26 @@ void PersonsService::search_person(string column, string substr)
     {
         column = "deathyear";
     }
+    // Sends search command to data layer
     parse_query_vector(person_repo->query(column, substr));
 }
 
-vector<Person*> PersonsService::get_person_vec()
-{
-    return person_vec;
-}
 
 void PersonsService::remove_person(int id)
 {
+    // Change the id to string
     stringstream ss;
     ss << id;
     string str_id = ss.str();
+    // Send remove command to data layer
     person_repo->remove("id", str_id);
 }
 
 Person* PersonsService::find_chosen_person(string name)
 {
+    // Make sure the vector is empty
     free_vector_memory();
+    // Fill in all persons in the database
     parse_query_vector(person_repo->read_entries()); // Nauðsynlegt??
 
     for (unsigned int i = 0; i < get_person_vec().size(); i++)

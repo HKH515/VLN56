@@ -76,6 +76,13 @@ void MainWindow::display_person_list(int display_type)
     ui->table_view_person->show();
     ui->table_view_connections->hide();
     ui->table_view_computers->hide();
+
+    // Adjust column widths in table
+    ui->table_view_person->setColumnWidth(0, this->width()/3);
+    ui->table_view_person->setColumnWidth(1, this->width()/5);
+    ui->table_view_person->setColumnWidth(2, this->width()/5);
+    ui->table_view_person->setColumnWidth(3, this->width()/6);
+
     if (display_type == 1)
     {
         person_service->get_all_persons();
@@ -132,6 +139,13 @@ void MainWindow::display_computer_list(int display_type)
     ui->table_view_person->hide();
     ui->table_view_connections->hide();
     ui->table_view_computers->show();
+
+    // Adjust column widths in table
+    ui->table_view_person->setColumnWidth(0, this->width()/2);
+    ui->table_view_person->setColumnWidth(1, this->width()/4);
+    ui->table_view_person->setColumnWidth(2, this->width()/5);
+    ui->table_view_person->setColumnWidth(3, this->width()/6);
+
     if (display_type == 1)
     {
         computer_service->get_all_computers();
@@ -184,6 +198,8 @@ void MainWindow::display_connections_list(int display_type)
     ui->table_view_person->hide();
     ui->table_view_computers->hide();
     ui->table_view_connections->show();
+    ui->table_view_connections->setColumnWidth(0, this->width()/2);
+    ui->table_view_connections->setColumnWidth(1, this->width()/2);
 
     connections_service->get_all_connections();
     unsigned int vector_size = connections_service->get_person_vec().size();
@@ -198,7 +214,6 @@ void MainWindow::display_connections_list(int display_type)
         ui->table_view_connections->setItem(row, 0, new QTableWidgetItem(name_person));
         ui->table_view_connections->setItem(row, 1, new QTableWidgetItem(name_computer));
     }
-
 }
 
 void MainWindow::on_type_dropdown_currentIndexChanged(const QString &arg1)
@@ -362,9 +377,8 @@ void MainWindow::on_add_pushButton_clicked()
     else if (current_type == "Connections")
     {
         add_connections newadd_connections;
-
-
         int addConnectionsReturnValue = newadd_connections.exec();
+        display_connections_list(1);
     }
 }
 

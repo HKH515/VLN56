@@ -13,7 +13,7 @@ Person::Person()
     id = 0;
 }
 
-/* set functions */
+// set functions
 void Person::set_name(string n)
 {
     name = n;
@@ -49,7 +49,7 @@ void Person::set_id(int i)
     id = i;
 }
 
-/* get functions */
+// get functions
 string Person::get_name()
 {
     return name;

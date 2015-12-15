@@ -8,6 +8,8 @@ add_computers::add_computers(QWidget *parent) :
     ui->setupUi(this);
     computer_service = new ComputerService();
     verify_input = new Verification();
+
+    ui->error_label->hide();
 }
 
 add_computers::~add_computers()
@@ -28,7 +30,6 @@ void add_computers::on_add_pushbutton_clicked()
 {
     string name = ui->name_input->text().toStdString();
     string construction_year = ui->construction_year_input->text().toStdString();
-    string type = ui->type_input->text().toStdString();
     string built = "";
     if (ui->radioButton_yes->isChecked())
     {
@@ -37,6 +38,19 @@ void add_computers::on_add_pushbutton_clicked()
     else if (ui->radioButton_no->isChecked())
     {
         built = "0";
+    }
+    string type = "";
+    if (ui->radiobutton_electrical->isChecked())
+    {
+        type = "Electrical";
+    }
+    else if (ui->radiobutton_mechanical->isChecked())
+    {
+        type = "Mechanical";
+    }
+    else if (ui->radiobutton_transistor->isChecked())
+    {
+        type = "Transistor";
     }
     string description = ui->description_input->toPlainText().toStdString();
 

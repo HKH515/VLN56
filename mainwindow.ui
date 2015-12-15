@@ -227,12 +227,6 @@ selection-background-color:#D562FB;</string>
          </property>
          <item>
           <widget class="QLabel" name="profession">
-           <property name="maximumSize">
-            <size>
-             <width>80</width>
-             <height>16777215</height>
-            </size>
-           </property>
            <property name="styleSheet">
             <string notr="true"/>
            </property>
@@ -242,9 +236,9 @@ selection-background-color:#D562FB;</string>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="profession_output">
-           <property name="text">
-            <string>TextLabel</string>
+          <widget class="QLineEdit" name="profession_output">
+           <property name="styleSheet">
+            <string notr="true">background-color:#ffffff;</string>
            </property>
           </widget>
          </item>
@@ -261,9 +255,9 @@ selection-background-color:#D562FB;</string>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="description_output_person">
-         <property name="text">
-          <string>TextLabel</string>
+        <widget class="QTextEdit" name="description_output_person">
+         <property name="styleSheet">
+          <string notr="true">background-color:#ffffff;</string>
          </property>
         </widget>
        </item>
@@ -281,9 +275,12 @@ selection-background-color:#D562FB;</string>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="description_output_computer">
-         <property name="text">
-          <string>TextLabel</string>
+        <widget class="QTextEdit" name="description_output_computer">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:#ffffff;</string>
          </property>
         </widget>
        </item>

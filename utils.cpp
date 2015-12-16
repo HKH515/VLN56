@@ -2,6 +2,7 @@
 
 namespace utils
 {
+    //This function takes in a vector of strings, and returns a string of each index seperated by a specified delimeter
     string create_delim_string(vector<string> source_vec, string delim)
     {
         string results = " ";
@@ -11,7 +12,7 @@ namespace utils
         }
         return results;
     }
-
+    //This function does the exact opposite of create_delim_string, i.e. takes in a delimeter seperated string with data, and returns vector of the data.
     vector<string> parse_delim_string(string delim_string, char delim)
     {
         vector<string> results;
@@ -23,6 +24,7 @@ namespace utils
         return results;
     }
 
+    //This function returns the position in the string where the n'th occurance of the needle is found in the haystack string
     int nth_index(string haystack, char needle, int n)
     {
         int occurances = 0;
@@ -40,6 +42,7 @@ namespace utils
         return haystack.size()-1; //fallback if char is not found, return end of string
     }
 
+    //This function returns a vector of entries from the database, each entry is a string where each field in the table is seperated by a '|' character
     vector<string> from_db_to_vector(string table, QSqlQuery query_obj)
     {
         vector<string> result;

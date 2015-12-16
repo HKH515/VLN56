@@ -282,12 +282,14 @@ void MainWindow::on_dropdown_list_all_ids_computer_currentIndexChanged(const QSt
     ui->search_dropdown_connections->show();
 }
 
+// Each time a letter is entered a new search query is sent down (search on the fly)
 void MainWindow::on_substring_input_person_textEdited(const QString &arg1)
 {
     string search_column = ui->search_dropdown_person->currentText().toStdString();
     string search_substring = ui->substring_input_person->text().toStdString();
     person_service->search_person(search_column, search_substring);
     display_person_list(2);
+    // if the input line is empty the search view is closed
     if (ui->substring_input_person->text().isEmpty())
     {
         ui->search_view_person->hide();
@@ -295,12 +297,14 @@ void MainWindow::on_substring_input_person_textEdited(const QString &arg1)
 
 }
 
+// Each time a letter is entered a new search query is sent down (search on the fly)
 void MainWindow::on_substring_input_computer_textEdited(const QString &arg1)
 {
     string search_column = ui->search_dropdown_computer->currentText().toStdString();
     string search_substring = ui->substring_input_computer->text().toStdString();
     computer_service->search_computer(search_column, search_substring);
     display_computer_list(2);
+    // if the input line is empty the search view is closed
     if (ui->substring_input_computer->text().isEmpty())
     {
         ui->search_view_computer->hide();

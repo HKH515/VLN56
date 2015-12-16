@@ -1,5 +1,5 @@
 #include "addpersons.h"
-#include "ui_add_persons.h"
+#include "ui_addpersons.h"
 
 add_persons::add_persons(QWidget *parent) :
     QDialog(parent),

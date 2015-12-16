@@ -1,5 +1,5 @@
 #include "addconnections.h"
-#include "ui_add_connections.h"
+#include "ui_addconnections.h"
 
 add_connections::add_connections(QWidget *parent) :
     QDialog(parent),

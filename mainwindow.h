@@ -63,7 +63,6 @@ private:
     // Inserts name of all computers in database to a dropdown
     void insert_all_computer_ids();
 
-    void display_connections_search_list(int kind, string name);
 };
 
 #endif // MAINWINDOW_H
